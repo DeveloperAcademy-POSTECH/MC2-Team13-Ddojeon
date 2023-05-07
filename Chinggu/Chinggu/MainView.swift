@@ -8,6 +8,22 @@
 import SwiftUI
 import SpriteKit
 
+enum Weekday: String, CaseIterable {
+    case monday = "월요일"
+    case tuesday = "화요일"
+    case wednesday = "수요일"
+    case thursday = "목요일"
+    case friday = "금요일"
+    case saturday = "토요일"
+    case sunday = "일요일"
+    
+    static var cases: [Weekday] { allCases }
+    
+    var buttonText: Text {
+        Text(rawValue)
+    }
+}
+
 class GameScene: SKScene {
     let stones = ["sample1", "sample2", "sample3"]
     var currentStoneIndex = 0
@@ -49,6 +65,7 @@ class GameScene: SKScene {
 }
 
 struct MainView: View {
+    @State private var selectedWeekday: Weekday?
     @State private var showActionSheet = false
     
     let scene = GameScene(size: CGSize(width: 300, height: 400))
@@ -65,7 +82,26 @@ struct MainView: View {
             }, label: {
                 Text("Add Box")
             })
-
+            .padding()
+            
+            // 요일 변경
+            Button(action: {
+                self.showActionSheet = true
+            }, label: {
+                Text(selectedWeekday?.rawValue ?? "Change Weekday")
+            })
+            .padding()
+            .actionSheet(isPresented: $showActionSheet) {
+                ActionSheet(title: Text("요일 변경"), message: nil, buttons: Weekday.cases.map { weekday in
+                    if selectedWeekday == weekday {
+                        return nil
+                    } else {
+                        return .default(weekday.buttonText) {
+                            self.selectedWeekday = weekday
+                        }
+                    }
+                }.compactMap { $0 } + [.cancel()])
+            }
         }
     }
 }
