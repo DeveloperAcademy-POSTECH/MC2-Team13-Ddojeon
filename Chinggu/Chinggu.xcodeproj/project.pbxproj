@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70C7976B2A042EA000E2E3AF /* AnimationID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7976A2A042EA000E2E3AF /* AnimationID.swift */; };
+		70C7976D2A042EB000E2E3AF /* Dimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7976C2A042EB000E2E3AF /* Dimension.swift */; };
+		70C7976F2A042EC500E2E3AF /* TempText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7976E2A042EC500E2E3AF /* TempText.swift */; };
+		70C797712A042EFA00E2E3AF /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70C797702A042EFA00E2E3AF /* Color.xcassets */; };
+		70C797762A0433BD00E2E3AF /* Color+Chinggu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C797752A0433BD00E2E3AF /* Color+Chinggu.swift */; };
+		70C7977B2A04357F00E2E3AF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C797782A04357F00E2E3AF /* CardView.swift */; };
+		70C7977C2A04357F00E2E3AF /* CardFullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C797792A04357F00E2E3AF /* CardFullScreenView.swift */; };
+		70C7977D2A04357F00E2E3AF /* CardPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7977A2A04357F00E2E3AF /* CardPopupView.swift */; };
+		70C7977F2A04391800E2E3AF /* ShakePresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7977E2A04391800E2E3AF /* ShakePresent.swift */; };
 		AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37D5342A039605009B0F56 /* ChingguApp.swift */; };
 		AE37D5372A039605009B0F56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37D5362A039605009B0F56 /* ContentView.swift */; };
 		AE37D5392A039606009B0F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE37D5382A039606009B0F56 /* Assets.xcassets */; };
@@ -14,6 +23,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		70C7976A2A042EA000E2E3AF /* AnimationID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationID.swift; sourceTree = "<group>"; };
+		70C7976C2A042EB000E2E3AF /* Dimension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimension.swift; sourceTree = "<group>"; };
+		70C7976E2A042EC500E2E3AF /* TempText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempText.swift; sourceTree = "<group>"; };
+		70C797702A042EFA00E2E3AF /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
+		70C797752A0433BD00E2E3AF /* Color+Chinggu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Chinggu.swift"; sourceTree = "<group>"; };
+		70C797782A04357F00E2E3AF /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		70C797792A04357F00E2E3AF /* CardFullScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardFullScreenView.swift; sourceTree = "<group>"; };
+		70C7977A2A04357F00E2E3AF /* CardPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardPopupView.swift; sourceTree = "<group>"; };
+		70C7977E2A04391800E2E3AF /* ShakePresent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakePresent.swift; sourceTree = "<group>"; };
 		AE37D5312A039605009B0F56 /* Chinggu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chinggu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE37D5342A039605009B0F56 /* ChingguApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChingguApp.swift; sourceTree = "<group>"; };
 		AE37D5362A039605009B0F56 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +50,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		70C797692A042E8100E2E3AF /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				70C7976A2A042EA000E2E3AF /* AnimationID.swift */,
+				70C7976C2A042EB000E2E3AF /* Dimension.swift */,
+				70C7976E2A042EC500E2E3AF /* TempText.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		70C797722A042FF400E2E3AF /* CardView */ = {
+			isa = PBXGroup;
+			children = (
+				70C7977E2A04391800E2E3AF /* ShakePresent.swift */,
+				70C797782A04357F00E2E3AF /* CardView.swift */,
+				70C7977A2A04357F00E2E3AF /* CardPopupView.swift */,
+				70C797792A04357F00E2E3AF /* CardFullScreenView.swift */,
+			);
+			path = CardView;
+			sourceTree = "<group>";
+		};
+		70C797772A0434F800E2E3AF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				70C797752A0433BD00E2E3AF /* Color+Chinggu.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		AE37D5282A039605009B0F56 = {
 			isa = PBXGroup;
 			children = (
@@ -53,7 +100,11 @@
 			children = (
 				AE37D5342A039605009B0F56 /* ChingguApp.swift */,
 				AE37D5362A039605009B0F56 /* ContentView.swift */,
+				70C797722A042FF400E2E3AF /* CardView */,
 				AE37D5382A039606009B0F56 /* Assets.xcassets */,
+				70C797702A042EFA00E2E3AF /* Color.xcassets */,
+				70C797692A042E8100E2E3AF /* Constants */,
+				70C797772A0434F800E2E3AF /* Utils */,
 				AE37D53A2A039606009B0F56 /* Preview Content */,
 			);
 			path = Chinggu;
@@ -127,6 +178,7 @@
 			files = (
 				AE37D53C2A039606009B0F56 /* Preview Assets.xcassets in Resources */,
 				AE37D5392A039606009B0F56 /* Assets.xcassets in Resources */,
+				70C797712A042EFA00E2E3AF /* Color.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +189,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70C7976F2A042EC500E2E3AF /* TempText.swift in Sources */,
+				70C7976D2A042EB000E2E3AF /* Dimension.swift in Sources */,
 				AE37D5372A039605009B0F56 /* ContentView.swift in Sources */,
+				70C7977B2A04357F00E2E3AF /* CardView.swift in Sources */,
+				70C7977D2A04357F00E2E3AF /* CardPopupView.swift in Sources */,
+				70C7976B2A042EA000E2E3AF /* AnimationID.swift in Sources */,
+				70C7977F2A04391800E2E3AF /* ShakePresent.swift in Sources */,
 				AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */,
+				70C797762A0433BD00E2E3AF /* Color+Chinggu.swift in Sources */,
+				70C7977C2A04357F00E2E3AF /* CardFullScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +255,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -249,7 +309,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -267,6 +327,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Chinggu/Preview Content\"";
+				DEVELOPMENT_TEAM = 3FD7AHY7SL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -295,6 +356,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Chinggu/Preview Content\"";
+				DEVELOPMENT_TEAM = 3FD7AHY7SL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
