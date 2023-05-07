@@ -14,7 +14,6 @@ struct CardView: View {
 	
 	var body: some View {
 		ZStack {
-			Color.black.opacity(0.5).ignoresSafeArea()
 			if !show {
 				CardPopupView(namespace: namespace, show: $show)
 			} else {

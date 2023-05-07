@@ -61,7 +61,8 @@ struct CardFullScreenView: View {
 					Spacer()
 					Button {
 						withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
-							show.toggle()
+							//다음 뷰로 옮기기
+							show = false
 						}
 					} label: {
 						Text("나가기 버튼")
