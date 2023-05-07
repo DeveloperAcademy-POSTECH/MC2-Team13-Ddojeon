@@ -16,18 +16,13 @@ enum Weekday: String, CaseIterable {
     case friday = "금요일"
     case saturday = "토요일"
     case sunday = "일요일"
-    
-    static var cases: [Weekday] { allCases }
-    
-    var buttonText: Text {
-        Text(rawValue)
-    }
 }
 
 class GameScene: SKScene {
     let stones = ["sample1", "sample2", "sample3"]
     var currentStoneIndex = 0
     var boxes: [SKSpriteNode] = []
+    var canBreakBoxes = false
     
     override func didMove(to view: SKView) {
         physicsBody = SKPhysicsBody (edgeLoopFrom: frame)
@@ -65,8 +60,13 @@ class GameScene: SKScene {
 }
 
 struct MainView: View {
-    @State private var selectedWeekday: Weekday?
+    @State private var selectedWeekday: Weekday? {
+        didSet {
+            updateCanBreakBoxes()
+        }
+    }
     @State private var showActionSheet = false
+    @State private var canBreakBoxes = false
     
     let scene = GameScene(size: CGSize(width: 300, height: 400))
     var body: some View {
@@ -74,7 +74,7 @@ struct MainView: View {
             SpriteView(scene: scene)
                 .frame(width: 300, height: 400)
             
-            // 칭찬돌 추가
+            // 칭찬돌 추가하는 버튼
             Button(action: {
                 let position = CGPoint(x: scene.size.width/2,
                                        y: scene.size.height - 50)
@@ -84,7 +84,7 @@ struct MainView: View {
             })
             .padding()
             
-            // 요일 변경
+            // 요일 변경하는 버튼
             Button(action: {
                 self.showActionSheet = true
             }, label: {
@@ -92,16 +92,37 @@ struct MainView: View {
             })
             .padding()
             .actionSheet(isPresented: $showActionSheet) {
-                ActionSheet(title: Text("요일 변경"), message: nil, buttons: Weekday.cases.map { weekday in
+                ActionSheet(title: Text("요일 변경"), message: nil, buttons: Weekday.allCases.map { weekday in
                     if selectedWeekday == weekday {
                         return nil
                     } else {
-                        return .default(weekday.buttonText) {
+                        return .default(Text(weekday.rawValue)) {
                             self.selectedWeekday = weekday
                         }
                     }
                 }.compactMap { $0 } + [.cancel()])
             }
+            
+            // 저금통 깨는 버튼
+            Button(action: {
+                scene.resetBoxes()
+                canBreakBoxes = false
+            }, label: {
+                Text("Break Box")
+            })
+            .disabled(!canBreakBoxes)
+            .padding()
+        }
+    }
+    
+    // 요일이 변경 될 때마다 현재 요일과 비교
+    func updateCanBreakBoxes() {
+        let today = Calendar.current.component(.weekday, from: Date())
+        let todayWeekday = Weekday.allCases[(today + 5) % 7].rawValue
+        if todayWeekday == selectedWeekday?.rawValue ?? "선택된 요일이 없음" {
+            self.canBreakBoxes = true
+        } else {
+            self.canBreakBoxes = false
         }
     }
 }
