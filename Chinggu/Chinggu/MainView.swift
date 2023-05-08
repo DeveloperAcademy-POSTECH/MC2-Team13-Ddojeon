@@ -20,7 +20,7 @@ enum Weekday: String, CaseIterable {
 
 class GameScene: SKScene {
     let stones = ["sample1", "sample2", "sample3"]
-    var currentStoneIndex = 0
+//    var currentStoneIndex = 0
     var boxes: [SKSpriteNode] = []
     var canBreakBoxes = false
     
@@ -30,8 +30,8 @@ class GameScene: SKScene {
     
     func addBox(at position: CGPoint) {
         // 이미지가 랜덤으로 나오는 것
-        //        let index = Int.random(in: 0..<stones.count)
-        let texture = SKTexture(imageNamed: stones[currentStoneIndex])
+        let index = Int.random(in: 0..<stones.count)
+        let texture = SKTexture(imageNamed: stones[index])
         let box = SKSpriteNode(texture: texture, size: CGSize(width: 100, height: 100))
         let body = SKPhysicsBody(texture: texture, size: CGSize(width: 100, height: 100))
         box.position = position
@@ -40,10 +40,10 @@ class GameScene: SKScene {
         boxes.append(box)
         
         // 이미지가 순서대로 나올 수 있도록 인덱스를 1씩 추가
-        currentStoneIndex += 1
-        if currentStoneIndex >= stones.count {
-            currentStoneIndex = 0
-        }
+//        currentStoneIndex += 1
+//        if currentStoneIndex >= stones.count {
+//            currentStoneIndex = 0
+//        }
         
     }
     
@@ -55,7 +55,7 @@ class GameScene: SKScene {
         boxes.removeAll()
         
         // 인덱스 초기화
-        currentStoneIndex = 0
+//        currentStoneIndex = 0
     }
 }
 
@@ -67,6 +67,8 @@ struct MainView: View {
     }
     @State private var showActionSheet = false
     @State private var canBreakBoxes = false
+    @State private var showAlert = false
+    @State private var tempSeletedWeekday: Weekday?
     
     let scene = GameScene(size: CGSize(width: 300, height: 400))
     var body: some View {
@@ -97,10 +99,19 @@ struct MainView: View {
                         return nil
                     } else {
                         return .default(Text(weekday.rawValue)) {
-                            self.selectedWeekday = weekday
+                            self.showAlert = true
+                            self.tempSeletedWeekday = weekday
                         }
                     }
                 }.compactMap { $0 } + [.cancel()])
+            }
+            
+            // 요일 변경할건지 얼럿
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("매주 \(tempSeletedWeekday?.rawValue ?? "Change Weekday")"), message: Text("선택한 요일로 변경하시겠습니까?"), primaryButton: .default(Text("OK")) {
+                    // OK 버튼을 눌렀을 때 선택한 요일 업데이트
+                    self.selectedWeekday = self.tempSeletedWeekday
+                }, secondaryButton: .cancel())
             }
             
             // 저금통 깨는 버튼

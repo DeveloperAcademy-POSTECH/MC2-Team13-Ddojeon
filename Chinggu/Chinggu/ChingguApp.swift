@@ -11,7 +11,8 @@ import SwiftUI
 struct ChingguApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
+//            ContentView()
         }
     }
 }
