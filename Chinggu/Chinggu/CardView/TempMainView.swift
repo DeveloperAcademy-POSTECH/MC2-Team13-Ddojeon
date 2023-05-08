@@ -136,15 +136,6 @@ struct Popup<PopupContent: View>: ViewModifier {
 	}
 }
 
-extension Date {
-	func formatWithDot() -> String {
-		let formatter = DateFormatter()
-		formatter.locale = Locale(identifier: "ko_KR")
-		formatter.dateFormat = "yyyy. MM. dd"
-		return formatter.string(from: self)
-	}
-}
-
 extension View {
 
 	public func popup<PopupContent: View>(
