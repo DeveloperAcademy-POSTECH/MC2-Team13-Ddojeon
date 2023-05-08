@@ -31,7 +31,7 @@ struct CardPopupView: View {
 			.background {
 				RoundedRectangle(cornerRadius: 15)
 					.foregroundColor(Color.ddoBlue)
-					.frame(width: 340, height: 400)
+					.frame(width: 350, height: 480)
 					.matchedGeometryEffect(id: "background", in: namespace)
 			}
 			.frame(height: 200)

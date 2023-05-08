@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70815E792A0886C600DBE5B0 /* ComplimentModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70815E772A0886C600DBE5B0 /* ComplimentModel.xcdatamodeld */; };
+		70815E7C2A08874B00DBE5B0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7B2A08874B00DBE5B0 /* Persistence.swift */; };
 		70C7976B2A042EA000E2E3AF /* AnimationID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7976A2A042EA000E2E3AF /* AnimationID.swift */; };
 		70C7976D2A042EB000E2E3AF /* Dimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7976C2A042EB000E2E3AF /* Dimension.swift */; };
 		70C7976F2A042EC500E2E3AF /* TempText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7976E2A042EC500E2E3AF /* TempText.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		70815E782A0886C600DBE5B0 /* ComplimentModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ComplimentModel.xcdatamodel; sourceTree = "<group>"; };
+		70815E7B2A08874B00DBE5B0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		70C7976A2A042EA000E2E3AF /* AnimationID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationID.swift; sourceTree = "<group>"; };
 		70C7976C2A042EB000E2E3AF /* Dimension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimension.swift; sourceTree = "<group>"; };
 		70C7976E2A042EC500E2E3AF /* TempText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempText.swift; sourceTree = "<group>"; };
@@ -50,6 +54,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		70815E7A2A08873F00DBE5B0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				70815E772A0886C600DBE5B0 /* ComplimentModel.xcdatamodeld */,
+				70815E7B2A08874B00DBE5B0 /* Persistence.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		70C797692A042E8100E2E3AF /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +113,7 @@
 			children = (
 				AE37D5342A039605009B0F56 /* ChingguApp.swift */,
 				AE37D5362A039605009B0F56 /* ContentView.swift */,
+				70815E7A2A08873F00DBE5B0 /* Model */,
 				70C797722A042FF400E2E3AF /* CardView */,
 				AE37D5382A039606009B0F56 /* Assets.xcassets */,
 				70C797702A042EFA00E2E3AF /* Color.xcassets */,
@@ -193,10 +207,12 @@
 				70C7976D2A042EB000E2E3AF /* Dimension.swift in Sources */,
 				AE37D5372A039605009B0F56 /* ContentView.swift in Sources */,
 				70C7977B2A04357F00E2E3AF /* CardView.swift in Sources */,
+				70815E792A0886C600DBE5B0 /* ComplimentModel.xcdatamodeld in Sources */,
 				70C7977D2A04357F00E2E3AF /* CardPopupView.swift in Sources */,
 				70C7976B2A042EA000E2E3AF /* AnimationID.swift in Sources */,
 				70C7977F2A04391800E2E3AF /* TempMainView.swift in Sources */,
 				AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */,
+				70815E7C2A08874B00DBE5B0 /* Persistence.swift in Sources */,
 				70C797762A0433BD00E2E3AF /* Color+Chinggu.swift in Sources */,
 				70C7977C2A04357F00E2E3AF /* CardFullScreenView.swift in Sources */,
 			);
@@ -399,6 +415,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		70815E772A0886C600DBE5B0 /* ComplimentModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				70815E782A0886C600DBE5B0 /* ComplimentModel.xcdatamodel */,
+			);
+			currentVersion = 70815E782A0886C600DBE5B0 /* ComplimentModel.xcdatamodel */;
+			path = ComplimentModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = AE37D5292A039605009B0F56 /* Project object */;
 }

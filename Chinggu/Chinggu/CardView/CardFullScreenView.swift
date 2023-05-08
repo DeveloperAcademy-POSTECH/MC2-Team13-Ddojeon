@@ -11,6 +11,10 @@ struct CardFullScreenView: View {
 	
 	var namespace: Namespace.ID
 	@Binding var show: Bool
+	@FetchRequest(
+		entity: ComplimentEntity.entity(),
+		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.createDate, ascending: true)])
+	var Compliment: FetchedResults<ComplimentEntity>
 	
 	var body: some View {
 		ScrollView {
@@ -24,39 +28,16 @@ struct CardFullScreenView: View {
 					.matchedGeometryEffect(id: "title", in: namespace)
 					.frame(maxWidth: .infinity, alignment: .leading)
 					.padding()
-				List {
-					Text("diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd")
-						.listRowBackground(Color.red)
-						.font(.footnote)
-						.matchedGeometryEffect(id: "text1", in: namespace)
-					Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's")
-						.listRowBackground(Color.orange)
-						.font(.footnote)
-						.matchedGeometryEffect(id: "text2", in: namespace)
-					Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's")
-						.listRowBackground(Color.yellow)
-						.font(.footnote)
-						.matchedGeometryEffect(id: "text3", in: namespace)
-					Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's")
-						.listRowBackground(Color.green)
-						.font(.footnote)
-						.matchedGeometryEffect(id: "text4", in: namespace)
-					Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's")
-						.listRowBackground(Color.blue)
-						.font(.footnote)
-						.matchedGeometryEffect(id: "text5", in: namespace)
-					Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's")
-						.listRowBackground(Color.purple)
-						.font(.footnote)
-						.matchedGeometryEffect(id: "text6", in: namespace)
-					Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's")
-						.listRowBackground(Color.white)
-						.font(.footnote)
-						.matchedGeometryEffect(id: "text7", in: namespace)
+				ScrollView(.vertical, showsIndicators: false) {
+					VStack(alignment: .leading, spacing: 10) {
+						ForEach(Compliment) { compliments in
+							Text(compliments.compliment ?? "nil compliment")
+							.padding(.leading)
+							Divider()
+						}
+					}
+					.padding()
 				}
-				.padding(.top, -20)
-				.scrollContentBackground(.hidden)
-				.scaledToFit()
 				HStack {
 					Spacer()
 					Button {
