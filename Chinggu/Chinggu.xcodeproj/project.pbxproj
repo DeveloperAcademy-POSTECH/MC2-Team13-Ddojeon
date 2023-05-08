@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70385ED12A07DFEE001CDAB0 /* Color+Chinggu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED02A07DFEE001CDAB0 /* Color+Chinggu.swift */; };
+		70385ED32A07E00F001CDAB0 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70385ED22A07E00F001CDAB0 /* Color.xcassets */; };
+		70385EDA2A07E60B001CDAB0 /* Date+Chinggu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */; };
+		70815E812A08950900DBE5B0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7E2A08950900DBE5B0 /* Persistence.swift */; };
+		70815E822A08950900DBE5B0 /* ComplimentModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7F2A08950900DBE5B0 /* ComplimentModel.xcdatamodeld */; };
 		AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37D5342A039605009B0F56 /* ChingguApp.swift */; };
 		AE37D5372A039605009B0F56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37D5362A039605009B0F56 /* ContentView.swift */; };
 		AE37D5392A039606009B0F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE37D5382A039606009B0F56 /* Assets.xcassets */; };
@@ -15,6 +20,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		70385ED02A07DFEE001CDAB0 /* Color+Chinggu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Chinggu.swift"; sourceTree = "<group>"; };
+		70385ED22A07E00F001CDAB0 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
+		70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Chinggu.swift"; sourceTree = "<group>"; };
+		70815E7E2A08950900DBE5B0 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		70815E802A08950900DBE5B0 /* ComplimentModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ComplimentModel.xcdatamodel; sourceTree = "<group>"; };
 		AE37D5312A039605009B0F56 /* Chinggu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chinggu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE37D5342A039605009B0F56 /* ChingguApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChingguApp.swift; sourceTree = "<group>"; };
 		AE37D5362A039605009B0F56 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -34,6 +44,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		70385ECF2A07DFDD001CDAB0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				70385ED02A07DFEE001CDAB0 /* Color+Chinggu.swift */,
+				70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		70815E7D2A08950900DBE5B0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				70815E7E2A08950900DBE5B0 /* Persistence.swift */,
+				70815E7F2A08950900DBE5B0 /* ComplimentModel.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		AE37D5282A039605009B0F56 = {
 			isa = PBXGroup;
 			children = (
@@ -55,8 +83,11 @@
 			children = (
 				AE37D5342A039605009B0F56 /* ChingguApp.swift */,
 				AE37D5362A039605009B0F56 /* ContentView.swift */,
+				70815E7D2A08950900DBE5B0 /* Model */,
+				70385ECF2A07DFDD001CDAB0 /* Utils */,
 				AE37D5442A063BD3009B0F56 /* MainView.swift */,
 				AE37D5382A039606009B0F56 /* Assets.xcassets */,
+				70385ED22A07E00F001CDAB0 /* Color.xcassets */,
 				AE37D53A2A039606009B0F56 /* Preview Content */,
 			);
 			path = Chinggu;
@@ -130,6 +161,7 @@
 			files = (
 				AE37D53C2A039606009B0F56 /* Preview Assets.xcassets in Resources */,
 				AE37D5392A039606009B0F56 /* Assets.xcassets in Resources */,
+				70385ED32A07E00F001CDAB0 /* Color.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,8 +173,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE37D5372A039605009B0F56 /* ContentView.swift in Sources */,
+				70815E822A08950900DBE5B0 /* ComplimentModel.xcdatamodeld in Sources */,
 				AE37D5452A063BD3009B0F56 /* MainView.swift in Sources */,
 				AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */,
+				70385ED12A07DFEE001CDAB0 /* Color+Chinggu.swift in Sources */,
+				70385EDA2A07E60B001CDAB0 /* Date+Chinggu.swift in Sources */,
+				70815E812A08950900DBE5B0 /* Persistence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,7 +235,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -253,7 +289,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -341,6 +377,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		70815E7F2A08950900DBE5B0 /* ComplimentModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				70815E802A08950900DBE5B0 /* ComplimentModel.xcdatamodel */,
+			);
+			currentVersion = 70815E802A08950900DBE5B0 /* ComplimentModel.xcdatamodel */;
+			path = ComplimentModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = AE37D5292A039605009B0F56 /* Project object */;
 }
