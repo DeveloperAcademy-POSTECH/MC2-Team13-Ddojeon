@@ -14,7 +14,7 @@ struct CardFullScreenView: View {
 		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.createDate, ascending: true)])
 	var Compliment: FetchedResults<ComplimentEntity>
 	var namespace: Namespace.ID
-	@Binding var show: Bool
+	@Binding var showPopup: Bool
 
 	var body: some View {
 		ScrollView {
@@ -43,7 +43,7 @@ struct CardFullScreenView: View {
 					Button {
 						withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
 							//MainView의 Popup Card를 내림
-							show = false
+							showPopup = false
 						}
 					} label: {
 						Text("나가기 버튼")
@@ -73,7 +73,7 @@ struct CardFullScreenView_Previews: PreviewProvider {
 	@Namespace static var namespace
 	
     static var previews: some View {
-		CardFullScreenView(namespace: namespace, show: .constant(true))
+		CardFullScreenView(namespace: namespace, showPopup: .constant(true))
 			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

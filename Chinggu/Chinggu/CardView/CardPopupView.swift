@@ -10,7 +10,6 @@ import SwiftUI
 struct CardPopupView: View {
 	
 	var namespace: Namespace.ID
-	@Binding var show: Bool
 	
 	var body: some View {
 		LottieView(filename: "cardAnimation.json", loopState: false)
@@ -26,6 +25,6 @@ struct CardPopupView_Previews: PreviewProvider {
 	@Namespace static var namespace
 	
     static var previews: some View {
-		CardPopupView(namespace: namespace, show: .constant(true))
+		CardPopupView(namespace: namespace)
     }
 }
