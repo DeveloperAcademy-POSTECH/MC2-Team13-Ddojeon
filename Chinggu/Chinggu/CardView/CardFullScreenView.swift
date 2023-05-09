@@ -9,17 +9,17 @@ import SwiftUI
 
 struct CardFullScreenView: View {
 	
-	var namespace: Namespace.ID
-	@Binding var show: Bool
 	@FetchRequest(
 		entity: ComplimentEntity.entity(),
 		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.createDate, ascending: true)])
 	var Compliment: FetchedResults<ComplimentEntity>
-	
+	var namespace: Namespace.ID
+	@Binding var show: Bool
+
 	var body: some View {
 		ScrollView {
 			VStack {
-				Image("present")
+				Image("gradientPresent")
 					.resizable()
 					.aspectRatio(contentMode: .fill)
 					.matchedGeometryEffect(id: "image", in: namespace)
@@ -42,7 +42,7 @@ struct CardFullScreenView: View {
 					Spacer()
 					Button {
 						withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
-							//다음 뷰로 옮기기
+							//MainView의 Popup Card를 내림
 							show = false
 						}
 					} label: {
@@ -62,7 +62,7 @@ struct CardFullScreenView: View {
 			}
 			.foregroundColor(.black)
 		}
-//		.ignoresSafeArea()
+		.ignoresSafeArea()
 		.background(Color.ddoPrimary)
 		.matchedGeometryEffect(id: "background", in: namespace)
 	}
@@ -74,5 +74,6 @@ struct CardFullScreenView_Previews: PreviewProvider {
 	
     static var previews: some View {
 		CardFullScreenView(namespace: namespace, show: .constant(true))
+			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
