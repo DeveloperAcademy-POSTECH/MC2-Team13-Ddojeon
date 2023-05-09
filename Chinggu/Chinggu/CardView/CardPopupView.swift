@@ -1,6 +1,6 @@
 //
 //  CardPopupView.swift
-//  mc2Test
+//  Chinggu
 //
 //  Created by Junyoo on 2023/05/05.
 //
