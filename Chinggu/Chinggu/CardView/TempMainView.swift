@@ -11,14 +11,14 @@ import CoreData
 struct TempMainView: View {
 	
 	@Environment(\.managedObjectContext) private var viewContext
-	@State private var showPopup = false
 	@FetchRequest(
 		entity: ComplimentEntity.entity(),
 		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.createDate, ascending: true)])
 	var Compliment: FetchedResults<ComplimentEntity>
 	
 	@State var textFieldTitle: String = ""
-	
+	@State private var showPopup = false
+
 	var body: some View {
 		ZStack {
 			Color.ddoPrimary.ignoresSafeArea()
@@ -49,27 +49,26 @@ struct TempMainView: View {
 						ForEach(Compliment) { compliments in
 							let currentDate = compliments.createDate
 							let strDate = currentDate?.formatWithDot()
-							let id = compliments.id?.uuidString
+							let id = compliments.order
 							HStack {
 								Text(compliments.compliment ?? "empty")
 								Text(strDate ?? "timeerror")
-								Text(id ?? "iderror")
+								Text("\(id)")
 							}
-//							.listRowBackground(Color.blue)
 						}
 						.onDelete(perform: deleteItems)
 					}
 					.scrollContentBackground(.hidden)
-				Button("저금통 깨기") {
-					showPopup = true
+					Button("저금통 깨기") {
+						showPopup = true
+					}
 				}
 			}
-		}
-		.popup(isPresented: $showPopup) {
-			ZStack {
-				CardView()
+			.blur(radius: showPopup ? 3 : 0)
+			.disabled(showPopup)
+			.popup(isPresented: $showPopup) {
+				CardView(showPopup: $showPopup)
 			}
-		}
 		}
 	}
 	
@@ -82,21 +81,29 @@ struct TempMainView: View {
 	
 	private func addItem() {
 		withAnimation {
-			//수정 부분
-			let newCompliment = ComplimentEntity(context: viewContext)
-			newCompliment.compliment = textFieldTitle
-			newCompliment.createDate = Date()
-			newCompliment.id = UUID()
-			//textFieldTitle을 사용 후 재설정
-			textFieldTitle = ""
-			
-			saveItems()
+			let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
+			fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
+			fetchRequest.fetchLimit = 1
+			do {
+				let lastCompliment = try viewContext.fetch(fetchRequest).first
+				let newOrder = (lastCompliment?.order ?? 0) + 1
+
+				let newCompliment = ComplimentEntity(context: viewContext)
+				newCompliment.compliment = textFieldTitle
+				newCompliment.createDate = Date()
+				newCompliment.id = UUID()
+				newCompliment.order = Int64(newOrder)
+				textFieldTitle = ""
+
+				saveItems()
+			} catch {
+				print("Failed to fetch last compliment: \(error)")
+			}
 		}
 	}
 	
 	private func deleteItems(offsets: IndexSet) {
 		withAnimation {
-			
 			guard let index = offsets.first else { return }
 			let MessageEntity = Compliment[index]
 			viewContext.delete(MessageEntity)
@@ -125,12 +132,7 @@ struct Popup<PopupContent: View>: ViewModifier {
 			content
 			if isPresented {
 				view()
-					.offset(y: popupOffset)
-					.onAppear {
-						withAnimation(.spring()) {
-							popupOffset = 0
-						}
-					}
+					.transition(AnyTransition.scale.animation(.easeInOut).combined(with: .opacity))
 			}
 		}
 	}
