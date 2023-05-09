@@ -20,12 +20,14 @@ enum Weekday: String, CaseIterable {
 
 class GameScene: SKScene {
     let stones = ["sample1", "sample2", "sample3"]
-//    var currentStoneIndex = 0
+    //    var currentStoneIndex = 0
     var boxes: [SKSpriteNode] = []
     var canBreakBoxes = false
     
     override func didMove(to view: SKView) {
         physicsBody = SKPhysicsBody (edgeLoopFrom: frame)
+        // 배경색 변경
+        //        self.backgroundColor = .red
     }
     
     func addBox(at position: CGPoint) {
@@ -40,10 +42,10 @@ class GameScene: SKScene {
         boxes.append(box)
         
         // 이미지가 순서대로 나올 수 있도록 인덱스를 1씩 추가
-//        currentStoneIndex += 1
-//        if currentStoneIndex >= stones.count {
-//            currentStoneIndex = 0
-//        }
+        //        currentStoneIndex += 1
+        //        if currentStoneIndex >= stones.count {
+        //            currentStoneIndex = 0
+        //        }
         
     }
     
@@ -55,7 +57,7 @@ class GameScene: SKScene {
         boxes.removeAll()
         
         // 인덱스 초기화
-//        currentStoneIndex = 0
+        //        currentStoneIndex = 0
     }
 }
 
@@ -68,61 +70,99 @@ struct MainView: View {
     @State private var showActionSheet = false
     @State private var canBreakBoxes = false
     @State private var showAlert = false
+    @State private var showBreakAlert = false
     @State private var tempSeletedWeekday: Weekday?
     
     let scene = GameScene(size: CGSize(width: 300, height: 400))
     var body: some View {
-        VStack {
-            SpriteView(scene: scene)
-                .frame(width: 300, height: 400)
-            
-            // 칭찬돌 추가하는 버튼
-            Button(action: {
-                let position = CGPoint(x: scene.size.width/2,
-                                       y: scene.size.height - 50)
-                scene.addBox(at: position)
-            }, label: {
-                Text("Add Box")
-            })
-            .padding()
-            
-            // 요일 변경하는 버튼
-            Button(action: {
-                self.showActionSheet = true
-            }, label: {
-                Text(selectedWeekday?.rawValue ?? "Change Weekday")
-            })
-            .padding()
-            .actionSheet(isPresented: $showActionSheet) {
-                ActionSheet(title: Text("요일 변경"), message: nil, buttons: Weekday.allCases.map { weekday in
-                    if selectedWeekday == weekday {
-                        return nil
-                    } else {
-                        return .default(Text(weekday.rawValue)) {
-                            self.showAlert = true
-                            self.tempSeletedWeekday = weekday
+        NavigationView {
+            VStack {
+                //MARK: 요일 변경하는 버튼
+                HStack {
+                    Text("매주")
+                        .tracking(-0.5)
+                    Button(action: {
+                        self.showActionSheet = true
+                    }, label: {
+                        Text(selectedWeekday?.rawValue ?? "뭔요일")
+                            .padding(.trailing, -7.0)
+                        Image(systemName: "arrowtriangle.down.square.fill")
+                    })
+                    .padding()
+                    .actionSheet(isPresented: $showActionSheet) {
+                        ActionSheet(title: Text("요일 변경"), message: nil, buttons: Weekday.allCases.map { weekday in
+                            if selectedWeekday == weekday {
+                                return nil
+                            } else {
+                                return .default(Text(weekday.rawValue)) {
+                                    self.showAlert = true
+                                    self.tempSeletedWeekday = weekday
+                                }
+                            }
+                        }.compactMap { $0 } + [.cancel()])
+                    }
+                    // 요일 변경할건지 얼럿
+                    .alert(isPresented: $showAlert) {
+                        Alert(title: Text("매주 \(tempSeletedWeekday?.rawValue ?? "뭔요일")"), message: Text("선택한 요일로 변경하시겠습니까?"), primaryButton: .default(Text("예")) {
+                            // OK 버튼을 눌렀을 때 선택한 요일 업데이트
+                            self.selectedWeekday = self.tempSeletedWeekday
+                        }, secondaryButton: .cancel(Text("아니오")))
+                    }.padding(.horizontal, -19.0)
+                    Text("은 칭찬 저금통을 깨는 날!")
+                        .tracking(-0.5)
+                    Spacer()
+                    
+                    //MARK: 아카이브 페이지 링크
+                    NavigationLink(destination: ContentView()) {
+                        Image(systemName: "archivebox")
+                    }
+                }.padding(.horizontal, 20.0)
+                Spacer()
+                
+                // 타이틀
+                Text("오늘은 어떤 칭찬을 해볼까요?✍️")
+                
+                //MARK: 칭찬 저금통
+                SpriteView(scene: scene)
+                    .frame(width: 300, height: 400)
+                    .background(.white)
+                    .cornerRadius(26)
+                    .onTapGesture {
+                        if canBreakBoxes {
+                            scene.resetBoxes()
+                            canBreakBoxes = false
+                        } else {
+                            showBreakAlert = true
+                            canBreakBoxes = false
                         }
                     }
-                }.compactMap { $0 } + [.cancel()])
+                    .alert(isPresented: $showBreakAlert) {
+                        Alert(title: Text("중도 개봉을 하시겠어요?"), primaryButton: .default(Text("예")) {
+                            // 저금통 초기화
+                            scene.resetBoxes()
+                        }, secondaryButton:.cancel(Text("아니오")))
+                    }
+                Spacer()
+                // 칭찬돌 추가하는 버튼
+                Button(action: {
+                    let position = CGPoint(x: scene.size.width/2,
+                                           y: scene.size.height - 50)
+                    scene.addBox(at: position)
+                }, label: {
+                    Text("칭찬하기")
+                })
+                .padding()
+                
+                
+                // 저금통 깨는 버튼
+                //                Button(action: {
+                //                    scene.resetBoxes()
+                //                    canBreakBoxes = false
+                //                }, label: {
+                //                    Text("Break Box")
+                //                })
+                //                .disabled(!canBreakBoxes)
             }
-            
-            // 요일 변경할건지 얼럿
-            .alert(isPresented: $showAlert) {
-                Alert(title: Text("매주 \(tempSeletedWeekday?.rawValue ?? "Change Weekday")"), message: Text("선택한 요일로 변경하시겠습니까?"), primaryButton: .default(Text("OK")) {
-                    // OK 버튼을 눌렀을 때 선택한 요일 업데이트
-                    self.selectedWeekday = self.tempSeletedWeekday
-                }, secondaryButton: .cancel())
-            }
-            
-            // 저금통 깨는 버튼
-            Button(action: {
-                scene.resetBoxes()
-                canBreakBoxes = false
-            }, label: {
-                Text("Break Box")
-            })
-            .disabled(!canBreakBoxes)
-            .padding()
         }
     }
     
