@@ -20,12 +20,10 @@ enum Weekday: String, CaseIterable {
 
 class GameScene: SKScene {
     let stones = ["sample1", "sample2", "sample3"]
-    //    var currentStoneIndex = 0
     var boxes: [SKSpriteNode] = []
-    var canBreakBoxes = false
     
     override func didMove(to view: SKView) {
-        physicsBody = SKPhysicsBody (edgeLoopFrom: frame)
+        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         // 배경색 변경
         //        self.backgroundColor = .red
     }
@@ -40,13 +38,6 @@ class GameScene: SKScene {
         box.physicsBody = body
         addChild(box)
         boxes.append(box)
-        
-        // 이미지가 순서대로 나올 수 있도록 인덱스를 1씩 추가
-        //        currentStoneIndex += 1
-        //        if currentStoneIndex >= stones.count {
-        //            currentStoneIndex = 0
-        //        }
-        
     }
     
     func resetBoxes() {
@@ -55,10 +46,17 @@ class GameScene: SKScene {
             box.removeFromParent()
         }
         boxes.removeAll()
-        
-        // 인덱스 초기화
-        //        currentStoneIndex = 0
     }
+    
+//    func shake() {
+//            // Scene 좌우로 진동하는 애니메이션 추가
+//            let moveRight = SKAction.moveBy(x: 10, y: 0, duration: 0.05)
+//            let moveLeft = SKAction.moveBy(x: -20, y: 0, duration: 0.1)
+//            let moveCenter = SKAction.moveBy(x: 10, y: 0, duration: 0.05)
+//            let sequence = SKAction.sequence([moveRight, moveLeft, moveCenter])
+//            let repeatShake = SKAction.repeat(sequence, count: 3)
+//            run(repeatShake)
+//        }
 }
 
 struct MainView: View {
@@ -73,7 +71,7 @@ struct MainView: View {
     @State private var showBreakAlert = false
     @State private var tempSeletedWeekday: Weekday?
     
-    let scene = GameScene(size: CGSize(width: 300, height: 400))
+    let scene = GameScene(size: CGSize(width: 350, height: 450))
     var body: some View {
         NavigationView {
             VStack {
@@ -106,6 +104,8 @@ struct MainView: View {
                         Alert(title: Text("매주 \(tempSeletedWeekday?.rawValue ?? "뭔요일")"), message: Text("선택한 요일로 변경하시겠습니까?"), primaryButton: .default(Text("예")) {
                             // OK 버튼을 눌렀을 때 선택한 요일 업데이트
                             self.selectedWeekday = self.tempSeletedWeekday
+                            updateCanBreakBoxes()
+                            print(canBreakBoxes)
                         }, secondaryButton: .cancel(Text("아니오")))
                     }.padding(.horizontal, -19.0)
                     Text("은 칭찬 저금통을 깨는 날!")
@@ -124,27 +124,31 @@ struct MainView: View {
                 
                 //MARK: 칭찬 저금통
                 SpriteView(scene: scene)
-                    .frame(width: 300, height: 400)
+                    .frame(width: 350, height: 450)
                     .background(.white)
                     .cornerRadius(26)
+//                    .animation(canBreakBoxes ? shake : nil, value: canBreakBoxes)
+//                    .id(canBreakBoxes)
                     .onTapGesture {
                         if canBreakBoxes {
                             scene.resetBoxes()
-                            canBreakBoxes = false
+                            showBreakAlert = false
                         } else {
                             showBreakAlert = true
-                            canBreakBoxes = false
                         }
                     }
+                // 중도 개봉 얼럿
                     .alert(isPresented: $showBreakAlert) {
                         Alert(title: Text("중도 개봉을 하시겠어요?"), primaryButton: .default(Text("예")) {
                             // 저금통 초기화
                             scene.resetBoxes()
                         }, secondaryButton:.cancel(Text("아니오")))
                     }
+                    
                 Spacer()
                 // 칭찬돌 추가하는 버튼
                 Button(action: {
+//                    scene.shake()
                     let position = CGPoint(x: scene.size.width/2,
                                            y: scene.size.height - 50)
                     scene.addBox(at: position)
@@ -152,7 +156,6 @@ struct MainView: View {
                     Text("칭찬하기")
                 })
                 .padding()
-                
                 
                 // 저금통 깨는 버튼
                 //                Button(action: {
@@ -165,6 +168,11 @@ struct MainView: View {
             }
         }
     }
+    
+//    var shake: Animation {
+//        Animation.spring(response: 0.2, dampingFraction: 0.3, blendDuration: 0)
+//            .repeatForever(autoreverses: true)
+//    }
     
     // 요일이 변경 될 때마다 현재 요일과 비교
     func updateCanBreakBoxes() {
