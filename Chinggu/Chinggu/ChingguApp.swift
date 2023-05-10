@@ -14,9 +14,8 @@ struct ChingguApp: App {
 	
     var body: some Scene {
         WindowGroup {
-//            ContentView()
-//				.environment(\.managedObjectContext, persistenceController.container.viewContext)
-            WriteComplimentView()
+            ContentView()
+				.environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
