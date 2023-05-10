@@ -8,15 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {        
-        NavigationStack {
-            NavigationLink(destination: WriteComplimentView()) {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundColor(.accentColor)
-                Text("Hello, world!")
-            }
-        }
+    var body: some View {
+		MainView()
     }
 }
 
