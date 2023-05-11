@@ -10,7 +10,7 @@ import CoreData
 
 struct TempMainView: View {
 	
-	@Environment(\.managedObjectContext) private var viewContext
+	//CoreData의 데이터를 읽어오기 위해 필요해요
 	@FetchRequest(
 		entity: ComplimentEntity.entity(),
 		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.createDate, ascending: true)])
@@ -35,7 +35,7 @@ struct TempMainView: View {
 						.background(Color(UIColor.secondarySystemBackground).cornerRadius(10))
 						.padding(.horizontal, 10)
 					
-					Button(action: {addItem()}, label: {
+					Button(action: {add()}, label: {
 						Text("저장")
 							.padding()
 							.frame(maxWidth: .infinity)
@@ -46,7 +46,8 @@ struct TempMainView: View {
 						
 					})
 					List {
-						ForEach(Compliment) { compliments in
+						//읽은 데이터는 배열로 받으니 이렇게 쓰시면 됩니다
+						ForEach(Compliment, id: \.self.id) { compliments in
 							let currentDate = compliments.createDate
 							let strDate = currentDate?.formatWithDot()
 							let id = compliments.order
@@ -56,7 +57,7 @@ struct TempMainView: View {
 								Text("\(id)")
 							}
 						}
-						.onDelete(perform: deleteItems)
+						.onDelete(perform: delete)
 					}
 					.scrollContentBackground(.hidden)
 					Button("저금통 깨기") {
@@ -72,52 +73,17 @@ struct TempMainView: View {
 		}
 	}
 	
-	private func updateItems(compliment: ComplimentEntity) {
-		let currentCompliment = compliment.compliment ?? ""
-		let newCompliment = currentCompliment + "!"
-		compliment.compliment = newCompliment
-		saveItems()
+	//데이터 넣을때 이렇게 하세요 String값만 주면됩니다
+	private func add() {
+		PersistenceController.shared.addCompliment(complimentText: textFieldTitle)
+		textFieldTitle = ""
 	}
 	
-	private func addItem() {
-		withAnimation {
-			let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
-			fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
-			fetchRequest.fetchLimit = 1
-			do {
-				let lastCompliment = try viewContext.fetch(fetchRequest).first
-				let newOrder = (lastCompliment?.order ?? 0) + 1
-
-				let newCompliment = ComplimentEntity(context: viewContext)
-				newCompliment.compliment = textFieldTitle
-				newCompliment.createDate = Date()
-				newCompliment.id = UUID()
-				newCompliment.order = Int64(newOrder)
-				textFieldTitle = ""
-
-				saveItems()
-			} catch {
-				print("Failed to fetch last compliment: \(error)")
-			}
-		}
-	}
-	
-	private func deleteItems(offsets: IndexSet) {
-		withAnimation {
-			guard let index = offsets.first else { return }
-			let MessageEntity = Compliment[index]
-			viewContext.delete(MessageEntity)
-			saveItems()
-		}
-	}
-	
-	private func saveItems() {
-		do {
-			try viewContext.save()
-		} catch {
-			let nsError = error as NSError
-			fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-		}
+	//onDelete에 넣어주시면 indexset넣어줄거 없이 알아서 처리해줘요
+	private func delete(indexset: IndexSet) {
+		guard let index = indexset.first else { return }
+		let selectedEntity = Compliment[index]
+		PersistenceController.shared.deleteCompliment(compliment: selectedEntity)
 	}
 }
 
@@ -151,9 +117,9 @@ extension View {
 	}
 }
 
-struct TempMainView_Previews: PreviewProvider {
-    static var previews: some View {
-        TempMainView()
-			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
-}
+//struct TempMainView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TempMainView()
+//			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+//    }
+//}

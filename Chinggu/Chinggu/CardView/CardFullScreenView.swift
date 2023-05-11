@@ -68,12 +68,12 @@ struct CardFullScreenView: View {
 	}
 }
 
-struct CardFullScreenView_Previews: PreviewProvider {
-	
-	@Namespace static var namespace
-	
-    static var previews: some View {
-		CardFullScreenView(namespace: namespace, showPopup: .constant(true))
-			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
-}
+//struct CardFullScreenView_Previews: PreviewProvider {
+//	
+//	@Namespace static var namespace
+//	
+//    static var previews: some View {
+//		CardFullScreenView(namespace: namespace, showPopup: .constant(true))
+//			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+//    }
+//}
