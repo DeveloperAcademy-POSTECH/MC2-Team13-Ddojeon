@@ -7,27 +7,16 @@
 
 import CoreData
 
-struct PersistenceController {
+class PersistenceController {
+	
 	static let shared = PersistenceController()
-
-	static var preview: PersistenceController = {
-		let result = PersistenceController(inMemory: true)
-		let viewContext = result.container.viewContext
-		for item in 0..<10 {
-			let newCompliment = ComplimentEntity(context: viewContext)
-			newCompliment.compliment = "Preview \(item)"
-		}
-		do {
-			try viewContext.save()
-		} catch {
-			let nsError = error as NSError
-			fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-		}
-		return result
-	}()
-
+	
 	let container: NSPersistentContainer
-
+	
+	var context: NSManagedObjectContext {
+		return container.viewContext
+	}
+	
 	init(inMemory: Bool = false) {
 		container = NSPersistentContainer(name: "ComplimentModel")
 		if inMemory {
@@ -39,4 +28,25 @@ struct PersistenceController {
 			}
 		})
 	}
+	
+	//MARK: READ
+	func fetchCompliment() -> [ComplimentEntity] {
+		do {
+			let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
+			let results = try context.fetch(fetchRequest)
+			return results
+		} catch {
+			print(error.localizedDescription)
+		}
+		return []
+	}
+	
+	private func saveContext() {
+		do{
+			try container.viewContext.save()
+		} catch {
+			container.viewContext.rollback()
+		}
+	}
 }
+
