@@ -99,8 +99,8 @@ let categories: [Category] = Categories.allCases.map { Category(title: $0.title,
 
 
 struct WriteComplimentView: View {
-
     @State private var content = ""
+    @State private var selection = 0
     @State private var presentSheet = false
     @FocusState private var isFocused: Bool
     @Environment(\.dismiss) private var dismiss
@@ -113,8 +113,6 @@ struct WriteComplimentView: View {
         let description: String
     }
     
-    
-    
     var body: some View {
         VStack {
             VStack(spacing: 0) {
@@ -125,71 +123,110 @@ struct WriteComplimentView: View {
                 }
                 .padding()
                 
-//                ScrollViewReader { value in
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 10) {
-                            ForEach(categories, id: \.self.title, content: { category in
-                                Button(action: {
-//                                    value.scrollTo(category.title, anchor: .top)
-//                                    print(value, category.title)
-                                    presentSheet = true
-                                }) {
-                                    Text(category.title)
-                                        .bold()
-                                        .frame(height: 44)
-                                        .padding(.horizontal)
-                                        .background(category.tipColor)
-                                        .cornerRadius(10)
-                                        .foregroundColor(Color.black)
-//                                        .id(category.title)
-                                }
-                                .sheet(isPresented: $presentSheet) {
-                                    VStack{
-                                        Text("칭찬요정 tip은 작성을 위한 참고 예시에요.").padding(.top)
-                                            .font(.system(size: 14, weight: .regular))
-                                            .foregroundColor (Color.primary.opacity (0.30))
-                                        
-                                        Spacer()
-                                        ScrollViewReader { value in
-                                            ScrollView(.horizontal, showsIndicators: false) {
-                                                
-                                                HStack(spacing: 12) {
-                                                    ForEach(categories, id: \.self.title, content: { category in
-                                                        VStack(alignment: .leading, spacing: 60) {
-                                                            Text(category.title)
-                                                                .font(.system(size: 24, weight: .bold))
-                                                            Text(category.example)
-                                                                .font(.system(size: 17, weight: .regular))
-                                                                .lineSpacing(7)
-                                                                .foregroundColor (Color.primary.opacity (0.70))
-                                                        }
-                                                        .padding(.leading, 26)
-                                                        .padding(.trailing, 26)
-                                                        .padding(.bottom, 6)
-                                                        .frame(width: 312, height: 253)
-                                                        .background(category.sheetColor)
-                                                        .foregroundColor(.black)
-                                                        .cornerRadius(16.0)
-                                                        .id(category.title)
-                                                    })
-                                                }
-                                                .padding(24)
-                                            }
-                                        }
-//                                        .onAppear()
-                                    }
-                                    .padding(.top, 10)
-                                    //                                .presentationDetents([.small])
-                                    .presentationDetents([.height(357)])
-                                    .presentationDragIndicator(.visible)
-                                    //            .presentationCornerRadius(24)
-                                }
-                                
-                            })
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(categories.indices) { idx in
+                            Button(action: {
+                                selection = idx
+                                presentSheet = true
+                            }) {
+                                Text(categories[idx].title)
+                                    .bold()
+                                    .frame(height: 44)
+                                    .padding(.horizontal)
+                                    .background(categories[idx].tipColor)
+                                    .cornerRadius(10)
+                                    .foregroundColor(Color.black)
+                            }
                         }
-                        .padding([.horizontal])
                     }
-//                }
+                    .padding()
+                    .sheet(isPresented: $presentSheet) {
+                        VStack {
+                            Text("칭찬요정 tip은 작성을 위한 참고 예시에요.").padding(.top)
+                                .font(.system(size: 14, weight: .regular))
+                                .foregroundColor (Color.primary.opacity (0.30))
+                            Spacer()
+//                            ScrollView(.horizontal, showsIndicators: false) {
+//                                HStack(spacing: 12) {
+//                                    ForEach(categories, id: \.self.title, content: { category in
+//                                        VStack(alignment: .leading, spacing: 60) {
+//                                            Text(category.title)
+//                                                .font(.system(size: 24, weight: .bold))
+//                                            Text(category.example)
+//                                                .font(.system(size: 17, weight: .regular))
+//                                                .lineSpacing(7)
+//                                                .foregroundColor (Color.primary.opacity (0.70))
+//                                        }
+//                                        .padding(.leading, 26)
+//                                        .padding(.trailing, 26)
+//                                        .padding(.bottom, 6)
+//                                        .frame(width: 312, height: 253)
+//                                        .background(category.sheetColor)
+//                                        .foregroundColor(.black)
+//                                        .cornerRadius(16.0)
+//                                    })
+//                                }
+//                                .padding(24)
+//                            }
+                            
+                            
+                            TabView(selection: $selection) {
+                                ForEach(categories.indices) { idx in
+                                    VStack(alignment: .leading, spacing: 60) {
+                                        Text(categories[idx].title)
+                                            .font(.system(size: 24, weight: .bold))
+                                        Text(categories[idx].example)
+                                            .font(.system(size: 17, weight: .regular))
+                                            .lineSpacing(7)
+                                            .foregroundColor (Color.primary.opacity (0.70))
+                                    }
+                                    .padding(.leading, 26)
+                                    .padding(.trailing, 26)
+                                    .padding(.bottom, 6)
+                                    .frame(width: 312, height: 253)
+                                    .background(categories[idx].sheetColor)
+                                    .foregroundColor(.black)
+                                    .cornerRadius(16.0)
+                                    .tag(idx)
+                                }
+                            }
+                            .tabViewStyle(.page(indexDisplayMode: .never))
+                            .overlay(Button(action: {
+                                withAnimation {
+                                    if selection > 1 {
+                                        selection -= 1
+                                    }
+                                }
+                            }, label: {
+                                if selection != 0 {
+                                    Image(systemName: "chevron.left")
+                                        .foregroundColor(Color.black)
+                                        .font(.title)
+                                        .padding(.leading, 8)
+                                }
+                            }), alignment: .leading)
+                            .overlay(Button(action: {
+                                withAnimation {
+                                    if selection < categories.count - 1 {
+                                        selection += 1
+                                    }
+                                }
+                            }, label: {
+                                if selection != categories.count {
+                                    Image(systemName: "chevron.right")
+                                        .foregroundColor(Color.black)
+                                        .font(.title)
+                                        .padding(.trailing, 8)
+                                }
+                            }), alignment: .trailing)
+                        }
+                        .padding(.top, 10)
+                        .presentationDetents([.height(357)]) // [.small] ?
+                        .presentationDragIndicator(.visible)
+                    }
+                }
+                
             }
             
             VStack(spacing: 0) {
