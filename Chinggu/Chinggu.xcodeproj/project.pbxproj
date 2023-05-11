@@ -25,6 +25,8 @@
 		AE37D5392A039606009B0F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE37D5382A039606009B0F56 /* Assets.xcassets */; };
 		AE37D53C2A039606009B0F56 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE37D53B2A039606009B0F56 /* Preview Assets.xcassets */; };
 		AE37D5452A063BD3009B0F56 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37D5442A063BD3009B0F56 /* MainView.swift */; };
+		FA4B65612A0BAD36008471CB /* ComplimentModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B65602A0BAD36008471CB /* ComplimentModal.swift */; };
+		FA4B65642A0C2B19008471CB /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = FA4B65632A0C2B19008471CB /* BottomSheet */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,7 @@
 		AE37D5382A039606009B0F56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE37D53B2A039606009B0F56 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AE37D5442A063BD3009B0F56 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		FA4B65602A0BAD36008471CB /* ComplimentModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplimentModal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +57,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70E68F0F2A0A888C00258A10 /* Lottie in Frameworks */,
+				FA4B65642A0C2B19008471CB /* BottomSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +132,7 @@
 				70385ED22A07E00F001CDAB0 /* Color.xcassets */,
 				AE37D53A2A039606009B0F56 /* Preview Content */,
 				51D817172A08E59F00B84E6A /* WriteComplimentView.swift */,
+				FA4B65602A0BAD36008471CB /* ComplimentModal.swift */,
 			);
 			path = Chinggu;
 			sourceTree = "<group>";
@@ -158,6 +163,7 @@
 			name = Chinggu;
 			packageProductDependencies = (
 				70E68F0E2A0A888C00258A10 /* Lottie */,
+				FA4B65632A0C2B19008471CB /* BottomSheet */,
 			);
 			productName = Chinggu;
 			productReference = AE37D5312A039605009B0F56 /* Chinggu.app */;
@@ -189,6 +195,7 @@
 			mainGroup = AE37D5282A039605009B0F56;
 			packageReferences = (
 				70E68F0D2A0A888C00258A10 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				FA4B65622A0C2B19008471CB /* XCRemoteSwiftPackageReference "BottomSheet" */,
 			);
 			productRefGroup = AE37D5322A039605009B0F56 /* Products */;
 			projectDirPath = "";
@@ -223,6 +230,7 @@
 				70C7977D2A04357F00E2E3AF /* CardPopupView.swift in Sources */,
 				70C7977F2A04391800E2E3AF /* TempMainView.swift in Sources */,
 				70C7977C2A04357F00E2E3AF /* CardFullScreenView.swift in Sources */,
+				FA4B65612A0BAD36008471CB /* ComplimentModal.swift in Sources */,
 				70815E822A08950900DBE5B0 /* ComplimentModel.xcdatamodeld in Sources */,
 				51D817182A08E59F00B84E6A /* WriteComplimentView.swift in Sources */,
 				AE37D5452A063BD3009B0F56 /* MainView.swift in Sources */,
@@ -443,6 +451,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		FA4B65622A0C2B19008471CB /* XCRemoteSwiftPackageReference "BottomSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/joomcode/BottomSheet";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -450,6 +466,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 70E68F0D2A0A888C00258A10 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		FA4B65632A0C2B19008471CB /* BottomSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA4B65622A0C2B19008471CB /* XCRemoteSwiftPackageReference "BottomSheet" */;
+			productName = BottomSheet;
 		};
 /* End XCSwiftPackageProductDependency section */
 
