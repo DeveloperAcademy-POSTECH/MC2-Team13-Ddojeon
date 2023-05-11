@@ -11,6 +11,12 @@
 		AE37D5372A039605009B0F56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37D5362A039605009B0F56 /* ContentView.swift */; };
 		AE37D5392A039606009B0F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE37D5382A039606009B0F56 /* Assets.xcassets */; };
 		AE37D53C2A039606009B0F56 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE37D53B2A039606009B0F56 /* Preview Assets.xcassets */; };
+		FB6964F82A0A3CDD00D6C6FC /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB6964F72A0A3CDD00D6C6FC /* Color.xcassets */; };
+		FB6964FC2A0A3D0200D6C6FC /* Color+Chinggu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6964FA2A0A3D0200D6C6FC /* Color+Chinggu.swift */; };
+		FB6964FD2A0A3D0200D6C6FC /* Date+Chinggu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6964FB2A0A3D0200D6C6FC /* Date+Chinggu.swift */; };
+		FB6D0BC92A0A287200220360 /* ArchivingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6D0BC82A0A287200220360 /* ArchivingView.swift */; };
+		FB6D0BCB2A0A35AD00220360 /* ArchivingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6D0BCA2A0A35AD00220360 /* ArchivingDetailView.swift */; };
+		FBB8CFD92A0B908E00210F90 /* ArchivingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB8CFD82A0B908E00210F90 /* ArchivingCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +25,12 @@
 		AE37D5362A039605009B0F56 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AE37D5382A039606009B0F56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE37D53B2A039606009B0F56 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FB6964F72A0A3CDD00D6C6FC /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
+		FB6964FA2A0A3D0200D6C6FC /* Color+Chinggu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Chinggu.swift"; sourceTree = "<group>"; };
+		FB6964FB2A0A3D0200D6C6FC /* Date+Chinggu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Chinggu.swift"; sourceTree = "<group>"; };
+		FB6D0BC82A0A287200220360 /* ArchivingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivingView.swift; sourceTree = "<group>"; };
+		FB6D0BCA2A0A35AD00220360 /* ArchivingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivingDetailView.swift; sourceTree = "<group>"; };
+		FBB8CFD82A0B908E00210F90 /* ArchivingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivingCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,9 +63,12 @@
 		AE37D5332A039605009B0F56 /* Chinggu */ = {
 			isa = PBXGroup;
 			children = (
+				FBB8CFD72A0B836E00210F90 /* Archiving View */,
 				AE37D5342A039605009B0F56 /* ChingguApp.swift */,
 				AE37D5362A039605009B0F56 /* ContentView.swift */,
 				AE37D5382A039606009B0F56 /* Assets.xcassets */,
+				FB6964F72A0A3CDD00D6C6FC /* Color.xcassets */,
+				FB6964F92A0A3D0200D6C6FC /* Utils */,
 				AE37D53A2A039606009B0F56 /* Preview Content */,
 			);
 			path = Chinggu;
@@ -65,6 +80,25 @@
 				AE37D53B2A039606009B0F56 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FB6964F92A0A3D0200D6C6FC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FB6964FA2A0A3D0200D6C6FC /* Color+Chinggu.swift */,
+				FB6964FB2A0A3D0200D6C6FC /* Date+Chinggu.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		FBB8CFD72A0B836E00210F90 /* Archiving View */ = {
+			isa = PBXGroup;
+			children = (
+				FB6D0BCA2A0A35AD00220360 /* ArchivingDetailView.swift */,
+				FBB8CFD82A0B908E00210F90 /* ArchivingCard.swift */,
+				FB6D0BC82A0A287200220360 /* ArchivingView.swift */,
+			);
+			path = "Archiving View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +161,7 @@
 			files = (
 				AE37D53C2A039606009B0F56 /* Preview Assets.xcassets in Resources */,
 				AE37D5392A039606009B0F56 /* Assets.xcassets in Resources */,
+				FB6964F82A0A3CDD00D6C6FC /* Color.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +172,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB6D0BC92A0A287200220360 /* ArchivingView.swift in Sources */,
+				FB6964FD2A0A3D0200D6C6FC /* Date+Chinggu.swift in Sources */,
+				FB6D0BCB2A0A35AD00220360 /* ArchivingDetailView.swift in Sources */,
 				AE37D5372A039605009B0F56 /* ContentView.swift in Sources */,
+				FBB8CFD92A0B908E00210F90 /* ArchivingCard.swift in Sources */,
 				AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */,
+				FB6964FC2A0A3D0200D6C6FC /* Color+Chinggu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +235,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -249,7 +289,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -274,6 +314,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,6 +343,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
