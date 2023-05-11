@@ -13,6 +13,8 @@
 		70385EDA2A07E60B001CDAB0 /* Date+Chinggu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */; };
 		70815E812A08950900DBE5B0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7E2A08950900DBE5B0 /* Persistence.swift */; };
 		70815E822A08950900DBE5B0 /* ComplimentModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7F2A08950900DBE5B0 /* ComplimentModel.xcdatamodeld */; };
+		70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */; };
+		70B8FBA82A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */; };
 		70C7977B2A04357F00E2E3AF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C797782A04357F00E2E3AF /* CardView.swift */; };
 		70C7977C2A04357F00E2E3AF /* CardFullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C797792A04357F00E2E3AF /* CardFullScreenView.swift */; };
 		70C7977D2A04357F00E2E3AF /* CardPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7977A2A04357F00E2E3AF /* CardPopupView.swift */; };
@@ -34,6 +36,8 @@
 		70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Chinggu.swift"; sourceTree = "<group>"; };
 		70815E7E2A08950900DBE5B0 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		70815E802A08950900DBE5B0 /* ComplimentModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ComplimentModel.xcdatamodel; sourceTree = "<group>"; };
+		70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ComplimentEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ComplimentEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		70C797782A04357F00E2E3AF /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		70C797792A04357F00E2E3AF /* CardFullScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardFullScreenView.swift; sourceTree = "<group>"; };
 		70C7977A2A04357F00E2E3AF /* CardPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardPopupView.swift; sourceTree = "<group>"; };
@@ -74,6 +78,8 @@
 		70815E7D2A08950900DBE5B0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */,
+				70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */,
 				70815E7E2A08950900DBE5B0 /* Persistence.swift */,
 				70815E7F2A08950900DBE5B0 /* ComplimentModel.xcdatamodeld */,
 			);
@@ -224,8 +230,10 @@
 				70C7977F2A04391800E2E3AF /* TempMainView.swift in Sources */,
 				70C7977C2A04357F00E2E3AF /* CardFullScreenView.swift in Sources */,
 				70815E822A08950900DBE5B0 /* ComplimentModel.xcdatamodeld in Sources */,
+				70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */,
 				51D817182A08E59F00B84E6A /* WriteComplimentView.swift in Sources */,
 				AE37D5452A063BD3009B0F56 /* MainView.swift in Sources */,
+				70B8FBA82A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift in Sources */,
 				AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */,
 				70385ED12A07DFEE001CDAB0 /* Color+Chinggu.swift in Sources */,
 				70385EDA2A07E60B001CDAB0 /* Date+Chinggu.swift in Sources */,
