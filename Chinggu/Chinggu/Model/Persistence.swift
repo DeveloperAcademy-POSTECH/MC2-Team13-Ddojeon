@@ -7,27 +7,20 @@
 
 import CoreData
 
-struct PersistenceController {
+class PersistenceController {
+	
 	static let shared = PersistenceController()
-
-	static var preview: PersistenceController = {
-		let result = PersistenceController(inMemory: true)
-		let viewContext = result.container.viewContext
-		for item in 0..<10 {
-			let newCompliment = ComplimentEntity(context: viewContext)
-			newCompliment.compliment = "Preview \(item)"
-		}
-		do {
-			try viewContext.save()
-		} catch {
-			let nsError = error as NSError
-			fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-		}
-		return result
-	}()
-
+	
 	let container: NSPersistentContainer
-
+	
+	var context: NSManagedObjectContext {
+		return container.viewContext
+	}
+	
+//	var complimentEntity: NSEntityDescription? {
+//		return  NSEntityDescription.entity(forEntityName: "ComplimentModel", in: context)
+//	}
+	
 	init(inMemory: Bool = false) {
 		container = NSPersistentContainer(name: "ComplimentModel")
 		if inMemory {
@@ -39,4 +32,83 @@ struct PersistenceController {
 			}
 		})
 	}
+
+	//MARK: CREATE
+	func addCompliment(complimentText: String) {
+		let order = fetchLatestOrder() + 1
+		let compliment = ComplimentEntity(context: container.viewContext)
+		compliment.compliment = complimentText
+		compliment.createDate = Date()
+		compliment.order = order
+		compliment.id = UUID()
+		saveContext()
+	}
+	
+	//MARK: READ
+	func fetchCompliment() -> [ComplimentEntity] {
+		do {
+			let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
+			let results = try context.fetch(fetchRequest)
+			return results
+		} catch {
+			print(error.localizedDescription)
+		}
+		return []
+	}
+	
+	//MARK: UPDATE 당장안씀!
+	func updateCompliment(compliment: ComplimentEntity) {
+		let fetchResults = fetchCompliment()
+		for result in fetchResults {
+			if result.id == compliment.id {
+//				result.compliment = compliment.compliment
+			}
+		}
+		saveContext()
+	}
+	
+	//MARK: Delete
+	func deleteCompliment(compliment: ComplimentEntity) {
+		let orderToDelete = compliment.order
+		container.viewContext.delete(compliment)
+
+		let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
+		fetchRequest.predicate = NSPredicate(format: "order > %d", orderToDelete)
+
+		do {
+			let complimentsToUpdate = try container.viewContext.fetch(fetchRequest)
+			// 삭제한 칭찬 이후의 칭찬들(order 값이 높은것들)을 -1씩 해줌
+			for complimentToUpdate in complimentsToUpdate {
+				complimentToUpdate.order -= 1
+			}
+		} catch {
+			print("Failed to fetch compliments to update: \(error)")
+		}
+
+		saveContext()
+	}
+	
+	private func saveContext() {
+		do{
+			try container.viewContext.save()
+		} catch {
+			container.viewContext.rollback()
+		}
+	}
+	
+	//마지막 order값 가져오기
+	private func fetchLatestOrder() -> Int16 {
+		let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
+		fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
+		fetchRequest.fetchLimit = 1
+
+		do {
+			let lastCompliment = try container.viewContext.fetch(fetchRequest).first
+			return lastCompliment?.order ?? 0
+		} catch {
+			print("Failed to fetch last order: \(error)")
+			return 0
+		}
+	}
 }
+
