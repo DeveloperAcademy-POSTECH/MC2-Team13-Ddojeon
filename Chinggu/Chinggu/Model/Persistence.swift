@@ -29,6 +29,17 @@ class PersistenceController {
 		})
 	}
 	
+	//MARK: CREATE
+	func addCompliment(complimentText: String) {
+		let order = fetchLatestOrder() + 1
+		let compliment = ComplimentEntity(context: container.viewContext)
+		compliment.compliment = complimentText
+		compliment.createDate = Date()
+		compliment.order = order
+		compliment.id = UUID()
+		saveContext()
+	}
+	
 	//MARK: READ
 	func fetchCompliment() -> [ComplimentEntity] {
 		do {
@@ -46,6 +57,21 @@ class PersistenceController {
 			try container.viewContext.save()
 		} catch {
 			container.viewContext.rollback()
+		}
+	}
+	
+	//마지막 order값 가져오기
+	private func fetchLatestOrder() -> Int16 {
+		let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
+		fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
+		fetchRequest.fetchLimit = 1
+
+		do {
+			let lastCompliment = try container.viewContext.fetch(fetchRequest).first
+			return lastCompliment?.order ?? 0
+		} catch {
+			print("Failed to fetch last order: \(error)")
+			return 0
 		}
 	}
 }
