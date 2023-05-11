@@ -17,6 +17,10 @@ class PersistenceController {
 		return container.viewContext
 	}
 	
+//	var complimentEntity: NSEntityDescription? {
+//		return  NSEntityDescription.entity(forEntityName: "ComplimentModel", in: context)
+//	}
+	
 	init(inMemory: Bool = false) {
 		container = NSPersistentContainer(name: "ComplimentModel")
 		if inMemory {
@@ -28,7 +32,7 @@ class PersistenceController {
 			}
 		})
 	}
-	
+
 	//MARK: CREATE
 	func addCompliment(complimentText: String) {
 		let order = fetchLatestOrder() + 1
@@ -50,6 +54,38 @@ class PersistenceController {
 			print(error.localizedDescription)
 		}
 		return []
+	}
+	
+	//MARK: UPDATE 당장안씀!
+	func updateCompliment(compliment: ComplimentEntity) {
+		let fetchResults = fetchCompliment()
+		for result in fetchResults {
+			if result.id == compliment.id {
+//				result.compliment = compliment.compliment
+			}
+		}
+		saveContext()
+	}
+	
+	//MARK: Delete
+	func deleteCompliment(compliment: ComplimentEntity) {
+		let orderToDelete = compliment.order
+		container.viewContext.delete(compliment)
+
+		let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
+		fetchRequest.predicate = NSPredicate(format: "order > %d", orderToDelete)
+
+		do {
+			let complimentsToUpdate = try container.viewContext.fetch(fetchRequest)
+			// 삭제한 칭찬 이후의 칭찬들(order 값이 높은것들)을 -1씩 해줌
+			for complimentToUpdate in complimentsToUpdate {
+				complimentToUpdate.order -= 1
+			}
+		} catch {
+			print("Failed to fetch compliments to update: \(error)")
+		}
+
+		saveContext()
 	}
 	
 	private func saveContext() {
