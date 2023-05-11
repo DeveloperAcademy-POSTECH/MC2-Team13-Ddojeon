@@ -69,6 +69,7 @@ struct MainView: View {
     @State private var showAlert = false
     @State private var showBreakAlert = false
     @State private var tempSeletedWeekday: Weekday?
+    @State private var shake = 0.0
     
     let scene = GameScene(size: CGSize(width: 350, height: 450))
     var body: some View {
@@ -127,12 +128,10 @@ struct MainView: View {
                         .frame(width: 350, height: 450)
                         .background(.white)
                         .cornerRadius(26)
-                    //                    .animation(canBreakBoxes ? shake : nil, value: canBreakBoxes)
-                    //                    .id(canBreakBoxes)
                         .onTapGesture {
                             if scene.boxes.count > 0 {
                                 showBreakAlert = true
-                                    
+                                
                             }
                         }
                     // 중도/만기일 개봉 얼럿
@@ -142,11 +141,27 @@ struct MainView: View {
                                 scene.resetBoxes()
                             }, secondaryButton:.cancel(Text("아니오")))
                         }
+                        .modifier(ShakeEffect(delta: shake))
+                        .onChange(of: shake) { newValue in
+                            withAnimation(.easeOut(duration: 1.0)) {
+                                if shake == 0 {
+                                    shake = newValue
+                                } else {
+                                    shake = 0
+                                }
+                            }
+                            
+                        }
+                        .onAppear() {
+                            if canBreakBoxes {
+                                shake = 2
+                            }
+                        }
                     
                     Spacer()
                     // 칭찬돌 추가하는 버튼
                     Button(action: {
-                        //                    scene.shake()
+                        
                         let position = CGPoint(x: scene.size.width/2,
                                                y: scene.size.height - 50)
                         scene.addBox(at: position)
@@ -154,34 +169,39 @@ struct MainView: View {
                         Text("칭찬하기")
                     })
                     .padding()
-                    
-                    // 저금통 깨는 버튼
-                    //                Button(action: {
-                    //                    scene.resetBoxes()
-                    //                    canBreakBoxes = false
-                    //                }, label: {
-                    //                    Text("Break Box")
-                    //                })
-                    //                .disabled(!canBreakBoxes)
                 }
             }
         }
     }
-    
-    //    var shake: Animation {
-    //        Animation.spring(response: 0.2, dampingFraction: 0.3, blendDuration: 0)
-    //            .repeatForever(autoreverses: true)
-    //    }
-    
     // 요일이 변경 될 때마다 현재 요일과 비교
     func updateCanBreakBoxes() {
         let today = Calendar.current.component(.weekday, from: Date())
         let todayWeekday = Weekday.allCases[(today + 5) % 7].rawValue
         if todayWeekday == selectedWeekday?.rawValue ?? "선택된 요일이 없음" {
             self.canBreakBoxes = true
+            shake = 3
         } else {
             self.canBreakBoxes = false
         }
+    }
+}
+
+struct ShakeEffect: AnimatableModifier {
+    var delta: CGFloat = 0
+    
+    var animatableData: CGFloat {
+        get {
+            delta
+        } set {
+            delta = newValue
+        }
+    }
+    
+    func body(content: Content) -> some View {
+        content
+            .rotationEffect(Angle(degrees: sin(delta * .pi * 4.0) * CGFloat.random(in: 1...2)))
+            .offset(x: sin(delta * 1.5 * .pi * 1.2),
+                    y: cos(delta * 1.5 * .pi * 1.1))
     }
 }
 
