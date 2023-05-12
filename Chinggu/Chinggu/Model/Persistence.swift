@@ -17,10 +17,6 @@ class PersistenceController {
 		return container.viewContext
 	}
 	
-//	var complimentEntity: NSEntityDescription? {
-//		return  NSEntityDescription.entity(forEntityName: "ComplimentModel", in: context)
-//	}
-	
 	init(inMemory: Bool = false) {
 		container = NSPersistentContainer(name: "ComplimentModel")
 		if inMemory {
@@ -57,7 +53,7 @@ class PersistenceController {
 		return []
 	}
 	
-	//MARK: UPDATE 당장안씀!
+	//MARK: UPDATE 당장은 쓸일없음!
 	func updateCompliment(compliment: ComplimentEntity) {
 		let fetchResults = fetchCompliment()
 		for result in fetchResults {
@@ -89,6 +85,19 @@ class PersistenceController {
 		saveContext()
 	}
 	
+	func loadCompliment(order: Int16) -> ComplimentEntity? {
+		let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
+		fetchRequest.predicate = NSPredicate(format: "order == %d", order)
+		fetchRequest.fetchLimit = 1
+		do {
+			let result = try context.fetch(fetchRequest)
+			return result.first
+		} catch {
+			print("Failed to fetch ComplimentEntity: \(error)")
+			return nil
+		}
+	}
+	
 	private func saveContext() {
 		do{
 			try container.viewContext.save()
@@ -97,7 +106,7 @@ class PersistenceController {
 		}
 	}
 	
-	//마지막 order값 가져오기
+	//마지막 order값 가져오는 함수
 	private func fetchLatestOrder() -> Int16 {
 		let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
 		fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
