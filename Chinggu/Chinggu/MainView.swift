@@ -41,27 +41,27 @@ class GameScene: SKScene {
     
     func resetBoxes() {
         // 모든 박스 지우기
-//        for box in boxes {
-//            box.removeFromParent()
-//        }
-        removeAllChildren()
-//        boxes.removeAll()
+        for box in boxes {
+            box.removeFromParent()
+        }
+//        removeAllChildren()
+        boxes.removeAll()
     }
 }
 
 struct MainView: View {
-    @State private var selectedWeekday: Weekday? {
-        didSet {
-            updateCanBreakBoxes()
-        }
-    }
+    @State private var selectedWeekday: Weekday?
+//        didSet {
+//            updateCanBreakBoxes()
+//        }
+    
     @State private var showActionSheet = false
     @State private var canBreakBoxes = false
     @State private var showAlert = false
     @State private var showBreakAlert = false
     @State private var tempSeletedWeekday: Weekday?
     @State private var shake = 0.0
-  
+    @State private var isCompliment = false
         
     let scene = GameScene(size: CGSize(width: 350, height: 424))
     
@@ -151,7 +151,8 @@ struct MainView: View {
                                 
                             }
                             .onAppear() {
-                                
+                                updateCanBreakBoxes()
+                                resetTimeButton()
                                 scene.scaleMode = .aspectFit
                                 if canBreakBoxes && scene.boxes.count > 0 {
                                     shake = 3
@@ -161,7 +162,7 @@ struct MainView: View {
                         Spacer()
                         // 칭찬돌 추가하는 버튼
                         Button(action: {
-
+                            isCompliment = true
                             let position = CGPoint(x: scene.size.width/2,
                                                    y: scene.size.height - 50)
                             scene.addBox(at: position)
@@ -173,8 +174,9 @@ struct MainView: View {
                         })
                         .background {
                             RoundedRectangle(cornerRadius: 15)
-                                .foregroundColor(.blue)
+                                .foregroundColor(isCompliment ? .gray : .blue)
                         }
+                        .disabled(isCompliment)
                     }
                 }
             }
@@ -194,7 +196,15 @@ struct MainView: View {
         }
     }
     
-    
+    // 오전 6시 기준 버튼 초기화
+    func resetTimeButton() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        let currentTime = formatter.string(from: Date())
+        if currentTime == "06:00" {
+            isCompliment = false
+        }
+    }
 }
 
 struct ShakeEffect: AnimatableModifier {
