@@ -26,11 +26,10 @@
 		AE37D5372A039605009B0F56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37D5362A039605009B0F56 /* ContentView.swift */; };
 		AE37D5392A039606009B0F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE37D5382A039606009B0F56 /* Assets.xcassets */; };
 		AE37D53C2A039606009B0F56 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE37D53B2A039606009B0F56 /* Preview Assets.xcassets */; };
+		AE37D5452A063BD3009B0F56 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37D5442A063BD3009B0F56 /* MainView.swift */; };
 		FB6D0BC92A0A287200220360 /* ArchivingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6D0BC82A0A287200220360 /* ArchivingView.swift */; };
 		FB6D0BCB2A0A35AD00220360 /* ArchivingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6D0BCA2A0A35AD00220360 /* ArchivingDetailView.swift */; };
 		FBB8CFD92A0B908E00210F90 /* ArchivingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB8CFD82A0B908E00210F90 /* ArchivingCard.swift */; };
-		AE37D5452A063BD3009B0F56 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37D5442A063BD3009B0F56 /* MainView.swift */; };
-		FA4B65612A0BAD36008471CB /* ComplimentModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B65602A0BAD36008471CB /* ComplimentModal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,11 +52,10 @@
 		AE37D5362A039605009B0F56 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AE37D5382A039606009B0F56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE37D53B2A039606009B0F56 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		AE37D5442A063BD3009B0F56 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		FB6D0BC82A0A287200220360 /* ArchivingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivingView.swift; sourceTree = "<group>"; };
 		FB6D0BCA2A0A35AD00220360 /* ArchivingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivingDetailView.swift; sourceTree = "<group>"; };
 		FBB8CFD82A0B908E00210F90 /* ArchivingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivingCard.swift; sourceTree = "<group>"; };
-		AE37D5442A063BD3009B0F56 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		FA4B65602A0BAD36008471CB /* ComplimentModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplimentModal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,7 +141,6 @@
 				70385ED22A07E00F001CDAB0 /* Color.xcassets */,
 				AE37D53A2A039606009B0F56 /* Preview Content */,
 				51D817172A08E59F00B84E6A /* WriteComplimentView.swift */,
-				FA4B65602A0BAD36008471CB /* ComplimentModal.swift */,
 			);
 			path = Chinggu;
 			sourceTree = "<group>";
@@ -154,15 +151,6 @@
 				AE37D53B2A039606009B0F56 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		FB6964F92A0A3D0200D6C6FC /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				FB6964FA2A0A3D0200D6C6FC /* Color+Chinggu.swift */,
-				FB6964FB2A0A3D0200D6C6FC /* Date+Chinggu.swift */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		FBB8CFD72A0B836E00210F90 /* Archiving View */ = {
@@ -254,7 +242,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB6D0BC92A0A287200220360 /* ArchivingView.swift in Sources */,
-				FB6964FD2A0A3D0200D6C6FC /* Date+Chinggu.swift in Sources */,
 				FB6D0BCB2A0A35AD00220360 /* ArchivingDetailView.swift in Sources */,
 				AE37D5372A039605009B0F56 /* ContentView.swift in Sources */,
 				FBB8CFD92A0B908E00210F90 /* ArchivingCard.swift in Sources */,
@@ -262,7 +249,6 @@
 				70C7977D2A04357F00E2E3AF /* CardPopupView.swift in Sources */,
 				70C7977F2A04391800E2E3AF /* TempMainView.swift in Sources */,
 				70C7977C2A04357F00E2E3AF /* CardFullScreenView.swift in Sources */,
-				FA4B65612A0BAD36008471CB /* ComplimentModal.swift in Sources */,
 				70815E822A08950900DBE5B0 /* ComplimentModel.xcdatamodeld in Sources */,
 				70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */,
 				51D817182A08E59F00B84E6A /* WriteComplimentView.swift in Sources */,
