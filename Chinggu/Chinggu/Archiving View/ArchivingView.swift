@@ -13,7 +13,7 @@ struct ArchivingView: View {
 		entity: ComplimentEntity.entity(),
 		sortDescriptors: []
 	) var Compliment: FetchedResults<ComplimentEntity>
-	@AppStorage("group") var groupOrder: Int = UserDefaults.standard.integer(forKey: "orderID")
+	@AppStorage("group") var groupOrder: Int = UserDefaults.standard.integer(forKey: "groupID")
 
 	var body: some View {
 		NavigationStack{
