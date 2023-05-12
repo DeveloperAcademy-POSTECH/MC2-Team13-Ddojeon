@@ -109,7 +109,7 @@ struct WriteComplimentView: View {
     @State private var goBackAlert = SaveAlert(title: "정말로 나가시겠어요?", description: "작성된 내용은 저장되지 않습니다.")
     @State private var saveAlert = SaveAlert(title: "정말로 저장하시겠어요?", description: "칭찬은 하루에 한 번만 쓸 수 있고\n수정할 수 없어요.")
     
-    @AppStorage("group") var groupOrder: Int = UserDefaults.standard.integer(forKey: "orderID")
+    @AppStorage("group") var groupOrder: Int = UserDefaults.standard.integer(forKey: "groupID")
     
     func showAlert () {
         showingAlert = true

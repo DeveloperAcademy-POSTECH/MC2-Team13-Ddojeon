@@ -15,7 +15,7 @@ struct TempMainView: View {
 		entity: ComplimentEntity.entity(),
 		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.createDate, ascending: true)])
 	var Compliment: FetchedResults<ComplimentEntity>
-	@AppStorage("group") var groupOrder: Int = UserDefaults.standard.integer(forKey: "orderID")
+	@AppStorage("group") var groupOrder: Int = UserDefaults.standard.integer(forKey: "groupID")
 
 	@State private var textFieldTitle: String = ""
 	@State private var showPopup = false
@@ -57,7 +57,7 @@ struct TempMainView: View {
 								.padding(.horizontal, 10)
 							
 						})
-						Button(action: { groupOrder = 0 }, label: {
+						Button(action: { groupOrder = 1 }, label: {
 							Text("group 초기화")
 								.padding()
 								.frame(maxWidth: .infinity)
@@ -146,10 +146,3 @@ extension View {
 		)
 	}
 }
-
-//struct TempMainView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TempMainView()
-//			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-//    }
-//}

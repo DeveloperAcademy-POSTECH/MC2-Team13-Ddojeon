@@ -13,7 +13,7 @@ struct CardFullScreenView: View {
 		entity: ComplimentEntity.entity(),
 		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.createDate, ascending: true)])
 	var Compliment: FetchedResults<ComplimentEntity>
-	@AppStorage("group") var groupOrder : Int = UserDefaults.standard.integer(forKey: "orderID")
+	@AppStorage("group") var groupOrder : Int = UserDefaults.standard.integer(forKey: "groupID")
 
 	var namespace: Namespace.ID
 	@Binding var showPopup: Bool
@@ -70,12 +70,3 @@ struct CardFullScreenView: View {
 		.matchedGeometryEffect(id: "background", in: namespace)
 	}
 }
-//struct CardFullScreenView_Previews: PreviewProvider {
-//	
-//	@Namespace static var namespace
-//	
-//    static var previews: some View {
-//		CardFullScreenView(namespace: namespace, showPopup: .constant(true))
-//			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-//    }
-//}
