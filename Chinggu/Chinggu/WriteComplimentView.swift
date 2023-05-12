@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Category {
+    var id = UUID()
     var title: String
     var tipColor: Color
     var sheetColor: Color
@@ -101,13 +102,21 @@ let categories: [Category] = Categories.allCases.map { Category(title: $0.title,
 struct WriteComplimentView: View {
     @State private var content = ""
     @State private var selection = 0
-    @State private var presentSheet = false
+    @State private var presentSheet = true
     @FocusState private var isFocused: Bool
     @Environment(\.dismiss) private var dismiss
     @State private var showingAlert = false
-    @State private var saveAlert = SaveAlert(title: "정말로 나가시겠어요?", description: "작성된 내용은 저장되지 않습니다.")
+    @State private var goBackAlert = SaveAlert(title: "정말로 나가시겠어요?", description: "작성된 내용은 저장되지 않습니다.")
+    @State private var saveAlert = SaveAlert(title: "정말로 저장하시겠어요?", description: "칭찬은 하루에 한 번만 쓸 수 있고\n수정할 수 없어요.")
+    
+    @AppStorage("group") var groupOrder: Int = UserDefaults.standard.integer(forKey: "orderID")
+    
+    func showAlert () {
+        showingAlert = true
+    }
     
     func saveContent () {
+        PersistenceController.shared.addCompliment(complimentText: content, groupID: Int16(groupOrder))
         dismiss.callAsFunction()
     }
     
@@ -129,7 +138,7 @@ struct WriteComplimentView: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(categories.indices) { idx in
+                        ForEach(0..<categories.count, id: \.self) { idx in
                             Button(action: {
                                 selection = idx
                                 presentSheet = true
@@ -147,14 +156,12 @@ struct WriteComplimentView: View {
                     .padding()
                     .sheet(isPresented: $presentSheet) {
                         VStack {
-                            Text("칭찬요정 tip은 작성을 위한 참고 예시에요.").padding(.top)
+                            Text("칭찬요정 tip은 작성을 위한 참고 예시에요.")
                                 .font(.system(size: 14, weight: .regular))
                                 .foregroundColor (Color.primary.opacity (0.30))
-                            Spacer()
-                            
                             TabView(selection: $selection) {
-                                ForEach(categories.indices) { idx in
-                                    VStack(alignment: .leading, spacing: 60) {
+                                ForEach(0..<categories.count, id: \.self) { idx in
+                                    VStack(alignment: .leading, spacing: 20) {
                                         Text(categories[idx].title)
                                             .font(.system(size: 24, weight: .bold))
                                         Text(categories[idx].example)
@@ -163,47 +170,20 @@ struct WriteComplimentView: View {
                                             .foregroundColor (Color.primary.opacity (0.70))
                                     }
                                     .padding(.leading, 26)
-                                    .padding(.trailing, 26)
+                                    .padding(.trailing, 36)
                                     .padding(.bottom, 6)
-                                    .frame(width: 312, height: 253)
+                                    .frame(width: 332, height: 220)
                                     .background(categories[idx].sheetColor)
-                                    .foregroundColor(.black)
                                     .cornerRadius(16.0)
                                     .tag(idx)
                                 }
                             }
-                            .tabViewStyle(.page(indexDisplayMode: .never))
-//                            .overlay(Button(action: {
-//                                withAnimation {
-//                                    if selection > 1 {
-//                                        selection -= 1
-//                                    }
-//                                }
-//                            }, label: {
-//                                if selection != 0 {
-//                                    Image(systemName: "chevron.left")
-//                                        .foregroundColor(Color.black)
-//                                        .font(.title)
-//                                        .padding(.leading, 8)
-//                                }
-//                            }), alignment: .leading)
-//                            .overlay(Button(action: {
-//                                withAnimation {
-//                                    if selection < categories.count - 1 {
-//                                        selection += 1
-//                                    }
-//                                }
-//                            }, label: {
-//                                if selection != categories.count {
-//                                    Image(systemName: "chevron.right")
-//                                        .foregroundColor(Color.black)
-//                                        .font(.title)
-//                                        .padding(.trailing, 8)
-//                                }
-//                            }), alignment: .trailing)
+                            .tabViewStyle(.page(indexDisplayMode: .always))
+                            .indexViewStyle(.page(backgroundDisplayMode: .always))
+                            .padding(EdgeInsets(top: 0, leading: 16, bottom: 16, trailing: 16))
                         }
-                        .padding(.top, 10)
-                        .presentationDetents([.height(357)]) // [.small] ?
+                        .padding(.top, 30)
+                        .presentationDetents([.height(332)]) // [.small] ?
                         .presentationDragIndicator(.visible)
                     }
                 }
@@ -261,16 +241,23 @@ struct WriteComplimentView: View {
                     }
                     .foregroundColor(Color.black)
                 }
-                .alert(saveAlert.title, isPresented: $showingAlert, presenting: saveAlert) {saveAlert in
+                .alert(goBackAlert.title, isPresented: $showingAlert, presenting: goBackAlert) {saveAlert in
                     Button("네", action: dismiss.callAsFunction)
                     Button("취소", role: .cancel) {}
                 } message: {article in
-                    Text(saveAlert.description)
+                    Text(goBackAlert.description)
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button("저장", action: saveContent)
+                Button("저장", action: showAlert)
                     .disabled(content.isEmpty ? true : false)
+                    .alert(saveAlert.title, isPresented: $showingAlert, presenting: saveAlert) {saveAlert in
+                        Button("네", action: saveContent)
+                        Button("취소", role: .cancel) {}
+                    } message: {article in
+                        Text(saveAlert.description)
+                    }
+                
             }
             
         }

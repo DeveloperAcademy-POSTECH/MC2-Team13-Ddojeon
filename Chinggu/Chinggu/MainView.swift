@@ -44,16 +44,16 @@ class GameScene: SKScene {
         for box in boxes {
             box.removeFromParent()
         }
-//        removeAllChildren()
+        //        removeAllChildren()
         boxes.removeAll()
     }
 }
 
 struct MainView: View {
     @State private var selectedWeekday: Weekday?
-//        didSet {
-//            updateCanBreakBoxes()
-//        }
+    //        didSet {
+    //            updateCanBreakBoxes()
+    //        }
     
     @State private var showActionSheet = false
     @State private var canBreakBoxes = false
@@ -62,7 +62,7 @@ struct MainView: View {
     @State private var tempSeletedWeekday: Weekday?
     @State private var shake = 0.0
     @State private var isCompliment = false
-        
+    
     let scene = GameScene(size: CGSize(width: 350, height: 424))
     
     var body: some View {
@@ -111,7 +111,7 @@ struct MainView: View {
                             Spacer()
                             
                             //MARK: 아카이브 페이지 링크
-                            NavigationLink(destination: ContentView()) {
+                            NavigationLink(destination: TempMainView()) {
                                 Image(systemName: "archivebox")
                             }
                         }.padding(.horizontal, 20.0)
@@ -161,16 +161,21 @@ struct MainView: View {
                         
                         Spacer()
                         // 칭찬돌 추가하는 버튼
-                        Button(action: {
-                            isCompliment = true
-                            let position = CGPoint(x: scene.size.width/2,
-                                                   y: scene.size.height - 50)
-                            scene.addBox(at: position)
-                        }, label: {
+                        //                        Button(action: {
+                        //                            isCompliment = true
+                        //                            let position = CGPoint(x: scene.size.width/2,
+                        //                                                   y: scene.size.height - 50)
+                        //                            scene.addBox(at: position)
+                        //                        }, label: {
+                        //                            Text("칭찬하기")
+                        //                                .foregroundColor(.white)
+                        //                                .padding(18.0)
+                        //
+                        //                        })
+                        NavigationLink(destination: WriteComplimentView(), label: {
                             Text("칭찬하기")
                                 .foregroundColor(.white)
                                 .padding(18.0)
-                            
                         })
                         .background {
                             RoundedRectangle(cornerRadius: 15)
