@@ -102,7 +102,7 @@ let categories: [Category] = Categories.allCases.map { Category(title: $0.title,
 struct WriteComplimentView: View {
     @State private var content = ""
     @State private var selection = 0
-    @State private var presentSheet = true
+    @State private var presentSheet = false
     @FocusState private var isFocused: Bool
     @Environment(\.dismiss) private var dismiss
     @State private var showingAlert = false
