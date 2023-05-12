@@ -18,7 +18,7 @@ extension ComplimentEntity {
 
     @NSManaged public var compliment: String?
     @NSManaged public var createDate: Date?
-    @NSManaged public var group: Int16
+    @NSManaged public var groupID: Int16
     @NSManaged public var id: UUID?
     @NSManaged public var order: Int16
 
