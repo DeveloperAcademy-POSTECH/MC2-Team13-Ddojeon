@@ -13,6 +13,8 @@ struct CardFullScreenView: View {
 		entity: ComplimentEntity.entity(),
 		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.createDate, ascending: true)])
 	var Compliment: FetchedResults<ComplimentEntity>
+	@AppStorage("group") var groupOrder : Int = UserDefaults.standard.integer(forKey: "orderID")
+
 	var namespace: Namespace.ID
 	@Binding var showPopup: Bool
 
@@ -44,6 +46,7 @@ struct CardFullScreenView: View {
 						withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
 							//MainView의 Popup Card를 내림
 							showPopup = false
+							groupOrder = groupOrder + 1
 						}
 					} label: {
 						Text("나가기 버튼")
@@ -67,7 +70,6 @@ struct CardFullScreenView: View {
 		.matchedGeometryEffect(id: "background", in: namespace)
 	}
 }
-
 //struct CardFullScreenView_Previews: PreviewProvider {
 //	
 //	@Namespace static var namespace

@@ -15,8 +15,9 @@ struct TempMainView: View {
 		entity: ComplimentEntity.entity(),
 		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.createDate, ascending: true)])
 	var Compliment: FetchedResults<ComplimentEntity>
-	
-	@State var textFieldTitle: String = ""
+	@AppStorage("group") var groupOrder: Int = UserDefaults.standard.integer(forKey: "orderID")
+
+	@State private var textFieldTitle: String = ""
 	@State private var showPopup = false
 
 	var body: some View {
@@ -45,19 +46,48 @@ struct TempMainView: View {
 							.padding(.horizontal, 10)
 						
 					})
+					HStack {
+						Button(action: { groupOrder = groupOrder + 1 }, label: {
+							Text("countup group")
+								.padding()
+								.frame(maxWidth: .infinity)
+								.frame(height: 55)
+								.foregroundColor(.black)
+								.background(Color.yellow.cornerRadius(10))
+								.padding(.horizontal, 10)
+							
+						})
+						Button(action: { groupOrder = 0 }, label: {
+							Text("group 초기화")
+								.padding()
+								.frame(maxWidth: .infinity)
+								.frame(height: 55)
+								.foregroundColor(.black)
+								.background(Color.yellow.cornerRadius(10))
+								.padding(.horizontal, 10)
+							
+						})
+					}
 					List {
-						//읽은 데이터는 배열로 받으니 이렇게 쓰시면 됩니다
-						ForEach(Compliment, id: \.self.id) { compliments in
-							let currentDate = compliments.createDate
-							let strDate = currentDate?.formatWithDot()
-							let id = compliments.order
-							HStack {
-								Text(compliments.compliment ?? "empty")
-								Text(strDate ?? "timeerror")
-								Text("\(id)")
+						ForEach((0..<$groupOrder.wrappedValue).reversed(), id: \.self) { index in
+								Section(header: Text("\(index)번째 저금통")) {
+									ForEach(Compliment, id: \.self.id) { compliments in
+										if compliments.groupID == index {
+											let currentDate = compliments.createDate
+											let strDate = currentDate?.formatWithDot()
+											let id = compliments.order
+											HStack {
+												Text(compliments.compliment ?? "empty")
+												Text(strDate ?? "timeerror")
+												Text("\(id)")
+												Text("\(compliments.groupID)")
+											}
+										} else { }
+									}
+									.onDelete(perform: delete)
+
 							}
 						}
-						.onDelete(perform: delete)
 					}
 					.scrollContentBackground(.hidden)
 					Button("저금통 깨기") {
@@ -75,7 +105,7 @@ struct TempMainView: View {
 	
 	//데이터 넣을때 이렇게 하세요 String값만 주면됩니다
 	private func add() {
-		PersistenceController.shared.addCompliment(complimentText: textFieldTitle)
+		PersistenceController.shared.addCompliment(complimentText: textFieldTitle, groupID: Int16(groupOrder))
 		textFieldTitle = ""
 	}
 	
