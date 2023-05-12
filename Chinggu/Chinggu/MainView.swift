@@ -20,6 +20,16 @@ enum Weekday: String, CaseIterable {
 
 class GameScene: SKScene {
     var boxes: [SKSpriteNode] = []
+//    @Binding var complimentCount: Int
+//
+//    init(size: CGSize, complimentCount: Binding<Int>) {
+//        self._complimentCount = complimentCount
+//        super.init(size: size)
+//    }
+    
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     override func didMove(to view: SKView) {
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
@@ -51,10 +61,6 @@ class GameScene: SKScene {
 
 struct MainView: View {
     @State private var selectedWeekday: Weekday?
-//        didSet {
-//            updateCanBreakBoxes()
-//        }
-    
     @State private var showActionSheet = false
     @State private var canBreakBoxes = false
     @State private var showAlert = false
@@ -62,13 +68,18 @@ struct MainView: View {
     @State private var tempSeletedWeekday: Weekday?
     @State private var shake = 0.0
     @State private var isCompliment = false
-        
-    let scene = GameScene(size: CGSize(width: 350, height: 424))
+    @State private var complimentCount = 2
+    
+//    SpriteView(scene: GameScene(size: size, complimentCount: $complimentCount))
+//                .frame(width: size.width, height: size.height)
+//    let scene = GameScene(size: CGSize(width: 350, height: 424))
+    @State var scene = GameScene()
     
     var body: some View {
         GeometryReader { geometry in
             let width = geometry.size.width - geometry.safeAreaInsets.leading - geometry.safeAreaInsets.trailing - 40
             let height = width * 424 / 350
+//            let scene = GameScene(size: size, complimentCount: $complimentCount)
             
             NavigationView {
                 ZStack {
@@ -151,6 +162,7 @@ struct MainView: View {
                                 
                             }
                             .onAppear() {
+                                scene.size = CGSize(width: width, height: height)
                                 updateCanBreakBoxes()
                                 resetTimeButton()
                                 scene.scaleMode = .aspectFit
@@ -162,7 +174,7 @@ struct MainView: View {
                         Spacer()
                         // 칭찬돌 추가하는 버튼
                         Button(action: {
-                            isCompliment = true
+//                            isCompliment = true
                             let position = CGPoint(x: scene.size.width/2,
                                                    y: scene.size.height - 50)
                             scene.addBox(at: position)
@@ -177,6 +189,7 @@ struct MainView: View {
                                 .foregroundColor(isCompliment ? .gray : .blue)
                         }
                         .disabled(isCompliment)
+                        .padding()
                     }
                 }
             }
