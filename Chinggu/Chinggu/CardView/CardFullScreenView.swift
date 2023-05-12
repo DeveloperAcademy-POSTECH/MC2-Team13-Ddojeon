@@ -70,12 +70,3 @@ struct CardFullScreenView: View {
 		.matchedGeometryEffect(id: "background", in: namespace)
 	}
 }
-//struct CardFullScreenView_Previews: PreviewProvider {
-//	
-//	@Namespace static var namespace
-//	
-//    static var previews: some View {
-//		CardFullScreenView(namespace: namespace, showPopup: .constant(true))
-//			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-//    }
-//}

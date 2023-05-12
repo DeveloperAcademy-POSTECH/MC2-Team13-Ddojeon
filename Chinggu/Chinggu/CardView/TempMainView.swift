@@ -146,10 +146,3 @@ extension View {
 		)
 	}
 }
-
-//struct TempMainView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TempMainView()
-//			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-//    }
-//}
