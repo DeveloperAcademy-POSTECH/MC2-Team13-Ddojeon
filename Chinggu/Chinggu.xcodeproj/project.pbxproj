@@ -132,15 +132,15 @@
 			children = (
 				AE37D5342A039605009B0F56 /* ChingguApp.swift */,
 				AE37D5362A039605009B0F56 /* ContentView.swift */,
+				AE37D5442A063BD3009B0F56 /* MainView.swift */,
+				51D817172A08E59F00B84E6A /* WriteComplimentView.swift */,
 				FBB8CFD72A0B836E00210F90 /* Archiving View */,
 				70C797722A042FF400E2E3AF /* CardView */,
 				70815E7D2A08950900DBE5B0 /* Model */,
 				70385ECF2A07DFDD001CDAB0 /* Utils */,
-				AE37D5442A063BD3009B0F56 /* MainView.swift */,
 				AE37D5382A039606009B0F56 /* Assets.xcassets */,
 				70385ED22A07E00F001CDAB0 /* Color.xcassets */,
 				AE37D53A2A039606009B0F56 /* Preview Content */,
-				51D817172A08E59F00B84E6A /* WriteComplimentView.swift */,
 			);
 			path = Chinggu;
 			sourceTree = "<group>";
