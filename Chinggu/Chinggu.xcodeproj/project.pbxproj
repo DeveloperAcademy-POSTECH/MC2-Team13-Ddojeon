@@ -192,7 +192,6 @@
 			mainGroup = AE37D5282A039605009B0F56;
 			packageReferences = (
 				70E68F0D2A0A888C00258A10 /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				FA4B65622A0C2B19008471CB /* XCRemoteSwiftPackageReference "BottomSheet" */,
 			);
 			productRefGroup = AE37D5322A039605009B0F56 /* Products */;
 			projectDirPath = "";
@@ -446,14 +445,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.0.0;
-			};
-		};
-		FA4B65622A0C2B19008471CB /* XCRemoteSwiftPackageReference "BottomSheet" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/joomcode/BottomSheet";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
