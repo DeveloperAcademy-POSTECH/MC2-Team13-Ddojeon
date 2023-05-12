@@ -7,30 +7,6 @@
 
 import SwiftUI
 
-//struct Item: Identifiable {
-//    let id = UUID()
-//    var title: String
-//    var subtitle: String
-//}
-//
-//let items = [
-//    Item(title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.", subtitle: "64번째 칭찬 | 2023. 05. 09"),
-//    Item(title: "Vestibulum venenatis consectetur metus, a vehicula velit feugiat vel.", subtitle: "63번째 칭찬 | 2023. 05. 08"),
-//    Item(title: "Donec non tincidunt justo.", subtitle: "62번째 칭찬 | 2023. 05. 07")
-//]
-
-extension Color {
-    init(hex: UInt, alpha: Double = 1) {
-        self.init(
-            .sRGB,
-            red: Double((hex >> 16) & 0xff) / 255,
-            green: Double((hex >> 08) & 0xff) / 255,
-            blue: Double((hex >> 00) & 0xff) / 255,
-            opacity: alpha
-        )
-    }
-}
-
 struct ArchivingView: View {
     @State var isExpanded = false
     
