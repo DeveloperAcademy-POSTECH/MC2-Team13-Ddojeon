@@ -30,6 +30,7 @@
 		FB6D0BCB2A0A35AD00220360 /* ArchivingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6D0BCA2A0A35AD00220360 /* ArchivingDetailView.swift */; };
 		FBB8CFD92A0B908E00210F90 /* ArchivingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB8CFD82A0B908E00210F90 /* ArchivingCard.swift */; };
 		AE37D5452A063BD3009B0F56 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37D5442A063BD3009B0F56 /* MainView.swift */; };
+		FA4B65612A0BAD36008471CB /* ComplimentModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B65602A0BAD36008471CB /* ComplimentModal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		FB6D0BCA2A0A35AD00220360 /* ArchivingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivingDetailView.swift; sourceTree = "<group>"; };
 		FBB8CFD82A0B908E00210F90 /* ArchivingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivingCard.swift; sourceTree = "<group>"; };
 		AE37D5442A063BD3009B0F56 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		FA4B65602A0BAD36008471CB /* ComplimentModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplimentModal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 				70385ED22A07E00F001CDAB0 /* Color.xcassets */,
 				AE37D53A2A039606009B0F56 /* Preview Content */,
 				51D817172A08E59F00B84E6A /* WriteComplimentView.swift */,
+				FA4B65602A0BAD36008471CB /* ComplimentModal.swift */,
 			);
 			path = Chinggu;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				70C7977D2A04357F00E2E3AF /* CardPopupView.swift in Sources */,
 				70C7977F2A04391800E2E3AF /* TempMainView.swift in Sources */,
 				70C7977C2A04357F00E2E3AF /* CardFullScreenView.swift in Sources */,
+				FA4B65612A0BAD36008471CB /* ComplimentModal.swift in Sources */,
 				70815E822A08950900DBE5B0 /* ComplimentModel.xcdatamodeld in Sources */,
 				70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */,
 				51D817182A08E59F00B84E6A /* WriteComplimentView.swift in Sources */,
