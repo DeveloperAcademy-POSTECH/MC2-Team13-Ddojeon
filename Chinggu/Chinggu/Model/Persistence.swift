@@ -34,13 +34,14 @@ class PersistenceController {
 	}
 
 	//MARK: CREATE
-	func addCompliment(complimentText: String) {
+	func addCompliment(complimentText: String, groupID: Int16) {
 		let order = fetchLatestOrder() + 1
 		let compliment = ComplimentEntity(context: container.viewContext)
 		compliment.compliment = complimentText
 		compliment.createDate = Date()
 		compliment.order = order
 		compliment.id = UUID()
+		compliment.groupID = groupID
 		saveContext()
 	}
 	

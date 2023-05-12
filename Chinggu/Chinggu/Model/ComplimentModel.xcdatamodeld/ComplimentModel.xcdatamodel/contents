@@ -3,7 +3,7 @@
     <entity name="ComplimentEntity" representedClassName="ComplimentEntity" syncable="YES">
         <attribute name="compliment" optional="YES" attributeType="String"/>
         <attribute name="createDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="group" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="groupID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
