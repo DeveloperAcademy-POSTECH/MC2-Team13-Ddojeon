@@ -114,8 +114,8 @@ struct WriteComplimentView: View {
     
     @Binding var isCompliment: Bool
     
-    func showAlert () {
-        showingAlert = true
+    func showSaveAlert () {
+		showingSaveAlert = true
     }
     
     func saveContent () {
@@ -165,7 +165,7 @@ struct WriteComplimentView: View {
                                 .foregroundColor (Color.primary.opacity (0.30))
                             TabView(selection: $selection) {
                                 ForEach(0..<categories.count, id: \.self) { idx in
-                                    VStack(alignment: .leading, spacing: 20) {
+                                    VStack(alignment: .leading, spacing: 10) {
                                         Text(categories[idx].title)
                                             .font(.system(size: 24, weight: .bold))
                                         Text(categories[idx].example)
@@ -176,18 +176,18 @@ struct WriteComplimentView: View {
                                     .padding(.leading, 26)
                                     .padding(.trailing, 36)
                                     .padding(.bottom, 6)
-                                    .frame(width: 332, height: 220)
+                                    .frame(width: 332, height: 225)
                                     .background(categories[idx].sheetColor)
                                     .cornerRadius(16.0)
                                     .tag(idx)
                                 }
                             }
                             .tabViewStyle(.page(indexDisplayMode: .always))
-                            .indexViewStyle(.page(backgroundDisplayMode: .always))
+							.indexViewStyle(.page(backgroundDisplayMode: .never))
                             .padding(EdgeInsets(top: 0, leading: 16, bottom: 16, trailing: 16))
                         }
                         .padding(.top, 30)
-                        .presentationDetents([.height(332)]) // [.small] ?
+                        .presentationDetents([.height(300)]) // [.small] ?
                         .presentationDragIndicator(.visible)
                     }
                 }
@@ -268,8 +268,8 @@ struct WriteComplimentView: View {
     }
 }
 
-//struct WriteComplimentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        WriteComplimentView()
-//    }
-//}
+struct WriteComplimentView_Previews: PreviewProvider {
+    static var previews: some View {
+		WriteComplimentView(isCompliment: .constant(true))
+    }
+}
