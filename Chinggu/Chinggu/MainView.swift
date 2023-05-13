@@ -20,9 +20,22 @@ enum Weekday: String, CaseIterable {
 
 class GameScene: SKScene {
     var boxes: [SKSpriteNode] = []
-    
+    var complimentCount = 2
+
     override func didMove(to view: SKView) {
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        // 칭찬 수 만큼 생성
+        for _ in 0..<complimentCount {
+            let index = Int.random(in: 1..<99)
+            let texture = SKTexture(imageNamed: "stonery\(index)")
+            let box = SKSpriteNode(texture: texture)
+            let body = SKPhysicsBody(texture: texture, size: texture.size())
+            box.position = CGPoint(x: size.width/2, y: size.height - 50)
+            box.physicsBody = body
+            addChild(box)
+            boxes.append(box)
+        }
+        print(boxes.count)
         // 배경색 변경
         //        self.backgroundColor = .red
     }
@@ -51,10 +64,6 @@ class GameScene: SKScene {
 
 struct MainView: View {
     @State private var selectedWeekday: Weekday?
-    //        didSet {
-    //            updateCanBreakBoxes()
-    //        }
-    
     @State private var showActionSheet = false
     @State private var canBreakBoxes = false
     @State private var showAlert = false
@@ -63,12 +72,13 @@ struct MainView: View {
     @State private var shake = 0.0
     @State private var isCompliment = false
     
-    let scene = GameScene(size: CGSize(width: 350, height: 424))
+    @State var scene = GameScene()
     
     var body: some View {
         GeometryReader { geometry in
             let width = geometry.size.width - geometry.safeAreaInsets.leading - geometry.safeAreaInsets.trailing - 40
             let height = width * 424 / 350
+//            let scene = GameScene(size: size, complimentCount: $complimentCount)
             
             NavigationView {
                 ZStack {
@@ -151,9 +161,13 @@ struct MainView: View {
                                 
                             }
                             .onAppear() {
+                                scene.size = CGSize(width: width, height: height)
                                 updateCanBreakBoxes()
                                 resetTimeButton()
                                 scene.scaleMode = .aspectFit
+//                                for _ in 0..<complimentCount {
+//                                    scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
+//                                }
                                 if canBreakBoxes && scene.boxes.count > 0 {
                                     shake = 3
                                 }
@@ -161,27 +175,22 @@ struct MainView: View {
                         
                         Spacer()
                         // 칭찬돌 추가하는 버튼
-                        //                        Button(action: {
-                        //                            isCompliment = true
-                        //                            let position = CGPoint(x: scene.size.width/2,
-                        //                                                   y: scene.size.height - 50)
-                        //                            scene.addBox(at: position)
-                        //                        }, label: {
-                        //                            Text("칭찬하기")
-                        //                                .foregroundColor(.white)
-                        //                                .padding(18.0)
-                        //
-                        //                        })
-                        NavigationLink(destination: WriteComplimentView(), label: {
-                            Text("칭찬하기")
-                                .foregroundColor(.white)
-                                .padding(18.0)
+                        Button(action: {
+//                            isCompliment = true
+                            scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
+                        }, label: {
+                            NavigationLink(destination: WriteComplimentView(), label: {
+                                Text("칭찬하기")
+                                    .foregroundColor(.white)
+                                    .padding(18.0)
+                            })
                         })
                         .background {
                             RoundedRectangle(cornerRadius: 15)
                                 .foregroundColor(isCompliment ? .gray : .blue)
                         }
                         .disabled(isCompliment)
+                        .padding()
                     }
                 }
             }
