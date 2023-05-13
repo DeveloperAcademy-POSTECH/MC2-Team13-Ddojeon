@@ -64,21 +64,23 @@ import UIKit
                     
                     LottiePlayState(filename: "onboarding_8",loopState: false, playState: .constant(true))
                         .frame(height: 100)
+                        .scaleEffect(0.9)
 
                      HStack{
                             //tectField
-                        TextField("칭찬을 입력해 보세요.", text: $inputText)
+                         TextField("칭찬을 입력해 보세요.", text: $inputText, axis: .vertical)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .padding(.leading,10)
+                                .padding(.leading,25)
 
                             
                        NavigationLink(
                                 destination: Onboarding_9(), label: {
-                                    Image(systemName: "checkmark.rectangle.portrait")
+                                    Image(systemName: "checkmark.rectangle.portrait.fill")
                                         .bold()
                                         .scaleEffect(2)
                                         .foregroundColor(Color.black)
                                         .padding(.trailing,20)
+                                        .padding(.leading, 10)
                         }
                             )
                     }

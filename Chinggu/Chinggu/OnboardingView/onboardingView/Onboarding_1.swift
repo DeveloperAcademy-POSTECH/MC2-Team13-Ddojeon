@@ -35,7 +35,7 @@ struct Onboarding_1: View {
                         Text(message[messageIndex])
                             .font(.custom("AppleSDGothicNeo-Bold", size: 32))
                             .foregroundColor(Color("ddowhiteon"))
-                            .background(Color("ddoorange"))
+                            .background(Color("ddoOrange"))
                             .cornerRadius(10)
                             
                     }
