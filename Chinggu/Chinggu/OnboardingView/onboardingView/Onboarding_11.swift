@@ -80,7 +80,7 @@ struct Onboarding_11: View {
                                 })
                             
                         }
-                        .background(Color("ddoorange"))
+                        .background(Color("ddoOrange"))
                         .frame(width: geometry.size.width/1.15, height: 50)
                         .buttonStyle(BorderedButtonStyle())
                         .cornerRadius(10)
