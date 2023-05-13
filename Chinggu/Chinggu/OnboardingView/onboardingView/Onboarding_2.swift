@@ -33,7 +33,7 @@ struct Onboarding_2: View {
                 .frame(height: 43)
                 .padding(.horizontal, 20)
                 
-                Text("부정적인 감정에서\n흔들리지 않는 마음을\n만들어드릴게요.")
+                Text("부정적인 감정에서\n흔들리지 않는 마음을\n만들어 드릴게요")
                     .font(.custom("AppleSDGothicNeo-Bold", size: 28))
                     .padding()
                     .padding(.leading,20)

@@ -107,8 +107,8 @@ struct WriteComplimentView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showingGoBackAlert = false
     @State private var showingSaveAlert = false
-    @State private var goBackAlert = SaveAlert(title: "정말로 나가시겠어요?", description: "작성된 내용은 저장되지 않습니다.")
-    @State private var saveAlert = SaveAlert(title: "정말로 저장하시겠어요?", description: "칭찬은 하루에 한 번만 쓸 수 있고\n수정할 수 없어요.")
+    @State private var goBackAlert = SaveAlert(title: "정말로 나갈까요?", description: "작성 중인 내용은 저장되지 않아요")
+    @State private var saveAlert = SaveAlert(title: "칭찬을 저장할까요?", description: "칭찬은 하루에 한 번만 쓸 수 있어요")
     
     @AppStorage("group") var groupOrder: Int = UserDefaults.standard.integer(forKey: "groupID")
     
@@ -161,7 +161,7 @@ struct WriteComplimentView: View {
                     .padding(.vertical, 4.0)
                     .sheet(isPresented: $presentSheet) {
                         VStack {
-                            Text("칭찬요정 tip은 작성을 위한 참고 예시에요.")
+                            Text("아래 예시를 참고해서 자유롭게 작성해보세요")
                                 .font(.system(size: 14, weight: .regular))
                                 .foregroundColor (Color.primary.opacity (0.30))
                             TabView(selection: $selection) {
@@ -206,7 +206,7 @@ struct WriteComplimentView: View {
             }
             
             ZStack(alignment: .topLeading) {
-                let placeholder = "오늘의 칭찬을 자유롭게 작성해보세요."
+                let placeholder = "오늘의 칭찬을 자유롭게 작성해보세요"
                 if content.isEmpty {
                     Text(placeholder)
                         .lineSpacing(5)
@@ -242,7 +242,6 @@ struct WriteComplimentView: View {
                 {
                     HStack {
                         Image(systemName: "chevron.backward")
-                        Text("뒤로")
                     }
                     .foregroundColor(Color.black)
                 }

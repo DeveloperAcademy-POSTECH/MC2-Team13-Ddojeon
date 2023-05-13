@@ -21,7 +21,7 @@ struct CardView: View {
 			if !showFullScreen {
 				VStack {
 					CardPopupView(namespace: namespace)
-					Text("상자를 눌러주세요!")
+					Text("카드를 눌러 내용을 확인하세요")
 						.bold()
 						.foregroundColor(.white)
 				}

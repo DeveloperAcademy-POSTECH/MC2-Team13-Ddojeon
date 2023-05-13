@@ -45,14 +45,14 @@ struct Onboarding_10: View {
                 .frame(height: 43)
                 .padding(.horizontal, 20)
                 
-                Text("매주 한 번,\n칭찬 언-박싱 타임!")
+                Text("매주 한 번\n칭찬 언-박싱 타임!")
                     .font(.custom("AppleSDGothicNeo-Bold", size: 28))
                     .padding()
                     .padding(.leading,20)
                     .padding(.top,20)
                     .foregroundColor(Color("oll"))
                 
-                Text("이전에 열람한 칭찬은 보관함에서\n모두 쉽게 관리할 수 있어요.")
+                Text("이전에 열람한 칭찬은 보관함에서\n모두 쉽게 관리할 수 있어요")
                     .font(.custom("AppleSDGothicNeo-Semibold", size: 18))
                     .lineSpacing(5)
                     .padding()

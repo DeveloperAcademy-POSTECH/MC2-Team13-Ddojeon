@@ -122,19 +122,19 @@ struct MainView: View {
                             }
                             // 요일 변경할건지 얼럿
                             .alert(isPresented: $showAlert) {
-                                Alert(title: Text("매주 \(tempSeletedWeekday?.rawValue ?? "뭔요일")"), message: Text("선택한 요일로 변경하시겠습니까?"), primaryButton: .default(Text("예")) {
+                                Alert(title: Text("매주 \(tempSeletedWeekday?.rawValue ?? "뭔요일")"), message: Text("선택한 요일로 변경할까요?"), primaryButton: .default(Text("네")) {
                                     // OK 버튼을 눌렀을 때 선택한 요일 업데이트
                                     self.selectedWeekday = self.tempSeletedWeekday
                                     updateCanBreakBoxes()
-                                }, secondaryButton: .cancel(Text("아니오")))
+                                }, secondaryButton: .cancel(Text("아니요")))
                             }.padding(.horizontal, -19.0)
-                            Text("은 칭찬 저금통을 깨는 날!")
+                            Text("에 칭찬 상자가 열려요")
                                 .font(.custom("AppleSDGothicNeo-SemiBold", size: 17))
                                 .foregroundColor(.gray)
                             Spacer()
                             
                             //MARK: 아카이브 페이지 링크
-                            NavigationLink(destination: TempMainView()) {
+                            NavigationLink(destination: ArchivingView()) {
                                 Image(systemName: "archivebox")
                                     .resizable()
                                     .frame(width: 22, height: 22)
@@ -154,8 +154,8 @@ struct MainView: View {
                         Spacer()
                         
                         // 타이틀
-                        if canBreakBoxes && scene.boxes.count > 0 {
-                            Text("저금통을\n확인 할 시간이에요💞")
+                        if canBreakBoxes && scene.boxes.count > 0  {
+                            Text("이번 주 칭찬을\n  확인할 시간이에요💞")
                                 .multilineTextAlignment(.center)
                                 .font(.custom("AppleSDGothicNeo-Bold", size: 28))
                                 .foregroundColor(Color("oll"))
@@ -181,11 +181,11 @@ struct MainView: View {
                             }
                         // 중도/만기일 개봉 얼럿
                             .alert(isPresented: $showBreakAlert) {
-                                Alert(title: Text(canBreakBoxes ? "개봉 하시겠어요?" : "중도 개봉을 하시겠어요?"), primaryButton: .default(Text("예")) {
+                                Alert(title: Text(canBreakBoxes ? "칭찬 상자를 열어볼까요?" : "창찬이 다 모이지 않았어요\n그래도 상자를 열어볼까요?"), primaryButton: .default(Text("네")) {
                                     // 저금통 초기화
                                     showPopup = true
                                     scene.resetBoxes()
-                                }, secondaryButton:.cancel(Text("아니오")))
+                                }, secondaryButton:.cancel(Text("아니요")))
                             }
                         // 애니메이션
                             .modifier(ShakeEffect(delta: shake))
@@ -214,13 +214,13 @@ struct MainView: View {
                                     shake = 3
                                 }
                             }
-                        if canBreakBoxes && scene.boxes.count > 0 {
-                            Text("저금통을 탭해서 깨보세요!")
+                        if canBreakBoxes && scene.boxes.count > 0  {
+                            Text("칭찬 상자를 톡! 눌러주세요")
                                 .font(.custom("AppleSDGothicNeo-SemiBold", size: 14))
                                 .foregroundColor(.gray)
                                 .padding(.top, 15)
                         } else {
-                            Text("긍정의 힘은 복리로 돌아와요. 커밍쑨!")
+                            Text("긍정의 힘은 복리로 돌아와요 커밍쑨!")
                                 .font(.custom("AppleSDGothicNeo-SemiBold", size: 14))
                                 .foregroundColor(.gray)
                                 .padding(.top, 15)

@@ -33,11 +33,9 @@ struct Onboarding_6: View {
                 .frame(height: 43)
                 .padding(.horizontal, 20)
                 
-                Text("칭찬을\n한 번 적어볼까요?")
+                Text("칭찬을\n한번 적어볼까요?")
                     .font(.custom("AppleSDGothicNeo-Bold", size: 28))
                     .multilineTextAlignment(.center)
-                    
-                    .padding(.leading,20)
                     .padding(.top,50)
                     .lineSpacing(5)
                     .foregroundColor(Color("oll"))
@@ -57,7 +55,7 @@ struct Onboarding_6: View {
                         NavigationLink(
                             destination: Onboarding_7(),
                             label: {
-                                Text("다음")
+                                Text("음...")
                                     .font(.custom("AppleSDGothicNeo-Bold", size: 20))
                                     .foregroundColor(Color.white)
                                     .kerning(1)

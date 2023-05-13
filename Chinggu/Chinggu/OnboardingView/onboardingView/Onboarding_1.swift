@@ -48,7 +48,7 @@ struct Onboarding_1: View {
                     //로띠뷰 넣기
                     LottiePlayState(filename: "onboarding",loopState: false,playState: .constant(true))
                         .offset(x:-20)
-                        .scaleEffect(0.8)
+                        .scaleEffect(0.7)
                     
                     
                     //버튼 이용해서 navigationlink 만들기

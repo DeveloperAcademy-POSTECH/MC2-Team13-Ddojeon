@@ -33,7 +33,7 @@ struct Onboarding_3: View {
                 .frame(height: 43)
                 .padding(.horizontal, 20)
         
-                    Text("남과 비교하지 않는\n단단한 자아는\n칭찬으로부터 시작돼요.")
+                    Text("남과 비교하지 않는\n단단한 자아는\n칭찬으로부터 시작돼요")
                         .font(.custom("AppleSDGothicNeo-Bold", size: 28))
                         .padding()
                         .padding(.leading,20)

@@ -14,7 +14,7 @@ struct Onboarding_5: View {
     @State private var showAnimation = false
     @State private var isNavigationActive = false
     @State private var playState = false
-   
+    
     @ViewBuilder
     var lottieView: LottiePlayState {
         LottiePlayState(filename: "onboarding_5",loopState: false, playState: $playState)
@@ -53,7 +53,7 @@ struct Onboarding_5: View {
                     .padding(.horizontal, 20)
                     
                     // 타이틀과 설명 문구 표시
-                    Text("이제 자신을 칭찬하면서\n부정적 감정의 고리를\n 끊어보아요.")
+                    Text("이제 자신을 칭찬하면서\n부정적 감정의 고리를\n 끊어보아요")
                         .font(.custom("AppleSDGothicNeo-Semibold", size: 21))
                         .lineSpacing(5)
                         .padding(.top, 40)
@@ -68,18 +68,18 @@ struct Onboarding_5: View {
                         
                         Button(action: {
                         }) {
-                            Text("고리를 터치해서 끊어보아요!")
-                                                            .font(.custom("AppleSDGothicNeo-Bold", size: 16))
-                                                            .foregroundColor(Color.white)
-                                                            .kerning(1)
-                                                            .padding(.horizontal, 10)
-                                                            .padding(.vertical, 6)
+                            Text("고리를 터치해 볼까요?")
+                                .font(.custom("AppleSDGothicNeo-Bold", size: 16))
+                                .foregroundColor(Color.white)
+                                .kerning(1)
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 3)
                         }
                         .buttonStyle(BorderedButtonStyle())
-                                                .frame(width: geometry.size.width/1.3, height: 50)
-                                                .background(Color("ddopurplebutton"))
-                                                .cornerRadius(10)
-                                                   
+//                        .frame(width: 200, height: 40)
+                        .background(Color("ddopurplebutton"))
+                        .cornerRadius(10)
+                        
                         
                         if self.playState {
                             Button (action: {
@@ -104,7 +104,7 @@ struct Onboarding_5: View {
                             .cornerRadius(10)
                         }
                         
-            
+                        
                     }
                 }
                 
@@ -125,7 +125,7 @@ struct Onboarding_5: View {
 }
 
 struct Onboarding_5_Previews: PreviewProvider {
-               static var previews: some View {
-                   Onboarding_5()
-               }
-           }
+    static var previews: some View {
+        Onboarding_5()
+    }
+}

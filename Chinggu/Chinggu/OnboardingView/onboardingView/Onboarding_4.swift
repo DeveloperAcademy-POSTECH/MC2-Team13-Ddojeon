@@ -39,7 +39,7 @@ struct Onboarding_4: View {
                     .padding(.top,20)
                     .foregroundColor(Color("oll"))
                 
-                Text("내면의 긍정 에너지는 몹시 강력해서,\n외부의 좋은 것을 나에게 끌어당기는\n힘이 있어요.")
+                Text("내면의 긍정 에너지는 몹시 강력해서\n외부의 좋은 것을 나에게 끌어당기는\n힘이 있어요")
                     .font(.custom("AppleSDGothicNeo-Semibold", size: 18))
                     .padding()
                     .padding(.leading,20)

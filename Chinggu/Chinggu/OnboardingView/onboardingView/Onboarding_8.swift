@@ -36,11 +36,11 @@ struct Onboarding_8: View {
                 .padding(.horizontal, 20)
                 
                 VStack(alignment: .leading, spacing: 16) {
-                    Text("효과적인 칭찬 방법을\n알려드릴게요.")
+                    Text("효과적인 칭찬 방법을\n알려드릴게요")
                         .font(.custom("AppleSDGothicNeo-Bold", size: 28))
                         .lineSpacing(5)
-                    Text("친구나 아이를 대하듯 나를 칭찬해보세요!\n행동 + 칭찬의 말을 함께 덧붙이면 좋아요.")
-                        .font(.custom("AppleSDGothicNeo-Semibold", size: 18))
+                    Text("친구나 아이를 대하듯 나를 칭찬해보세요!\n행동 + 칭찬의 말을 함께 덧붙이면 좋아요")
+                        .font(.custom("AppleSDGothicNeo", size: 18))
                         .kerning(-1)
                         .fontWeight(.medium)
                         .lineSpacing(3)
@@ -62,7 +62,7 @@ struct Onboarding_8: View {
                             .background(Color.white)
                             .frame(height: 121)
                         if inputText.isEmpty {
-                            Text("위 문장을 따라서 입력해보세요.")
+                            Text("위 문장을 따라서 입력해보세요")
                                 .lineSpacing(5)
                                 .padding(.top, 25)
                                 .padding(.leading, 20)

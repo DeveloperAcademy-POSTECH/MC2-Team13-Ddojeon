@@ -41,7 +41,7 @@ struct Onboarding_9: View {
                 Spacer()
                 ZStack {
                     Image("onboarding9")
-                    Text("짝짝짝!\n첫 번째 칭찬을 적으셨군요.")
+                    Text("짝짝짝!\n첫 번째 칭찬을 적으셨군요")
                         .font(.custom("AppleSDGothicNeo-Bold", size: 18))
                         .opacity(isTextVisible ? 1 : 0)
                         .animation(.linear(duration: 2), value: isTextVisible)

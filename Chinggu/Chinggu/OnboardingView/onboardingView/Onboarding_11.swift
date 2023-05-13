@@ -32,15 +32,14 @@ struct Onboarding_11: View {
                 }
                 .frame(height: 43)
                 .padding(.horizontal, 20)
-                
-                    Text("매주 한 번,\n칭찬 언-박싱 타임!")
+                    Text("이제 칭구와 함께\n시작해요")
                         .font(.custom("AppleSDGothicNeo-Bold", size: 28))
                         .padding()
                         .padding(.leading,20)
                         .padding(.top,20)
                         .foregroundColor(Color("oll"))
                     
-                    Text("이전에 열람한 칭찬은 보관함에서\n모두 쉽게 관리할 수 있어요.")
+                    Text("매일 하루 끝 칭찬으로 긍정적인\n사고 회로를 만들어보아요")
                         .font(.custom("AppleSDGothicNeo-Semibold", size: 18))
                         .lineSpacing(5)
                         .padding()

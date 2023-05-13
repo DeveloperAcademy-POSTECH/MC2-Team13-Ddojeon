@@ -47,7 +47,7 @@ struct CardFullScreenView: View {
 							groupOrder = groupOrder + 1
 						}
 					} label: {
-						Text("나가기 버튼")
+						Text("닫기")
 							.font(.title)
 							.foregroundColor(.white)
 							.padding()

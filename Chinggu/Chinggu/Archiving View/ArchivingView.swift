@@ -18,14 +18,14 @@ struct ArchivingView: View {
 	var body: some View {
 		NavigationStack{
 			VStack(alignment: .leading){
-				Text("\(groupOrder)번의 저금통을 깨고,\n\(Compliment.count)번 칭찬했어요.")
+				Text("\(groupOrder)번의 상자를 열었고\n\(Compliment.count)번 칭찬했어요")
 					.font(.title3)
 					.fontWeight(.bold)
 					.padding(.leading)
 				
 				List {
 					ForEach((0..<$groupOrder.wrappedValue).reversed(), id: \.self) { index in
-							Section(header: Text("\(index)번째 저금통")) {
+							Section(header: Text("\(index)번째 상자")) {
 								ForEach(Compliment, id: \.self.id) { compliments in
 									if compliments.groupID == index {
 										NavigationLink(

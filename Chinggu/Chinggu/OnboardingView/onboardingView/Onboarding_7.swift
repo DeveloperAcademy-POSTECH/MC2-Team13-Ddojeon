@@ -42,20 +42,20 @@ struct Onboarding_7: View {
                         .lineSpacing(5)
                         .foregroundColor(Color("oll"))
                 
-                Text("작성화면 상단에 있는 <칭찬요정>이\n당신을 언제든 도와줄거에요.")
+                Text("작성화면 상단에 있는 〈칭찬요정〉이\n당신을 언제든 도와줄 거예요")
                     .font(.custom("AppleSDGothicNeo-Semibold", size: 18))
                     .padding()
                     .padding(.leading,20)
+                    .lineSpacing(7)
                     .foregroundColor(Color("oll"))
                     
 //                    로띠뷰 넣기
                 LottiePlayState(filename: "onboarding_7",loopState: false, playState: .constant(true))
                 HStack{
                     Spacer()
-                    Text("본 가이드는 저서 ‘일단 나부터 칭찬합시다’를 기반으로 작성되었어요.")
+                    Text("본 가이드는 저서 ‘일단 나부터 칭찬합시다’를 기반으로 작성되었어요")
                         .font(.custom("AppleSDGothicNeo", size: 12))
                         .foregroundColor(Color.gray)
-                        
                         .padding(.bottom,20)
 
                     Spacer()
