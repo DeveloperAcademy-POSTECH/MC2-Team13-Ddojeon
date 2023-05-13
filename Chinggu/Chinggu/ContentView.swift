@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
+	
+	init() {
+		UIView.appearance().overrideUserInterfaceStyle = .light
+	}
+	
     var body: some View {
 		MainView()
     }
