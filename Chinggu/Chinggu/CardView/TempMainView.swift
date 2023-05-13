@@ -13,31 +13,39 @@ struct TempMainView: View {
 	//CoreData의 데이터를 읽어오기 위해 필요해요
 	@FetchRequest(
 		entity: ComplimentEntity.entity(),
-		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.createDate, ascending: true)])
+		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.createDate, ascending: false)])
 	var Compliment: FetchedResults<ComplimentEntity>
 	@AppStorage("group") var groupOrder: Int = UserDefaults.standard.integer(forKey: "groupID")
 
 	@State private var textFieldTitle: String = ""
 	@State private var showPopup = false
+	@State private var customDate = Date()
 
 	var body: some View {
 		ZStack {
 			Color.ddoPrimary.ignoresSafeArea()
 			VStack {
-				HStack {
-					Spacer()
-					Image(systemName: "captions.bubble.fill").padding()
-				}
 				VStack(spacing: 10) {
-					TextField("", text: $textFieldTitle)
-						.padding()
-						.frame(maxWidth: .infinity)
-						.frame(height: 55)
-						.background(Color(UIColor.secondarySystemBackground).cornerRadius(10))
+					HStack {
+						TextField("", text: $textFieldTitle)
+							.padding()
+							.frame(maxWidth: .infinity)
+							.background(Color(UIColor.secondarySystemBackground).cornerRadius(10))
 						.padding(.horizontal, 10)
-					
+						DatePicker("",
+							selection: $customDate,
+							displayedComponents: [.date]
+						)
+						.padding()
+						.background(.yellow)
+						.cornerRadius(15)
+						.padding()
+					}
+					.frame(height: 55)
+
 					Button {
-						add()
+//						add()
+						addCustomCompliment(complimentText: textFieldTitle, groupID: Int16(groupOrder))
 					} label: {
 						Text("저장")
 							.padding()
@@ -104,6 +112,40 @@ struct TempMainView: View {
 			.popup(isPresented: $showPopup) {
 				CardView(showPopup: $showPopup)
 			}
+		}
+	}
+	
+	//adminCreate
+	private func addCustomCompliment(complimentText: String, groupID: Int16) {
+		let viewContext = PersistenceController.shared.container.viewContext
+		let compliment = ComplimentEntity(context: viewContext)
+		compliment.compliment = complimentText
+		compliment.createDate = customDate
+		compliment.order = fetchLatestOrder() + 1 // Fetch the latest order and increment by 1
+		compliment.id = UUID()
+		compliment.groupID = groupID
+		textFieldTitle = ""
+
+		do {
+			try viewContext.save()
+		} catch {
+			print("\(error)")
+			viewContext.rollback()
+		}
+	}
+
+	private func fetchLatestOrder() -> Int16 {
+		let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
+		fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
+		fetchRequest.fetchLimit = 1
+
+		do {
+			let viewContext = PersistenceController.shared.container.viewContext
+			let lastCompliment = try viewContext.fetch(fetchRequest).first
+			return lastCompliment?.order ?? 0
+		} catch {
+			print("\(error)")
+			return 0
 		}
 	}
 	
