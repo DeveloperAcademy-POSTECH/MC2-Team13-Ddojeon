@@ -8,16 +8,6 @@
 import SwiftUI
 import UIKit
 
-enum Weekday: String, CaseIterable {
-    case monday = "월요일"
-    case tuesday = "화요일"
-    case wednesday = "수요일"
-    case thursday = "목요일"
-    case friday = "금요일"
-    case saturday = "토요일"
-    case sunday = "일요일"
-}
-
 struct Onboarding_10: View {
     @State private var weekdayActionSheet = false
     @State private var seletedWeekday: Weekday?
@@ -27,8 +17,8 @@ struct Onboarding_10: View {
     
     
     @ViewBuilder
-    var lottieView: LottieView {
-        LottieView(filename: "onboarding_10",loopState: false, playState: $playState)
+    var lottieView: LottiePlayState {
+        LottiePlayState(filename: "onboarding_10",loopState: false, playState: $playState)
     }
     
     var body: some View {
@@ -83,7 +73,7 @@ struct Onboarding_10: View {
                 
                 
                 //로띠뷰 넣기
-                LottieView(filename: "onboarding_10",loopState: false, playState: $playState)
+                LottiePlayState(filename: "onboarding_10",loopState: false, playState: $playState)
                 
                 ZStack {
                     //버튼 이용해서 navigationlink 만들기

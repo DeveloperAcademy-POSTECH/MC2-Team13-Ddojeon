@@ -54,7 +54,7 @@ struct Onboarding_2: View {
                     .foregroundColor(Color("oll"))
 
                     //로띠뷰 넣기
-                    LottieView(filename: "onboarding_2(1)",loopState: false,playState: .constant(true))
+                LottiePlayState(filename: "onboarding_2(1)",loopState: false,playState: .constant(true))
 
                 //버튼 이용해서 navigationlink 만들기
                 HStack {

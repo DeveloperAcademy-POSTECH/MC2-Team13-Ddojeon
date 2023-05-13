@@ -59,7 +59,7 @@ struct Onboarding_4: View {
                         
                         
                         //로띠뷰 넣기
-                        LottieView(filename: "onboarding_4",loopState: false, playState: .constant(true))
+                    LottiePlayState(filename: "onboarding_4",loopState: false, playState: .constant(true))
                         .offset(x:-20)
                         
                     

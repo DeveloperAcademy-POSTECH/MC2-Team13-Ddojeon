@@ -15,7 +15,7 @@ struct Onboarding_1: View {
     private let timer = Timer.publish(every: 0.9, on: .main, in: .common).autoconnect()
 
     
-    var lottieView = LottieView(filename: "onboarding",loopState: false, playState: .constant(true))
+    var lottieView = LottiePlayState(filename: "onboarding",loopState: false, playState: .constant(true))
     
     var body: some View {
         NavigationView {
@@ -48,7 +48,7 @@ struct Onboarding_1: View {
                         .padding(.top,0.2)
                     
                     //로띠뷰 넣기
-                    LottieView(filename: "onboarding",loopState: false,playState: .constant(true))
+                    LottiePlayState(filename: "onboarding",loopState: false,playState: .constant(true))
                         .offset(x:-20)
                         .scaleEffect(0.8)
                     

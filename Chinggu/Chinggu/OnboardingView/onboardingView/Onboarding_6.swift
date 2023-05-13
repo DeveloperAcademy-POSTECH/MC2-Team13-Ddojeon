@@ -54,7 +54,7 @@ struct Onboarding_6: View {
                     .padding()
                 
                 //로띠뷰 넣기
-                LottieView(filename: "onboarding_6",loopState: false,playState: .constant(true))
+                LottiePlayState(filename: "onboarding_6",loopState: false,playState: .constant(true))
                     .scaleEffect(1.15)
                     .padding(.bottom,20)
                 

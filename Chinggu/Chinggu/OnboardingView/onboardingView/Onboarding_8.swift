@@ -62,7 +62,7 @@ import UIKit
                         .padding(.leading,20)
                         .foregroundColor(Color("oll"))
                     
-                    LottieView(filename: "onboarding_8",loopState: false, playState: .constant(true))
+                    LottiePlayState(filename: "onboarding_8",loopState: false, playState: .constant(true))
                         .frame(height: 100)
 
                      HStack{

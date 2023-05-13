@@ -59,7 +59,7 @@ struct Onboarding_7: View {
                     .foregroundColor(Color("oll"))
                     
 //                    로띠뷰 넣기
-                LottieView(filename: "onboarding_7",loopState: false, playState: .constant(true))
+                LottiePlayState(filename: "onboarding_7",loopState: false, playState: .constant(true))
                 HStack{
                     Spacer()
                     Text("본 가이드는 저서 ‘일단 나부터 칭찬합시다’를 기반으로 작성되었어요.")

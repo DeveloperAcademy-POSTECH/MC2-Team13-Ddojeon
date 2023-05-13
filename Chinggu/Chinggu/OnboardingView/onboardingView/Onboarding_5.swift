@@ -16,8 +16,8 @@ struct Onboarding_5: View {
     @State private var playState = false
    
     @ViewBuilder
-    var lottieView: LottieView {
-        LottieView(filename: "onboarding_5",loopState: false, playState: $playState)
+    var lottieView: LottiePlayState {
+        LottiePlayState(filename: "onboarding_5",loopState: false, playState: $playState)
     }
     
     var body: some View {
@@ -66,7 +66,7 @@ struct Onboarding_5: View {
                         .multilineTextAlignment(.center)
                     
                     
-                    LottieView(filename: "onboarding_5",loopState: false, playState: $playState)
+                    LottiePlayState(filename: "onboarding_5",loopState: false, playState: $playState)
                         .padding(.bottom,90)
                     
                     ZStack {

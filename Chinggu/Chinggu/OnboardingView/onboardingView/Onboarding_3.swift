@@ -52,7 +52,7 @@ struct Onboarding_3: View {
                         .lineSpacing(5)
                     
                     //로띠뷰 넣기
-                LottieView(filename: "onboarding_3",loopState: false, playState: .constant(true))
+                LottiePlayState(filename: "onboarding_3",loopState: false, playState: .constant(true))
                     
                 //버튼 이용해서 navigationlink 만들기
                 HStack {
