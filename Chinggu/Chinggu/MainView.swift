@@ -20,19 +20,22 @@ enum Weekday: String, CaseIterable {
 
 class GameScene: SKScene {
     var boxes: [SKSpriteNode] = []
-//    @Binding var complimentCount: Int
-//
-//    init(size: CGSize, complimentCount: Binding<Int>) {
-//        self._complimentCount = complimentCount
-//        super.init(size: size)
-//    }
-    
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
+    var complimentCount = 2
+
     override func didMove(to view: SKView) {
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        // 칭찬 수 만큼 생성
+        for _ in 0..<complimentCount {
+            let index = Int.random(in: 1..<99)
+            let texture = SKTexture(imageNamed: "stonery\(index)")
+            let box = SKSpriteNode(texture: texture)
+            let body = SKPhysicsBody(texture: texture, size: texture.size())
+            box.position = CGPoint(x: size.width/2, y: size.height - 50)
+            box.physicsBody = body
+            addChild(box)
+            boxes.append(box)
+        }
+        print(boxes.count)
         // 배경색 변경
         //        self.backgroundColor = .red
     }
@@ -68,7 +71,6 @@ struct MainView: View {
     @State private var tempSeletedWeekday: Weekday?
     @State private var shake = 0.0
     @State private var isCompliment = false
-    @State private var complimentCount = 2
     
 //    SpriteView(scene: GameScene(size: size, complimentCount: $complimentCount))
 //                .frame(width: size.width, height: size.height)
@@ -166,6 +168,9 @@ struct MainView: View {
                                 updateCanBreakBoxes()
                                 resetTimeButton()
                                 scene.scaleMode = .aspectFit
+//                                for _ in 0..<complimentCount {
+//                                    scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
+//                                }
                                 if canBreakBoxes && scene.boxes.count > 0 {
                                     shake = 3
                                 }
@@ -175,9 +180,7 @@ struct MainView: View {
                         // 칭찬돌 추가하는 버튼
                         Button(action: {
 //                            isCompliment = true
-                            let position = CGPoint(x: scene.size.width/2,
-                                                   y: scene.size.height - 50)
-                            scene.addBox(at: position)
+                            scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
                         }, label: {
                             Text("칭찬하기")
                                 .foregroundColor(.white)
