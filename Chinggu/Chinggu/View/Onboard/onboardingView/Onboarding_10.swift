@@ -10,10 +10,9 @@ import UIKit
 
 struct Onboarding_10: View {
     @State private var weekdayActionSheet = false
-    @State private var seletedWeekday: Weekday?
-    //    @State private var showLottie = false
     @State private var playState = false
-    
+	
+	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.monday.rawValue
     
     
     @ViewBuilder
@@ -87,7 +86,7 @@ struct Onboarding_10: View {
                                 
                                 return .default(Text(weekday.rawValue)) {
                                     self.weekdayActionSheet = false
-                                    self.seletedWeekday = weekday
+									self.selectedWeekday = weekday.rawValue
                                     self.playState = true
                                     self.lottieView.playState = self.playState
                                 }
