@@ -15,6 +15,19 @@ struct ContentView: View {
 	
     var body: some View {
 		MainView()
+        /*olling
+         NavigationView {
+             NavigationLink(
+                     destination: Onboarding_1(),label: {
+                         Text("다음")
+                             .font(.custom("AppleSDGothicNeo-Bold", size: 20))
+                             .foregroundColor(Color.black)
+                             .kerning(1)
+                             .padding(.horizontal, 145)
+                             .padding(.vertical,6)
+                     })
+         }.navigationBarHidden(true)
+         */
     }
 }
 
