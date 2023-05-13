@@ -77,7 +77,7 @@ struct MainView: View {
     @State private var showBreakAlert = false
     @State private var tempSeletedWeekday: Weekday?
     @State private var shake = 0.0
-
+    @State private var showPopup = false
     @State private var isCompliment = false
 //    @AppStorage("isCompliment") var isCompliment: Bool = false
     
@@ -183,6 +183,7 @@ struct MainView: View {
                             .alert(isPresented: $showBreakAlert) {
                                 Alert(title: Text(canBreakBoxes ? "개봉 하시겠어요?" : "중도 개봉을 하시겠어요?"), primaryButton: .default(Text("예")) {
                                     // 저금통 초기화
+                                    showPopup = true
                                     scene.resetBoxes()
                                 }, secondaryButton:.cancel(Text("아니오")))
                             }
@@ -256,6 +257,11 @@ struct MainView: View {
                         .disabled(isCompliment)
                         .padding()
                     }
+                }
+                .blur(radius: showPopup ? 3 : 0)
+                .disabled(showPopup)
+                .popup(isPresented: $showPopup) {
+                    CardView(showPopup: $showPopup)
                 }
             }
         }
