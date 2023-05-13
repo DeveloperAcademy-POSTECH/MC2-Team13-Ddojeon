@@ -16,32 +16,22 @@ struct Onboarding_6: View {
             Color("ddocolor").edgesIgnoringSafeArea(.all)
             
             VStack {
-                //뒤로가기, gaugebar HStack으로 묶기
-                HStack{
-                    Button(action: {
-                        
-                    }) {
-                        //navigationlink 이용해서 뒤로가기
-                        NavigationLink(
-                            destination: Onboarding_5(),
-                            label: {
-                                Image(systemName: "chevron.backward")
-                                    .foregroundColor(Color.black)
-                                    .scaleEffect(1.7)
-                            })
-                        
-                    }
-                    //왼쪽 공간 띄워놓기
-                    .padding(.leading,30)
-                    
-                    //gaugebar
+                HStack(spacing: 16) {
+                    NavigationLink(
+                        destination: Onboarding_5(),
+                        label: {
+                            Image(systemName: "chevron.backward")
+                                .font(.title2)
+                                .foregroundColor(Color.black)
+                        })
                     ProgressView(value: 0.5, total: 1.0)
-                        .padding(.trailing,25)
                         .scaleEffect(y:1.3)
                         .progressViewStyle(
-                            LinearProgressViewStyle(tint: Color(red: 28/255, green: 28/255, blue: 30/255))
+                            LinearProgressViewStyle(tint: Color("oll"))
                         )
                 }
+                .frame(height: 43)
+                .padding(.horizontal, 20)
                 
                 Text("칭찬을\n한 번 적어볼까요?")
                     .font(.custom("AppleSDGothicNeo-Bold", size: 28))

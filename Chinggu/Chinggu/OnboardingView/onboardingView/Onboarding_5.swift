@@ -35,27 +35,22 @@ struct Onboarding_5: View {
                 
                 // VStack으로 묶어 UI 구성
                 VStack {
-                    // 뒤로 가기 버튼과 게이지 바를 HStack으로 묶어서 표시
-                    HStack {
-                        Button(action: {
-                            
-                        }) {
-                            // NavigationLink를 이용해 뒤로 가기 화면 구현
-                            NavigationLink(destination: Onboarding_4()) {
+                    HStack(spacing: 16) {
+                        NavigationLink(
+                            destination: Onboarding_4(),
+                            label: {
                                 Image(systemName: "chevron.backward")
+                                    .font(.title2)
                                     .foregroundColor(Color.black)
-                                    .scaleEffect(1.7)
-                            }
-                        }
-                        // 뒤로 가기 버튼과 게이지 바 사이의 간격 설정
-                        .padding(.leading, 30)
-                        
-                        // 게이지 바 구현
+                            })
                         ProgressView(value: 0.4, total: 1.0)
-                            .padding(.trailing, 25)
                             .scaleEffect(y:1.3)
-                            .progressViewStyle(LinearProgressViewStyle(tint: Color(red: 28/255, green: 28/255, blue: 30/255)))
+                            .progressViewStyle(
+                                LinearProgressViewStyle(tint: Color("oll"))
+                            )
                     }
+                    .frame(height: 43)
+                    .padding(.horizontal, 20)
                     
                     // 타이틀과 설명 문구 표시
                     Text("이제 자신을 칭찬하면서\n부정적 감정의 고리를\n 끊어보아요.")

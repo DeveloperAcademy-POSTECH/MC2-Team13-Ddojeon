@@ -11,9 +11,9 @@ import UIKit
 struct Onboarding_1: View {
     
     @State private var messageIndex = 0
-    private let message = ["  불안  ","  무기력  ","  슬픔  ","  우울  ","  조급함  ","  자괴감  ","  회의감  ","  좌절  "]
+    private let message = ["불안","무기력","슬픔","우울","조급함","자괴감","회의감","좌절"]
     private let timer = Timer.publish(every: 0.9, on: .main, in: .common).autoconnect()
-
+    
     
     var lottieView = LottiePlayState(filename: "onboarding",loopState: false, playState: .constant(true))
     
@@ -24,28 +24,26 @@ struct Onboarding_1: View {
                 Color("ddocolor").edgesIgnoringSafeArea(.all)
                 
                 VStack(alignment: .leading) {
-                    
-                    HStack {
-                        
-                        Text("최근")
-                            .font(.custom("AppleSDGothicNeo-Bold", size: 28))
-                            .foregroundColor(Color("oll"))
-                            .padding(.leading,30)
-                        
-                        Text(message[messageIndex])
-                            .font(.custom("AppleSDGothicNeo-Bold", size: 32))
-                            .foregroundColor(Color("ddowhiteon"))
-                            .background(Color("ddoOrange"))
-                            .cornerRadius(10)
-                            
+                    VStack(alignment: .leading){
+                        HStack {
+                            Text("최근")
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 18)
+                                    .frame(width: 72, height: 36)
+                                Text(message[messageIndex])
+                                    .font(.custom("AppleSDGothicNeo-Bold", size: 17))
+                                    .foregroundColor(Color.ddoPrimary)
+                            }
+                            Text("을")
+                        }
+                        Text("느껴본 적 없나요?")
                     }
+                    .bold()
+                    .foregroundColor(Color("oll"))
                     .padding(.top,50)
+                    .padding(.leading,30)
+                    .font(.custom("AppleSDGothicNeo-Bold", size: 28))
                     
-                    Text("느껴본 적 없나요?")
-                        .font(.custom("AppleSDGothicNeo-Bold", size: 28))
-                        .foregroundColor(Color("oll"))
-                        .padding(.leading,30)
-                        .padding(.top,0.2)
                     
                     //로띠뷰 넣기
                     LottiePlayState(filename: "onboarding",loopState: false,playState: .constant(true))

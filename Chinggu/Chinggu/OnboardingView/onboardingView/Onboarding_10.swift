@@ -28,35 +28,23 @@ struct Onboarding_10: View {
             Color("ddocolor").edgesIgnoringSafeArea(.all)
             
             VStack(alignment: .leading){
-                //뒤로가기, gaugebar HStack으로 묶기
-                HStack{
-                    Button(action: {
-                        
-                    }) {
-                        //navigationlink 이용해서 뒤로가기
-                        NavigationLink(
-                            destination: Onboarding_9(),
-                            label: {
-                                Image(systemName: "chevron.backward")
-                                    .scaleEffect(1.7)
-                                    .foregroundColor(Color.black)
-                            })
-                        
-                    }
-                    //왼쪽 공간 띄워놓기
-                    .padding(.leading,30)
-                    
-                    //gaugebar
+                HStack(spacing: 16) {
+                    NavigationLink(
+                        destination: Onboarding_9(),
+                        label: {
+                            Image(systemName: "chevron.backward")
+                                .font(.title2)
+                                .foregroundColor(Color.black)
+                        })
                     ProgressView(value: 0.9, total: 1.0)
-                        .padding(.trailing,25)
                         .scaleEffect(y:1.3)
                         .progressViewStyle(
-                            LinearProgressViewStyle(tint: Color(red: 28/255, green: 28/255, blue: 30/255))
+                            LinearProgressViewStyle(tint: Color("oll"))
                         )
                 }
-                //                    Text(
-                //                        UIScreen.main.bounds.width
-                //                    )
+                .frame(height: 43)
+                .padding(.horizontal, 20)
+                
                 Text("매주 한 번,\n칭찬 언-박싱 타임!")
                     .font(.custom("AppleSDGothicNeo-Bold", size: 28))
                     .padding()
