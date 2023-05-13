@@ -157,7 +157,8 @@ struct WriteComplimentView: View {
                             }
                         }
                     }
-                    .padding()
+                    .padding(.horizontal, 17.0)
+                    .padding(.vertical, 4.0)
                     .sheet(isPresented: $presentSheet) {
                         VStack {
                             Text("칭찬요정 tip은 작성을 위한 참고 예시에요.")
@@ -199,7 +200,7 @@ struct WriteComplimentView: View {
                     .padding(.top, 5)
                 Rectangle()
                     .fill(Color(.systemGray3))
-                    .frame(height: 10)
+                    .frame(height: 5)
                     .opacity(0.15)
                 Divider()
             }
