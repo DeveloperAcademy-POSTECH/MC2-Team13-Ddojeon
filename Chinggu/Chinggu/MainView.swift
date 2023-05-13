@@ -19,13 +19,15 @@ enum Weekday: String, CaseIterable {
 }
 
 class GameScene: SKScene {
+    
     var boxes: [SKSpriteNode] = []
-    var complimentCount = 2
-
+    var a = 2
+    var complimentCount = 0
+    
     override func didMove(to view: SKView) {
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         // 칭찬 수 만큼 생성
-        for _ in 0..<complimentCount {
+        for _ in 0..<complimentCount{
             let index = Int.random(in: 1..<99)
             let texture = SKTexture(imageNamed: "stonery\(index)")
             let box = SKSpriteNode(texture: texture)
@@ -35,7 +37,7 @@ class GameScene: SKScene {
             addChild(box)
             boxes.append(box)
         }
-        print(boxes.count)
+        print(complimentCount)
         // 배경색 변경
         //        self.backgroundColor = .red
     }
@@ -63,6 +65,11 @@ class GameScene: SKScene {
 }
 
 struct MainView: View {
+    @FetchRequest(
+        entity: ComplimentEntity.entity(),
+        sortDescriptors: []
+    ) var Compliment: FetchedResults<ComplimentEntity>
+    
     @State private var selectedWeekday: Weekday?
     @State private var showActionSheet = false
     @State private var canBreakBoxes = false
@@ -70,7 +77,8 @@ struct MainView: View {
     @State private var showBreakAlert = false
     @State private var tempSeletedWeekday: Weekday?
     @State private var shake = 0.0
-    @State private var isCompliment = false
+//    @State private var isCompliment = false
+    @AppStorage("isCompliment") var isCompliment: Bool = false
     
     @State var scene = GameScene()
     
@@ -79,7 +87,6 @@ struct MainView: View {
             let width = geometry.size.width - geometry.safeAreaInsets.leading - geometry.safeAreaInsets.trailing - 40
             let height = width * 424 / 350
 //            let scene = GameScene(size: size, complimentCount: $complimentCount)
-            
             NavigationView {
                 ZStack {
                     Color.ddoPrimary.ignoresSafeArea()
@@ -132,7 +139,6 @@ struct MainView: View {
                         
                         //MARK: 칭찬 저금통
                         SpriteView(scene: scene)
-                        //                            .frame(width: 350, height: 450)
                             .frame(width: width, height: height)
                             .cornerRadius(26)
                             .onTapGesture {
@@ -160,14 +166,20 @@ struct MainView: View {
                                 }
                                 
                             }
+                            .onChange(of: Compliment.count) { newValue in
+                                scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
+                                
+                            }
                             .onAppear() {
                                 scene.size = CGSize(width: width, height: height)
+                                scene.complimentCount = Compliment.count
+//                                if isCompliment {
+//                                    scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
+//                                }
+                                print("appear",Compliment.count)
                                 updateCanBreakBoxes()
                                 resetTimeButton()
                                 scene.scaleMode = .aspectFit
-//                                for _ in 0..<complimentCount {
-//                                    scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
-//                                }
                                 if canBreakBoxes && scene.boxes.count > 0 {
                                     shake = 3
                                 }
@@ -175,15 +187,20 @@ struct MainView: View {
                         
                         Spacer()
                         // 칭찬돌 추가하는 버튼
-                        Button(action: {
+//                        Button(action: {
 //                            isCompliment = true
-                            scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
-                        }, label: {
-                            NavigationLink(destination: WriteComplimentView(), label: {
-                                Text("칭찬하기")
-                                    .foregroundColor(.white)
-                                    .padding(18.0)
-                            })
+//                            scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
+//                        }, label: {
+//                            NavigationLink(destination: WriteComplimentView(), label: {
+//                                Text("칭찬하기")
+//                                    .foregroundColor(.white)
+//                                    .padding(18.0)
+//                            })
+//                        })
+                        NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment), label: {
+                            Text("칭찬하기")
+                                .foregroundColor(.white)
+                                .padding(18.0)
                         })
                         .background {
                             RoundedRectangle(cornerRadius: 15)
