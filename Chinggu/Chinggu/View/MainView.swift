@@ -79,7 +79,7 @@ struct MainView: View {
     @State private var isCompliment = false
 	
 //	@AppStorage("isCompliment") var isCompliment: Bool = false
-	@AppStorage("group") var groupOrder : Int = UserDefaults.standard.integer(forKey: "groupID")
+	@AppStorage("group") var groupOrder: Int = 1
 
     
     @State var scene = GameScene()
@@ -184,8 +184,10 @@ struct MainView: View {
                             .alert(isPresented: $showBreakAlert) {
                                 Alert(title: Text(canBreakBoxes ? "칭찬 상자를 열어볼까요?" : "창찬이 다 모이지 않았어요\n그래도 상자를 열어볼까요?"), primaryButton: .default(Text("네")) {
                                     // 저금통 초기화
-                                    showPopup = true
-                                    scene.resetBoxes()
+									withAnimation(.easeOut(duration: 1)) {
+										scene.resetBoxes()
+										showPopup = true
+									}
                                 }, secondaryButton:.cancel(Text("아니요")))
                             }
                         // 애니메이션
@@ -258,15 +260,13 @@ struct MainView: View {
                         .disabled(isCompliment)
                         .padding()
                     }
+					.popup(isPresented: $showPopup) {
+						CardView(showPopup: $showPopup)
+					}
                 }
 				.onAppear {
 					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
 				}
-                .blur(radius: showPopup ? 3 : 0)
-                .disabled(showPopup)
-                .popup(isPresented: $showPopup) {
-                    CardView(showPopup: $showPopup)
-                }
             }
         }
     }

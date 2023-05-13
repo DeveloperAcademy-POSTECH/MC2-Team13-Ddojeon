@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ArchivingDetailView: View {
 	
-	@AppStorage("group") var groupOrder: Int = UserDefaults.standard.integer(forKey: "groupID")
+	@AppStorage("group") var groupOrder: Int = 1
 	@FetchRequest(
 		entity: ComplimentEntity.entity(),
 		sortDescriptors: []
@@ -96,3 +96,4 @@ struct ArchivingDetailView: View {
 		}
 	}
 }
+

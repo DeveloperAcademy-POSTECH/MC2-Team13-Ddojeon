@@ -17,7 +17,7 @@ struct Popup<PopupContent: View>: ViewModifier {
 			content
 			if isPresented {
 				view()
-					.transition(.move(edge: .bottom).animation(.spring()))
+					.transition(.move(edge: .bottom))
 			}
 		}
 	}

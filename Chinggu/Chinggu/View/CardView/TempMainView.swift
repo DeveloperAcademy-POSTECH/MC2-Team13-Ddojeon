@@ -14,7 +14,7 @@ struct TempMainView: View {
 		entity: ComplimentEntity.entity(),
 		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)])
 	var Compliment: FetchedResults<ComplimentEntity>
-	@AppStorage("group") var groupOrder: Int = UserDefaults.standard.integer(forKey: "groupID")
+	@AppStorage("group") var groupOrder: Int = 1
 
 	@State private var textFieldTitle: String = ""
 	@State private var showPopup = false
@@ -25,6 +25,7 @@ struct TempMainView: View {
 			Color.ddoPrimary.ignoresSafeArea()
 			VStack {
 				VStack(spacing: 10) {
+					Spacer()
 					HStack {
 						TextField("", text: $textFieldTitle)
 							.padding()
@@ -41,11 +42,11 @@ struct TempMainView: View {
 						.padding()
 					}
 					.frame(height: 55)
-
+					
 					Button {
 						addCustomCompliment(complimentText: textFieldTitle, groupID: Int16(groupOrder))
 					} label: {
-						Text("저장")
+						Text("해당 날짜에 칭찬 넣기")
 							.padding()
 							.frame(maxWidth: .infinity)
 							.frame(height: 55)
@@ -53,11 +54,12 @@ struct TempMainView: View {
 							.background(Color.yellow.cornerRadius(10))
 							.padding(.horizontal, 10)
 					}
+					
 					HStack {
 						Button {
-							groupOrder = groupOrder + 1
+							UserDefaults.standard.set(false, forKey: "HasOnboarded")
 						} label: {
-							Text("countup group")
+							Text("재시작시 온보딩")
 								.padding()
 								.frame(maxWidth: .infinity)
 								.frame(height: 55)
@@ -65,11 +67,34 @@ struct TempMainView: View {
 								.background(Color.yellow.cornerRadius(10))
 								.padding(.horizontal, 10)
 						}
-
 						Button {
-							groupOrder = 0
+							groupOrder = groupOrder + 1
 						} label: {
-							Text("group 초기화")
+							Text("상자 빠르게 열기")
+								.padding()
+								.frame(maxWidth: .infinity)
+								.frame(height: 55)
+								.foregroundColor(.black)
+								.background(Color.yellow.cornerRadius(10))
+								.padding(.horizontal, 10)
+						}
+					}
+					HStack {
+						Button {
+							PersistenceController.shared.deleteAllCompliments()
+						} label: {
+							Text("칭찬 초기화")
+								.padding()
+								.frame(maxWidth: .infinity)
+								.frame(height: 55)
+								.foregroundColor(.black)
+								.background(Color.yellow.cornerRadius(10))
+								.padding(.horizontal, 10)
+						}
+						Button {
+							groupOrder = 1
+						} label: {
+							Text("상자값 초기화")
 								.padding()
 								.frame(maxWidth: .infinity)
 								.frame(height: 55)
@@ -79,8 +104,8 @@ struct TempMainView: View {
 						}
 					}
 					List {
-						ForEach((0..<$groupOrder.wrappedValue).reversed(), id: \.self) { index in
-								Section(header: Text("\(index)번째 저금통")) {
+						ForEach((1..<$groupOrder.wrappedValue).reversed(), id: \.self) { index in
+								Section(header: Text("\(index)번째 상자")) {
 									ForEach(Compliment, id: \.self.id) { compliments in
 										if compliments.groupID == index {
 											let currentDate = compliments.createDate
@@ -89,8 +114,8 @@ struct TempMainView: View {
 											HStack {
 												Text(compliments.compliment ?? "empty")
 												Text(strDate ?? "timeerror")
-												Text("\(id)")
-												Text("\(compliments.groupID)")
+												Text("| 칭찬 No.\(id)")
+												Text("| 상자 No.\(compliments.groupID)")
 											}
 										} else { }
 									}
@@ -100,9 +125,6 @@ struct TempMainView: View {
 						}
 					}
 					.scrollContentBackground(.hidden)
-					Button("저금통 깨기") {
-						showPopup = true
-					}
 				}
 			}
 			.blur(radius: showPopup ? 3 : 0)

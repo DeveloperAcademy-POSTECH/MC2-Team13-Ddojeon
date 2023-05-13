@@ -108,8 +108,18 @@ class PersistenceController {
 		}
 		return []
 	}
-
 	
+	func deleteAllCompliments() {
+		let fetchRequest: NSFetchRequest<NSFetchRequestResult> = ComplimentEntity.fetchRequest()
+		let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+		do {
+			try container.viewContext.execute(batchDeleteRequest)
+		} catch {
+			print("Delete all data in ComplimentEntity failed: \(error)")
+		}
+	}
+
 	private func saveContext() {
 		do{
 			try container.viewContext.save()

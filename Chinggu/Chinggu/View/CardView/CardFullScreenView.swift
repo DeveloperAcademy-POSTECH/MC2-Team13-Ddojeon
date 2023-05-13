@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CardFullScreenView: View {
 	
-	@AppStorage("group") var groupOrder : Int = UserDefaults.standard.integer(forKey: "groupID")
+	@AppStorage("group") var groupOrder: Int = 1
 	@State var complimentsInGroup: [ComplimentEntity] = []
 	@State var groupStartEndDates: String = ""
 	
@@ -41,7 +41,7 @@ struct CardFullScreenView: View {
 				HStack {
 					Spacer()
 					Button {
-						withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
+						withAnimation(.easeOut(duration: 0.5)) {
 							//MainView의 Popup Card를 내림
 							showPopup = false
 							groupOrder = groupOrder + 1
