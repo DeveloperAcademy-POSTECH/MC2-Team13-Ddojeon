@@ -77,8 +77,9 @@ struct MainView: View {
     @State private var showBreakAlert = false
     @State private var tempSeletedWeekday: Weekday?
     @State private var shake = 0.0
-//    @State private var isCompliment = false
-    @AppStorage("isCompliment") var isCompliment: Bool = false
+
+    @State private var isCompliment = false
+//    @AppStorage("isCompliment") var isCompliment: Bool = false
     
     @State var scene = GameScene()
     
@@ -86,7 +87,7 @@ struct MainView: View {
         GeometryReader { geometry in
             let width = geometry.size.width - geometry.safeAreaInsets.leading - geometry.safeAreaInsets.trailing - 40
             let height = width * 424 / 350
-//            let scene = GameScene(size: size, complimentCount: $complimentCount)
+
             NavigationView {
                 ZStack {
                     Color.ddoPrimary.ignoresSafeArea()
@@ -94,13 +95,17 @@ struct MainView: View {
                         //MARK: 요일 변경하는 버튼
                         HStack {
                             Text("매주")
-                                .tracking(-0.5)
+                                .font(.custom("AppleSDGothicNeo-SemiBold", size: 17))
+                                .foregroundColor(Color.ddoGray)
                             Button(action: {
                                 self.showActionSheet = true
                             }, label: {
                                 Text(selectedWeekday?.rawValue ?? "뭔요일")
-                                    .padding(.trailing, -7.0)
+                                    .font(.custom("AppleSDGothicNeo-Bold", size: 17))
+                                    .foregroundColor(.blue)
+                                    .padding(.trailing, -8.0)
                                 Image(systemName: "arrowtriangle.down.square.fill")
+                                    .foregroundColor(.blue)
                             })
                             .padding()
                             .actionSheet(isPresented: $showActionSheet) {
@@ -124,19 +129,46 @@ struct MainView: View {
                                 }, secondaryButton: .cancel(Text("아니오")))
                             }.padding(.horizontal, -19.0)
                             Text("은 칭찬 저금통을 깨는 날!")
-                                .tracking(-0.5)
+                                .font(.custom("AppleSDGothicNeo-SemiBold", size: 17))
+                                .foregroundColor(Color.ddoGray)
                             Spacer()
                             
                             //MARK: 아카이브 페이지 링크
                             NavigationLink(destination: TempMainView()) {
                                 Image(systemName: "archivebox")
+                                    .resizable()
+                                    .frame(width: 22, height: 22)
+                                    .foregroundColor(.black)
                             }
                         }.padding(.horizontal, 20.0)
+                            .padding(.bottom, -10.0)
+                        VStack(spacing: 0) {
+                            Divider()
+                                .padding(.top, 5)
+                            Rectangle()
+                                .fill(Color(.systemGray3))
+                                .frame(height: 5)
+                                .opacity(0.15)
+                            Divider()
+                        }
                         Spacer()
                         
                         // 타이틀
-                        Text("오늘은 어떤 칭찬을 해볼까요?✍️")
-                        
+                        if canBreakBoxes && scene.boxes.count > 0 {
+                            Text("저금통을\n확인 할 시간이에요💞")
+                                .multilineTextAlignment(.center)
+                                .font(.custom("AppleSDGothicNeo-Bold", size: 28))
+                                .foregroundColor(Color("oll"))
+                                .lineSpacing(5)
+                            
+                        } else {
+                            Text("오늘은 어떤 칭찬을\n해볼까요?✍️")
+                                .multilineTextAlignment(.center)
+                                .font(.custom("AppleSDGothicNeo-Bold", size: 28))
+                                .foregroundColor(Color("oll"))
+                                .lineSpacing(5)
+                        }
+                        Spacer()
                         //MARK: 칭찬 저금통
                         SpriteView(scene: scene)
                             .frame(width: width, height: height)
@@ -173,9 +205,6 @@ struct MainView: View {
                             .onAppear() {
                                 scene.size = CGSize(width: width, height: height)
                                 scene.complimentCount = Compliment.count
-//                                if isCompliment {
-//                                    scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
-//                                }
                                 print("appear",Compliment.count)
                                 updateCanBreakBoxes()
                                 resetTimeButton()
@@ -184,26 +213,44 @@ struct MainView: View {
                                     shake = 3
                                 }
                             }
-                        
+                        if canBreakBoxes && scene.boxes.count > 0 {
+                            Text("저금통을 탭해서 깨보세요!")
+                                .font(.custom("AppleSDGothicNeo-SemiBold", size: 14))
+                                .foregroundColor(Color.ddoGray)
+                                .padding(.top, 15)
+                        } else {
+                            Text("긍정의 힘은 복리로 돌아와요. 커밍쑨!")
+                                .font(.custom("AppleSDGothicNeo-SemiBold", size: 14))
+                                .foregroundColor(Color.ddoGray)
+                                .padding(.top, 15)
+                        }
                         Spacer()
                         // 칭찬돌 추가하는 버튼
-//                        Button(action: {
+                        Button(action: {
 //                            isCompliment = true
 //                            scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
-//                        }, label: {
-//                            NavigationLink(destination: WriteComplimentView(), label: {
-//                                Text("칭찬하기")
-//                                    .foregroundColor(.white)
-//                                    .padding(18.0)
-//                            })
-//                        })
-                        NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment), label: {
-                            Text("칭찬하기")
-                                .foregroundColor(.white)
-                                .padding(18.0)
+                        }, label: {
+                            NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment), label: {
+                                Text("칭찬하기")
+                                    .font(.custom("AppleSDGothicNeo-Bold", size: 20))
+                                    .foregroundColor(Color.white)
+                                    .kerning(1)
+                                    .padding(.vertical,6)
+                                    .frame(width: geometry.size.width/1.15, height: 50)
+                            })
                         })
+//                        .frame(width: geometry.size.width/1.15, height: 50)
+//                        .buttonStyle(BorderedButtonStyle())
+//                        .background(Color.ddoBlue)
+//                    .cornerRadius(10)
+                        
+//                        NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment), label: {
+//                            Text("칭찬하기")
+//                                .foregroundColor(.white)
+//                                .padding(18.0)
+//                        })
                         .background {
-                            RoundedRectangle(cornerRadius: 15)
+                            RoundedRectangle(cornerRadius: 10)
                                 .foregroundColor(isCompliment ? .gray : .blue)
                         }
                         .disabled(isCompliment)
