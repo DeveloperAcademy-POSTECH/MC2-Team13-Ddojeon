@@ -96,7 +96,7 @@ struct MainView: View {
                         HStack {
                             Text("매주")
                                 .font(.custom("AppleSDGothicNeo-SemiBold", size: 17))
-                                .foregroundColor(Color.ddoGray)
+                                .foregroundColor(.gray)
                             Button(action: {
                                 self.showActionSheet = true
                             }, label: {
@@ -130,7 +130,7 @@ struct MainView: View {
                             }.padding(.horizontal, -19.0)
                             Text("은 칭찬 저금통을 깨는 날!")
                                 .font(.custom("AppleSDGothicNeo-SemiBold", size: 17))
-                                .foregroundColor(Color.ddoGray)
+                                .foregroundColor(.gray)
                             Spacer()
                             
                             //MARK: 아카이브 페이지 링크
@@ -217,12 +217,12 @@ struct MainView: View {
                         if canBreakBoxes && scene.boxes.count > 0 {
                             Text("저금통을 탭해서 깨보세요!")
                                 .font(.custom("AppleSDGothicNeo-SemiBold", size: 14))
-                                .foregroundColor(Color.ddoGray)
+                                .foregroundColor(.gray)
                                 .padding(.top, 15)
                         } else {
                             Text("긍정의 힘은 복리로 돌아와요. 커밍쑨!")
                                 .font(.custom("AppleSDGothicNeo-SemiBold", size: 14))
-                                .foregroundColor(Color.ddoGray)
+                                .foregroundColor(.gray)
                                 .padding(.top, 15)
                         }
                         Spacer()
