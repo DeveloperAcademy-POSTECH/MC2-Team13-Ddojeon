@@ -15,23 +15,30 @@ struct CardView: View {
 
 	var body: some View {
 		ZStack {
+			LottieView(filename: "cardBeforeAnimation", loopState: false)
+				.ignoresSafeArea()
+				.animation(nil)
 			if !showFullScreen {
-				CardPopupView(namespace: namespace)
+				VStack {
+					CardPopupView(namespace: namespace)
+					Text("상자를 눌러주세요!")
+						.bold()
+						.foregroundColor(.white)
+				}
 			} else {
 				CardFullScreenView(namespace: namespace, showPopup: $showPopup)
 			}
 		}
 		.onTapGesture {
 			withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
-//				showFullScreen = true
-				showFullScreen.toggle()
+				showFullScreen = true
 			}
 		}
 	}
 }
 
-struct CardView_Previews: PreviewProvider {
-	static var previews: some View {
-		CardView(showPopup: .constant(true))
-	}
-}
+//struct CardView_Previews: PreviewProvider {
+//	static var previews: some View {
+//		CardView(showPopup: .constant(true))
+//	}
+//}

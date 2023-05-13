@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		51D817182A08E59F00B84E6A /* WriteComplimentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D817172A08E59F00B84E6A /* WriteComplimentView.swift */; };
+		701094A62A0FA83D0019DEED /* cardBeforeAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 701094A52A0FA83D0019DEED /* cardBeforeAnimation.json */; };
 		70385ED12A07DFEE001CDAB0 /* Color+Chinggu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED02A07DFEE001CDAB0 /* Color+Chinggu.swift */; };
 		70385ED32A07E00F001CDAB0 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70385ED22A07E00F001CDAB0 /* Color.xcassets */; };
 		70385EDA2A07E60B001CDAB0 /* Date+Chinggu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		51D817172A08E59F00B84E6A /* WriteComplimentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteComplimentView.swift; sourceTree = "<group>"; };
+		701094A52A0FA83D0019DEED /* cardBeforeAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cardBeforeAnimation.json; sourceTree = "<group>"; };
 		70385ED02A07DFEE001CDAB0 /* Color+Chinggu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Chinggu.swift"; sourceTree = "<group>"; };
 		70385ED22A07E00F001CDAB0 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Chinggu.swift"; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				70E68F112A0A906500258A10 /* cardAnimation.json */,
+				701094A52A0FA83D0019DEED /* cardBeforeAnimation.json */,
 			);
 			path = LottieFiles;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				A93729882A0F6E5C00C79C04 /* onboarding_5.json in Resources */,
 				A937298F2A0F6E5C00C79C04 /* onboarding_18.json in Resources */,
 				A93729892A0F6E5C00C79C04 /* onboarding_6.json in Resources */,
+				701094A62A0FA83D0019DEED /* cardBeforeAnimation.json in Resources */,
 				70E68F122A0A906500258A10 /* cardAnimation.json in Resources */,
 				AE37D53C2A039606009B0F56 /* Preview Assets.xcassets in Resources */,
 				A937298B2A0F6E5C00C79C04 /* onboarding.json in Resources */,

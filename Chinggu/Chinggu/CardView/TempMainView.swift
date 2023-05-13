@@ -167,14 +167,13 @@ struct Popup<PopupContent: View>: ViewModifier {
 	
 	@Binding var isPresented: Bool
 	let view: () -> PopupContent
-	@State private var popupOffset: CGFloat = UIScreen.main.bounds.height
-
+	
 	func body(content: Content) -> some View {
 		ZStack {
 			content
 			if isPresented {
 				view()
-					.transition(AnyTransition.scale.animation(.easeInOut).combined(with: .opacity))
+					.transition(.move(edge: .bottom).animation(.spring()))
 			}
 		}
 	}
