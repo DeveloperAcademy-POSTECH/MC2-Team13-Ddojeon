@@ -9,15 +9,13 @@ import SwiftUI
 
 struct CardFullScreenView: View {
 	
-	@FetchRequest(
-		entity: ComplimentEntity.entity(),
-		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.createDate, ascending: true)])
-	var Compliment: FetchedResults<ComplimentEntity>
 	@AppStorage("group") var groupOrder : Int = UserDefaults.standard.integer(forKey: "groupID")
-
+	@State var complimentsInGroup: [ComplimentEntity] = []
+	@State var groupStartEndDates: String = ""
+	
 	var namespace: Namespace.ID
 	@Binding var showPopup: Bool
-
+	
 	var body: some View {
 		ScrollView {
 			VStack {
@@ -25,16 +23,16 @@ struct CardFullScreenView: View {
 					.resizable()
 					.aspectRatio(contentMode: .fill)
 					.matchedGeometryEffect(id: "image", in: namespace)
-				Text("11번째 저금통 2023.05.01 ~ 2023.05.08")
+				Text(groupStartEndDates)
 					.font(.footnote)
 					.matchedGeometryEffect(id: "title", in: namespace)
 					.frame(maxWidth: .infinity, alignment: .leading)
 					.padding()
 				ScrollView(.vertical, showsIndicators: false) {
 					VStack(alignment: .leading, spacing: 10) {
-						ForEach(Compliment) { compliments in
-							Text(compliments.compliment ?? "nil compliment")
-							.padding(.leading)
+						ForEach(complimentsInGroup, id: \.id) { compliment in
+							Text(compliment.compliment ?? "nil compliment")
+								.padding(.leading)
 							Divider()
 						}
 					}
@@ -58,7 +56,7 @@ struct CardFullScreenView: View {
 						RoundedRectangle(cornerRadius: 15)
 							.foregroundColor(.blue)
 					}
-
+					
 					Spacer()
 				}
 				.padding()
@@ -68,5 +66,18 @@ struct CardFullScreenView: View {
 		.ignoresSafeArea()
 		.background(Color.ddoPrimary)
 		.matchedGeometryEffect(id: "background", in: namespace)
+		.onAppear(perform: loadCompliments)
+	}
+	
+	private func loadCompliments() {
+		complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
+		if let minDate = complimentsInGroup.first?.createDate,
+		   let maxDate = complimentsInGroup.last?.createDate {
+			let formatter = DateFormatter()
+			formatter.dateFormat = "yyyy.MM.dd"
+			let start = formatter.string(from: minDate)
+			let end = formatter.string(from: maxDate)
+			groupStartEndDates = "\(groupOrder)번째 저금통 \(start) ~ \(end)"
+		}
 	}
 }

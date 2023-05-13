@@ -48,7 +48,7 @@ class PersistenceController {
 			let results = try context.fetch(fetchRequest)
 			return results
 		} catch {
-			print(error.localizedDescription)
+			print("Failed to fetch all ComplimentEntity: \(error)")
 		}
 		return []
 	}
@@ -79,7 +79,7 @@ class PersistenceController {
 				complimentToUpdate.order -= 1
 			}
 		} catch {
-			print("Failed to fetch compliments to update: \(error)")
+			print("Failed to fetch compliments to delete: \(error)")
 		}
 
 		saveContext()
@@ -93,10 +93,24 @@ class PersistenceController {
 			let result = try context.fetch(fetchRequest)
 			return result.first
 		} catch {
-			print("Failed to fetch ComplimentEntity: \(error)")
+			print("Failed to fetch a order of ComplimentEntity: \(error)")
 			return nil
 		}
 	}
+	
+	func fetchComplimentInGroup(groupID: Int16) -> [ComplimentEntity] {
+		do {
+			let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
+			fetchRequest.predicate = NSPredicate(format: "groupID == %d", groupID)
+			fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ComplimentEntity.createDate, ascending: true)]
+			let results = try context.fetch(fetchRequest)
+			return results
+		} catch {
+			print("Failed to fetch group of ComplimentEntity: \(error)")
+		}
+		return []
+	}
+
 	
 	private func saveContext() {
 		do{
