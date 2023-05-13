@@ -15,7 +15,7 @@ struct TempMainView: View {
 		entity: ComplimentEntity.entity(),
 		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.createDate, ascending: true)])
 	var Compliment: FetchedResults<ComplimentEntity>
-	@AppStorage("group") var groupOrder: Int = UserDefaults.standard.integer(forKey: "orderID")
+	@AppStorage("group") var groupOrder: Int = UserDefaults.standard.integer(forKey: "groupID")
 
 	@State private var textFieldTitle: String = ""
 	@State private var showPopup = false
@@ -36,7 +36,9 @@ struct TempMainView: View {
 						.background(Color(UIColor.secondarySystemBackground).cornerRadius(10))
 						.padding(.horizontal, 10)
 					
-					Button(action: {add()}, label: {
+					Button {
+						add()
+					} label: {
 						Text("저장")
 							.padding()
 							.frame(maxWidth: .infinity)
@@ -44,10 +46,11 @@ struct TempMainView: View {
 							.foregroundColor(.black)
 							.background(Color.yellow.cornerRadius(10))
 							.padding(.horizontal, 10)
-						
-					})
+					}
 					HStack {
-						Button(action: { groupOrder = groupOrder + 1 }, label: {
+						Button {
+							groupOrder = groupOrder + 1
+						} label: {
 							Text("countup group")
 								.padding()
 								.frame(maxWidth: .infinity)
@@ -55,9 +58,11 @@ struct TempMainView: View {
 								.foregroundColor(.black)
 								.background(Color.yellow.cornerRadius(10))
 								.padding(.horizontal, 10)
-							
-						})
-						Button(action: { groupOrder = 0 }, label: {
+						}
+
+						Button {
+							groupOrder = 0
+						} label: {
 							Text("group 초기화")
 								.padding()
 								.frame(maxWidth: .infinity)
@@ -65,8 +70,7 @@ struct TempMainView: View {
 								.foregroundColor(.black)
 								.background(Color.yellow.cornerRadius(10))
 								.padding(.horizontal, 10)
-							
-						})
+						}
 					}
 					List {
 						ForEach((0..<$groupOrder.wrappedValue).reversed(), id: \.self) { index in
@@ -146,10 +150,3 @@ extension View {
 		)
 	}
 }
-
-//struct TempMainView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TempMainView()
-//			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-//    }
-//}

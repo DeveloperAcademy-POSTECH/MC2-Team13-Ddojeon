@@ -19,12 +19,3 @@ struct CardPopupView: View {
 			.matchedGeometryEffect(id: "image", in: namespace)
 	}
 }
-
-struct CardPopupView_Previews: PreviewProvider {
-	
-	@Namespace static var namespace
-	
-    static var previews: some View {
-		CardPopupView(namespace: namespace)
-    }
-}
