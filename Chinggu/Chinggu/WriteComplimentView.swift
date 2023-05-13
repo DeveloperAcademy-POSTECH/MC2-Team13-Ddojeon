@@ -111,6 +111,10 @@ struct WriteComplimentView: View {
     
     @AppStorage("group") var groupOrder: Int = UserDefaults.standard.integer(forKey: "groupID")
     
+//    @AppStorage("isCompliment") var isCompliment: Bool
+    
+    @Binding var isCompliment: Bool
+    
     func showAlert () {
         showingAlert = true
     }
@@ -118,6 +122,7 @@ struct WriteComplimentView: View {
     func saveContent () {
         PersistenceController.shared.addCompliment(complimentText: content, groupID: Int16(groupOrder))
         dismiss.callAsFunction()
+        isCompliment = true
     }
     
     struct SaveAlert: Identifiable {
@@ -264,8 +269,8 @@ struct WriteComplimentView: View {
     }
 }
 
-struct WriteComplimentView_Previews: PreviewProvider {
-    static var previews: some View {
-        WriteComplimentView()
-    }
-}
+//struct WriteComplimentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WriteComplimentView()
+//    }
+//}
