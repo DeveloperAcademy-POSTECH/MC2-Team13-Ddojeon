@@ -20,6 +20,7 @@
 		70C7977C2A04357F00E2E3AF /* CardFullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C797792A04357F00E2E3AF /* CardFullScreenView.swift */; };
 		70C7977D2A04357F00E2E3AF /* CardPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7977A2A04357F00E2E3AF /* CardPopupView.swift */; };
 		70C7977F2A04391800E2E3AF /* TempMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7977E2A04391800E2E3AF /* TempMainView.swift */; };
+		70D706062A0FFFF0001D9203 /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D706052A0FFFF0001D9203 /* Popup.swift */; };
 		70E68F0F2A0A888C00258A10 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 70E68F0E2A0A888C00258A10 /* Lottie */; };
 		70E68F122A0A906500258A10 /* cardAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 70E68F112A0A906500258A10 /* cardAnimation.json */; };
 		70E68F142A0A95FD00258A10 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E68F132A0A95FD00258A10 /* LottieView.swift */; };
@@ -68,6 +69,7 @@
 		70C797792A04357F00E2E3AF /* CardFullScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardFullScreenView.swift; sourceTree = "<group>"; };
 		70C7977A2A04357F00E2E3AF /* CardPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardPopupView.swift; sourceTree = "<group>"; };
 		70C7977E2A04391800E2E3AF /* TempMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempMainView.swift; sourceTree = "<group>"; };
+		70D706052A0FFFF0001D9203 /* Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
 		70E68F112A0A906500258A10 /* cardAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cardAnimation.json; sourceTree = "<group>"; };
 		70E68F132A0A95FD00258A10 /* LottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		A93729662A0F6E5000C79C04 /* Onboarding_4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding_4.swift; sourceTree = "<group>"; };
@@ -114,13 +116,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		701094A72A0FF83C0019DEED /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AE37D5442A063BD3009B0F56 /* MainView.swift */,
+				51D817172A08E59F00B84E6A /* WriteComplimentView.swift */,
+				A93728C52A0F6DCD00C79C04 /* Onboard */,
+				70C797722A042FF400E2E3AF /* CardView */,
+				FBB8CFD72A0B836E00210F90 /* Archiving View */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		70385ECF2A07DFDD001CDAB0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				70E68F132A0A95FD00258A10 /* LottieView.swift */,
-				70E68F102A0A904200258A10 /* LottieFiles */,
 				70385ED02A07DFEE001CDAB0 /* Color+Chinggu.swift */,
 				70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */,
+				70385ED22A07E00F001CDAB0 /* Color.xcassets */,
+				AE37D5382A039606009B0F56 /* Assets.xcassets */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -143,29 +158,31 @@
 				70C797782A04357F00E2E3AF /* CardView.swift */,
 				70C7977A2A04357F00E2E3AF /* CardPopupView.swift */,
 				70C797792A04357F00E2E3AF /* CardFullScreenView.swift */,
+				70D706052A0FFFF0001D9203 /* Popup.swift */,
+				70E68F102A0A904200258A10 /* CardLottie */,
 			);
 			path = CardView;
 			sourceTree = "<group>";
 		};
-		70E68F102A0A904200258A10 /* LottieFiles */ = {
+		70E68F102A0A904200258A10 /* CardLottie */ = {
 			isa = PBXGroup;
 			children = (
 				70E68F112A0A906500258A10 /* cardAnimation.json */,
 				701094A52A0FA83D0019DEED /* cardBeforeAnimation.json */,
 			);
-			path = LottieFiles;
+			path = CardLottie;
 			sourceTree = "<group>";
 		};
-		A93728C52A0F6DCD00C79C04 /* OnboardingView */ = {
+		A93728C52A0F6DCD00C79C04 /* Onboard */ = {
 			isa = PBXGroup;
 			children = (
 				A93729652A0F6E4100C79C04 /* onboardingView */,
-				A93729642A0F6E3600C79C04 /* Lottie */,
+				A93729642A0F6E3600C79C04 /* onboardLottie */,
 			);
-			path = OnboardingView;
+			path = Onboard;
 			sourceTree = "<group>";
 		};
-		A93729642A0F6E3600C79C04 /* Lottie */ = {
+		A93729642A0F6E3600C79C04 /* onboardLottie */ = {
 			isa = PBXGroup;
 			children = (
 				A937297D2A0F6E5B00C79C04 /* onboarding_2(1).json */,
@@ -179,7 +196,7 @@
 				A93729852A0F6E5C00C79C04 /* onboarding_18.json */,
 				A93729812A0F6E5C00C79C04 /* onboarding.json */,
 			);
-			path = Lottie;
+			path = onboardLottie;
 			sourceTree = "<group>";
 		};
 		A93729652A0F6E4100C79C04 /* onboardingView */ = {
@@ -221,15 +238,9 @@
 			children = (
 				AE37D5342A039605009B0F56 /* ChingguApp.swift */,
 				AE37D5362A039605009B0F56 /* ContentView.swift */,
-				AE37D5442A063BD3009B0F56 /* MainView.swift */,
-				51D817172A08E59F00B84E6A /* WriteComplimentView.swift */,
-				A93728C52A0F6DCD00C79C04 /* OnboardingView */,
-				FBB8CFD72A0B836E00210F90 /* Archiving View */,
-				70C797722A042FF400E2E3AF /* CardView */,
+				701094A72A0FF83C0019DEED /* View */,
 				70815E7D2A08950900DBE5B0 /* Model */,
 				70385ECF2A07DFDD001CDAB0 /* Utils */,
-				AE37D5382A039606009B0F56 /* Assets.xcassets */,
-				70385ED22A07E00F001CDAB0 /* Color.xcassets */,
 				AE37D53A2A039606009B0F56 /* Preview Content */,
 			);
 			path = Chinggu;
@@ -354,6 +365,7 @@
 				A93729762A0F6E5100C79C04 /* Onboarding_10.swift in Sources */,
 				A93729782A0F6E5100C79C04 /* Onboarding_7.swift in Sources */,
 				A93729732A0F6E5100C79C04 /* Onboarding_9.swift in Sources */,
+				70D706062A0FFFF0001D9203 /* Popup.swift in Sources */,
 				70815E822A08950900DBE5B0 /* ComplimentModel.xcdatamodeld in Sources */,
 				A93729792A0F6E5100C79C04 /* Onboarding_11.swift in Sources */,
 				70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */,

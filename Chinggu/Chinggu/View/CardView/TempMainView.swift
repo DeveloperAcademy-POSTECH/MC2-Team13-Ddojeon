@@ -10,10 +10,9 @@ import CoreData
 
 struct TempMainView: View {
 	
-	//CoreData의 데이터를 읽어오기 위해 필요해요
 	@FetchRequest(
 		entity: ComplimentEntity.entity(),
-		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.createDate, ascending: false)])
+		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)])
 	var Compliment: FetchedResults<ComplimentEntity>
 	@AppStorage("group") var groupOrder: Int = UserDefaults.standard.integer(forKey: "groupID")
 
@@ -44,7 +43,6 @@ struct TempMainView: View {
 					.frame(height: 55)
 
 					Button {
-//						add()
 						addCustomCompliment(complimentText: textFieldTitle, groupID: Int16(groupOrder))
 					} label: {
 						Text("저장")
@@ -115,13 +113,12 @@ struct TempMainView: View {
 		}
 	}
 	
-	//adminCreate
 	private func addCustomCompliment(complimentText: String, groupID: Int16) {
 		let viewContext = PersistenceController.shared.container.viewContext
 		let compliment = ComplimentEntity(context: viewContext)
 		compliment.compliment = complimentText
 		compliment.createDate = customDate
-		compliment.order = fetchLatestOrder() + 1 // Fetch the latest order and increment by 1
+		compliment.order = fetchLatestOrder() + 1
 		compliment.id = UUID()
 		compliment.groupID = groupID
 		textFieldTitle = ""
@@ -149,45 +146,14 @@ struct TempMainView: View {
 		}
 	}
 	
-	//데이터 넣을때 이렇게 하세요 String값만 주면됩니다
 	private func add() {
 		PersistenceController.shared.addCompliment(complimentText: textFieldTitle, groupID: Int16(groupOrder))
 		textFieldTitle = ""
 	}
 	
-	//onDelete에 넣어주시면 indexset넣어줄거 없이 알아서 처리해줘요
 	private func delete(indexset: IndexSet) {
 		guard let index = indexset.first else { return }
 		let selectedEntity = Compliment[index]
 		PersistenceController.shared.deleteCompliment(compliment: selectedEntity)
-	}
-}
-
-struct Popup<PopupContent: View>: ViewModifier {
-	
-	@Binding var isPresented: Bool
-	let view: () -> PopupContent
-	
-	func body(content: Content) -> some View {
-		ZStack {
-			content
-			if isPresented {
-				view()
-					.transition(.move(edge: .bottom).animation(.spring()))
-			}
-		}
-	}
-}
-
-extension View {
-
-	public func popup<PopupContent: View>(
-		isPresented: Binding<Bool>,
-		view: @escaping () -> PopupContent) -> some View {
-		self.modifier(
-			Popup(
-				isPresented: isPresented,
-				view: view)
-		)
 	}
 }

@@ -53,7 +53,6 @@ class PersistenceController {
 		return []
 	}
 	
-	//MARK: UPDATE 당장은 쓸일없음!
 	func updateCompliment(compliment: ComplimentEntity) {
 		let fetchResults = fetchCompliment()
 		for result in fetchResults {
@@ -74,7 +73,6 @@ class PersistenceController {
 
 		do {
 			let complimentsToUpdate = try container.viewContext.fetch(fetchRequest)
-			// 삭제한 칭찬 이후의 칭찬들(order 값이 높은것들)을 -1씩 해줌
 			for complimentToUpdate in complimentsToUpdate {
 				complimentToUpdate.order -= 1
 			}
@@ -120,7 +118,6 @@ class PersistenceController {
 		}
 	}
 	
-	//마지막 order값 가져오는 함수
 	private func fetchLatestOrder() -> Int16 {
 		let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
 		fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]

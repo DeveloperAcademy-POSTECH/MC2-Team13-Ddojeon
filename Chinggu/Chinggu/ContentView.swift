@@ -13,22 +13,26 @@ struct ContentView: View {
 		UIView.appearance().overrideUserInterfaceStyle = .light
 	}
 	
-    var body: some View {
-		MainView()
-        /*olling
-         NavigationView {
-             NavigationLink(
-                     destination: Onboarding_1(),label: {
-                         Text("다음")
-                             .font(.custom("AppleSDGothicNeo-Bold", size: 20))
-                             .foregroundColor(Color.black)
-                             .kerning(1)
-                             .padding(.horizontal, 145)
-                             .padding(.vertical,6)
-                     })
-         }.navigationBarHidden(true)
-         */
-    }
+	@State private var hasOnboarded: Bool = UserDefaults.standard.bool(forKey: "HasOnboarded")
+
+	var body: some View {
+//		if hasOnboarded {
+			MainView()
+//		} else {
+//			NavigationView {
+//				NavigationLink(
+//					destination: Onboarding_1(),
+//					label: {
+//						Text("다음")
+//							.font(.custom("AppleSDGothicNeo-Bold", size: 20))
+//							.foregroundColor(Color.black)
+//							.kerning(1)
+//							.padding(.horizontal, 145)
+//							.padding(.vertical,6)
+//					})
+//			}.navigationBarHidden(true)
+//		}
+	}
 }
 
 struct ContentView_Previews: PreviewProvider {

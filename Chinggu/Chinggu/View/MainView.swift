@@ -21,7 +21,6 @@ enum Weekday: String, CaseIterable {
 class GameScene: SKScene {
     
     var boxes: [SKSpriteNode] = []
-    var a = 2
     var complimentCount = 0
     
     override func didMove(to view: SKView) {
@@ -65,12 +64,11 @@ class GameScene: SKScene {
 }
 
 struct MainView: View {
-    @FetchRequest(
-        entity: ComplimentEntity.entity(),
-        sortDescriptors: []
-    ) var Compliment: FetchedResults<ComplimentEntity>
-    
-    @State private var selectedWeekday: Weekday?
+	@State var complimentsInGroup: [ComplimentEntity] = []
+
+	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.monday.rawValue
+
+//    @State private var selectedWeekday: Weekday?
     @State private var showActionSheet = false
     @State private var canBreakBoxes = false
     @State private var showAlert = false
@@ -79,7 +77,10 @@ struct MainView: View {
     @State private var shake = 0.0
     @State private var showPopup = false
     @State private var isCompliment = false
-//    @AppStorage("isCompliment") var isCompliment: Bool = false
+	
+//	@AppStorage("isCompliment") var isCompliment: Bool = false
+	@AppStorage("group") var groupOrder : Int = UserDefaults.standard.integer(forKey: "groupID")
+
     
     @State var scene = GameScene()
     
@@ -88,7 +89,7 @@ struct MainView: View {
             let width = geometry.size.width - geometry.safeAreaInsets.leading - geometry.safeAreaInsets.trailing - 40
             let height = width * 424 / 350
 
-            NavigationView {
+            NavigationStack {
                 ZStack {
                     Color.ddoPrimary.ignoresSafeArea()
                     VStack {
@@ -100,7 +101,7 @@ struct MainView: View {
                             Button(action: {
                                 self.showActionSheet = true
                             }, label: {
-                                Text(selectedWeekday?.rawValue ?? "뭔요일")
+                                Text(selectedWeekday)
                                     .font(.custom("AppleSDGothicNeo-Bold", size: 17))
                                     .foregroundColor(.blue)
                                     .padding(.trailing, -8.0)
@@ -110,7 +111,7 @@ struct MainView: View {
                             .padding()
                             .actionSheet(isPresented: $showActionSheet) {
                                 ActionSheet(title: Text("요일 변경"), message: nil, buttons: Weekday.allCases.map { weekday in
-                                    if selectedWeekday == weekday {
+									if selectedWeekday == weekday.rawValue {
                                         return nil
                                     } else {
                                         return .default(Text(weekday.rawValue)) {
@@ -122,9 +123,9 @@ struct MainView: View {
                             }
                             // 요일 변경할건지 얼럿
                             .alert(isPresented: $showAlert) {
-                                Alert(title: Text("매주 \(tempSeletedWeekday?.rawValue ?? "뭔요일")"), message: Text("선택한 요일로 변경할까요?"), primaryButton: .default(Text("네")) {
+                                Alert(title: Text("매주 \(tempSeletedWeekday?.rawValue ?? "월요일")"), message: Text("선택한 요일로 변경할까요?"), primaryButton: .default(Text("네")) {
                                     // OK 버튼을 눌렀을 때 선택한 요일 업데이트
-                                    self.selectedWeekday = self.tempSeletedWeekday
+									self.selectedWeekday = self.tempSeletedWeekday?.rawValue ?? "월요일"
                                     updateCanBreakBoxes()
                                 }, secondaryButton: .cancel(Text("아니요")))
                             }.padding(.horizontal, -19.0)
@@ -199,14 +200,14 @@ struct MainView: View {
                                 }
                                 
                             }
-                            .onChange(of: Compliment.count) { newValue in
+                            .onChange(of: complimentsInGroup.count) { newValue in
                                 scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
                                 
                             }
                             .onAppear() {
                                 scene.size = CGSize(width: width, height: height)
-                                scene.complimentCount = Compliment.count
-                                print("appear",Compliment.count)
+                                scene.complimentCount = complimentsInGroup.count
+                                print("appear",complimentsInGroup.count)
                                 updateCanBreakBoxes()
                                 resetTimeButton()
                                 scene.scaleMode = .aspectFit
@@ -258,6 +259,9 @@ struct MainView: View {
                         .padding()
                     }
                 }
+				.onAppear {
+					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
+				}
                 .blur(radius: showPopup ? 3 : 0)
                 .disabled(showPopup)
                 .popup(isPresented: $showPopup) {
@@ -267,10 +271,10 @@ struct MainView: View {
         }
     }
     // 요일이 변경 될 때마다 현재 요일과 비교
-    func updateCanBreakBoxes() {
+    private func updateCanBreakBoxes() {
         let today = Calendar.current.component(.weekday, from: Date())
         let todayWeekday = Weekday.allCases[(today + 5) % 7].rawValue
-        if todayWeekday == selectedWeekday?.rawValue ?? "선택된 요일이 없음" {
+        if todayWeekday == selectedWeekday {
             self.canBreakBoxes = true
             if scene.boxes.count > 0 {
                 shake = 3
@@ -281,7 +285,7 @@ struct MainView: View {
     }
     
     // 오전 6시 기준 버튼 초기화
-    func resetTimeButton() {
+    private func resetTimeButton() {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         let currentTime = formatter.string(from: Date())
