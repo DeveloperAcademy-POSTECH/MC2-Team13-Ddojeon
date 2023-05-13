@@ -203,8 +203,12 @@ struct MainView: View {
                                 
                             }
                             .onChange(of: complimentsInGroup.count) { newValue in
-                                scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
-                                
+								if complimentsInGroup.count > 0 {
+									scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
+									if canBreakBoxes {
+										shake = 3
+									}
+								}
                             }
                             .onAppear() {
                                 scene.size = CGSize(width: width, height: height)
@@ -213,9 +217,9 @@ struct MainView: View {
                                 updateCanBreakBoxes()
                                 resetTimeButton()
                                 scene.scaleMode = .aspectFit
-                                if canBreakBoxes && scene.boxes.count > 0 {
-                                    shake = 3
-                                }
+//                                if canBreakBoxes && scene.boxes.count > 0 {
+//                                    shake = 3
+//                                }
                             }
                         if canBreakBoxes && scene.boxes.count > 0  {
                             Text("칭찬 상자를 톡! 눌러주세요")
@@ -255,9 +259,10 @@ struct MainView: View {
 //                        })
                         .background {
                             RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(isCompliment ? .gray : .blue)
+								.foregroundColor(.blue)
+//                                .foregroundColor(isCompliment ? .gray : .blue)
                         }
-                        .disabled(isCompliment)
+//                        .disabled(isCompliment)
                         .padding()
                     }
 					.popup(isPresented: $showPopup) {
