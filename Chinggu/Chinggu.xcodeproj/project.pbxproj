@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		51D817182A08E59F00B84E6A /* WriteComplimentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D817172A08E59F00B84E6A /* WriteComplimentView.swift */; };
 		701094A62A0FA83D0019DEED /* cardBeforeAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 701094A52A0FA83D0019DEED /* cardBeforeAnimation.json */; };
+		7014D47A2A10AF8B00F1B315 /* TempArchivingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7014D4792A10AF8B00F1B315 /* TempArchivingDetailView.swift */; };
 		70385ED12A07DFEE001CDAB0 /* Color+Chinggu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED02A07DFEE001CDAB0 /* Color+Chinggu.swift */; };
 		70385ED32A07E00F001CDAB0 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70385ED22A07E00F001CDAB0 /* Color.xcassets */; };
 		70385EDA2A07E60B001CDAB0 /* Date+Chinggu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */; };
@@ -58,6 +59,7 @@
 /* Begin PBXFileReference section */
 		51D817172A08E59F00B84E6A /* WriteComplimentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteComplimentView.swift; sourceTree = "<group>"; };
 		701094A52A0FA83D0019DEED /* cardBeforeAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cardBeforeAnimation.json; sourceTree = "<group>"; };
+		7014D4792A10AF8B00F1B315 /* TempArchivingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempArchivingDetailView.swift; sourceTree = "<group>"; };
 		70385ED02A07DFEE001CDAB0 /* Color+Chinggu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Chinggu.swift"; sourceTree = "<group>"; };
 		70385ED22A07E00F001CDAB0 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Chinggu.swift"; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				FB6D0BCA2A0A35AD00220360 /* ArchivingDetailView.swift */,
 				FBB8CFD82A0B908E00210F90 /* ArchivingCard.swift */,
 				FB6D0BC82A0A287200220360 /* ArchivingView.swift */,
+				7014D4792A10AF8B00F1B315 /* TempArchivingDetailView.swift */,
 			);
 			path = "Archiving View";
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */,
 				51D817182A08E59F00B84E6A /* WriteComplimentView.swift in Sources */,
 				AE37D5452A063BD3009B0F56 /* MainView.swift in Sources */,
+				7014D47A2A10AF8B00F1B315 /* TempArchivingDetailView.swift in Sources */,
 				70B8FBA82A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift in Sources */,
 				A93729772A0F6E5100C79C04 /* Onboarding_6.swift in Sources */,
 				AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */,
@@ -511,7 +515,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Chinggu/Preview Content\"";
-				DEVELOPMENT_TEAM = ULM4SQD73B;
+				DEVELOPMENT_TEAM = 3FD7AHY7SL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -541,7 +545,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Chinggu/Preview Content\"";
-				DEVELOPMENT_TEAM = ULM4SQD73B;
+				DEVELOPMENT_TEAM = 3FD7AHY7SL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
