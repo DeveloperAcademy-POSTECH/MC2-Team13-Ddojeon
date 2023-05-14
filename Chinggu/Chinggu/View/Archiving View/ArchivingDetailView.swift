@@ -37,7 +37,7 @@ struct ArchivingDetailView: View {
 						  groupID: $groupID,
 						  order: $order,
 						  createDate: $createDate,
-						  cardColor: $cardColor)
+						  cardColor: randomColor())
 				.onAppear { loadCompliment() }
 			
 			HStack(spacing: 3) {

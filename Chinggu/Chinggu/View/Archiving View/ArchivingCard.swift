@@ -13,7 +13,7 @@ struct ArchivingCard: View {
 	@Binding var groupID: Int16
 	@Binding var order: Int16
 	@Binding var createDate: Date
-	@Binding var cardColor: Color
+	var cardColor: Color
 	
 	var body: some View {
 

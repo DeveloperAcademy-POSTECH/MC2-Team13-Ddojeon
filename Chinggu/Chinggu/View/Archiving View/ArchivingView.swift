@@ -11,7 +11,7 @@ struct ArchivingView: View {
 	
 	@FetchRequest(
 		entity: ComplimentEntity.entity(),
-		sortDescriptors: []
+		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
 	) var Compliment: FetchedResults<ComplimentEntity>
 	@AppStorage("group") var groupOrder: Int = 1
 
@@ -21,7 +21,7 @@ struct ArchivingView: View {
 	var body: some View {
 		NavigationStack{
 			VStack(alignment: .leading){
-				Text("\(groupOrder - 1)번의 상자를 열었고\n\(Compliment.count)번 칭찬했어요")
+				Text(groupOrder == 1 ? "아직 열어본 칭찬박스가 없어요" : "\(groupOrder - 1)번의 상자를 열었고\n\(Compliment.count)번 칭찬했어요")
 					.font(.title3)
 					.fontWeight(.bold)
 					.padding(.leading)
@@ -59,16 +59,18 @@ struct ArchivingView: View {
 							}.onDelete(perform: delete)
 						}
 					}
-					Section(header: Text("예시 상자")) {
-						ForEach(tempCompliments.indices, id: \.self) { index in
-							let date = Calendar.current.date(byAdding: .day, value: -index, to: Date())!
-							VStack(alignment: .leading, spacing: 8){
-								Text(tempCompliments[index])
-									.font(.headline)
-								Text(date.formatWithDot())
-									.font(.subheadline)
-									.foregroundColor(.gray)
-									.lineLimit(1)
+					if groupOrder == 1 {
+						Section(header: Text("예시 상자")) {
+							ForEach(tempCompliments.indices, id: \.self) { index in
+								let date = Calendar.current.date(byAdding: .day, value: -index, to: Date())!
+								VStack(alignment: .leading, spacing: 8){
+									Text(tempCompliments[index])
+										.font(.headline)
+									Text(date.formatWithDot())
+										.font(.subheadline)
+										.foregroundColor(.gray)
+										.lineLimit(1)
+								}
 							}
 						}
 					}
