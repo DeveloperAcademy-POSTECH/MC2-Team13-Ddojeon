@@ -1,104 +1,103 @@
 //
-//  ArchivingViewTest.swift
+//  TempArchivingDetailView.swift
 //  Chinggu
 //
-//  Created by BraveJ's on 2023/05/09.
+//  Created by Junyoo on 2023/05/14.
 //
 
 import SwiftUI
 
-struct ArchivingView: View {
+struct TempArchivingDetailView: View {
 	
-	@FetchRequest(
-		entity: ComplimentEntity.entity(),
-		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
-	) var Compliment: FetchedResults<ComplimentEntity>
-	@AppStorage("group") var groupOrder: Int = 1
-
-	@State private var isShowingSheet = false
-	@State private var tapCount = 0
+	@State var compliment: String
+	@State var createDate: Date
+	@State var order: Int
+	@State var cardColor = Color.ddoOrange
 
 	var body: some View {
-		NavigationStack{
+		VStack(spacing: 30) {
 			VStack(alignment: .leading){
-				Text(groupOrder == 1 ? "아직 열어본 칭찬박스가 없어요" : "\(groupOrder - 1)번의 상자를 열었고\n\(Compliment.count)번 칭찬했어요")
-					.font(.title3)
-					.fontWeight(.bold)
-					.padding(.leading)
-					.onTapGesture {
-						tapCount += 1
-						if tapCount >= 5 {
-							isShowingSheet = true
-							tapCount = 0
-						}
-					}
-					.sheet(isPresented: $isShowingSheet) {
-						TempMainView()
-					}
-				
-				List {
-					ForEach((1..<$groupOrder.wrappedValue).reversed(), id: \.self) { index in
-						Section(header: Text("\(index)번째 상자")) {
-							ForEach(Compliment, id: \.self.id) { compliments in
-								if compliments.groupID == index {
-									NavigationLink(
-										destination: ArchivingDetailView(complimentOrder: compliments.order).toolbarRole(.editor), label: {
-											VStack(alignment: .leading, spacing: 8){
-												let currentDate = compliments.createDate
-												let strDate = currentDate?.formatWithDot()
-												Text(compliments.compliment ?? "")
-													.font(.headline)
-													.lineLimit(2)
-												Text(strDate ?? "")
-													.font(.subheadline)
-													.foregroundColor(.gray)
-													.lineLimit(1)
-											}
-										})
-								} else { }
-							}.onDelete(perform: delete)
-						}
-					}
-					if groupOrder == 1 {
-						Section(header: Text("예시 상자")) {
-							ForEach(tempCompliments.indices, id: \.self) { index in
-								let date = Calendar.current.date(byAdding: .day, value: -index, to: Date())!
-								NavigationLink (
-									destination: TempArchivingDetailView(compliment: tempCompliments[index], createDate: date, order: index), label: {
-										VStack(alignment: .leading, spacing: 8){
-											Text(tempCompliments[index])
-												.font(.headline)
-												.lineLimit(2)
-											Text(date.formatWithDot())
-												.font(.subheadline)
-												.foregroundColor(.gray)
-												.lineLimit(1)
-										}
-									}
-								)
-							}
-						}
-					}
-				}
-				.scrollContentBackground(.hidden)
-				.toolbar {
-					EditButton()
+				Text(compliment)
+					.font(.body)
+					.fontWeight(.semibold)
+					.lineSpacing(5)
+					.foregroundColor(.white)
+				Spacer()
+				HStack{
+					Text("1")
+						.padding(EdgeInsets(top: 4.5, leading: 7, bottom: 4.5, trailing: 7))
+						.foregroundColor(.white)
+						.fontWeight(.heavy)
+						.background(.black.opacity(0.2))
+						.cornerRadius(5)
+					Spacer()
+					Text(createDate.formatWithDot())
+						.opacity(0.3)
+					Spacer()
+					Text("\(order + 1)")
+						.padding(EdgeInsets(top: 4.5, leading: 7, bottom: 4.5, trailing: 7))
+						.foregroundColor(.white)
+						.fontWeight(.heavy)
+						.background(.black.opacity(0.2))
+						.cornerRadius(20)
 				}
 			}
-			.accentColor(.red)
-			.padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0))
-			.background(Color(hex: 0xF9F9F3))
+			.padding(30)
+			.background(cardColor)
+			.cornerRadius(30)
+			.onChange(of: order) { _ in
+				compliment = tempCompliments[order]
+				createDate = Calendar.current.date(byAdding: .day, value: -order, to: Date())!
+			}
+			HStack(spacing: 3) {
+				Button {
+					if order > 0 {
+						order = order - 1
+						cardColor = randomColor()
+					}
+				} label: {
+					Text("이전 칭찬")
+						.frame(maxWidth: .infinity)
+						.font(.title3)
+						.fontWeight(.bold)
+						.foregroundColor(.white)
+						.padding(EdgeInsets(top: 18, leading: 20, bottom: 18, trailing: 20))
+						.background(.black.opacity(0.7))
+						.cornerRadius(15)
+				}
+				.disabled(order <= 0)
+				
+				Spacer()
+				
+				Button {
+					if order < 6 {
+						order = order + 1
+						cardColor = randomColor()
+					}
+				} label: {
+					Text("다음 칭찬")
+						.frame(maxWidth: .infinity)
+						.font(.title3)
+						.fontWeight(.bold)
+						.foregroundColor(.white)
+						.padding(EdgeInsets(top: 18, leading: 20, bottom: 18, trailing: 20))
+						.background(.black.opacity(0.7))
+						.cornerRadius(15)
+				}
+				.disabled(order >= 6)
+			}
 		}
+		.padding()
+		.background(Color(hex: 0xF9F9F3))
 	}
 	
-	private func delete(indexset: IndexSet) {
-		guard let index = indexset.first else { return }
-		let selectedEntity = Compliment[index]
-		PersistenceController.shared.deleteCompliment(compliment: selectedEntity)
-	}
-	
-	
-	
+	let colors = [
+		Color.ddoRed,
+		Color.ddoBlue,
+		Color.ddoPink,
+		Color.ddoGreen,
+		Color.ddoOrange
+	]
 	
 	private let tempCompliments = [
 		"회사에서 업무를 하고 있는데, 갑자기 상사가 나에게 업무 지적을 했다. 평소와 다를 바가 없었는데 너무 당혹스러웠다. 그래도 회사에 오래 근무하게 되면서 이런 일이 종종 일어난다는 사실을 알기에 조심스럽게 솔직한 의견을 말했다. 이전에는 지적을 모두 수용하는 방향으로 대답했지만, 이제 내 의견을 솔직하게 말하는 사람이 된 것 같다. 말하고 많은 생각이 들었고 심장이 떨렸지만, 점차 나의 의견을 꺼내어 말하는 사람이 되는 과정인 것 같아 매우 뿌듯하다!",
@@ -109,5 +108,16 @@ struct ArchivingView: View {
 		"최근 몸이 이상함을 느꼈다. 잘 아프지 않은 나인데 도저히 참기 힘들어 병원을 찾았다. 진료 후 근육에 염증이 생겼다는 말을 들었다. 나는 일만 열심히 하면 모든 상황이 좋고 즐거울 줄 알았다. 하지만 이번 계기로 일보다 건강이 더 중요하다는 것을 깨달았다. 나는 건강을 잃게 되면 일과 일상이 파괴될 수 있다는 것을 잊고 살았던 것 같다. 나의 건강을 위해 적절하게 일하고 스스로 상태를 자주 확인해야겠다. 일보다 건강! 이 사실을 깨달아서 다행이야!",
 		"동네에 카페가 생겼다. 근처에는 예쁜 카페가 없었기에 달려갔다. 인테리어와 커피 모두 만족스러웠다. 분위기에 취해 셀카를 찍었는데 오늘따라 사진이 잘 나왔다. 사진을 살펴보다 뜻밖의 발견을 했다. 내 눈이 아름답다는 생각을 해본 적이 없었는데 오늘은 햇빛에 반짝이는 눈이 너무나 아름답게 보였다. 집에 돌아온 뒤에도 내 눈만 들여다본 것 같다. 생각보다 더 아름다운 눈을 가졌다는 사실에 기분이 좋았다. 내 눈은 정말 아름답구나!"
 	]
-	
+
+	private func randomColor() -> Color {
+		let randomIndex = Int.random(in: 0..<colors.count)
+		return colors[randomIndex]
+	}
+
+}
+
+struct MyPreviewProvider_Previews: PreviewProvider {
+	static var previews: some View {
+		TempArchivingDetailView(compliment: "test", createDate: Date(), order: 1)
+	}
 }
