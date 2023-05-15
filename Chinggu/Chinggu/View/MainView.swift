@@ -274,12 +274,11 @@ struct MainView: View {
 						CardView(showPopup: $showPopup)
 					}
                     // 최초 칭찬 작성 시 안내 팝업
-                    .popup(isPresented: $showInfoPopup) {
-                        withAnimation {
-                            InfoPopupView(showInfoPopup: $showInfoPopup)
-                        }
-                    }
-                    
+                    .overlay(
+                        InfoPopupView(showInfoPopup: $showInfoPopup)
+                            .offset(y: showInfoPopup ? 0 : UIScreen.main.bounds.height/2 + 175)
+                            .animation(.spring(response: 1.2, dampingFraction: 0.8), value: showInfoPopup)
+                    )
                 }
 				.onAppear {
 					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))

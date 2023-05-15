@@ -45,6 +45,16 @@ struct InfoPopupView: View {
                 .offset(y: 40)
             }
         }
+//        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//        .background(Color.black.opacity(0.5))
+//        .onTapGesture {
+//            // 배경 탭하면 팝업 닫기
+//            withAnimation {
+//                showInfoPopup = false
+//            }
+//        }
+//        .transition(.opacity)
+//        .animation(.easeInOut(duration: 0.3))
     }
 }
 
