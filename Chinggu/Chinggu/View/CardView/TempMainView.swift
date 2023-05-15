@@ -15,6 +15,7 @@ struct TempMainView: View {
 		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)])
 	var Compliment: FetchedResults<ComplimentEntity>
 	@AppStorage("group") var groupOrder: Int = 1
+	@AppStorage("isfirst") var isfirst: Bool = false
 
 	@State private var textFieldTitle: String = ""
 	@State private var showPopup = false
@@ -82,6 +83,7 @@ struct TempMainView: View {
 					HStack {
 						Button {
 							PersistenceController.shared.deleteAllCompliments()
+							isfirst = true
 						} label: {
 							Text("칭찬 초기화")
 								.padding()
