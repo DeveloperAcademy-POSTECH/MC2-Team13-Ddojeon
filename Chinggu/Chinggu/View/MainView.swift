@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SpriteKit
+import CoreMotion
 
 enum Weekday: String, CaseIterable {
     case monday = "월요일"
@@ -22,21 +23,22 @@ class GameScene: SKScene {
     
     var boxes: [SKSpriteNode] = []
     var complimentCount = 0
+	let motionManager = CMMotionManager()
     
     override func didMove(to view: SKView) {
-        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
-        // 칭찬 수 만큼 생성
-        for _ in 0..<complimentCount{
-            let index = Int.random(in: 1..<99)
-            let texture = SKTexture(imageNamed: "stonery\(index)")
-            let box = SKSpriteNode(texture: texture)
-            let body = SKPhysicsBody(texture: texture, size: texture.size())
-            box.position = CGPoint(x: size.width/2, y: size.height - 50)
-            box.physicsBody = body
-            addChild(box)
-            boxes.append(box)
-        }
-        print(complimentCount)
+		physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+		
+		motionManager.deviceMotionUpdateInterval = 0.1
+		motionManager.startDeviceMotionUpdates(to: .main) { (motion, error) in
+			guard let motion = motion else { return }
+			let x = motion.gravity.x
+			let y = motion.gravity.y
+			self.physicsWorld.gravity = CGVector(dx: x * 35, dy: y * 35)
+		}
+		for _ in 0..<complimentCount{
+			addBox(at: CGPoint(x: 50,y: 50))
+		}
+		print(complimentCount)
         // 배경색 변경
         //        self.backgroundColor = .red
     }
