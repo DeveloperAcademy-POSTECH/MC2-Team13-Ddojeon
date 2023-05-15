@@ -22,25 +22,45 @@ struct ArchivingCard: View {
 				.font(.body)
 				.fontWeight(.semibold)
 				.lineSpacing(5)
-				.foregroundColor(.white)
+				.foregroundColor(Color("oll"))
 			Spacer()
-			HStack{
-				Text("\(groupID)")
-					.padding(EdgeInsets(top: 4.5, leading: 7, bottom: 4.5, trailing: 7))
-					.foregroundColor(.white)
-					.fontWeight(.heavy)
-					.background(.black.opacity(0.2))
-					.cornerRadius(5)
+            HStack(alignment: .bottom){
+                
+                VStack(alignment:.trailing){
+                    HStack{
+                        Text("\(groupID)")
+                            .padding(EdgeInsets(top: 4.5, leading: 7, bottom: 4.5, trailing: 7))
+                            .foregroundColor(.white)
+                            .fontWeight(.bold)
+                            .background(.black.opacity(0.15))
+                            .cornerRadius(5)
+                        Text("번째 상자")
+                            .opacity(0.5)
+                            .scaleEffect(0.9)
+                            .padding(.leading,-5)
+                    }
+                    
+                    HStack{
+                        Text("\(order)")
+                            .padding(EdgeInsets(top: 4.5, leading: 7, bottom: 4.5, trailing: 7))
+                            .foregroundColor(.white)
+                            .fontWeight(.heavy)
+                            .background(.black.opacity(0.15))
+                            .cornerRadius(5)
+                        Text("번째 칭찬")
+                            .opacity(0.5)
+                            .scaleEffect(0.9)
+                            .padding(.leading,-5)
+                    }
+                    
+                }
+                
 				Spacer()
-				Text(createDate.formatWithDot())
-					.opacity(0.3)
-				Spacer()
-				Text("\(order)")
-					.padding(EdgeInsets(top: 4.5, leading: 7, bottom: 4.5, trailing: 7))
-					.foregroundColor(.white)
-					.fontWeight(.heavy)
-					.background(.black.opacity(0.2))
-					.cornerRadius(20)
+                
+                //날짜
+              
+                Text(createDate.formatWithDot())
+                        .opacity(0.3)
 			}
 		}
 		.padding(30)
