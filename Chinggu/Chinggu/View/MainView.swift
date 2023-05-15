@@ -64,8 +64,13 @@ class GameScene: SKScene {
 }
 
 struct MainView: View {
+    @FetchRequest(
+        entity: ComplimentEntity.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
+    ) var Compliment: FetchedResults<ComplimentEntity>
+    
 	@State var complimentsInGroup: [ComplimentEntity] = []
-
+    
 	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.monday.rawValue
 
 //    @State private var selectedWeekday: Weekday?
@@ -77,6 +82,8 @@ struct MainView: View {
     @State private var shake = 0.0
     @State private var showPopup = false
     @State private var isCompliment = false
+    @State private var showInfoPopup = false
+    @State private var firstInfoPopup = true
 	
 //	@AppStorage("isCompliment") var isCompliment: Bool = false
 	@AppStorage("group") var groupOrder: Int = 1
@@ -217,9 +224,7 @@ struct MainView: View {
                                 updateCanBreakBoxes()
                                 resetTimeButton()
                                 scene.scaleMode = .aspectFit
-//                                if canBreakBoxes && scene.boxes.count > 0 {
-//                                    shake = 3
-//                                }
+                                print(Compliment.count)
                             }
                         if canBreakBoxes && scene.boxes.count > 0  {
                             Text("칭찬 상자를 톡! 눌러주세요")
@@ -268,9 +273,23 @@ struct MainView: View {
 					.popup(isPresented: $showPopup) {
 						CardView(showPopup: $showPopup)
 					}
+                    // 최초 칭찬 작성 시 안내 팝업
+                    .popup(isPresented: $showInfoPopup) {
+                        withAnimation {
+                            InfoPopupView(showInfoPopup: $showInfoPopup)
+                        }
+                    }
+                    
                 }
 				.onAppear {
 					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
+                    // 최초 칭찬 작성 시 안내 팝업
+                    if Compliment.count == 1 && firstInfoPopup {
+                        showInfoPopup = true
+                        firstInfoPopup = false
+                    } else {
+                        showInfoPopup = false
+                    }
 				}
             }
         }
