@@ -24,11 +24,17 @@ struct ArchivingDetailView: View {
 	@State private var cardColor = Color.ddoOrange
 	
 	private let colors = [
-		Color.ddoRed,
-		Color.ddoBlue,
-		Color.ddoPink,
-		Color.ddoGreen,
-		Color.ddoOrange
+		Color("ddoTip1_2"),
+        Color("ddoTip2_2"),
+		Color("ddoTip3_2"),
+        Color("ddoTip4_2"),
+        Color("ddoTip5_2"),
+        Color("ddoTip6_2"),
+        Color("ddoTip7_2"),
+        Color("ddoTip8_2"),
+        Color("ddoTip9_2"),
+        Color("ddoTip10_2")
+        
 	]
 
 	var body: some View {
@@ -95,5 +101,11 @@ struct ArchivingDetailView: View {
 			createDate = complimentEntity.createDate ?? Date()
 		}
 	}
+}
+
+struct ArchivingDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        ArchivingDetailView(complimentOrder: 2)
+    }
 }
 
