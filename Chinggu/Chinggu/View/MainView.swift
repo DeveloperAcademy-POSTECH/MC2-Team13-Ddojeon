@@ -170,19 +170,19 @@ struct MainView: View {
                                 .lineSpacing(5)
                         }
                         Spacer()
+                        
                         //MARK: 칭찬 저금통
                         SpriteView(scene: scene)
                             .frame(width: width, height: height)
                             .cornerRadius(26)
                             .onTapGesture {
-                                if scene.boxes.count > 0 {
+                                if scene.boxes.count > 0 && canBreakBoxes {
                                     showBreakAlert = true
-                                    
                                 }
                             }
-                        // 중도/만기일 개봉 얼럿
+                        // 만기일 개봉 얼럿
                             .alert(isPresented: $showBreakAlert) {
-                                Alert(title: Text(canBreakBoxes ? "칭찬 상자를 열어볼까요?" : "창찬이 다 모이지 않았어요\n그래도 상자를 열어볼까요?"), primaryButton: .default(Text("네")) {
+                                Alert(title: Text("칭찬 상자를 열어볼까요?"), primaryButton: .default(Text("네")) {
                                     // 저금통 초기화
 									withAnimation(.easeOut(duration: 1)) {
 										scene.resetBoxes()
