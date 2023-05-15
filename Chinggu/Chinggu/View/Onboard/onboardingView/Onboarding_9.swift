@@ -40,7 +40,7 @@ struct Onboarding_9: View {
                 // 로띠 이미지
                 Spacer()
                 ZStack {
-                    Image("onboarding9")
+                    Image("onboarding_9")
                     Text("짝짝짝!\n첫 번째 칭찬을 적으셨군요")
                         .font(.custom("AppleSDGothicNeo-Bold", size: 18))
                         .opacity(isTextVisible ? 1 : 0)
