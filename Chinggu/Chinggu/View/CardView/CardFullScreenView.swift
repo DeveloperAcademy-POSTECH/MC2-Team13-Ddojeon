@@ -48,13 +48,15 @@ struct CardFullScreenView: View {
 						}
 					} label: {
 						Text("닫기")
-							.font(.title)
+							.font(.title3)
 							.foregroundColor(.white)
 							.padding()
 					}
 					.background {
 						RoundedRectangle(cornerRadius: 15)
 							.foregroundColor(.blue)
+							.foregroundColor(.ddoBlue)
+							.frame(width: 80, height: 40)
 					}
 					
 					Spacer()
