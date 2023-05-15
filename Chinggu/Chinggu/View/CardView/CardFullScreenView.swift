@@ -24,7 +24,7 @@ struct CardFullScreenView: View {
 					.aspectRatio(contentMode: .fill)
 					.matchedGeometryEffect(id: "image", in: namespace)
 				Text(groupStartEndDates)
-					.font(.footnote)
+					.font(.headline)
 					.matchedGeometryEffect(id: "title", in: namespace)
 					.frame(maxWidth: .infinity, alignment: .leading)
 					.padding()
