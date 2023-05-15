@@ -85,10 +85,12 @@ struct MainView: View {
     @State private var showPopup = false
     @State private var isCompliment = false
     @State private var showInfoPopup = false
-    @State private var firstInfoPopup = true
+//    @State private var firstInfoPopup = true
 	
 //	@AppStorage("isCompliment") var isCompliment: Bool = false
 	@AppStorage("group") var groupOrder: Int = 1
+	@AppStorage("isfirst") var isfirst: Bool = true
+
 
     
     @State var scene = GameScene()
@@ -272,25 +274,23 @@ struct MainView: View {
 //                        .disabled(isCompliment)
                         .padding()
                     }
+					Color.clear
 					.popup(isPresented: $showPopup) {
 						CardView(showPopup: $showPopup)
 					}
                     // 최초 칭찬 작성 시 안내 팝업
-                    .overlay(
-                        InfoPopupView(showInfoPopup: $showInfoPopup)
-                            .offset(y: showInfoPopup ? 0 : UIScreen.main.bounds.height/2 + 175)
-                            .animation(.spring(response: 1.2, dampingFraction: 0.8), value: showInfoPopup)
-                    )
+					.popup(isPresented: $showInfoPopup) {
+						InfoPopupView(showInfoPopup: $showInfoPopup)
+					}
                 }
 				.onAppear {
 					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
                     // 최초 칭찬 작성 시 안내 팝업
-                    if Compliment.count == 1 && firstInfoPopup {
-                        showInfoPopup = true
-                        firstInfoPopup = false
-                    } else {
-                        showInfoPopup = false
-                    }
+					if Compliment.count == 1, isfirst == true {
+						withAnimation {
+							showInfoPopup = true
+						}
+					}
 				}
             }
         }
