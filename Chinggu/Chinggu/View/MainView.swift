@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SpriteKit
+import CoreMotion
 
 enum Weekday: String, CaseIterable {
     case monday = "월요일"
@@ -22,21 +23,22 @@ class GameScene: SKScene {
     
     var boxes: [SKSpriteNode] = []
     var complimentCount = 0
+	let motionManager = CMMotionManager()
     
     override func didMove(to view: SKView) {
-        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
-        // 칭찬 수 만큼 생성
-        for _ in 0..<complimentCount{
-            let index = Int.random(in: 1..<99)
-            let texture = SKTexture(imageNamed: "stonery\(index)")
-            let box = SKSpriteNode(texture: texture)
-            let body = SKPhysicsBody(texture: texture, size: texture.size())
-            box.position = CGPoint(x: size.width/2, y: size.height - 50)
-            box.physicsBody = body
-            addChild(box)
-            boxes.append(box)
-        }
-        print(complimentCount)
+		physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+		
+		motionManager.deviceMotionUpdateInterval = 0.1
+		motionManager.startDeviceMotionUpdates(to: .main) { (motion, error) in
+			guard let motion = motion else { return }
+			let x = motion.gravity.x
+			let y = motion.gravity.y
+			self.physicsWorld.gravity = CGVector(dx: x * 35, dy: y * 35)
+		}
+		for _ in 0..<complimentCount{
+			addBox(at: CGPoint(x: 50,y: 50))
+		}
+		print(complimentCount)
         // 배경색 변경
         //        self.backgroundColor = .red
     }
@@ -64,8 +66,13 @@ class GameScene: SKScene {
 }
 
 struct MainView: View {
+    @FetchRequest(
+        entity: ComplimentEntity.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
+    ) var Compliment: FetchedResults<ComplimentEntity>
+    
 	@State var complimentsInGroup: [ComplimentEntity] = []
-
+    
 	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.monday.rawValue
 
 //    @State private var selectedWeekday: Weekday?
@@ -77,9 +84,13 @@ struct MainView: View {
     @State private var shake = 0.0
     @State private var showPopup = false
     @State private var isCompliment = false
+    @State private var showInfoPopup = false
+//    @State private var firstInfoPopup = true
 	
 //	@AppStorage("isCompliment") var isCompliment: Bool = false
 	@AppStorage("group") var groupOrder: Int = 1
+	@AppStorage("isfirst") var isfirst: Bool = true
+
 
     
     @State var scene = GameScene()
@@ -170,19 +181,19 @@ struct MainView: View {
                                 .lineSpacing(5)
                         }
                         Spacer()
+                        
                         //MARK: 칭찬 저금통
                         SpriteView(scene: scene)
                             .frame(width: width, height: height)
                             .cornerRadius(26)
                             .onTapGesture {
-                                if scene.boxes.count > 0 {
+                                if scene.boxes.count > 0 && canBreakBoxes {
                                     showBreakAlert = true
-                                    
                                 }
                             }
-                        // 중도/만기일 개봉 얼럿
+                        // 만기일 개봉 얼럿
                             .alert(isPresented: $showBreakAlert) {
-                                Alert(title: Text(canBreakBoxes ? "칭찬 상자를 열어볼까요?" : "창찬이 다 모이지 않았어요\n그래도 상자를 열어볼까요?"), primaryButton: .default(Text("네")) {
+                                Alert(title: Text("칭찬 상자를 열어볼까요?"), primaryButton: .default(Text("네")) {
                                     // 저금통 초기화
 									withAnimation(.easeOut(duration: 1)) {
 										scene.resetBoxes()
@@ -217,9 +228,7 @@ struct MainView: View {
                                 updateCanBreakBoxes()
                                 resetTimeButton()
                                 scene.scaleMode = .aspectFit
-//                                if canBreakBoxes && scene.boxes.count > 0 {
-//                                    shake = 3
-//                                }
+                                print(Compliment.count)
                             }
                         if canBreakBoxes && scene.boxes.count > 0  {
                             Text("칭찬 상자를 톡! 눌러주세요")
@@ -265,12 +274,23 @@ struct MainView: View {
 //                        .disabled(isCompliment)
                         .padding()
                     }
+					Color.clear
 					.popup(isPresented: $showPopup) {
 						CardView(showPopup: $showPopup)
+					}
+                    // 최초 칭찬 작성 시 안내 팝업
+					.popup(isPresented: $showInfoPopup) {
+						InfoPopupView(showInfoPopup: $showInfoPopup)
 					}
                 }
 				.onAppear {
 					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
+                    // 최초 칭찬 작성 시 안내 팝업
+					if Compliment.count == 1, isfirst == true {
+						withAnimation {
+							showInfoPopup = true
+						}
+					}
 				}
             }
         }
