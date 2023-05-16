@@ -20,7 +20,8 @@ struct ContentView: View {
 		if hasOnboarded {
 			MainView()
 		} else {
-			Onboarding_1()
+            OnboardingView()
+//			Onboarding_1()
 		}
 	}
 }

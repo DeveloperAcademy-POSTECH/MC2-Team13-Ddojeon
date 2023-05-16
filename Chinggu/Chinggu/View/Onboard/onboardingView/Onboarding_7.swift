@@ -1,5 +1,5 @@
 //
-//  Onboarding_7.swift
+//  Onboarding_8.swift
 //  Chinggu
 //
 //  Created by OLING on 2023/05/12.
@@ -8,8 +8,9 @@
 import SwiftUI
 import UIKit
 
-struct Onboarding_7: View {
-    @State private var playState = false
+
+struct Onboarding_8: View {
+    @State private var inputText: String = ""
     
     var body: some View {
         GeometryReader{ geometry in
@@ -19,13 +20,13 @@ struct Onboarding_7: View {
             VStack(alignment: .leading) {
                 HStack(spacing: 16) {
                     NavigationLink(
-                        destination: Onboarding_6(),
+                        destination: Onboarding_7(),
                         label: {
                             Image(systemName: "chevron.backward")
                                 .font(.title2)
                                 .foregroundColor(Color.black)
                         })
-                    ProgressView(value: 0.6, total: 1.0)
+                    ProgressView(value: 0.7, total: 1.0)
                         .scaleEffect(y:1.3)
                         .progressViewStyle(
                             LinearProgressViewStyle(tint: Color("oll"))
@@ -34,65 +35,71 @@ struct Onboarding_7: View {
                 .frame(height: 43)
                 .padding(.horizontal, 20)
                 
-                    Text("칭찬이 다소\n낯설게 다가온다면 - ")
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("효과적인 칭찬 방법을\n알려드릴게요")
                         .font(.custom("AppleSDGothicNeo-Bold", size: 28))
-                        .padding()
-                        .padding(.leading,20)
-                        .padding(.top,20)
                         .lineSpacing(5)
-                        .foregroundColor(Color("oll"))
-                
-                Text("작성화면 상단에 있는 〈칭찬요정〉이\n당신을 언제든 도와줄 거예요")
-                    .font(.custom("AppleSDGothicNeo-Semibold", size: 18))
-                    .padding()
-                    .padding(.leading,20)
-                    .lineSpacing(7)
-                    .foregroundColor(Color("oll"))
-                    
-//                    로띠뷰 넣기
-                LottiePlayState(filename: "onboarding_7",loopState: false, playState: .constant(true))
-                HStack{
-                    Spacer()
-                    Text("본 가이드는 저서 ‘일단 나부터 칭찬합시다’를 기반으로 작성되었어요")
-                        .font(.custom("AppleSDGothicNeo", size: 12))
-                        .foregroundColor(Color.gray)
-                        .padding(.bottom,20)
-
-                    Spacer()
+                    Text("친구나 아이를 대하듯 나를 칭찬해보세요!\n행동 + 칭찬의 말을 함께 덧붙이면 좋아요")
+                        .font(.custom("AppleSDGothicNeo", size: 18))
+                        .kerning(-1)
+                        .fontWeight(.medium)
+                        .lineSpacing(3)
                 }
-    
-                //버튼 이용해서 navigationlink 만들기
+                .foregroundColor(Color("oll"))
+                .padding(.horizontal, 24)
+                .padding(.top, 23)
                 
-                HStack{
-                    Spacer()
-                    Button(action: {
-                        
-                    }) {
-                        NavigationLink(
-                            destination: Onboarding_8(),
-                            label: {
-                                Text("다음")
-                                    .font(.custom("AppleSDGothicNeo-Bold", size: 20))
-                                    .foregroundColor(Color.white)
-                                    .kerning(1)
-                                    .padding(.vertical,6)
-                                    .frame(width: geometry.size.width/1.15, height: 50)
-                            })
-                        
+                
+                LottiePlayState(filename: "onboarding_7", loopState: true, playState: .constant(true))
+                    .frame(height: 75)
+                    .scaleEffect(0.94)
+                
+                HStack(spacing: 10) {
+                    ZStack(alignment: .topLeading) {
+                        RoundedRectangle(cornerRadius: 12)
+                            .strokeBorder(lineWidth: 3)
+                            .foregroundColor(Color.primary.opacity (0.20))
+                            .background(Color.white)
+                            .frame(height: 121)
+                        if inputText.isEmpty {
+                            Text("위 문장을 따라서 입력해보세요")
+                                .lineSpacing(5)
+                                .padding(.top, 25)
+                                .padding(.leading, 20)
+                                .foregroundColor(Color.primary.opacity (0.30))
+                        }
+                        TextEditor(text: $inputText)
+                            .padding()
+                            .lineSpacing(8.8)
+                            .disableAutocorrection(true)
+                            .frame(height: 121)
+                            .scrollContentBackground(.hidden)
                     }
-                    .frame(width: geometry.size.width/1.15, height: 50)
-                    .buttonStyle(BorderedButtonStyle())
-                    .background(Color.black)
-                    .cornerRadius(10)
-                    Spacer()
+                    .font(.custom("AppleSDGothicNeo", size: 15.2))
+                    NavigationLink(
+                        destination: Onboarding_9(), label: {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 12)
+                                    .frame(width: 82, height: 121)
+                                    .foregroundColor(Color("oll"))
+                                Image(systemName: "checkmark")
+                                    .font(.title)
+                                    .bold()
+                                    .foregroundColor(Color.ddoPrimary)
+                            }
+                        }
+                    )
                 }
-                }
+                .padding(.horizontal, 20)
+            }
         }
         .navigationBarBackButtonHidden()
     }
 }
-    struct Onboarding_7_Previews: PreviewProvider {
-        static var previews: some View {
-            Onboarding_7()
-        }
+
+struct Onboarding_8_Previews: PreviewProvider {
+    static var previews: some View {
+        Onboarding_8()
     }
+}
+
