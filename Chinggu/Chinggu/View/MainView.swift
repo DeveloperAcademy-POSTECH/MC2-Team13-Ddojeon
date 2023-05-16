@@ -38,7 +38,7 @@ class GameScene: SKScene {
 		for _ in 0..<complimentCount{
 			addBox(at: CGPoint(x: 50,y: 50))
 		}
-		print(complimentCount)
+		print("sk",complimentCount)
         // 배경색 변경
         //        self.backgroundColor = .red
     }
@@ -204,7 +204,7 @@ struct MainView: View {
                         // 애니메이션
                             .modifier(ShakeEffect(delta: shake))
                             .onChange(of: shake) { newValue in
-                                withAnimation(.easeOut(duration: 1.0)) {
+                                withAnimation(.easeOut(duration: 2.0)) {
                                     if shake == 0 {
                                         shake = newValue
                                     } else {
@@ -217,7 +217,7 @@ struct MainView: View {
 								if complimentsInGroup.count > 0 {
 									scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
 									if canBreakBoxes {
-										shake = 3
+										shake = 5
 									}
 								}
                             }
@@ -228,7 +228,7 @@ struct MainView: View {
                                 updateCanBreakBoxes()
                                 resetTimeButton()
                                 scene.scaleMode = .aspectFit
-                                print(Compliment.count)
+                                print("apst",Compliment.count)
                             }
                         if canBreakBoxes && scene.boxes.count > 0  {
                             Text("칭찬 상자를 톡! 눌러주세요")
@@ -274,6 +274,10 @@ struct MainView: View {
 //                        .disabled(isCompliment)
                         .padding()
                     }
+                    if scene.boxes.count == 0 {
+                            Image("emptyState")
+                                .offset(y: 24)
+                        }
 					Color.clear
 					.popup(isPresented: $showPopup) {
 						CardView(showPopup: $showPopup)
@@ -287,11 +291,12 @@ struct MainView: View {
 					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
                     // 최초 칭찬 작성 시 안내 팝업
 					if Compliment.count == 1, isfirst == true {
-						withAnimation {
+						withAnimation(.spring(response: 1.2, dampingFraction: 0.8)) {
 							showInfoPopup = true
 						}
 					}
 				}
+                
             }
         }
     }
@@ -302,7 +307,7 @@ struct MainView: View {
         if todayWeekday == selectedWeekday {
             self.canBreakBoxes = true
             if scene.boxes.count > 0 {
-                shake = 3
+                shake = 5
             }
         } else {
             self.canBreakBoxes = false
