@@ -13,9 +13,11 @@ struct InfoPopupView: View {
 
     var body: some View {
         ZStack {
-			LottieView(filename: "cardBeforeAnimation", loopState: false)
-				.ignoresSafeArea()
-				.animation(nil)
+            LottieView(filename: "cardBeforeAnimation", loopState: false)
+                .ignoresSafeArea()
+                .animation(nil)
+                .opacity(showInfoPopup ? 1 : 0)
+            
             Image("popup")
                 .shadow(color: Color.black.opacity(0.2), radius: 7, x: 1, y: 6)
 				.overlay {
