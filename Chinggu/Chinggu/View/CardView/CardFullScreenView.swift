@@ -43,10 +43,11 @@ struct CardFullScreenView: View {
 					VStack(alignment: .leading, spacing: 10) {
 						ForEach(complimentsInGroup, id: \.id) { compliment in
 							Text(compliment.compliment ?? "nil compliment")
-                                .font(.custom("AppleSDGothicNeo-Light", size: 15))
+                                .font(.custom("AppleSDGothicNeo-Regular", size: 17))
                                 .padding(.horizontal)
-                                .lineSpacing(3)
+								.lineSpacing(6)
 							Divider()
+								.padding(4)
 						}
 					}
 					.padding()
