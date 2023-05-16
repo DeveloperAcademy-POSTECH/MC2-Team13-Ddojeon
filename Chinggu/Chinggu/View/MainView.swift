@@ -172,7 +172,6 @@ struct MainView: View {
                                 .font(.custom("AppleSDGothicNeo-Bold", size: 28))
                                 .foregroundColor(Color("oll"))
                                 .lineSpacing(5)
-                            
                         } else {
                             Text("오늘은 어떤 칭찬을\n해볼까요?✍️")
                                 .multilineTextAlignment(.center)
@@ -197,6 +196,7 @@ struct MainView: View {
                                     // 저금통 초기화
 									withAnimation(.easeOut(duration: 1)) {
 										scene.resetBoxes()
+										scene.complimentCount = 0
 										showPopup = true
 									}
                                 }, secondaryButton:.cancel(Text("아니요")))
@@ -213,23 +213,30 @@ struct MainView: View {
                                 }
                                 
                             }
-                            .onChange(of: complimentsInGroup.count) { newValue in
-								if complimentsInGroup.count > 0 {
+							.onAppear {
+								if complimentsInGroup.count > scene.complimentCount  {
 									scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
 									if canBreakBoxes {
 										shake = 5
 									}
 								}
-                            }
-                            .onAppear() {
-                                scene.size = CGSize(width: width, height: height)
-                                scene.complimentCount = complimentsInGroup.count
-                                print("appear",complimentsInGroup.count)
-                                updateCanBreakBoxes()
-                                resetTimeButton()
-                                scene.scaleMode = .aspectFit
-                                print("apst",Compliment.count)
-                            }
+
+								scene.size = CGSize(width: width, height: height)
+//								print("appear",complimentsInGroup.count)
+								scene.complimentCount = complimentsInGroup.count
+								updateCanBreakBoxes()
+								resetTimeButton()
+								scene.scaleMode = .aspectFit
+								print("AllCompliment.count : ",Compliment.count)
+							}
+//                            .onChange(of: complimentsInGroup.count) { newValue in
+//								if complimentsInGroup.count > 0 {
+//									scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
+//									if canBreakBoxes {
+//										shake = 5
+//									}
+//								}
+//                            }
                         if canBreakBoxes && scene.boxes.count > 0  {
                             Text("칭찬 상자를 톡! 눌러주세요")
                                 .font(.custom("AppleSDGothicNeo-SemiBold", size: 14))
