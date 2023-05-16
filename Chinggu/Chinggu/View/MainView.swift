@@ -302,7 +302,7 @@ struct MainView: View {
         if todayWeekday == selectedWeekday {
             self.canBreakBoxes = true
             if scene.boxes.count > 0 {
-                shake = 3
+                shake = 5
             }
         } else {
             self.canBreakBoxes = false
