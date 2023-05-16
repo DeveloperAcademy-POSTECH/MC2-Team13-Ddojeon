@@ -231,6 +231,8 @@ struct MainView: View {
 								resetTimeButton()
 								scene.scaleMode = .aspectFit
 								print("AllCompliment.count : ",Compliment.count)
+                                print("complimentsInGroup.count : ",complimentsInGroup.count)
+                                print("scene.complimentCount : ",scene.complimentCount)
 							}
 //                            .onChange(of: complimentsInGroup.count) { newValue in
 //								if complimentsInGroup.count > 0 {
@@ -283,7 +285,7 @@ struct MainView: View {
                         }
 //                        .disabled(isCompliment)
                     }
-                    if complimentsInGroup.count == 0 {
+                    if scene.boxes.count == 0 {
                             Image("emptyState")
                                 .offset(y: 45)
                         }
