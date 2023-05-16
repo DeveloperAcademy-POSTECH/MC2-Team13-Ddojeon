@@ -27,12 +27,15 @@ struct CardFullScreenView: View {
 					.font(.headline)
 					.matchedGeometryEffect(id: "title", in: namespace)
 					.frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(Color("oll"))
 					.padding()
 				ScrollView(.vertical, showsIndicators: false) {
 					VStack(alignment: .leading, spacing: 10) {
 						ForEach(complimentsInGroup, id: \.id) { compliment in
 							Text(compliment.compliment ?? "nil compliment")
-								.padding(.leading)
+                                .font(.custom("AppleSDGothicNeo-Light", size: 15))
+                                .padding(.horizontal)
+                                .lineSpacing(3)
 							Divider()
 						}
 					}
@@ -48,12 +51,12 @@ struct CardFullScreenView: View {
 						}
 					} label: {
 						Text("닫기")
-							.font(.title3)
+                            .font(.custom("AppleSDGothicNeo-Bold", size: 16))
 							.foregroundColor(.white)
 							.padding()
 					}
 					.background {
-						RoundedRectangle(cornerRadius: 15)
+						RoundedRectangle(cornerRadius: 10)
 							.foregroundColor(.blue)
 							.foregroundColor(.ddoBlue)
 							.frame(width: 80, height: 40)
