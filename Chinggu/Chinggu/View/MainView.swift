@@ -281,7 +281,7 @@ struct MainView: View {
 //                        .disabled(isCompliment)
                         .padding()
                     }
-                    if scene.boxes.count == 0 {
+                    if complimentsInGroup.count == 0 {
                             Image("emptyState")
                                 .offset(y: 24)
                         }
