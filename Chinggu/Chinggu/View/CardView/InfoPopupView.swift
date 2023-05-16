@@ -35,6 +35,7 @@ struct InfoPopupView: View {
 							.lineSpacing(3)
 						
 						Button(action: {
+                            print(1)
 							withAnimation(.easeOut(duration: 0.5)) {
 								showInfoPopup = false
 								isfirst = false
@@ -42,15 +43,18 @@ struct InfoPopupView: View {
 						}) {
 							Text("확인")
 								.font(.custom("AppleSDGothicNeo-Bold", size: 20))
-								.foregroundColor(Color.white)
+								.foregroundColor(.white)
 								.kerning(1)
 								.padding(.vertical,6)
-								.frame(width: 310, height: 56)
-								.buttonStyle(BorderedButtonStyle())
-								.background(Color.black)
-								.cornerRadius(10)
-								.offset(y: 40)
+                                .frame(width: 310, height: 56)
 						}
+                        .offset(y: 40)
+                        .background {
+                            RoundedRectangle(cornerRadius: 10)
+                                .foregroundColor(.black)
+                                .offset(y: 40)
+                                .frame(width: 310, height: 56)
+                        }
 					}
 				}
         }
