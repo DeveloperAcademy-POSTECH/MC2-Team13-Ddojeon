@@ -351,6 +351,7 @@ struct DictationView: View {
     @State var length: Int
     @State var onboardings: [Onboarding]
     @State private var inputText: String = ""
+    @FocusState private var isFocused: Bool
     
     var body: some View {
         VStack {
@@ -380,11 +381,13 @@ struct DictationView: View {
                         .lineSpacing(8.8)
                         .disableAutocorrection(true)
                         .frame(height: 121)
+                        .focused($isFocused)
                         .scrollContentBackground(.hidden)
                 }
                 
                 Button(action: {
                     selection += 1
+                    isFocused = false
                 }, label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 10)
