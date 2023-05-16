@@ -163,7 +163,8 @@ struct MainView: View {
                                 .opacity(0.15)
                             Divider()
                         }
-                        Spacer()
+                        .padding(.bottom, 30)
+//                        Spacer()
                         
                         // 타이틀
                         if canBreakBoxes && scene.boxes.count > 0  {
@@ -172,14 +173,16 @@ struct MainView: View {
                                 .font(.custom("AppleSDGothicNeo-Bold", size: 28))
                                 .foregroundColor(Color("oll"))
                                 .lineSpacing(5)
+                                .padding(.bottom, 25)
                         } else {
                             Text("오늘은 어떤 칭찬을\n해볼까요?✍️")
                                 .multilineTextAlignment(.center)
                                 .font(.custom("AppleSDGothicNeo-Bold", size: 28))
                                 .foregroundColor(Color("oll"))
                                 .lineSpacing(5)
+                                .padding(.bottom, 25)
                         }
-                        Spacer()
+//                        Spacer()
                         
                         //MARK: 칭찬 저금통
                         SpriteView(scene: scene)
@@ -241,12 +244,12 @@ struct MainView: View {
                             Text("칭찬 상자를 톡! 눌러주세요")
                                 .font(.custom("AppleSDGothicNeo-SemiBold", size: 14))
                                 .foregroundColor(.gray)
-                                .padding(.top, 15)
+                                .padding(.top, 14)
                         } else {
                             Text("긍정의 힘은 복리로 돌아와요 커밍쑨!")
                                 .font(.custom("AppleSDGothicNeo-SemiBold", size: 14))
                                 .foregroundColor(.gray)
-                                .padding(.top, 15)
+                                .padding(.top, 14)
                         }
                         Spacer()
                         // 칭찬돌 추가하는 버튼
@@ -279,11 +282,10 @@ struct MainView: View {
 //                                .foregroundColor(isCompliment ? .gray : .blue)
                         }
 //                        .disabled(isCompliment)
-                        .padding()
                     }
                     if complimentsInGroup.count == 0 {
                             Image("emptyState")
-                                .offset(y: 24)
+                                .offset(y: 45)
                         }
 					Color.clear
 					.popup(isPresented: $showPopup) {
