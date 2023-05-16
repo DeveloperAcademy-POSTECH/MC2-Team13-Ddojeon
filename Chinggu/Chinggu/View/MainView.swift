@@ -38,7 +38,7 @@ class GameScene: SKScene {
 		for _ in 0..<complimentCount{
 			addBox(at: CGPoint(x: 50,y: 50))
 		}
-		print(complimentCount)
+		print("sk",complimentCount)
         // 배경색 변경
         //        self.backgroundColor = .red
     }
@@ -228,7 +228,7 @@ struct MainView: View {
                                 updateCanBreakBoxes()
                                 resetTimeButton()
                                 scene.scaleMode = .aspectFit
-                                print(Compliment.count)
+                                print("apst",Compliment.count)
                             }
                         if canBreakBoxes && scene.boxes.count > 0  {
                             Text("칭찬 상자를 톡! 눌러주세요")
@@ -274,6 +274,10 @@ struct MainView: View {
 //                        .disabled(isCompliment)
                         .padding()
                     }
+                    if scene.boxes.count == 0 {
+                            Image("emptyState")
+                                .offset(y: 24)
+                        }
 					Color.clear
 					.popup(isPresented: $showPopup) {
 						CardView(showPopup: $showPopup)
@@ -292,6 +296,7 @@ struct MainView: View {
 						}
 					}
 				}
+                
             }
         }
     }
