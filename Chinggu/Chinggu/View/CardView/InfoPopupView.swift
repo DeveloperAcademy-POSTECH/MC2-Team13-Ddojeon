@@ -15,7 +15,9 @@ struct InfoPopupView: View {
         ZStack {
             LottieView(filename: "cardBeforeAnimation", loopState: false)
                 .ignoresSafeArea()
-                .animation(nil)
+				.transaction { transaction in
+					transaction.animation = nil
+				}
                 .opacity(showInfoPopup ? 1 : 0)
             
             Image("popup")
@@ -53,7 +55,6 @@ struct InfoPopupView: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .foregroundColor(.black)
                                 .offset(y: 40)
-                                .frame(width: 310, height: 56)
                         }
 					}
 				}
