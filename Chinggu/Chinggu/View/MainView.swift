@@ -3,7 +3,7 @@
 //  Chinggu
 //
 //  Created by Sebin Kwon on 2023/05/06.
-//요일변경되니까 사라짐 /
+//
 
 import SwiftUI
 import SpriteKit
@@ -47,6 +47,8 @@ class GameScene: SKScene {
     
     func addBox(at position: CGPoint) {
         // 이미지가 랜덤으로 나오는 것
+		HapticManager.instance.notification(type: .warning)
+		
         let index = Int.random(in: 1..<99)
         let texture = SKTexture(imageNamed: "stonery\(index)")
         let box = SKSpriteNode(texture: texture)
@@ -69,7 +71,7 @@ class GameScene: SKScene {
 			let sequence = SKAction.sequence([fadeOut, removeFromArray, remove])
 			box.run(sequence)
 		}
-	}	
+	}
 }
 
 struct MainView: View {
@@ -93,7 +95,7 @@ struct MainView: View {
 	@AppStorage("group") var groupOrder: Int = 1
 	@AppStorage("isfirst") var isfirst: Bool = true
 	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.monday.rawValue
-    
+	
     @State var scene = GameScene()
     
     var body: some View {
@@ -207,7 +209,7 @@ struct MainView: View {
 						// 애니메이션
 							.modifier(ShakeEffect(delta: shake))
 							.onChange(of: shake) { newValue in
-								withAnimation(.easeOut(duration: 2.0)) {
+								withAnimation(.easeOut(duration: 1.5)) {
 									if shake == 0 {
 										shake = newValue
 									} else {
@@ -220,7 +222,7 @@ struct MainView: View {
 								if complimentsInGroup.count > scene.complimentCount {
 									scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
 									if canBreakBoxes {
-										shake = 5
+										shake = 4
 									}
 								}
 
@@ -330,6 +332,20 @@ struct ShakeEffect: AnimatableModifier {
 			.rotationEffect(Angle(degrees: sin(delta * .pi * 4.0) * CGFloat.random(in: 0.5...1.5)))
 			.offset(x: sin(delta * 1.5 * .pi * 1.2),
 					y: cos(delta * 1.5 * .pi * 1.1))
+	}
+}
+
+class HapticManager {
+	static let instance = HapticManager()
+	
+	func notification(type: UINotificationFeedbackGenerator.FeedbackType) {
+		let generator = UINotificationFeedbackGenerator()
+		generator.notificationOccurred(type)
+	}
+	
+	func impact(style: UIImpactFeedbackGenerator.FeedbackStyle) {
+		let generator = UIImpactFeedbackGenerator(style: style)
+		generator.impactOccurred()
 	}
 }
 
