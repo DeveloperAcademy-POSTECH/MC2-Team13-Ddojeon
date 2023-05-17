@@ -114,6 +114,7 @@ struct OnboardingView: View {
                             default: LottiePlayState(filename: "onboarding_\(idx)",
                                                      loopState: idx != 6 ? true : false,
                                                      playState: .constant(true))
+                            .frame(height: idx == 9 ? 400 : .none)
                             .scaleEffect(idx == 1 ? 0.55 : 1)
                             .overlay(alignment: .bottom) {
                                 if selection == 9 {
@@ -125,7 +126,7 @@ struct OnboardingView: View {
                                     .foregroundColor(Color(.systemGray2))
                                     .kerning(-0.06)
                                     .padding(.top, 5)
-                                    .offset(x: 0, y: -15)
+                                    .offset(x: 0, y: 20)
                                 }
                             }
                             }
@@ -328,6 +329,7 @@ struct CutChainView:View {
                     .fill(Color.clear)
                     .scaleEffect(0.7)
             }
+//            .contentShape(Rectangle()).background(Color.pink).gesture(DragGesture())
         }
     }
 }
@@ -441,7 +443,9 @@ struct SetDateView: View {
             }
             
             Button(action: {
-                showingDateSheet = true
+                if !settingDate {
+                    showingDateSheet = true
+                }
             }) {
                 Circle()
                     .fill(Color.clear)

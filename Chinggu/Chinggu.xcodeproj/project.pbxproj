@@ -26,17 +26,6 @@
 		70E68F0F2A0A888C00258A10 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 70E68F0E2A0A888C00258A10 /* Lottie */; };
 		70E68F122A0A906500258A10 /* cardAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 70E68F112A0A906500258A10 /* cardAnimation.json */; };
 		70E68F142A0A95FD00258A10 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E68F132A0A95FD00258A10 /* LottieView.swift */; };
-		A93729712A0F6E5100C79C04 /* Onboarding_4.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93729662A0F6E5000C79C04 /* Onboarding_4.swift */; };
-		A93729722A0F6E5100C79C04 /* Onboarding_5.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93729672A0F6E5000C79C04 /* Onboarding_5.swift */; };
-		A93729732A0F6E5100C79C04 /* Onboarding_8.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93729682A0F6E5000C79C04 /* Onboarding_8.swift */; };
-		A93729742A0F6E5100C79C04 /* Onboarding_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93729692A0F6E5000C79C04 /* Onboarding_2.swift */; };
-		A93729752A0F6E5100C79C04 /* Onboarding_7.swift in Sources */ = {isa = PBXBuildFile; fileRef = A937296A2A0F6E5000C79C04 /* Onboarding_7.swift */; };
-		A93729762A0F6E5100C79C04 /* Onboarding_10.swift in Sources */ = {isa = PBXBuildFile; fileRef = A937296B2A0F6E5000C79C04 /* Onboarding_10.swift */; };
-		A93729772A0F6E5100C79C04 /* Onboarding_6.swift in Sources */ = {isa = PBXBuildFile; fileRef = A937296C2A0F6E5000C79C04 /* Onboarding_6.swift */; };
-		A93729782A0F6E5100C79C04 /* Onboarding_9.swift in Sources */ = {isa = PBXBuildFile; fileRef = A937296D2A0F6E5100C79C04 /* Onboarding_9.swift */; };
-		A93729792A0F6E5100C79C04 /* Onboarding_11.swift in Sources */ = {isa = PBXBuildFile; fileRef = A937296E2A0F6E5100C79C04 /* Onboarding_11.swift */; };
-		A937297A2A0F6E5100C79C04 /* Onboarding_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A937296F2A0F6E5100C79C04 /* Onboarding_1.swift */; };
-		A937297B2A0F6E5100C79C04 /* Onboarding_3.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93729702A0F6E5100C79C04 /* Onboarding_3.swift */; };
 		A93729862A0F6E5C00C79C04 /* onboarding_3.json in Resources */ = {isa = PBXBuildFile; fileRef = A937297C2A0F6E5B00C79C04 /* onboarding_3.json */; };
 		A93729872A0F6E5C00C79C04 /* onboarding_2.json in Resources */ = {isa = PBXBuildFile; fileRef = A937297D2A0F6E5B00C79C04 /* onboarding_2.json */; };
 		A93729882A0F6E5C00C79C04 /* onboarding_5.json in Resources */ = {isa = PBXBuildFile; fileRef = A937297E2A0F6E5C00C79C04 /* onboarding_5.json */; };
@@ -77,17 +66,6 @@
 		70D706052A0FFFF0001D9203 /* Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
 		70E68F112A0A906500258A10 /* cardAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cardAnimation.json; sourceTree = "<group>"; };
 		70E68F132A0A95FD00258A10 /* LottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
-		A93729662A0F6E5000C79C04 /* Onboarding_4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding_4.swift; sourceTree = "<group>"; };
-		A93729672A0F6E5000C79C04 /* Onboarding_5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding_5.swift; sourceTree = "<group>"; };
-		A93729682A0F6E5000C79C04 /* Onboarding_8.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding_8.swift; sourceTree = "<group>"; };
-		A93729692A0F6E5000C79C04 /* Onboarding_2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding_2.swift; sourceTree = "<group>"; };
-		A937296A2A0F6E5000C79C04 /* Onboarding_7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding_7.swift; sourceTree = "<group>"; };
-		A937296B2A0F6E5000C79C04 /* Onboarding_10.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding_10.swift; sourceTree = "<group>"; };
-		A937296C2A0F6E5000C79C04 /* Onboarding_6.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding_6.swift; sourceTree = "<group>"; };
-		A937296D2A0F6E5100C79C04 /* Onboarding_9.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding_9.swift; sourceTree = "<group>"; };
-		A937296E2A0F6E5100C79C04 /* Onboarding_11.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding_11.swift; sourceTree = "<group>"; };
-		A937296F2A0F6E5100C79C04 /* Onboarding_1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding_1.swift; sourceTree = "<group>"; };
-		A93729702A0F6E5100C79C04 /* Onboarding_3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding_3.swift; sourceTree = "<group>"; };
 		A937297C2A0F6E5B00C79C04 /* onboarding_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_3.json; sourceTree = "<group>"; };
 		A937297D2A0F6E5B00C79C04 /* onboarding_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_2.json; sourceTree = "<group>"; };
 		A937297E2A0F6E5C00C79C04 /* onboarding_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_5.json; sourceTree = "<group>"; };
@@ -184,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				51887AE62A12232F0015EF88 /* OnboardingView.swift */,
-				A93729652A0F6E4100C79C04 /* onboardingView */,
 				A93729642A0F6E3600C79C04 /* onboardLottie */,
 			);
 			path = Onboard;
@@ -205,24 +182,6 @@
 				A93729812A0F6E5C00C79C04 /* onboarding_1.json */,
 			);
 			path = onboardLottie;
-			sourceTree = "<group>";
-		};
-		A93729652A0F6E4100C79C04 /* onboardingView */ = {
-			isa = PBXGroup;
-			children = (
-				A937296F2A0F6E5100C79C04 /* Onboarding_1.swift */,
-				A93729692A0F6E5000C79C04 /* Onboarding_2.swift */,
-				A93729702A0F6E5100C79C04 /* Onboarding_3.swift */,
-				A93729662A0F6E5000C79C04 /* Onboarding_4.swift */,
-				A93729672A0F6E5000C79C04 /* Onboarding_5.swift */,
-				A937296C2A0F6E5000C79C04 /* Onboarding_6.swift */,
-				A937296D2A0F6E5100C79C04 /* Onboarding_9.swift */,
-				A937296A2A0F6E5000C79C04 /* Onboarding_7.swift */,
-				A93729682A0F6E5000C79C04 /* Onboarding_8.swift */,
-				A937296B2A0F6E5000C79C04 /* Onboarding_10.swift */,
-				A937296E2A0F6E5100C79C04 /* Onboarding_11.swift */,
-			);
-			path = onboardingView;
 			sourceTree = "<group>";
 		};
 		AE37D5282A039605009B0F56 = {
@@ -369,31 +328,20 @@
 				70C7977B2A04357F00E2E3AF /* CardView.swift in Sources */,
 				70C7977D2A04357F00E2E3AF /* CardPopupView.swift in Sources */,
 				70C7977F2A04391800E2E3AF /* TempMainView.swift in Sources */,
-				A93729742A0F6E5100C79C04 /* Onboarding_2.swift in Sources */,
 				70C7977C2A04357F00E2E3AF /* CardFullScreenView.swift in Sources */,
-				A93729762A0F6E5100C79C04 /* Onboarding_10.swift in Sources */,
-				A93729782A0F6E5100C79C04 /* Onboarding_9.swift in Sources */,
-				A93729732A0F6E5100C79C04 /* Onboarding_8.swift in Sources */,
 				70D706062A0FFFF0001D9203 /* Popup.swift in Sources */,
 				51887AE72A12232F0015EF88 /* OnboardingView.swift in Sources */,
 				70815E822A08950900DBE5B0 /* ComplimentModel.xcdatamodeld in Sources */,
 				AE9537702A12245E00C6F5FF /* InfoPopupView.swift in Sources */,
-				A93729792A0F6E5100C79C04 /* Onboarding_11.swift in Sources */,
 				70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */,
 				51D817182A08E59F00B84E6A /* WriteComplimentView.swift in Sources */,
 				AE37D5452A063BD3009B0F56 /* MainView.swift in Sources */,
 				7014D47A2A10AF8B00F1B315 /* TempArchivingDetailView.swift in Sources */,
 				70B8FBA82A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift in Sources */,
-				A93729772A0F6E5100C79C04 /* Onboarding_6.swift in Sources */,
 				AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */,
-				A93729712A0F6E5100C79C04 /* Onboarding_4.swift in Sources */,
 				70385ED12A07DFEE001CDAB0 /* Color+Chinggu.swift in Sources */,
-				A93729752A0F6E5100C79C04 /* Onboarding_7.swift in Sources */,
-				A93729722A0F6E5100C79C04 /* Onboarding_5.swift in Sources */,
-				A937297A2A0F6E5100C79C04 /* Onboarding_1.swift in Sources */,
 				70385EDA2A07E60B001CDAB0 /* Date+Chinggu.swift in Sources */,
 				70815E812A08950900DBE5B0 /* Persistence.swift in Sources */,
-				A937297B2A0F6E5100C79C04 /* Onboarding_3.swift in Sources */,
 				70E68F142A0A95FD00258A10 /* LottieView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
