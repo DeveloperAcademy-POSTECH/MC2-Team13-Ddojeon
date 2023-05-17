@@ -246,8 +246,8 @@ struct WriteComplimentView: View {
                     .foregroundColor(Color.black)
                 }
                 .alert(goBackAlert.title, isPresented: $showingGoBackAlert, presenting: goBackAlert) {saveAlert in
-                    Button("네", action: dismiss.callAsFunction)
-                    Button("취소", role: .cancel) {}
+					Button("나가기", role: .destructive) { dismiss.callAsFunction() }
+					Button("취소", role: .cancel) {}
                 } message: {article in
                     Text(goBackAlert.description)
                 }
@@ -256,7 +256,7 @@ struct WriteComplimentView: View {
                 Button("저장", action: showSaveAlert)
                     .disabled(content.isEmpty ? true : false)
                     .alert(saveAlert.title, isPresented: $showingSaveAlert, presenting: saveAlert) {saveAlert in
-                        Button("네", action: saveContent)
+                        Button("저장", action: saveContent)
                         Button("취소", role: .cancel) {}
                     } message: {article in
                         Text(saveAlert.description)
