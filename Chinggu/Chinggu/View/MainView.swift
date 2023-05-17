@@ -232,18 +232,8 @@ struct MainView: View {
 								updateCanBreakBoxes()
 								resetTimeButton()
 								scene.scaleMode = .aspectFit
-								print("AllCompliment.count : ",Compliment.count)
-								print("complimentsInGroup.count : ",complimentsInGroup.count)
-								print("scene.complimentCount : ",scene.complimentCount)
 							}
-//                            .onChange(of: complimentsInGroup.count) { newValue in
-//								if complimentsInGroup.count > 0 {
-//									scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
-//									if canBreakBoxes {
-//										shake = 5
-//									}
-//								}
-//                            }
+						
 						if canBreakBoxes && scene.boxes.count > 0  {
 							Text("칭찬 상자를 톡! 눌러주세요")
 								.font(.custom("AppleSDGothicNeo-SemiBold", size: 14))
@@ -287,7 +277,7 @@ struct MainView: View {
 						}
 //                        .disabled(isCompliment)
 					}
-					if scene.complimentCount == 0 {
+					if complimentsInGroup.count == 0 {
 						NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment)) {
 							Image("emptyState")
 								.offset(y: 45)
@@ -302,6 +292,9 @@ struct MainView: View {
 						InfoPopupView(showInfoPopup: $showInfoPopup)
 					}
                 }
+				.onChange(of: groupOrder, perform: { newValue in
+					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(newValue))
+				})
 				.onAppear {
 					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
                     // 최초 칭찬 작성 시 안내 팝업
