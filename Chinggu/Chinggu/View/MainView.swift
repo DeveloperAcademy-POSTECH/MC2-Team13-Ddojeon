@@ -3,7 +3,7 @@
 //  Chinggu
 //
 //  Created by Sebin Kwon on 2023/05/06.
-//
+//요일변경되니까 사라짐 /
 
 import SwiftUI
 import SpriteKit
@@ -322,7 +322,7 @@ struct MainView: View {
         let todayWeekday = Weekday.allCases[(today + 5) % 7].rawValue
         if todayWeekday == selectedWeekday {
             self.canBreakBoxes = true
-            if scene.boxes.count > 0 {
+            if scene.complimentCount > 0 {
                 shake = 5
             }
         } else {
