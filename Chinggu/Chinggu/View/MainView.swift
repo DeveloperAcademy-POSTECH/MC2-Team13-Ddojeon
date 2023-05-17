@@ -41,7 +41,6 @@ class GameScene: SKScene {
 										y: UIScreen.main.bounds.height / 2.5))
 			}
 		}
-		print("sk",complimentCount)
         // 배경색 변경
         //        self.backgroundColor = .red
     }
@@ -58,14 +57,19 @@ class GameScene: SKScene {
         boxes.append(box)
     }
     
-    func resetBoxes() {
-        // 모든 박스 지우기
-        for box in boxes {
-            box.removeFromParent()
-        }
-        //        removeAllChildren()
-        boxes.removeAll()
-    }
+	func resetBoxes() {
+		for box in boxes {
+			let fadeOut = SKAction.fadeOut(withDuration: 1.0)
+			let remove = SKAction.removeFromParent()
+			let removeFromArray = SKAction.run {
+				if let index = self.boxes.firstIndex(of: box) {
+					self.boxes.remove(at: index)
+				}
+			}
+			let sequence = SKAction.sequence([fadeOut, removeFromArray, remove])
+			box.run(sequence)
+		}
+	}	
 }
 
 struct MainView: View {
@@ -76,9 +80,6 @@ struct MainView: View {
     
 	@State var complimentsInGroup: [ComplimentEntity] = []
     
-	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.monday.rawValue
-
-//    @State private var selectedWeekday: Weekday?
     @State private var showActionSheet = false
     @State private var canBreakBoxes = false
     @State private var showAlert = false
@@ -88,13 +89,10 @@ struct MainView: View {
     @State private var showPopup = false
     @State private var isCompliment = false
     @State private var showInfoPopup = false
-//    @State private var firstInfoPopup = true
 	
-//	@AppStorage("isCompliment") var isCompliment: Bool = false
 	@AppStorage("group") var groupOrder: Int = 1
 	@AppStorage("isfirst") var isfirst: Bool = true
-
-
+	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.monday.rawValue
     
     @State var scene = GameScene()
     
@@ -227,7 +225,6 @@ struct MainView: View {
 								}
 
 								scene.size = CGSize(width: width, height: height)
-//								print("appear",complimentsInGroup.count)
 								scene.complimentCount = complimentsInGroup.count
 								updateCanBreakBoxes()
 								resetTimeButton()
@@ -248,8 +245,7 @@ struct MainView: View {
 						Spacer()
 						// 칭찬돌 추가하는 버튼
 						Button(action: {
-//                            isCompliment = true
-//                            scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
+							
 						}, label: {
 							NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment), label: {
 								Text("칭찬하기")
@@ -260,22 +256,10 @@ struct MainView: View {
 									.frame(width: geometry.size.width/1.15, height: 50)
 							})
 						})
-//                        .frame(width: geometry.size.width/1.15, height: 50)
-//                        .buttonStyle(BorderedButtonStyle())
-//                        .background(Color.ddoBlue)
-//                    .cornerRadius(10)
-						
-//                        NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment), label: {
-//                            Text("칭찬하기")
-//                                .foregroundColor(.white)
-//                                .padding(18.0)
-//                        })
 						.background {
 							RoundedRectangle(cornerRadius: 10)
 								.foregroundColor(.blue)
-//                                .foregroundColor(isCompliment ? .gray : .blue)
 						}
-//                        .disabled(isCompliment)
 					}
 					if complimentsInGroup.count == 0 {
 						NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment)) {
@@ -337,11 +321,8 @@ struct ShakeEffect: AnimatableModifier {
 	var delta: CGFloat = 0
 	
 	var animatableData: CGFloat {
-		get {
-			delta
-		} set {
-			delta = newValue
-		}
+		get { delta }
+		set { delta = newValue }
 	}
 	
 	func body(content: Content) -> some View {
