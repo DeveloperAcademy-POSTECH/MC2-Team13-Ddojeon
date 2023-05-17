@@ -96,7 +96,6 @@ enum Categories: CaseIterable {
     }
 }
 
-let categories: [Category] = Categories.allCases.map { Category(title: $0.title, tipColor: $0.tipColor, sheetColor: $0.sheetColor, example: $0.example) }
 
 
 struct WriteComplimentView: View {
@@ -109,6 +108,8 @@ struct WriteComplimentView: View {
     @State private var showingSaveAlert = false
     @State private var goBackAlert = SaveAlert(title: "정말로 나갈까요?", description: "작성 중인 내용은 저장되지 않아요")
     @State private var saveAlert = SaveAlert(title: "칭찬을 저장할까요?", description: "칭찬은 하루에 한 번만 쓸 수 있어요")
+    
+    let categories: [Category] = Categories.allCases.map { Category(title: $0.title, tipColor: $0.tipColor, sheetColor: $0.sheetColor, example: $0.example) }
     
 	@AppStorage("group") var groupOrder: Int = 1
 

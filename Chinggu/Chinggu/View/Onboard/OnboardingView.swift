@@ -76,20 +76,18 @@ struct OnboardingView: View {
                    nextButton: $0.nextButton)
     }
     @State private var selection = 1
-    @State private var currentIndex = 1
     @State private var showingDateSheet = false
     @State private var settingDate = false
     @State private var showMain = false
     
     var body: some View {
         ZStack {
-            if currentIndex == 8 {
+            if selection == 8 {
                 LinearGradient(gradient: Gradient(colors: [Color("ddoyellowon"), Color("ddowhiteon")]), startPoint: .topTrailing, endPoint: .bottomLeading)
                     .edgesIgnoringSafeArea(.all)
             }
             VStack(spacing: 0) {
                 ProgressBar(selection: $selection,
-                            currentIndex: $currentIndex,
                             length: onboardings.count)
                 
                 TabView(selection: $selection) {
@@ -101,7 +99,6 @@ struct OnboardingView: View {
                             switch idx {
                             case 5: CutChainView(
                                 selection: $selection,
-                                currentIndex: $currentIndex,
                                 length: onboardings.count,
                                 onboardings: onboardings,
                                 showingDateSheet: $showingDateSheet,
@@ -109,18 +106,17 @@ struct OnboardingView: View {
                                 showMain: $showMain)
                             case 7: DictationView(
                                 selection: $selection,
-                                currentIndex: $currentIndex,
                                 length: onboardings.count,
                                 onboardings: onboardings)
-                            case 8 : CelebratingView()
-                            case 10 : SetDateView(showingDateSheet: $showingDateSheet,
-                                                  settingDate: $settingDate)
+                            case 8: CelebratingView()
+                            case 10: SetDateView(showingDateSheet: $showingDateSheet,
+                                                 settingDate: $settingDate)
                             default: LottiePlayState(filename: "onboarding_\(idx)",
                                                      loopState: idx != 6 ? true : false,
                                                      playState: .constant(true))
                             .scaleEffect(idx == 1 ? 0.55 : 1)
                             .overlay(alignment: .bottom) {
-                                if currentIndex == 9 {
+                                if selection == 9 {
                                     HStack(spacing: 3) {
                                         Image(systemName: "info.circle.fill")
                                         Text("본 가이드는 저서 ‘일단 나부터 칭찬합시다’를 기반으로 작성되었어요.")
@@ -135,19 +131,14 @@ struct OnboardingView: View {
                             }
                         }
                         .tag(idx)
-                        .onAppear {
-                            currentIndex = idx
-                        }
-                        
                     }
                 }
-                .tabViewStyle(.page(indexDisplayMode: .never))
-                .indexViewStyle(.page(backgroundDisplayMode: .never))
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
                 
                 if selection != 5 && selection != 7 {
                     GoNextButton(
                         selection: $selection,
-                        currentIndex: $currentIndex,
                         length: onboardings.count,
                         onboardings: onboardings,
                         showingDateSheet: $showingDateSheet,
@@ -168,7 +159,6 @@ struct OnboardingView: View {
 
 struct ProgressBar: View {
     @Binding var selection: Int
-    @Binding var currentIndex: Int
     @State var length: Int
     
     var body: some View {
@@ -182,7 +172,7 @@ struct ProgressBar: View {
                         .foregroundColor(Color.black)
                         .frame(width: 44, alignment: .leading)
                 })
-                ProgressView(value: Double(currentIndex-1) / Double(length-1), total: 1.0)
+                ProgressView(value: Double(selection - 1) / Double(length - 1), total: 1.0)
                     .scaleEffect(y:1.3)
                     .progressViewStyle(
                         LinearProgressViewStyle(tint: Color("oll"))
@@ -252,7 +242,6 @@ struct OnboardingTextView: View {
 
 struct GoNextButton: View {
     @Binding var selection: Int
-    @Binding var currentIndex: Int
     @State var length: Int
     @State var onboardings: [Onboarding]
     @Binding var showingDateSheet: Bool
@@ -277,7 +266,7 @@ struct GoNextButton: View {
                 RoundedRectangle(cornerRadius: 10)
                     .frame(height: 56)
                     .foregroundColor(selection == length ? Color.blue : Color("oll"))
-                Text(settingDate && selection == 10 ? "다음" : onboardings[currentIndex - 1].nextButton)
+                Text(settingDate && selection == 10 ? "다음" : onboardings[selection - 1].nextButton)
                     .bold()
                     .font(.title3)
                     .foregroundColor(Color.white)
@@ -289,7 +278,6 @@ struct GoNextButton: View {
 
 struct CutChainView:View {
     @Binding var selection: Int
-    @Binding var currentIndex: Int
     @State var length: Int
     @State var onboardings: [Onboarding]
     @State private var isPlaying = false
@@ -313,7 +301,6 @@ struct CutChainView:View {
                 if isPlaying {
                     GoNextButton(
                         selection: $selection,
-                        currentIndex: $currentIndex,
                         length: onboardings.count,
                         onboardings: onboardings,
                         showingDateSheet: $showingDateSheet,
@@ -347,7 +334,6 @@ struct CutChainView:View {
 
 struct DictationView: View {
     @Binding var selection: Int
-    @Binding var currentIndex: Int
     @State var length: Int
     @State var onboardings: [Onboarding]
     @State private var inputText: String = ""
@@ -451,7 +437,7 @@ struct SetDateView: View {
                         settingDate = true
                     }
                 }
-                .compactMap { $0 } + [.cancel()])
+                    .compactMap { $0 } + [.cancel()])
             }
             
             Button(action: {
