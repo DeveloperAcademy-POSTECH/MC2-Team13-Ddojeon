@@ -11,6 +11,7 @@ struct CardFullScreenView: View {
 	
 	@AppStorage("group") var groupOrder: Int = 1
 	@State var complimentsInGroup: [ComplimentEntity] = []
+	@State var groupOrderText: String = ""
 	@State var groupStartEndDates: String = ""
 	
 	var namespace: Namespace.ID
@@ -23,20 +24,30 @@ struct CardFullScreenView: View {
 					.resizable()
 					.aspectRatio(contentMode: .fill)
 					.matchedGeometryEffect(id: "image", in: namespace)
-				Text(groupStartEndDates)
-					.font(.headline)
-					.matchedGeometryEffect(id: "title", in: namespace)
-					.frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundColor(Color("oll"))
-					.padding()
+				HStack {
+					Text(groupOrderText)
+						.font(.headline)
+						.matchedGeometryEffect(id: "title", in: namespace)
+//						.frame(maxWidth: .infinity, alignment: .leading)
+						.foregroundColor(Color("oll"))
+					Text(groupStartEndDates)
+						.font(.caption)
+						.matchedGeometryEffect(id: "subtitle", in: namespace)
+//						.frame(maxWidth: .infinity, alignment: .leading)
+						.foregroundColor(.gray)
+					Spacer()
+				}
+				.padding()
+				
 				ScrollView(.vertical, showsIndicators: false) {
 					VStack(alignment: .leading, spacing: 10) {
 						ForEach(complimentsInGroup, id: \.id) { compliment in
 							Text(compliment.compliment ?? "nil compliment")
-                                .font(.custom("AppleSDGothicNeo-Light", size: 15))
+                                .font(.custom("AppleSDGothicNeo-Regular", size: 17))
                                 .padding(.horizontal)
-                                .lineSpacing(3)
+								.lineSpacing(6)
 							Divider()
+								.padding(4)
 						}
 					}
 					.padding()
@@ -44,22 +55,22 @@ struct CardFullScreenView: View {
 				HStack {
 					Spacer()
 					Button {
-						withAnimation(.easeOut(duration: 0.5)) {
+						withAnimation(.easeOut) {
 							//MainView의 Popup Card를 내림
 							showPopup = false
 							groupOrder = groupOrder + 1
 						}
 					} label: {
 						Text("닫기")
-                            .font(.custom("AppleSDGothicNeo-Bold", size: 16))
-							.foregroundColor(.white)
-							.padding()
+							.font(.custom("AppleSDGothicNeo-Bold", size: 20))
+							.foregroundColor(Color.white)
+							.kerning(1)
+							.padding(.vertical,6)
+							.frame(width: UIScreen.main.bounds.width/1.15, height: 50)
 					}
 					.background {
-						RoundedRectangle(cornerRadius: 10)
-							.foregroundColor(.blue)
-							.foregroundColor(.ddoBlue)
-							.frame(width: 80, height: 40)
+						RoundedRectangle(cornerRadius: 15)
+							.foregroundColor(Color("oll"))
 					}
 					
 					Spacer()
@@ -78,11 +89,10 @@ struct CardFullScreenView: View {
 		complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
 		if let minDate = complimentsInGroup.first?.createDate,
 		   let maxDate = complimentsInGroup.last?.createDate {
-			let formatter = DateFormatter()
-			formatter.dateFormat = "yyyy.MM.dd"
-			let start = formatter.string(from: minDate)
-			let end = formatter.string(from: maxDate)
-			groupStartEndDates = "\(groupOrder)번째 저금통 \(start) ~ \(end)"
+			let start = minDate.formatWithDot()
+			let end = maxDate.formatWithDot()
+			groupStartEndDates = "\(start) ~ \(end)"
+			groupOrderText = "\(groupOrder)번째 상자"
 		}
 	}
 }

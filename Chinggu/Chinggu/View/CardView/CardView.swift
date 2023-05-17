@@ -12,18 +12,27 @@ struct CardView: View {
 	@Namespace var namespace
 	@State private var showFullScreen = false
 	@Binding var showPopup: Bool
+	@State private var showText = false
 
 	var body: some View {
 		ZStack {
 			LottieView(filename: "cardBeforeAnimation", loopState: false)
 				.ignoresSafeArea()
-				.animation(nil)
+				.transaction { transaction in
+					transaction.animation = nil
+				}
 			if !showFullScreen {
 				VStack {
 					CardPopupView(namespace: namespace)
 					Text("카드를 눌러 내용을 확인하세요")
 						.bold()
 						.foregroundColor(.white)
+						.opacity(showText ? 1 : 0)
+						.onAppear {
+							withAnimation (.easeInOut.delay(5)) {
+								showText = true
+							}
+						}
 				}
 			} else {
 				CardFullScreenView(namespace: namespace, showPopup: $showPopup)
