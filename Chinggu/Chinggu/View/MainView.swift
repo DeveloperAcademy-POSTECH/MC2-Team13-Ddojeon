@@ -185,7 +185,6 @@ struct MainView: View {
 								.lineSpacing(5)
 								.padding(.bottom, 25)
 						}
-						Spacer()
 						
 						//MARK: 칭찬 저금통
 						SpriteView(scene: scene)
