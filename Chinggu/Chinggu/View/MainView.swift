@@ -3,7 +3,7 @@
 //  Chinggu
 //
 //  Created by Sebin Kwon on 2023/05/06.
-//요일변경되니까 사라짐 /
+//
 
 import SwiftUI
 import SpriteKit
@@ -41,13 +41,14 @@ class GameScene: SKScene {
 										y: UIScreen.main.bounds.height / 2.5))
 			}
 		}
-		print("sk",complimentCount)
         // 배경색 변경
         //        self.backgroundColor = .red
     }
     
     func addBox(at position: CGPoint) {
         // 이미지가 랜덤으로 나오는 것
+		HapticManager.instance.notification(type: .warning)
+		
         let index = Int.random(in: 1..<99)
         let texture = SKTexture(imageNamed: "stonery\(index)")
         let box = SKSpriteNode(texture: texture)
@@ -58,14 +59,19 @@ class GameScene: SKScene {
         boxes.append(box)
     }
     
-    func resetBoxes() {
-        // 모든 박스 지우기
-        for box in boxes {
-            box.removeFromParent()
-        }
-        //        removeAllChildren()
-        boxes.removeAll()
-    }
+	func resetBoxes() {
+		for box in boxes {
+			let fadeOut = SKAction.fadeOut(withDuration: 1.0)
+			let remove = SKAction.removeFromParent()
+			let removeFromArray = SKAction.run {
+				if let index = self.boxes.firstIndex(of: box) {
+					self.boxes.remove(at: index)
+				}
+			}
+			let sequence = SKAction.sequence([fadeOut, removeFromArray, remove])
+			box.run(sequence)
+		}
+	}
 }
 
 struct MainView: View {
@@ -76,9 +82,6 @@ struct MainView: View {
     
 	@State var complimentsInGroup: [ComplimentEntity] = []
     
-	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.monday.rawValue
-
-//    @State private var selectedWeekday: Weekday?
     @State private var showActionSheet = false
     @State private var canBreakBoxes = false
     @State private var showAlert = false
@@ -88,14 +91,11 @@ struct MainView: View {
     @State private var showPopup = false
     @State private var isCompliment = false
     @State private var showInfoPopup = false
-//    @State private var firstInfoPopup = true
 	
-//	@AppStorage("isCompliment") var isCompliment: Bool = false
 	@AppStorage("group") var groupOrder: Int = 1
 	@AppStorage("isfirst") var isfirst: Bool = true
-
-
-    
+	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.monday.rawValue
+	
     @State var scene = GameScene()
     
     var body: some View {
@@ -209,7 +209,7 @@ struct MainView: View {
 						// 애니메이션
 							.modifier(ShakeEffect(delta: shake))
 							.onChange(of: shake) { newValue in
-								withAnimation(.easeOut(duration: 2.0)) {
+								withAnimation(.easeOut(duration: 1.5)) {
 									if shake == 0 {
 										shake = newValue
 									} else {
@@ -222,12 +222,11 @@ struct MainView: View {
 								if complimentsInGroup.count > scene.complimentCount {
 									scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
 									if canBreakBoxes {
-										shake = 5
+										shake = 4
 									}
 								}
 
 								scene.size = CGSize(width: width, height: height)
-//								print("appear",complimentsInGroup.count)
 								scene.complimentCount = complimentsInGroup.count
 								updateCanBreakBoxes()
 								resetTimeButton()
@@ -248,8 +247,7 @@ struct MainView: View {
 						Spacer()
 						// 칭찬돌 추가하는 버튼
 						Button(action: {
-//                            isCompliment = true
-//                            scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
+							
 						}, label: {
 							NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment), label: {
 								Text("칭찬하기")
@@ -260,22 +258,10 @@ struct MainView: View {
 									.frame(width: geometry.size.width/1.15, height: 50)
 							})
 						})
-//                        .frame(width: geometry.size.width/1.15, height: 50)
-//                        .buttonStyle(BorderedButtonStyle())
-//                        .background(Color.ddoBlue)
-//                    .cornerRadius(10)
-						
-//                        NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment), label: {
-//                            Text("칭찬하기")
-//                                .foregroundColor(.white)
-//                                .padding(18.0)
-//                        })
 						.background {
 							RoundedRectangle(cornerRadius: 10)
 								.foregroundColor(.blue)
-//                                .foregroundColor(isCompliment ? .gray : .blue)
 						}
-//                        .disabled(isCompliment)
 					}
 					if complimentsInGroup.count == 0 {
 						NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment)) {
@@ -337,11 +323,8 @@ struct ShakeEffect: AnimatableModifier {
 	var delta: CGFloat = 0
 	
 	var animatableData: CGFloat {
-		get {
-			delta
-		} set {
-			delta = newValue
-		}
+		get { delta }
+		set { delta = newValue }
 	}
 	
 	func body(content: Content) -> some View {
@@ -349,6 +332,20 @@ struct ShakeEffect: AnimatableModifier {
 			.rotationEffect(Angle(degrees: sin(delta * .pi * 4.0) * CGFloat.random(in: 0.5...1.5)))
 			.offset(x: sin(delta * 1.5 * .pi * 1.2),
 					y: cos(delta * 1.5 * .pi * 1.1))
+	}
+}
+
+class HapticManager {
+	static let instance = HapticManager()
+	
+	func notification(type: UINotificationFeedbackGenerator.FeedbackType) {
+		let generator = UINotificationFeedbackGenerator()
+		generator.notificationOccurred(type)
+	}
+	
+	func impact(style: UIImpactFeedbackGenerator.FeedbackStyle) {
+		let generator = UIImpactFeedbackGenerator(style: style)
+		generator.impactOccurred()
 	}
 }
 

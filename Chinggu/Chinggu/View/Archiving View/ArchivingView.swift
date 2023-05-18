@@ -21,7 +21,7 @@ struct ArchivingView: View {
     var body: some View {
         NavigationStack{
             VStack(alignment: .leading){
-                Text(groupOrder == 1 ? "아직 열어본 칭찬박스가 없어요" : "\(groupOrder - 1)번의 상자를 열었고\n\(Compliment.count)번 칭찬했어요")
+                Text(groupOrder == 1 ? "아직 열어본 칭찬상자가 없어요" : "\(groupOrder - 1)번의 상자를 열었고\n\(Compliment.count)번 칭찬했어요")
                     .font(.title3)
                     .fontWeight(.bold)
                     .padding(.leading)
