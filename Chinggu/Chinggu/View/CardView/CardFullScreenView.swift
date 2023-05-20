@@ -28,7 +28,7 @@ struct CardFullScreenView: View {
 					Text(groupOrderText)
 						.font(.headline)
 						.matchedGeometryEffect(id: "title", in: namespace)
-						.foregroundColor(Color("oll"))
+						.foregroundColor(Color.ddoText)
 					Text(groupStartEndDates)
 						.font(.caption)
 						.matchedGeometryEffect(id: "subtitle", in: namespace)
@@ -78,7 +78,7 @@ struct CardFullScreenView: View {
 					}
 					.background {
 						RoundedRectangle(cornerRadius: 15)
-							.foregroundColor(Color("oll"))
+							.foregroundColor(Color.ddoText)
 					}
 					
 					Spacer()

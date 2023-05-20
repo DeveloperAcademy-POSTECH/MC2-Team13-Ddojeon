@@ -176,7 +176,7 @@ struct ProgressBar: View {
                 ProgressView(value: Double(selection - 1) / Double(length - 1), total: 1.0)
                     .scaleEffect(y:1.3)
                     .progressViewStyle(
-                        LinearProgressViewStyle(tint: Color("oll"))
+						LinearProgressViewStyle(tint: Color.ddoText)
                     )
             }
         }
@@ -202,7 +202,7 @@ struct OnboardingTextView: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: 18)
                             .frame(width: 72, height: 36)
-                            .foregroundColor(Color("oll"))
+							.foregroundColor(Color.ddoText)
                         Text(message[messageIndex])
                             .bold()
                             .font(.body)
@@ -266,11 +266,11 @@ struct GoNextButton: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
                     .frame(height: 56)
-                    .foregroundColor(selection == length ? Color.blue : Color("oll"))
+					.foregroundColor(selection == length ? Color.blue : Color.ddoText)
                 Text(settingDate && selection == 10 ? "다음" : onboardings[selection - 1].nextButton)
                     .bold()
                     .font(.title3)
-                    .foregroundColor(Color.white)
+					.foregroundColor(Color.white)
             }
             .padding(.horizontal, 20)
         })
@@ -380,7 +380,7 @@ struct DictationView: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: 10)
                             .frame(width: 82, height: 121)
-                            .foregroundColor(Color("oll"))
+							.foregroundColor(Color.ddoText)
                         Image(systemName: "checkmark")
                             .bold()
                             .font(.title)

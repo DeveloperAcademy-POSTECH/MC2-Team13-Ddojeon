@@ -21,7 +21,7 @@ struct TempArchivingDetailView: View {
                 HStack(spacing: -5){
                     
                     Text("1번째 상자")
-                        .foregroundColor(Color("oll"))
+						.foregroundColor(Color.ddoText)
                         .opacity(0.9)
                         .scaleEffect(0.9)
                     
@@ -30,7 +30,7 @@ struct TempArchivingDetailView: View {
                         .scaleEffect(0.9)
                     
                     Text("\(order + 1)번째 칭찬")
-                        .foregroundColor(Color("oll"))
+						.foregroundColor(Color.ddoText)
                         .opacity(0.9)
                         .scaleEffect(0.9)
                     Spacer()
@@ -42,7 +42,7 @@ struct TempArchivingDetailView: View {
                         .font(.body)
                         .fontWeight(.semibold)
                         .lineSpacing(5)
-                        .foregroundColor(Color("oll"))
+						.foregroundColor(Color.ddoText)
                     Spacer()
                     HStack{
                         Spacer()

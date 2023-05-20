@@ -173,7 +173,7 @@ struct MainView: View {
 							Text("이번 주 칭찬을\n  확인할 시간이에요💞")
 								.multilineTextAlignment(.center)
 								.font(.custom("AppleSDGothicNeo-Bold", size: 28))
-								.foregroundColor(Color("oll"))
+								.foregroundColor(Color.ddoText)
 								.lineSpacing(5)
 								.padding(.bottom, 25)
 
@@ -181,7 +181,7 @@ struct MainView: View {
 							Text("오늘은 어떤 칭찬을\n해볼까요?✍️")
 								.multilineTextAlignment(.center)
 								.font(.custom("AppleSDGothicNeo-Bold", size: 28))
-								.foregroundColor(Color("oll"))
+								.foregroundColor(Color.ddoText)
 								.lineSpacing(5)
 								.padding(.bottom, 25)
 						}

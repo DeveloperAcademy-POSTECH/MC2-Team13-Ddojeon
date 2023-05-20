@@ -16,6 +16,9 @@ extension Color {
 	static let ddoPink = Color("ddoPink")
 	static let ddoBlue = Color("ddoBlue")
 	static let ddoYellow = Color("ddoYellow")
+	
+	//Tips & Card
+	static let ddoText = Color("ddoText")
     static let ddoTip1 = Color("ddoTip1")
     static let ddoTip2 = Color("ddoTip2")
     static let ddoTip3 = Color("ddoTip3")

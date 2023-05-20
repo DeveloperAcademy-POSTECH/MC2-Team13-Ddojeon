@@ -16,6 +16,8 @@
 		70385EDA2A07E60B001CDAB0 /* Date+Chinggu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */; };
 		70815E812A08950900DBE5B0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7E2A08950900DBE5B0 /* Persistence.swift */; };
 		70815E822A08950900DBE5B0 /* ComplimentModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7F2A08950900DBE5B0 /* ComplimentModel.xcdatamodeld */; };
+		709CABBF2A18E361004A1813 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709CABBE2A18E361004A1813 /* Category.swift */; };
+		709CABC12A18E37E004A1813 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709CABC02A18E37E004A1813 /* Categories.swift */; };
 		70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */; };
 		70B8FBA82A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */; };
 		70C7977B2A04357F00E2E3AF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C797782A04357F00E2E3AF /* CardView.swift */; };
@@ -57,6 +59,8 @@
 		70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Chinggu.swift"; sourceTree = "<group>"; };
 		70815E7E2A08950900DBE5B0 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		70815E802A08950900DBE5B0 /* ComplimentModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ComplimentModel.xcdatamodel; sourceTree = "<group>"; };
+		709CABBE2A18E361004A1813 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		709CABC02A18E37E004A1813 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ComplimentEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ComplimentEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		70C797782A04357F00E2E3AF /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -104,7 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				AE37D5442A063BD3009B0F56 /* MainView.swift */,
-				51D817172A08E59F00B84E6A /* WriteComplimentView.swift */,
+				709CABBC2A18E332004A1813 /* WriteComplimentView */,
 				A93728C52A0F6DCD00C79C04 /* Onboard */,
 				70C797722A042FF400E2E3AF /* CardView */,
 				FBB8CFD72A0B836E00210F90 /* Archiving View */,
@@ -133,6 +137,24 @@
 				70815E7F2A08950900DBE5B0 /* ComplimentModel.xcdatamodeld */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		709CABBC2A18E332004A1813 /* WriteComplimentView */ = {
+			isa = PBXGroup;
+			children = (
+				709CABBD2A18E34B004A1813 /* Category */,
+				51D817172A08E59F00B84E6A /* WriteComplimentView.swift */,
+			);
+			path = WriteComplimentView;
+			sourceTree = "<group>";
+		};
+		709CABBD2A18E34B004A1813 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				709CABBE2A18E361004A1813 /* Category.swift */,
+				709CABC02A18E37E004A1813 /* Categories.swift */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		70C797722A042FF400E2E3AF /* CardView */ = {
@@ -335,8 +357,10 @@
 				AE9537702A12245E00C6F5FF /* InfoPopupView.swift in Sources */,
 				70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */,
 				51D817182A08E59F00B84E6A /* WriteComplimentView.swift in Sources */,
+				709CABBF2A18E361004A1813 /* Category.swift in Sources */,
 				AE37D5452A063BD3009B0F56 /* MainView.swift in Sources */,
 				7014D47A2A10AF8B00F1B315 /* TempArchivingDetailView.swift in Sources */,
+				709CABC12A18E37E004A1813 /* Categories.swift in Sources */,
 				70B8FBA82A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift in Sources */,
 				AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */,
 				70385ED12A07DFEE001CDAB0 /* Color+Chinggu.swift in Sources */,

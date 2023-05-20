@@ -21,7 +21,6 @@ struct ContentView: View {
 			MainView()
 		} else {
             OnboardingView()
-//			Onboarding_1()
 		}
 	}
 }
