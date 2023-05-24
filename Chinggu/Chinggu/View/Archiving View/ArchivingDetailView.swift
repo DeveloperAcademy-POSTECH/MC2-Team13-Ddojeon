@@ -10,18 +10,15 @@ import SwiftUI
 struct ArchivingDetailView: View {
     
     @AppStorage("group") var groupOrder: Int = 1
-    @FetchRequest(
-        entity: ComplimentEntity.entity(),
-        sortDescriptors: []
-    ) var allCompliments: FetchedResults<ComplimentEntity>
 
     @State var complimentOrder: Int16
     @State var compliment: String = "칭찬 글"
     @State var groupID: Int16 = 6
     @State var order: Int16 = 45
     @State var createDate: Date = Date()
-    
     @State private var cardColor = Color.ddoOrange
+	
+	@EnvironmentObject var viewModel: ComplimentViewModel
     
     private let colors = [
         Color("ddoTip1_2"),
@@ -68,7 +65,7 @@ struct ArchivingDetailView: View {
                 Spacer()
                 
                 Button {
-                    if complimentOrder < allCompliments.count {
+                    if complimentOrder < viewModel.compliments.count {
                         complimentOrder += 1
                         loadCompliment()
                     }
@@ -79,10 +76,10 @@ struct ArchivingDetailView: View {
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                         .padding(EdgeInsets(top: 18, leading: 20, bottom: 18, trailing: 20))
-                        .background(complimentOrder >= allCompliments.count ? .gray :  .black.opacity(0.7))
+						.background(complimentOrder >= viewModel.compliments.count ? .gray :  .black.opacity(0.7))
                         .cornerRadius(15)
                 }
-                .disabled(complimentOrder >= allCompliments.count)
+                .disabled(complimentOrder >= viewModel.compliments.count)
             }
         }
         .padding()
@@ -94,15 +91,15 @@ struct ArchivingDetailView: View {
         let randomIndex = Int.random(in: 0..<colors.count)
         return colors[randomIndex]
     }
-    
-    private func loadCompliment() {
-        if let complimentEntity = PersistenceController.shared.loadCompliment(order: complimentOrder) {
-            compliment = complimentEntity.compliment ?? ""
-            groupID = complimentEntity.groupID
-            order = complimentEntity.order
-            createDate = complimentEntity.createDate ?? Date()
-        }
-    }
+	
+	private func loadCompliment() {
+		if let complimentEntity = viewModel.loadCompliment(order: complimentOrder) {
+			compliment = complimentEntity.compliment ?? ""
+			groupID = complimentEntity.groupID
+			order = complimentEntity.order
+			createDate = complimentEntity.createDate ?? Date()
+		}
+	}
 }
 
 struct ArchivingDetailView_Previews: PreviewProvider {

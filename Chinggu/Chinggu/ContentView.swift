@@ -9,13 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
 	
+	@EnvironmentObject var viewModel: ComplimentViewModel
+	@State private var hasOnboarded: Bool = UserDefaults.standard.bool(forKey: "HasOnboarded")
+	@AppStorage("group") var groupOrder: Int = 1
+
 	init() {
 		UIView.appearance().overrideUserInterfaceStyle = .light
 	}
-	
-	@State private var hasOnboarded: Bool = UserDefaults.standard.bool(forKey: "HasOnboarded")
-	@AppStorage("group") var groupOrder: Int = 1
-	
+
 	var body: some View {
 		if hasOnboarded {
 			MainView()
