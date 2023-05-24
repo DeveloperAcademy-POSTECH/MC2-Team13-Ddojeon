@@ -32,7 +32,7 @@ class PersistenceController {
 	//MARK: CREATE
 	func addCompliment(complimentText: String, groupID: Int16) {
 		let order = fetchLatestOrder() + 1
-		let compliment = ComplimentEntity(context: container.viewContext)
+		let compliment = ComplimentEntity(context: context)
 		compliment.compliment = complimentText
 		compliment.createDate = Date()
 		compliment.order = order
@@ -66,13 +66,13 @@ class PersistenceController {
 	//MARK: Delete
 	func deleteCompliment(compliment: ComplimentEntity) {
 		let orderToDelete = compliment.order
-		container.viewContext.delete(compliment)
+		context.delete(compliment)
 
 		let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
 		fetchRequest.predicate = NSPredicate(format: "order > %d", orderToDelete)
 
 		do {
-			let complimentsToUpdate = try container.viewContext.fetch(fetchRequest)
+			let complimentsToUpdate = try context.fetch(fetchRequest)
 			for complimentToUpdate in complimentsToUpdate {
 				complimentToUpdate.order -= 1
 			}
@@ -114,7 +114,7 @@ class PersistenceController {
 		let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
 		do {
-			try container.viewContext.execute(batchDeleteRequest)
+			try context.execute(batchDeleteRequest)
 		} catch {
 			print("Delete all data in ComplimentEntity failed: \(error)")
 		}
@@ -122,9 +122,9 @@ class PersistenceController {
 
 	private func saveContext() {
 		do{
-			try container.viewContext.save()
+			try context.save()
 		} catch {
-			container.viewContext.rollback()
+			context.rollback()
 		}
 	}
 	
@@ -134,7 +134,7 @@ class PersistenceController {
 		fetchRequest.fetchLimit = 1
 
 		do {
-			let lastCompliment = try container.viewContext.fetch(fetchRequest).first
+			let lastCompliment = try context.fetch(fetchRequest).first
 			return lastCompliment?.order ?? 0
 		} catch {
 			print("Failed to fetch last order: \(error)")

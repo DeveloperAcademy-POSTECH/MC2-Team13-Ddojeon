@@ -82,15 +82,16 @@ struct WriteComplimentView: View {
                             .padding(EdgeInsets(top: 0, leading: 16, bottom: 16, trailing: 16))
                         }
                         .padding(.top, 30)
-                        .presentationDetents([.height(300)]) // [.small] ?
-                        .presentationDragIndicator(.visible)
+						.presentationDetents([.fraction(0.4)])
+//                        .presentationDetents([.height(300)])
+//                        .presentationDragIndicator(.visible)
                     }
                 }
                 
             }
             
             VStack(spacing: 0) {
-                Divider()
+				Divider()
                     .padding(.top, 5)
                 Rectangle()
                     .fill(Color(.systemGray3))

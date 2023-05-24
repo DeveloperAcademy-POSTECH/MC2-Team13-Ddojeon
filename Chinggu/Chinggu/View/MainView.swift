@@ -48,6 +48,7 @@ class GameScene: SKScene {
     func addBox(at position: CGPoint) {
         // 이미지가 랜덤으로 나오는 것
 		HapticManager.instance.notification(type: .warning)
+//		HapticManager.instance.impact(style: .heavy)
 		
         let index = Int.random(in: 1..<99)
         let texture = SKTexture(imageNamed: "stonery\(index)")
