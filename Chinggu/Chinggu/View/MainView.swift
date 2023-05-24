@@ -76,11 +76,8 @@ class GameScene: SKScene {
 }
 
 struct MainView: View {
-    @FetchRequest(
-        entity: ComplimentEntity.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
-    ) var Compliment: FetchedResults<ComplimentEntity>
-    
+	
+	@EnvironmentObject var viewModel: ComplimentViewModel
 	@State var complimentsInGroup: [ComplimentEntity] = []
     
     @State private var showActionSheet = false
@@ -285,7 +282,7 @@ struct MainView: View {
 				.onAppear {
 					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
                     // 최초 칭찬 작성 시 안내 팝업
-					if Compliment.count == 1, isfirst == true {
+					if viewModel.compliments.count == 1, isfirst == true {
 						withAnimation(.spring(response: 1.2, dampingFraction: 0.8)) {
 							showInfoPopup = true
 						}

@@ -9,19 +9,15 @@ import SwiftUI
 
 struct ArchivingView: View {
     
-    @FetchRequest(
-        entity: ComplimentEntity.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
-    ) var Compliment: FetchedResults<ComplimentEntity>
     @AppStorage("group") var groupOrder: Int = 1
-
+	@EnvironmentObject var viewModel: ComplimentViewModel
     @State private var isShowingSheet = false
     @State private var tapCount = 0
 
     var body: some View {
         NavigationStack{
             VStack(alignment: .leading){
-                Text(groupOrder == 1 ? "아직 열어본 칭찬상자가 없어요" : "\(groupOrder - 1)번의 상자를 열었고\n\(Compliment.count)번 칭찬했어요")
+				Text(groupOrder == 1 ? "아직 열어본 칭찬상자가 없어요" : "\(groupOrder - 1)번의 상자를 열었고\n\(viewModel.compliments.count)번 칭찬했어요")
                     .font(.title3)
                     .fontWeight(.bold)
                     .padding(.leading)
@@ -39,7 +35,7 @@ struct ArchivingView: View {
                 List {
                     ForEach((1..<$groupOrder.wrappedValue).reversed(), id: \.self) { index in
                         Section(header: Text("\(index)번째 상자")) {
-                            ForEach(Compliment, id: \.self.id) { compliments in
+                            ForEach(viewModel.compliments.filter { $0.groupID == index }, id: \.id) { compliments in
                                 if compliments.groupID == index {
                                     NavigationLink(
                                         destination: ArchivingDetailView(complimentOrder: compliments.order).toolbarRole(.editor), label: {
@@ -91,11 +87,11 @@ struct ArchivingView: View {
         }
     }
     
-    private func delete(indexset: IndexSet) {
-        guard let index = indexset.first else { return }
-        let selectedEntity = Compliment[index]
-        PersistenceController.shared.deleteCompliment(compliment: selectedEntity)
-    }
+	private func delete(indexset: IndexSet) {
+		guard let index = indexset.first else { return }
+		let selectedEntity = viewModel.compliments[index]
+		viewModel.deleteCompliment(compliment: selectedEntity)
+	}
     
     
     
