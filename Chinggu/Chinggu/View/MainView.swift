@@ -74,6 +74,7 @@ class GameScene: SKScene {
 	}
 }
 
+// MARK: 메인 뷰
 struct MainView: View {
     @FetchRequest(
         entity: ComplimentEntity.entity(),
@@ -94,7 +95,7 @@ struct MainView: View {
 	
 	@AppStorage("group") var groupOrder: Int = 1
 	@AppStorage("isfirst") var isfirst: Bool = true
-	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.monday.rawValue
+	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
 	
     @State var scene = GameScene()
     
@@ -109,43 +110,45 @@ struct MainView: View {
 					VStack {
 						//MARK: 요일 변경하는 버튼
 						HStack {
-							Text("매주")
-								.font(.custom("AppleSDGothicNeo-SemiBold", size: 17))
-								.foregroundColor(.gray)
-							Button(action: {
-								self.showActionSheet = true
-							}, label: {
-								Text(selectedWeekday)
-									.font(.custom("AppleSDGothicNeo-Bold", size: 17))
-									.foregroundColor(.blue)
-									.padding(.trailing, -8.0)
-								Image(systemName: "arrowtriangle.down.square.fill")
-									.foregroundColor(.blue)
-							})
-							.padding()
-							.actionSheet(isPresented: $showActionSheet) {
-								ActionSheet(title: Text("요일 변경"), message: nil, buttons: Weekday.allCases.map { weekday in
-									if selectedWeekday == weekday.rawValue {
-										return nil
-									} else {
-										return .default(Text(weekday.rawValue)) {
-											self.showAlert = true
-											self.tempSeletedWeekday = weekday
-										}
-									}
-								}.compactMap { $0 } + [.cancel()])
-							}
-							// 요일 변경할건지 얼럿
-							.alert(isPresented: $showAlert) {
-								Alert(title: Text("매주 \(tempSeletedWeekday?.rawValue ?? "월요일")"), message: Text("선택한 요일로 변경할까요?"), primaryButton: .default(Text("네")) {
-									// OK 버튼을 눌렀을 때 선택한 요일 업데이트
-									self.selectedWeekday = self.tempSeletedWeekday?.rawValue ?? "월요일"
-									updateCanBreakBoxes()
-								}, secondaryButton: .cancel(Text("아니요")))
-							}.padding(.horizontal, -19.0)
-							Text("에 칭찬 상자가 열려요")
-								.font(.custom("AppleSDGothicNeo-SemiBold", size: 17))
-								.foregroundColor(.gray)
+                                Text("매주")
+                                    .font(.custom("AppleSDGothicNeo-SemiBold", size: 17))
+                                    .foregroundColor(.gray)
+                                Button(action: {
+                                    self.showActionSheet = true
+                                }, label: {
+                                    Text(selectedWeekday)
+                                        .font(.custom("AppleSDGothicNeo-Bold", size: 17))
+                                        .foregroundColor(!self.isfirst ? .blue : .gray)
+                                        .padding(.trailing, -8.0)
+                                    Image(systemName: "arrowtriangle.down.square.fill")
+                                        .foregroundColor(!self.isfirst ? .blue : .gray)
+                                })
+                                .disabled(self.isfirst)
+                                .padding(.horizontal)
+                                .actionSheet(isPresented: $showActionSheet) {
+                                    ActionSheet(title: Text("요일 변경"), message: nil, buttons: Weekday.allCases.map { weekday in
+                                        if selectedWeekday == weekday.rawValue {
+                                            return nil
+                                        } else {
+                                            return .default(Text(weekday.rawValue)) {
+                                                self.showAlert = true
+                                                self.tempSeletedWeekday = weekday
+                                            }
+                                        }
+                                    }.compactMap { $0 } + [.cancel()])
+                                }
+                                // 요일 변경할건지 얼럿
+                                .alert(isPresented: $showAlert) {
+                                    Alert(title: Text("매주 \(tempSeletedWeekday?.rawValue ?? "월요일")"), message: Text("선택한 요일로 변경할까요?"), primaryButton: .default(Text("네")) {
+                                        // OK 버튼을 눌렀을 때 선택한 요일 업데이트
+                                        self.selectedWeekday = self.tempSeletedWeekday?.rawValue ?? "월요일"
+                                        updateCanBreakBoxes()
+                                    }, secondaryButton: .cancel(Text("아니요")))
+                                }.padding(.horizontal, -19.0)
+                                Text("에 칭찬 상자가 열려요")
+                                    .font(.custom("AppleSDGothicNeo-SemiBold", size: 17))
+                                    .foregroundColor(.gray)
+                            
 							Spacer()
 							
 							//MARK: 아카이브 페이지 링크
@@ -154,12 +157,14 @@ struct MainView: View {
 									.resizable()
 									.frame(width: 22, height: 22)
 									.foregroundColor(.black)
-							}
-						}.padding(.horizontal, 20.0)
-							.padding(.bottom, -10.0)
+                            }
+
+						}
+
+                        .padding(.horizontal, 20.0)
+                        .padding(.vertical, 10.0)
 						VStack(spacing: 0) {
 							Divider()
-								.padding(.top, 5)
 							Rectangle()
 								.fill(Color(.systemGray3))
 								.frame(height: 5)
@@ -167,7 +172,7 @@ struct MainView: View {
 							Divider()
 						}
 						.padding(.bottom, 30)
-
+                        
 						// 타이틀
 						if canBreakBoxes && scene.boxes.count > 0  {
 							Text("이번 주 칭찬을\n  확인할 시간이에요💞")
