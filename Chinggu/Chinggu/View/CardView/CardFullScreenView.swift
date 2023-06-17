@@ -10,9 +10,9 @@ import SwiftUI
 struct CardFullScreenView: View {
 	
 	@AppStorage("group") var groupOrder: Int = 1
-	@State var complimentsInGroup: [ComplimentEntity] = []
-	@State var groupOrderText: String = ""
-	@State var groupStartEndDates: String = ""
+	@State private var complimentsInGroup: [ComplimentEntity] = []
+	@State private var groupOrderText: String = ""
+	@State private var groupStartEndDates: String = ""
 	
 	var namespace: Namespace.ID
 	@Binding var showPopup: Bool
