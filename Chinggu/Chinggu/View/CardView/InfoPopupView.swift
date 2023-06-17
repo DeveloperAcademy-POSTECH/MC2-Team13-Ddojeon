@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct InfoPopupView: View {
-    @Binding var showInfoPopup: Bool
+	@Binding var showInfoPopup: Bool
 	@AppStorage("isfirst") var isfirst: Bool = false
 
-    var body: some View {
-        ZStack {
-            LottieView(filename: "cardBeforeAnimation", loopState: false)
-                .ignoresSafeArea()
+	var body: some View {
+		ZStack {
+			LottieView(filename: "cardBeforeAnimation", loopState: false, contentMode: .scaleAspectFill)
+				.ignoresSafeArea()
 				.transaction { transaction in
 					transaction.animation = nil
 				}
-                .opacity(showInfoPopup ? 1 : 0)
-            
-            Image("popup")
-                .shadow(color: Color.black.opacity(0.2), radius: 7, x: 1, y: 6)
+				.opacity(showInfoPopup ? 1 : 0)
+			
+			Image("popup")
+				.shadow(color: Color.black.opacity(0.2), radius: 7, x: 1, y: 6)
 				.overlay {
 					VStack {
 						Text("축하해요\n첫 칭찬을 완료했어요")
@@ -37,7 +37,7 @@ struct InfoPopupView: View {
 							.lineSpacing(3)
 						
 						Button(action: {
-                            print(1)
+							print(1)
 							withAnimation(.easeOut(duration: 0.5)) {
 								showInfoPopup = false
 								isfirst = false
@@ -48,17 +48,17 @@ struct InfoPopupView: View {
 								.foregroundColor(.white)
 								.kerning(1)
 								.padding(.vertical,6)
-                                .frame(width: 310, height: 56)
+								.frame(width: 310, height: 56)
 						}
-                        .offset(y: 40)
-                        .background {
-                            RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(.black)
-                                .offset(y: 40)
-                        }
+						.offset(y: 40)
+						.background {
+							RoundedRectangle(cornerRadius: 10)
+								.foregroundColor(.black)
+								.offset(y: 40)
+						}
 					}
 				}
-        }
+		}
 //        .frame(maxWidth: .infinity, maxHeight: .infinity)
 //        .background(Color.black.opacity(0.5))
 //        .onTapGesture {
@@ -69,11 +69,11 @@ struct InfoPopupView: View {
 //        }
 //        .transition(.opacity)
 //        .animation(.easeInOut(duration: 0.3))
-    }
+	}
 }
 
 struct InfoPopupView_Previews: PreviewProvider {
-    static var previews: some View {
-        InfoPopupView(showInfoPopup: .constant(true))
-    }
+	static var previews: some View {
+		InfoPopupView(showInfoPopup: .constant(true))
+	}
 }
