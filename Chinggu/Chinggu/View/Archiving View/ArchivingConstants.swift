@@ -7,6 +7,22 @@
 
 import SwiftUI
 
+//MARK: ArchivingCard 상수관리
+extension ArchivingCard {
+	
+	enum Metric {
+		static let cardInsidePadding: CGFloat = 30
+	}
+	
+	enum CardStyle {
+		static let cardCornerRadius: CGFloat = 30
+		static let cardLineSpacing: CGFloat = 5
+		static let cardHeadlineOpacity: CGFloat = 0.9
+		static let cardDateOpacity: CGFloat = 0.3
+	}
+}
+
+//MARK: ArchivingDetailView 상수관리
 extension ArchivingDetailView {
 	
 	enum Metric {
