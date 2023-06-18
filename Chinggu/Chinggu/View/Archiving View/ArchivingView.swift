@@ -32,9 +32,9 @@ struct ArchivingView: View {
                             tapCount = 0
                         }
                     }
-                    .sheet(isPresented: $isShowingSheet) {
-                        TempMainView()
-                    }
+//                    .sheet(isPresented: $isShowingSheet) {
+//                        TempMainView()
+//                    }
                 
                 List {
                     ForEach((1..<$groupOrder.wrappedValue).reversed(), id: \.self) { index in
@@ -59,26 +59,26 @@ struct ArchivingView: View {
                             }.onDelete(perform: delete)
                         }
                     }
-                    if groupOrder == 1 {
-                        Section(header: Text("예시 상자")) {
-                            ForEach(tempCompliments.indices, id: \.self) { index in
-                                let date = Calendar.current.date(byAdding: .day, value: -index, to: Date())!
-                                NavigationLink (
-                                    destination: TempArchivingDetailView(compliment: tempCompliments[index], createDate: date, order: index), label: {
-                                        VStack(alignment: .leading, spacing: 8){
-                                            Text(tempCompliments[index])
-                                                .font(.headline)
-                                                .lineLimit(2)
-                                            Text(date.formatWithDot())
-                                                .font(.subheadline)
-                                                .foregroundColor(.gray)
-                                                .lineLimit(1)
-                                        }
-                                    }
-                                )
-                            }
-                        }
-                    }
+//                    if groupOrder == 1 {
+//                        Section(header: Text("예시 상자")) {
+//                            ForEach(tempCompliments.indices, id: \.self) { index in
+//                                let date = Calendar.current.date(byAdding: .day, value: -index, to: Date())!
+//                                NavigationLink (
+//                                    destination: TempArchivingDetailView(compliment: tempCompliments[index], createDate: date, order: index), label: {
+//                                        VStack(alignment: .leading, spacing: 8){
+//                                            Text(tempCompliments[index])
+//                                                .font(.headline)
+//                                                .lineLimit(2)
+//                                            Text(date.formatWithDot())
+//                                                .font(.subheadline)
+//                                                .foregroundColor(.gray)
+//                                                .lineLimit(1)
+//                                        }
+//                                    }
+//                                )
+//                            }
+//                        }
+//                    }
                 }
                 .scrollContentBackground(.hidden)
                 .toolbar {

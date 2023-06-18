@@ -25,7 +25,8 @@ struct InfoPopupView: View {
 				.overlay {
 					VStack {
 						Text("축하해요\n첫 칭찬을 완료했어요")
-							.font(.custom("AppleSDGothicNeo-Bold", size: 28))
+							.font(.title)
+							.bold()
 							.multilineTextAlignment(.center)
 							.lineSpacing(5)
 							.padding(.bottom, 12)
@@ -35,7 +36,7 @@ struct InfoPopupView: View {
 							.multilineTextAlignment(.center)
 							.foregroundColor(Color.black.opacity(0.7))
 							.lineSpacing(3)
-						
+												
 						Button(action: {
 							print(1)
 							withAnimation(.easeOut(duration: 0.5)) {
