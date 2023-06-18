@@ -20,22 +20,7 @@ struct ArchivingDetailView: View {
 	@State private var groupID: Int16 = 6
 	@State private var order: Int16 = 45
 	@State private var createDate: Date = Date()
-	
-	@State private var cardColor = Color.ddoOrange
-	
-	private let colors = [
-		Color("ddoTip1_2"),
-		Color("ddoTip2_2"),
-		Color("ddoTip3_2"),
-		Color("ddoTip4_2"),
-		Color("ddoTip5_2"),
-		Color("ddoTip6_2"),
-		Color("ddoTip7_2"),
-		Color("ddoTip8_2"),
-		Color("ddoTip9_2"),
-		Color("ddoTip10_2")
-		
-	]
+	@State private var rcolor = ColorStyle.randomColor()
 
 	var body: some View {
 		VStack {
@@ -43,63 +28,37 @@ struct ArchivingDetailView: View {
 						  groupID: $groupID,
 						  order: $order,
 						  createDate: $createDate,
-						  cardColor: randomColor())
-//			.padding()
-			.padding(EdgeInsets(top: 0, leading: 5, bottom: 30, trailing: 5))
-				.onAppear { loadCompliment() }
+						  cardColor: rcolor)
+			.padding(Metric.ArchivingCardPaddingInsets)
+			.onAppear { loadCompliment() }
 			
-			HStack(spacing: 3) {
-				Button {
-					if complimentOrder < allCompliments.count {
-						complimentOrder += 1
-						loadCompliment()
-					}
-				} label: {
-					//최신 칭찬으로 가는 버튼
-					Text("<")
-						.fixedSize()
-						.frame(maxWidth: .infinity)
-						.font(.title3)
-						.fontWeight(.bold)
-						.foregroundColor(.white)
-						.padding()
-						.background(complimentOrder <= 1 ? .gray : .black.opacity(0.7))
-						.cornerRadius(15)
-				}
-				.disabled(complimentOrder >= allCompliments.count)
-				
+			HStack {
+				TowardsButton(
+					complimentOrder: $complimentOrder,
+					rcolor: $rcolor,
+					allComplimentsCount: allCompliments.count,
+					loadCompliment: loadCompliment,
+					getRandomColor: ColorStyle.randomColor,
+					direction: .forward
+				)
+
 				Spacer()
 				
-				Button {
-					if complimentOrder > 1 {
-						complimentOrder -= 1
-						loadCompliment()
-					}
-				} label: {
-					//오래된 칭찬으로 가는 버튼
-					Text(">")
-						.fixedSize()
-						.frame(maxWidth: .infinity)
-						.font(.title3)
-						.fontWeight(.bold)
-						.foregroundColor(.white)
-						.padding()
-						.background(complimentOrder >= allCompliments.count ? .gray :  .black.opacity(0.7))
-						.cornerRadius(15)
-				}
-				.disabled(complimentOrder <= 1)
+				TowardsButton(
+					complimentOrder: $complimentOrder,
+					rcolor: $rcolor,
+					allComplimentsCount: allCompliments.count,
+					loadCompliment: loadCompliment,
+					getRandomColor: ColorStyle.randomColor,
+					direction: .backward
+				)
 			}
 		}
 		.padding()
 		.padding(.top)
-		.background(Color(hex: 0xF9F9F3))
+		.background(Color.ddoPrimary)
 	}
-	
-	private func randomColor() -> Color {
-		let randomIndex = Int.random(in: 0..<colors.count)
-		return colors[randomIndex]
-	}
-	
+		
 	private func loadCompliment() {
 		if let complimentEntity = PersistenceController.shared.loadCompliment(order: complimentOrder) {
 			compliment = complimentEntity.compliment ?? ""
@@ -107,6 +66,70 @@ struct ArchivingDetailView: View {
 			order = complimentEntity.order
 			createDate = complimentEntity.createDate ?? Date()
 		}
+	}
+}
+
+fileprivate struct TowardsButton: View {
+	
+	@Binding var complimentOrder: Int16
+	@Binding var rcolor: Color
+	let allComplimentsCount: Int
+	let loadCompliment: () -> Void
+	let getRandomColor: () -> Color
+	let direction: ButtonDirection
+	
+	enum ButtonDirection {
+		case forward
+		case backward
+
+		func updateOrder(order: inout Int16, total: Int) {
+			switch self {
+			case .forward:
+				if order < total {
+					order += 1
+				}
+			case .backward:
+				if order > 1 {
+					order -= 1
+				}
+			}
+		}
+		
+		func disabledCondition(order: Int16, total: Int) -> Bool {
+			switch self {
+			case .forward:
+				return order >= total
+			case .backward:
+				return order <= 1
+			}
+		}
+
+		func activeBackground(order: Int16, total: Int) -> Color {
+			return disabledCondition(order: order, total: total) ? .gray : .black.opacity(0.7)
+		}
+	}
+
+	var body: some View {
+		let buttonCornerRadius: CGFloat = 15
+		Button {
+			rcolor = getRandomColor()
+			direction.updateOrder(order: &complimentOrder,
+								  total: allComplimentsCount)
+			loadCompliment()
+		} label: {
+			Text(direction == .forward ? "<" : ">")
+				.fixedSize()
+				.frame(maxWidth: .infinity)
+				.font(.title3)
+				.fontWeight(.bold)
+				.foregroundColor(.white)
+				.padding()
+				.background(direction.activeBackground(order: complimentOrder,
+													   total: allComplimentsCount))
+				.cornerRadius(buttonCornerRadius)
+		}
+		.disabled(direction.disabledCondition(order: complimentOrder,
+											  total: allComplimentsCount))
 	}
 }
 
