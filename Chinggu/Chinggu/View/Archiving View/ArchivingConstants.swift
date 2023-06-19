@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-//MARK: ArchivingCard 상수관리
+//MARK: ArchivingCard 상수
 extension ArchivingCard {
 	
 	enum Metric {
@@ -22,7 +22,7 @@ extension ArchivingCard {
 	}
 }
 
-//MARK: ArchivingDetailView 상수관리
+//MARK: ArchivingDetailView 상수
 extension ArchivingDetailView {
 	
 	enum Metric {

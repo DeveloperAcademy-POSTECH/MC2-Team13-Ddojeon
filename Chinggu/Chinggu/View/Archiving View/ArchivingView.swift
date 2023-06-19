@@ -16,50 +16,62 @@ struct ArchivingView: View {
     @AppStorage("group") var groupOrder: Int = 1
 
     var body: some View {
-        NavigationStack{
-            VStack(alignment: .leading){
-                Text(groupOrder == 1 ? "아직 열어본 칭찬상자가 없어요" : "\(groupOrder - 1)번의 상자를 열었고\n\(Compliment.count)번 칭찬했어요")
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .padding(.leading)
-                List {
-                    ForEach((1..<$groupOrder.wrappedValue).reversed(), id: \.self) { index in
-                        Section(header: Text("\(index)번째 상자")) {
-                            ForEach(Compliment, id: \.self.id) { compliments in
-                                if compliments.groupID == index {
-                                    NavigationLink(
-                                        destination: ArchivingDetailView(complimentOrder: compliments.order).toolbarRole(.editor), label: {
-                                            VStack(alignment: .leading, spacing: 8){
-                                                let currentDate = compliments.createDate
-                                                let strDate = currentDate?.formatWithDot()
-                                                Text(compliments.compliment ?? "")
-                                                    .font(.headline)
-                                                    .lineLimit(2)
-                                                Text(strDate ?? "")
-                                                    .font(.subheadline)
-                                                    .foregroundColor(.gray)
-                                                    .lineLimit(1)
-                                            }
-                                        })
-                                } else { }
-                            }.onDelete(perform: delete)
-                        }
-                    }
-                }
-                .scrollContentBackground(.hidden)
-                .toolbar {
-                    EditButton()
-                }
-            }
-            .accentColor(.red)
-            .padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0))
-            .background(Color(hex: 0xF9F9F3))
-        }
-    }
-    
+		NavigationStack{
+			VStack(alignment: .leading){
+				if groupOrder >= 2 {
+					Text("\(groupOrder - 1)번의 상자를 열었고\n\(Compliment.count)번 칭찬했어요")
+						.font(.title3)
+						.fontWeight(.bold)
+						.padding(.leading)
+					List {
+						ForEach((1..<$groupOrder.wrappedValue).reversed(), id: \.self) { index in
+							Section(header: Text("\(index)번째 상자")) {
+								ForEach(Compliment, id: \.self.id) { compliments in
+									if compliments.groupID == index {
+										NavigationLink(
+											destination: ArchivingDetailView(complimentOrder: compliments.order).toolbarRole(.editor), label: {
+												VStack(alignment: .leading, spacing: 8){
+													let currentDate = compliments.createDate
+													let strDate = currentDate?.formatWithDot()
+													Text(compliments.compliment ?? "")
+														.font(.headline)
+														.lineLimit(2)
+													Text(strDate ?? "")
+														.font(.subheadline)
+														.foregroundColor(.gray)
+														.lineLimit(1)
+												}
+											})
+									} else { }
+								}.onDelete(perform: delete)
+							}
+						}
+					}
+					.scrollContentBackground(.hidden)
+					.toolbar {
+						EditButton()
+					}
+				}
+				else {
+					Text("아직 열어본 칭찬상자가 없어요")
+					//빈칭찬일 경우 넣을 이미지
+				}
+			}
+			.accentColor(.red)
+			.padding(.top)
+			.background(Color.ddoPrimary)
+		}
+	}
+	
     private func delete(indexset: IndexSet) {
         guard let index = indexset.first else { return }
         let selectedEntity = Compliment[index]
         PersistenceController.shared.deleteCompliment(compliment: selectedEntity)
+    }
+}
+
+struct MyPreviewProvider_Previews: PreviewProvider {
+    static var previews: some View {
+		ArchivingView()
     }
 }
