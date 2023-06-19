@@ -44,6 +44,20 @@ struct ArchivingDetailView: View {
 
 				Spacer()
 				
+				//버튼 oll 0.9
+				//background oll 0.1
+				//font black 0.3
+				Text("\(groupID)번째 상자ㅣ\(order)번째 칭찬")
+					.font(.subheadline.bold())
+					.foregroundColor(.black.opacity(0.3))
+					.padding()
+					.overlay(
+						RoundedRectangle(cornerRadius: 15)
+							.fill(Color("oll").opacity(0.1))
+					)
+
+				Spacer()
+				
 				TowardsButton(
 					complimentOrder: $complimentOrder,
 					rcolor: $rcolor,
@@ -77,7 +91,8 @@ fileprivate struct TowardsButton: View {
 	let loadCompliment: () -> Void
 	let getRandomColor: () -> Color
 	let direction: ButtonDirection
-	
+	let buttonCornerRadius: CGFloat = 15
+
 	enum ButtonDirection {
 		case forward
 		case backward
@@ -105,27 +120,25 @@ fileprivate struct TowardsButton: View {
 		}
 
 		func activeBackground(order: Int16, total: Int) -> Color {
-			return disabledCondition(order: order, total: total) ? .gray : .black.opacity(0.7)
+			return disabledCondition(order: order, total: total) ? Color("oll").opacity(0.1) : .black.opacity(0.7)
 		}
 	}
 
 	var body: some View {
-		let buttonCornerRadius: CGFloat = 15
 		Button {
 			rcolor = getRandomColor()
 			direction.updateOrder(order: &complimentOrder,
 								  total: allComplimentsCount)
 			loadCompliment()
 		} label: {
-			Text(direction == .forward ? "<" : ">")
-				.fixedSize()
-				.frame(maxWidth: .infinity)
-				.font(.title3)
-				.fontWeight(.bold)
-				.foregroundColor(.white)
+			//			Text(direction == .forward ? "<" : ">")
+			Image(systemName: "arrow.backward")
 				.padding()
-				.background(direction.activeBackground(order: complimentOrder,
-													   total: allComplimentsCount))
+				.foregroundColor(.white)
+				.background(Color("oll"))
+				.opacity(0.9)
+//				.background(direction.activeBackground(order: complimentOrder,
+//													   total: allComplimentsCount))
 				.cornerRadius(buttonCornerRadius)
 		}
 		.disabled(direction.disabledCondition(order: complimentOrder,

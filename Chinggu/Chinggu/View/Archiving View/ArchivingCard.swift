@@ -16,18 +16,7 @@ struct ArchivingCard: View {
     var cardColor: Color
 	    
     var body: some View {
-        VStack {
-            VStack(alignment: .leading){
-				HStack(){
-					Text("\(groupID)번째 상자ㅣ\(order)번째 칭찬")
-						.foregroundColor(Color("oll"))
-						.opacity(CardStyle.cardHeadlineOpacity)
-					Spacer()
-				}
-				.font(.body)
-				.padding(.leading)
-            }
-            
+        VStack {            
             VStack(alignment: .leading){
                 Text(compliment)
                     .font(.body)
