@@ -131,14 +131,11 @@ fileprivate struct TowardsButton: View {
 								  total: allComplimentsCount)
 			loadCompliment()
 		} label: {
-			//			Text(direction == .forward ? "<" : ">")
-			Image(systemName: "arrow.backward")
+			Image(systemName: direction == .forward ? "arrow.backward" : "arrow.forward")
 				.padding()
 				.foregroundColor(.white)
-				.background(Color("oll"))
-				.opacity(0.9)
-//				.background(direction.activeBackground(order: complimentOrder,
-//													   total: allComplimentsCount))
+				.background(direction.activeBackground(order: complimentOrder,
+													   total: allComplimentsCount))
 				.cornerRadius(buttonCornerRadius)
 		}
 		.disabled(direction.disabledCondition(order: complimentOrder,
