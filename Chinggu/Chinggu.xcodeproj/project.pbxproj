@@ -51,6 +51,7 @@
 /* Begin PBXFileReference section */
 		51887AE62A12232F0015EF88 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingView.swift; path = Chinggu/View/Onboard/OnboardingView.swift; sourceTree = SOURCE_ROOT; };
 		51D817172A08E59F00B84E6A /* WriteComplimentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteComplimentView.swift; sourceTree = "<group>"; };
+		70096C692A43E57B00124967 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		701094A52A0FA83D0019DEED /* cardBeforeAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cardBeforeAnimation.json; sourceTree = "<group>"; };
 		7014D4792A10AF8B00F1B315 /* TempArchivingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempArchivingDetailView.swift; sourceTree = "<group>"; };
 		70385ED02A07DFEE001CDAB0 /* Color+Chinggu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Chinggu.swift"; sourceTree = "<group>"; };
@@ -205,6 +206,7 @@
 		AE37D5332A039605009B0F56 /* Chinggu */ = {
 			isa = PBXGroup;
 			children = (
+				70096C692A43E57B00124967 /* Info.plist */,
 				AE37D5342A039605009B0F56 /* ChingguApp.swift */,
 				AE37D5362A039605009B0F56 /* ContentView.swift */,
 				701094A72A0FF83C0019DEED /* View */,
@@ -478,9 +480,9 @@
 				DEVELOPMENT_TEAM = PFTK9YA9R8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Chinggu/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
@@ -508,9 +510,9 @@
 				DEVELOPMENT_TEAM = PFTK9YA9R8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Chinggu/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
