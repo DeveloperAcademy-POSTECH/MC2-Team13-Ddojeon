@@ -10,7 +10,7 @@ import SwiftUI
 struct CardFullScreenView: View {
 	
 	@AppStorage("group") var groupOrder: Int = 1
-    @AppStorage("isSelectedSameDay") private var isSelectedSameDay: Bool = true
+  @AppStorage("isSelectedSameDay") private var isSelectedSameDay: Bool = true
 	@State var complimentsInGroup: [ComplimentEntity] = []
 	@State var groupOrderText: String = ""
 	@State var groupStartEndDates: String = ""
@@ -117,9 +117,9 @@ struct CardFullScreenView: View {
 		Quote(text: "자기 자신을 칭찬하는 것은 겸손한 태도의 결과이며, 자신을 성장시키는 원동력이다.", speaker: "-마르쿠스 아우렐리우스-"),
 		Quote(text: "자기 자신을 최고로 여기고, 자신의 잠재력을 믿으세요.\n자기 칭찬과 긍정적인 생각은 성공의 열쇠입니다.", speaker: "-알렉스 헤일리-"),
 		Quote(text: "자기 자신을 사랑하고 칭찬함으로써 자신에게 가장 큰 힘을 주세요.\n당신의 자신감은 당신을 세계를 변화시킬 수 있는 힘으로 이끌거예요.", speaker: "-루이스 헤이-"),
-		Quote(text: "자기 자신을 충분히 사랑하고 칭찬하는 사람은 언제나 자신감과 행복을 갖게 될거예요.", speaker: "-칭구-"),
-		Quote(text: "자신을 믿고, 자신의 능력을 인정하며, 자신을 칭찬하세요. 그것이 성공의 첫 걸음입니다.", speaker: "-칭구-"),
-		Quote(text: "자기 자신에 대한 긍정적인 이야기를 계속하세요. 그리고 그 이야기를 믿으세요. 당신을 성공으로 이끌어줄 것입니다.", speaker: "-칭구-"),
+		Quote(text: "자기 자신을 충분히 사랑하고 칭찬하는 사람은 \n언제나 자신감과 행복을 갖게 될거예요.", speaker: "-칭구-"),
+		Quote(text: "자신을 믿고, 자신의 능력을 인정하며, \n자신을 칭찬하세요. 그것이 성공의 첫 걸음입니다.", speaker: "-칭구-"),
+		Quote(text: "자기 자신에 대한 긍정적인 이야기를 계속하세요. \n그리고 그 이야기를 믿으세요. 당신을 성공으로 이끌어줄 것입니다.", speaker: "-칭구-"),
 		Quote(text: "자기 자신을 사랑하고 칭찬함으로써 자신에게 가장 큰 힘을 주세요.\n당신의 자신감은 당신을 세계를 변화시킬 수 있는 힘으로 이끌거예요.", speaker: "-칭구-"),
 		Quote(text: "자기칭찬은 내면의 불확실성을 확신과 자신감으로 바꾸어 줍니다.\n자신을 믿고 칭찬하는 습관을 가지세요.", speaker: "-칭구-"),
 	]
