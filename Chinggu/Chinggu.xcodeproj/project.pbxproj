@@ -27,16 +27,11 @@
 		70E68F0F2A0A888C00258A10 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 70E68F0E2A0A888C00258A10 /* Lottie */; };
 		70E68F122A0A906500258A10 /* cardAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 70E68F112A0A906500258A10 /* cardAnimation.json */; };
 		70E68F142A0A95FD00258A10 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E68F132A0A95FD00258A10 /* LottieView.swift */; };
-		A93729862A0F6E5C00C79C04 /* onboarding_3.json in Resources */ = {isa = PBXBuildFile; fileRef = A937297C2A0F6E5B00C79C04 /* onboarding_3.json */; };
 		A93729872A0F6E5C00C79C04 /* onboarding_2.json in Resources */ = {isa = PBXBuildFile; fileRef = A937297D2A0F6E5B00C79C04 /* onboarding_2.json */; };
-		A93729882A0F6E5C00C79C04 /* onboarding_5.json in Resources */ = {isa = PBXBuildFile; fileRef = A937297E2A0F6E5C00C79C04 /* onboarding_5.json */; };
-		A93729892A0F6E5C00C79C04 /* onboarding_6.json in Resources */ = {isa = PBXBuildFile; fileRef = A937297F2A0F6E5C00C79C04 /* onboarding_6.json */; };
-		A937298A2A0F6E5C00C79C04 /* onboarding_9.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729802A0F6E5C00C79C04 /* onboarding_9.json */; };
+		A937298A2A0F6E5C00C79C04 /* onboarding_4.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729802A0F6E5C00C79C04 /* onboarding_4.json */; };
 		A937298B2A0F6E5C00C79C04 /* onboarding_1.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729812A0F6E5C00C79C04 /* onboarding_1.json */; };
-		A937298C2A0F6E5C00C79C04 /* onboarding_4.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729822A0F6E5C00C79C04 /* onboarding_4.json */; };
-		A937298D2A0F6E5C00C79C04 /* onboarding_7.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729832A0F6E5C00C79C04 /* onboarding_7.json */; };
-		A937298E2A0F6E5C00C79C04 /* onboarding_10.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729842A0F6E5C00C79C04 /* onboarding_10.json */; };
-		A937298F2A0F6E5C00C79C04 /* onboarding_11.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729852A0F6E5C00C79C04 /* onboarding_11.json */; };
+		A937298C2A0F6E5C00C79C04 /* onboarding_3.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729822A0F6E5C00C79C04 /* onboarding_3.json */; };
+		A937298F2A0F6E5C00C79C04 /* onboarding_5.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729852A0F6E5C00C79C04 /* onboarding_5.json */; };
 		AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37D5342A039605009B0F56 /* ChingguApp.swift */; };
 		AE37D5372A039605009B0F56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37D5362A039605009B0F56 /* ContentView.swift */; };
 		AE37D5392A039606009B0F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE37D5382A039606009B0F56 /* Assets.xcassets */; };
@@ -69,16 +64,11 @@
 		70D706052A0FFFF0001D9203 /* Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
 		70E68F112A0A906500258A10 /* cardAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cardAnimation.json; sourceTree = "<group>"; };
 		70E68F132A0A95FD00258A10 /* LottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
-		A937297C2A0F6E5B00C79C04 /* onboarding_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_3.json; sourceTree = "<group>"; };
 		A937297D2A0F6E5B00C79C04 /* onboarding_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_2.json; sourceTree = "<group>"; };
-		A937297E2A0F6E5C00C79C04 /* onboarding_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_5.json; sourceTree = "<group>"; };
-		A937297F2A0F6E5C00C79C04 /* onboarding_6.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_6.json; sourceTree = "<group>"; };
-		A93729802A0F6E5C00C79C04 /* onboarding_9.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_9.json; sourceTree = "<group>"; };
+		A93729802A0F6E5C00C79C04 /* onboarding_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_4.json; sourceTree = "<group>"; };
 		A93729812A0F6E5C00C79C04 /* onboarding_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_1.json; sourceTree = "<group>"; };
-		A93729822A0F6E5C00C79C04 /* onboarding_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_4.json; sourceTree = "<group>"; };
-		A93729832A0F6E5C00C79C04 /* onboarding_7.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_7.json; sourceTree = "<group>"; };
-		A93729842A0F6E5C00C79C04 /* onboarding_10.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_10.json; sourceTree = "<group>"; };
-		A93729852A0F6E5C00C79C04 /* onboarding_11.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_11.json; sourceTree = "<group>"; };
+		A93729822A0F6E5C00C79C04 /* onboarding_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_3.json; sourceTree = "<group>"; };
+		A93729852A0F6E5C00C79C04 /* onboarding_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_5.json; sourceTree = "<group>"; };
 		AE37D5312A039605009B0F56 /* Chinggu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chinggu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE37D5342A039605009B0F56 /* ChingguApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChingguApp.swift; sourceTree = "<group>"; };
 		AE37D5362A039605009B0F56 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -173,16 +163,11 @@
 		A93729642A0F6E3600C79C04 /* onboardLottie */ = {
 			isa = PBXGroup;
 			children = (
-				A937297D2A0F6E5B00C79C04 /* onboarding_2.json */,
-				A937297C2A0F6E5B00C79C04 /* onboarding_3.json */,
-				A93729822A0F6E5C00C79C04 /* onboarding_4.json */,
-				A937297E2A0F6E5C00C79C04 /* onboarding_5.json */,
-				A937297F2A0F6E5C00C79C04 /* onboarding_6.json */,
-				A93729802A0F6E5C00C79C04 /* onboarding_9.json */,
-				A93729832A0F6E5C00C79C04 /* onboarding_7.json */,
-				A93729842A0F6E5C00C79C04 /* onboarding_10.json */,
-				A93729852A0F6E5C00C79C04 /* onboarding_11.json */,
 				A93729812A0F6E5C00C79C04 /* onboarding_1.json */,
+				A937297D2A0F6E5B00C79C04 /* onboarding_2.json */,
+				A93729822A0F6E5C00C79C04 /* onboarding_3.json */,
+				A93729802A0F6E5C00C79C04 /* onboarding_4.json */,
+				A93729852A0F6E5C00C79C04 /* onboarding_5.json */,
 			);
 			path = onboardLottie;
 			sourceTree = "<group>";
@@ -301,21 +286,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A93729882A0F6E5C00C79C04 /* onboarding_5.json in Resources */,
-				A937298F2A0F6E5C00C79C04 /* onboarding_11.json in Resources */,
-				A93729892A0F6E5C00C79C04 /* onboarding_6.json in Resources */,
+				A937298F2A0F6E5C00C79C04 /* onboarding_5.json in Resources */,
 				701094A62A0FA83D0019DEED /* cardBeforeAnimation.json in Resources */,
 				70E68F122A0A906500258A10 /* cardAnimation.json in Resources */,
 				AE37D53C2A039606009B0F56 /* Preview Assets.xcassets in Resources */,
 				A937298B2A0F6E5C00C79C04 /* onboarding_1.json in Resources */,
-				A93729862A0F6E5C00C79C04 /* onboarding_3.json in Resources */,
-				A937298A2A0F6E5C00C79C04 /* onboarding_9.json in Resources */,
-				A937298E2A0F6E5C00C79C04 /* onboarding_10.json in Resources */,
+				A937298A2A0F6E5C00C79C04 /* onboarding_4.json in Resources */,
 				AE37D5392A039606009B0F56 /* Assets.xcassets in Resources */,
 				A93729872A0F6E5C00C79C04 /* onboarding_2.json in Resources */,
 				70385ED32A07E00F001CDAB0 /* Color.xcassets in Resources */,
-				A937298C2A0F6E5C00C79C04 /* onboarding_4.json in Resources */,
-				A937298D2A0F6E5C00C79C04 /* onboarding_7.json in Resources */,
+				A937298C2A0F6E5C00C79C04 /* onboarding_3.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,7 +457,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Chinggu/Preview Content\"";
-				DEVELOPMENT_TEAM = PFTK9YA9R8;
+				DEVELOPMENT_TEAM = HFR7W36699;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Chinggu/Info.plist;
@@ -507,7 +487,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Chinggu/Preview Content\"";
-				DEVELOPMENT_TEAM = PFTK9YA9R8;
+				DEVELOPMENT_TEAM = HFR7W36699;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Chinggu/Info.plist;
