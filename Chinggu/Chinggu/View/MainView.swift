@@ -20,14 +20,21 @@ enum Weekday: String, CaseIterable {
 }
 
 class GameScene: SKScene {
-    
+    @AppStorage("isCompliment") private var isCompliment: Bool = false
     var boxes: [SKSpriteNode] = []
     var complimentCount = 0
 	let motionManager = CMMotionManager()
+    var background = SKSpriteNode(imageNamed: "boxBackground")
     
     override func didMove(to view: SKView) {
 		physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
-		
+        
+        let position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
+        background.position = position
+        if !boxes.isEmpty || isCompliment {
+            addChild(background)
+        }
+            
 		motionManager.deviceMotionUpdateInterval = 0.1
 		motionManager.startDeviceMotionUpdates(to: .main) { (motion, error) in
 			guard let motion = motion else { return }
@@ -41,6 +48,7 @@ class GameScene: SKScene {
 										y: UIScreen.main.bounds.height / 2.5))
 			}
 		}
+        
         // 배경색 변경
         //        self.backgroundColor = .red
     }
@@ -90,16 +98,25 @@ struct MainView: View {
     @State private var tempSeletedWeekday: Weekday?
     @State private var shake = 0.0
     @State private var showPopup = false
-    @State private var isCompliment = false
+//    @State private var isCompliment = false
     @State private var showInfoPopup = false
     
 	@AppStorage("group") var groupOrder: Int = 1
 	@AppStorage("isfirst") var isfirst: Bool = true
 	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
     @AppStorage("isSelectedSameDay") private var isSelectedSameDay: Bool = true
-    @AppStorage("isReset") private var isReset: Bool = false
+    @AppStorage("isCompliment") private var isCompliment: Bool = false
 	
     @State var scene = GameScene()
+    
+    @AppStorage("lastResetTimeInterval") private var lastResetTimeInterval: TimeInterval = Date().timeIntervalSince1970
+       
+       var lastResetDate: Date {
+           let lastResetTime = Date(timeIntervalSince1970: lastResetTimeInterval)
+           return lastResetTime
+       }
+    
+    @Environment(\.scenePhase) var scenePhase
     
     var body: some View {
         GeometryReader { geometry in
@@ -248,7 +265,7 @@ struct MainView: View {
 								scene.size = CGSize(width: width, height: height)
 								scene.complimentCount = complimentsInGroup.count
 								updateCanBreakBoxes()
-								resetTimeButton()
+                                
 								scene.scaleMode = .aspectFit
 							}
 						
@@ -269,7 +286,7 @@ struct MainView: View {
 							
 						}, label: {
 							NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment), label: {
-								Text("칭찬하기")
+								Text(isCompliment ? "오늘 칭찬 끝!" : "칭찬하기")
                                     .bold()
                                     .font(.title3)
 									.foregroundColor(Color.white)
@@ -280,17 +297,18 @@ struct MainView: View {
 						})
 						.background {
 							RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(.blue)
-//                                .foregroundColor(isCompliment ? .gray : .blue)
+//                                .foregroundColor(.blue)
+                                .foregroundColor(isCompliment ? .gray : .blue)
 						}
-//                        .disabled(isCompliment)
+                        .disabled(isCompliment)
 					}
-					if complimentsInGroup.count == 0 {
+					if complimentsInGroup.count == 0 && !isCompliment {
 						NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment)) {
 							Image("emptyState")
 								.offset(y: 45)
 						}
-					}
+                    }
+                    
 					Color.clear
 					.popup(isPresented: $showPopup) {
 						CardView(showPopup: $showPopup)
@@ -303,15 +321,20 @@ struct MainView: View {
 				.onChange(of: groupOrder, perform: { newValue in
 					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(newValue))
 				})
+                .onChange(of: scenePhase) { newPhase in
+                    print("scene change")
+                    compareDates()
+                }
 				.onAppear {
+                    
 					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
-                    print(isSelectedSameDay)
                     // 최초 칭찬 작성 시 안내 팝업
 					if Compliment.count == 1, isfirst == true {
 						withAnimation(.spring(response: 1.2, dampingFraction: 0.8)) {
 							showInfoPopup = true
 						}
 					}
+                    
 				}
                 
             }
@@ -332,30 +355,19 @@ struct MainView: View {
         }
     }
     
-    // 오전 6시 기준 버튼 초기화
-    private func resetTimeButton() {
+    // 초기화 날짜 비교
+    private func compareDates() {
         let calendar = Calendar.current
-        let now = Date()
-        
-//        let components = calendar.dateComponents([.hour, .minute, .second], from: now)
-//        if let hour = components.hour {
-//            if !isReset && hour >= 6 {
-//                isCompliment = false
-//                isSelectedSameDay = false
-//                isReset.toggle()
-//            } else if let hour = components.hour {
-//
-//            }
-//        }
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-        let currentTime = formatter.string(from: Date())
-        print(currentTime)
-        if currentTime == "02:21" {
-            isCompliment = false
-            isSelectedSameDay = false
+        if !calendar.isDateInToday(lastResetDate) {
+            resetTimeButton()
         }
+    }
+    
+    // 버튼 초기화
+    private func resetTimeButton() {
+        isCompliment = false
+        isSelectedSameDay = false
+        lastResetTimeInterval = Date().timeIntervalSince1970
     }
 }
 
