@@ -20,14 +20,21 @@ enum Weekday: String, CaseIterable {
 }
 
 class GameScene: SKScene {
-    
+    @AppStorage("isCompliment") private var isCompliment: Bool = false
     var boxes: [SKSpriteNode] = []
     var complimentCount = 0
 	let motionManager = CMMotionManager()
+    var background = SKSpriteNode(imageNamed: "boxBackground")
     
     override func didMove(to view: SKView) {
 		physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
-		
+        
+        let position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
+        background.position = position
+        if !boxes.isEmpty || isCompliment {
+            addChild(background)
+        }
+            
 		motionManager.deviceMotionUpdateInterval = 0.1
 		motionManager.startDeviceMotionUpdates(to: .main) { (motion, error) in
 			guard let motion = motion else { return }
@@ -41,6 +48,7 @@ class GameScene: SKScene {
 										y: UIScreen.main.bounds.height / 2.5))
 			}
 		}
+        
         // 배경색 변경
         //        self.backgroundColor = .red
     }
@@ -299,7 +307,8 @@ struct MainView: View {
 							Image("emptyState")
 								.offset(y: 45)
 						}
-					}
+                    }
+                    
 					Color.clear
 					.popup(isPresented: $showPopup) {
 						CardView(showPopup: $showPopup)

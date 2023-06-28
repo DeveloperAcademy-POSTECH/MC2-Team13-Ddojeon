@@ -16,7 +16,7 @@ struct TempMainView: View {
 	var Compliment: FetchedResults<ComplimentEntity>
 	@AppStorage("group") var groupOrder: Int = 1
 	@AppStorage("isfirst") var isfirst: Bool = false
-
+    @AppStorage("isCompliment") private var isCompliment: Bool = false
 	@State private var textFieldTitle: String = ""
 	@State private var showPopup = false
 	@State private var customDate = Date()
@@ -84,6 +84,7 @@ struct TempMainView: View {
 						Button {
 							PersistenceController.shared.deleteAllCompliments()
 							isfirst = true
+                            isCompliment = false
 						} label: {
 							Text("칭찬 초기화")
 								.padding()
