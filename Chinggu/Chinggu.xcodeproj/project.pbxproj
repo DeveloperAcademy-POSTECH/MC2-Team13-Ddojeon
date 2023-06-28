@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		51887AE72A12232F0015EF88 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51887AE62A12232F0015EF88 /* OnboardingView.swift */; };
+		5191CFBD2A4ADD9A00881DC0 /* onboarding_4.json in Resources */ = {isa = PBXBuildFile; fileRef = 5191CFBC2A4ADD9A00881DC0 /* onboarding_4.json */; };
+		51C204AE2A4AE14900A0A8F5 /* onboarding_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 51C204AD2A4AE14900A0A8F5 /* onboarding_2.json */; };
 		51D817182A08E59F00B84E6A /* WriteComplimentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D817172A08E59F00B84E6A /* WriteComplimentView.swift */; };
 		701094A62A0FA83D0019DEED /* cardBeforeAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 701094A52A0FA83D0019DEED /* cardBeforeAnimation.json */; };
 		7014D47A2A10AF8B00F1B315 /* TempArchivingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7014D4792A10AF8B00F1B315 /* TempArchivingDetailView.swift */; };
@@ -27,8 +29,6 @@
 		70E68F0F2A0A888C00258A10 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 70E68F0E2A0A888C00258A10 /* Lottie */; };
 		70E68F122A0A906500258A10 /* cardAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 70E68F112A0A906500258A10 /* cardAnimation.json */; };
 		70E68F142A0A95FD00258A10 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E68F132A0A95FD00258A10 /* LottieView.swift */; };
-		A93729872A0F6E5C00C79C04 /* onboarding_2.json in Resources */ = {isa = PBXBuildFile; fileRef = A937297D2A0F6E5B00C79C04 /* onboarding_2.json */; };
-		A937298A2A0F6E5C00C79C04 /* onboarding_4.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729802A0F6E5C00C79C04 /* onboarding_4.json */; };
 		A937298B2A0F6E5C00C79C04 /* onboarding_1.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729812A0F6E5C00C79C04 /* onboarding_1.json */; };
 		A937298C2A0F6E5C00C79C04 /* onboarding_3.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729822A0F6E5C00C79C04 /* onboarding_3.json */; };
 		A937298F2A0F6E5C00C79C04 /* onboarding_5.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729852A0F6E5C00C79C04 /* onboarding_5.json */; };
@@ -45,6 +45,8 @@
 
 /* Begin PBXFileReference section */
 		51887AE62A12232F0015EF88 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingView.swift; path = Chinggu/View/Onboard/OnboardingView.swift; sourceTree = SOURCE_ROOT; };
+		5191CFBC2A4ADD9A00881DC0 /* onboarding_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_4.json; sourceTree = "<group>"; };
+		51C204AD2A4AE14900A0A8F5 /* onboarding_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_2.json; sourceTree = "<group>"; };
 		51D817172A08E59F00B84E6A /* WriteComplimentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteComplimentView.swift; sourceTree = "<group>"; };
 		701094A52A0FA83D0019DEED /* cardBeforeAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cardBeforeAnimation.json; sourceTree = "<group>"; };
 		7014D4792A10AF8B00F1B315 /* TempArchivingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempArchivingDetailView.swift; sourceTree = "<group>"; };
@@ -64,8 +66,6 @@
 		70D706052A0FFFF0001D9203 /* Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
 		70E68F112A0A906500258A10 /* cardAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cardAnimation.json; sourceTree = "<group>"; };
 		70E68F132A0A95FD00258A10 /* LottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
-		A937297D2A0F6E5B00C79C04 /* onboarding_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_2.json; sourceTree = "<group>"; };
-		A93729802A0F6E5C00C79C04 /* onboarding_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_4.json; sourceTree = "<group>"; };
 		A93729812A0F6E5C00C79C04 /* onboarding_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_1.json; sourceTree = "<group>"; };
 		A93729822A0F6E5C00C79C04 /* onboarding_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_3.json; sourceTree = "<group>"; };
 		A93729852A0F6E5C00C79C04 /* onboarding_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_5.json; sourceTree = "<group>"; };
@@ -164,9 +164,9 @@
 			isa = PBXGroup;
 			children = (
 				A93729812A0F6E5C00C79C04 /* onboarding_1.json */,
-				A937297D2A0F6E5B00C79C04 /* onboarding_2.json */,
+				51C204AD2A4AE14900A0A8F5 /* onboarding_2.json */,
 				A93729822A0F6E5C00C79C04 /* onboarding_3.json */,
-				A93729802A0F6E5C00C79C04 /* onboarding_4.json */,
+				5191CFBC2A4ADD9A00881DC0 /* onboarding_4.json */,
 				A93729852A0F6E5C00C79C04 /* onboarding_5.json */,
 			);
 			path = onboardLottie;
@@ -291,9 +291,9 @@
 				70E68F122A0A906500258A10 /* cardAnimation.json in Resources */,
 				AE37D53C2A039606009B0F56 /* Preview Assets.xcassets in Resources */,
 				A937298B2A0F6E5C00C79C04 /* onboarding_1.json in Resources */,
-				A937298A2A0F6E5C00C79C04 /* onboarding_4.json in Resources */,
 				AE37D5392A039606009B0F56 /* Assets.xcassets in Resources */,
-				A93729872A0F6E5C00C79C04 /* onboarding_2.json in Resources */,
+				5191CFBD2A4ADD9A00881DC0 /* onboarding_4.json in Resources */,
+				51C204AE2A4AE14900A0A8F5 /* onboarding_2.json in Resources */,
 				70385ED32A07E00F001CDAB0 /* Color.xcassets in Resources */,
 				A937298C2A0F6E5C00C79C04 /* onboarding_3.json in Resources */,
 			);
@@ -457,7 +457,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Chinggu/Preview Content\"";
-				DEVELOPMENT_TEAM = HFR7W36699;
+				DEVELOPMENT_TEAM = PFTK9YA9R8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Chinggu/Info.plist;
@@ -487,7 +487,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Chinggu/Preview Content\"";
-				DEVELOPMENT_TEAM = HFR7W36699;
+				DEVELOPMENT_TEAM = PFTK9YA9R8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Chinggu/Info.plist;

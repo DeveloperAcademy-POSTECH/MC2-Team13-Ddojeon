@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct ArchivingView: View {
-    
     @FetchRequest(
         entity: ComplimentEntity.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
     ) var Compliment: FetchedResults<ComplimentEntity>
     @AppStorage("group") var groupOrder: Int = 1
-
+    
+    @Environment(\.dismiss) private var dismiss
+    @State var editMode: EditMode = .inactive
+    @State var isEditing = false
+    
     var body: some View {
 		NavigationStack{
 			VStack(alignment: .leading){
@@ -77,7 +80,6 @@ struct ArchivingView: View {
 			.background(Color.ddoPrimary)
 		}
 	}
-	
     private func delete(indexset: IndexSet) {
         guard let index = indexset.first else { return }
         let selectedEntity = Compliment[index]
@@ -87,6 +89,6 @@ struct ArchivingView: View {
 
 struct MyPreviewProvider_Previews: PreviewProvider {
     static var previews: some View {
-		ArchivingView()
+        ArchivingView()
     }
 }
