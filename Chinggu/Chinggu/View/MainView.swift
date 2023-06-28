@@ -90,13 +90,14 @@ struct MainView: View {
     @State private var tempSeletedWeekday: Weekday?
     @State private var shake = 0.0
     @State private var showPopup = false
-    @State private var isCompliment = false
+//    @State private var isCompliment = false
     @State private var showInfoPopup = false
     
 	@AppStorage("group") var groupOrder: Int = 1
 	@AppStorage("isfirst") var isfirst: Bool = true
 	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
     @AppStorage("isSelectedSameDay") private var isSelectedSameDay: Bool = true
+    @AppStorage("isCompliment") private var isCompliment: Bool = false
 	
     @State var scene = GameScene()
     
@@ -106,6 +107,8 @@ struct MainView: View {
            let lastResetTime = Date(timeIntervalSince1970: lastResetTimeInterval)
            return lastResetTime
        }
+    
+    @Environment(\.scenePhase) var scenePhase
     
     var body: some View {
         GeometryReader { geometry in
@@ -254,7 +257,7 @@ struct MainView: View {
 								scene.size = CGSize(width: width, height: height)
 								scene.complimentCount = complimentsInGroup.count
 								updateCanBreakBoxes()
-                                compareDates()
+                                
 								scene.scaleMode = .aspectFit
 							}
 						
@@ -291,7 +294,7 @@ struct MainView: View {
 						}
                         .disabled(isCompliment)
 					}
-					if complimentsInGroup.count == 0 {
+					if complimentsInGroup.count == 0 && !isCompliment {
 						NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment)) {
 							Image("emptyState")
 								.offset(y: 45)
@@ -309,7 +312,12 @@ struct MainView: View {
 				.onChange(of: groupOrder, perform: { newValue in
 					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(newValue))
 				})
+                .onChange(of: scenePhase) { newPhase in
+                    print("scene change")
+                    compareDates()
+                }
 				.onAppear {
+                    
 					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
                     // 최초 칭찬 작성 시 안내 팝업
 					if Compliment.count == 1, isfirst == true {
@@ -317,6 +325,7 @@ struct MainView: View {
 							showInfoPopup = true
 						}
 					}
+                    
 				}
                 
             }
