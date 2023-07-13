@@ -10,7 +10,7 @@ import SwiftUI
 struct CardFullScreenView: View {
 	
 	@AppStorage("group") var groupOrder: Int = 1
-  @AppStorage("isSelectedSameDay") private var isSelectedSameDay: Bool = true
+    @AppStorage("isSelectedSameDay") private var isSelectedSameDay: Bool = true
 	@State var complimentsInGroup: [ComplimentEntity] = []
 	@State var groupOrderText: String = ""
 	@State var groupStartEndDates: String = ""
