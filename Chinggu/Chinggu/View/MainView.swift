@@ -266,6 +266,7 @@ struct MainView: View {
                                 
                             }
 							.onAppear {
+                                print(complimentsInGroup.count)
 								if complimentsInGroup.count > scene.complimentCount {
 									scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
 									if canBreakBoxes {
@@ -279,9 +280,13 @@ struct MainView: View {
                                 
 								scene.scaleMode = .aspectFit
 							}
-						
-						if canBreakBoxes && scene.boxes.count > 0  {
-							Text("칭찬 상자를 톡! 눌러주세요")
+                        if complimentsInGroup.count == 7 {
+                            Text("주간 칭찬은 최대 7개 까지만 가능해요.")
+                                .font(.custom("AppleSDGothicNeo-SemiBold", size: 14))
+                                .foregroundColor(.gray)
+                                .padding(.top, 14)
+                        } else if canBreakBoxes && scene.boxes.count > 0  {
+							Text("칭찬 상자를 톡! 눌러주세요.")
 								.font(.custom("AppleSDGothicNeo-SemiBold", size: 14))
 								.foregroundColor(.gray)
 								.padding(.top, 14)
@@ -308,10 +313,10 @@ struct MainView: View {
 						})
 						.background {
 							RoundedRectangle(cornerRadius: 10)
-//                                .foregroundColor(.blue)
-                                .foregroundColor(isCompliment ? Color(red: 0.85, green: 0.85, blue: 0.85) : .blue)
+                                .foregroundColor(isCompliment || complimentsInGroup.count == 7 ? Color(red: 0.85, green: 0.85, blue: 0.85) : .blue)
 						}
                         .disabled(isCompliment)
+                        .disabled(complimentsInGroup.count == 7)
 					}
 					if complimentsInGroup.count == 0 && !isCompliment {
 						NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment)) {
@@ -338,7 +343,6 @@ struct MainView: View {
                     updateCanBreakBoxes()
                 }
 				.onAppear {
-                    
 					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
                     // 최초 칭찬 작성 시 안내 팝업
 					if Compliment.count == 1, isfirst == true {
