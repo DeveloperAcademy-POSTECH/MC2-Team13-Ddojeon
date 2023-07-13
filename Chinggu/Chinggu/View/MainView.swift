@@ -92,7 +92,7 @@ struct MainView: View {
 	@State var complimentsInGroup: [ComplimentEntity] = []
     
     @State private var showActionSheet = false
-    @State private var canBreakBoxes = false
+//    @State private var canBreakBoxes = false
     @State private var showAlert = false
     @State private var showBreakAlert = false
     @State private var tempSeletedWeekday: Weekday?
@@ -106,7 +106,7 @@ struct MainView: View {
 	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
     @AppStorage("isSelectedSameDay") private var isSelectedSameDay: Bool = true
     @AppStorage("isCompliment") private var isCompliment: Bool = false
-	
+	@AppStorage("canBreakBoxes") private var canBreakBoxes = false
     @State var scene = GameScene()
     
     @AppStorage("lastResetTimeInterval") private var lastResetTimeInterval: TimeInterval = Date().timeIntervalSince1970
@@ -197,8 +197,13 @@ struct MainView: View {
 								.opacity(0.15)
 							Divider()
 						}
-						.padding(.bottom, 30)
-                        
+                        .padding(.bottom, 30)
+                        // MARK: 테스트 버튼
+                        Button("초기화") {
+                            isSelectedSameDay = false
+                            isCompliment = false
+                        }
+
 						// 타이틀
 						if canBreakBoxes && scene.boxes.count > 0  {
 							Text("이번 주 칭찬을\n  확인할 시간이에요💞")
@@ -350,8 +355,6 @@ struct MainView: View {
             if scene.complimentCount > 0 {
                 shake = 5
             }
-        } else {
-            canBreakBoxes = false
         }
     }
     

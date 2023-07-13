@@ -10,7 +10,8 @@ import SwiftUI
 struct CardFullScreenView: View {
 	
 	@AppStorage("group") var groupOrder: Int = 1
-  @AppStorage("isSelectedSameDay") private var isSelectedSameDay: Bool = true
+    @AppStorage("isSelectedSameDay") private var isSelectedSameDay: Bool = true
+    @AppStorage("canBreakBoxes") private var canBreakBoxes = false
 	@State var complimentsInGroup: [ComplimentEntity] = []
 	@State var groupOrderText: String = ""
 	@State var groupStartEndDates: String = ""
@@ -69,6 +70,7 @@ struct CardFullScreenView: View {
 							showPopup = false
 							groupOrder = groupOrder + 1
                             isSelectedSameDay = true
+                            canBreakBoxes = false
 						}
 					} label: {
 						Text("닫기")
