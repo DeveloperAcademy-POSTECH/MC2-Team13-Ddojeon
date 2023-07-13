@@ -20,20 +20,13 @@ enum Weekday: String, CaseIterable {
 }
 
 class GameScene: SKScene {
-    @AppStorage("isCompliment") private var isCompliment: Bool = false
+    @AppStorage("isCompliment") private var isCompliment = false
     var boxes: [SKSpriteNode] = []
     var complimentCount = 0
 	let motionManager = CMMotionManager()
     var background = SKSpriteNode(imageNamed: "boxBackground")
-    
     override func didMove(to view: SKView) {
 		physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
-        
-        let position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
-        background.position = position
-        if !boxes.isEmpty || isCompliment {
-            addChild(background)
-        }
             
 		motionManager.deviceMotionUpdateInterval = 0.1
 		motionManager.startDeviceMotionUpdates(to: .main) { (motion, error) in
@@ -42,15 +35,18 @@ class GameScene: SKScene {
 			let y = motion.gravity.y
 			self.physicsWorld.gravity = CGVector(dx: x * 35, dy: y * 35)
 		}
-		for i in 0..<complimentCount {
-			DispatchQueue.main.asyncAfter(deadline: .now() + 0.2 * Double(i)) {
-				self.addBox(at: CGPoint(x: UIScreen.main.bounds.width / 2,
-										y: UIScreen.main.bounds.height / 2.5))
-			}
-		}
-        
-        // 배경색 변경
-        //        self.backgroundColor = .red
+        background.alpha = 0.45
+        background.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
+        addChild(background)
+ 
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                for i in 0..<self.complimentCount {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2 * Double(i)) {
+                        self.addBox(at: CGPoint(x: UIScreen.main.bounds.width / 2,
+                                                y: UIScreen.main.bounds.height / 2.5))
+                    }
+                }
+            }
     }
     
     func addBox(at position: CGPoint) {
@@ -198,10 +194,15 @@ struct MainView: View {
 							Divider()
 						}
 						.padding(.bottom, 30)
-                        
+                        // MARK: 테스트 버튼
+                        Button("초기화") {
+                            isSelectedSameDay = false
+                            isCompliment = false
+                        }
 						// 타이틀
 						if canBreakBoxes && scene.boxes.count > 0  {
 							Text("이번 주 칭찬을\n  확인할 시간이에요💞")
+                                .tracking(-0.3)
 								.multilineTextAlignment(.center)
                                 .bold()
                                 .font(.title)
@@ -211,6 +212,7 @@ struct MainView: View {
 
 						} else {
 							Text("오늘은 어떤 칭찬을\n해볼까요?✍️")
+                                .tracking(-0.3)
 								.multilineTextAlignment(.center)
                                 .bold()
                                 .font(.title)
@@ -236,6 +238,13 @@ struct MainView: View {
 										scene.resetBoxes()
 										scene.complimentCount = 0
 										showPopup = true
+//                                        if !scene.boxes.isEmpty || isCompliment {
+//                                            print("메인뷰 true")
+//                                            scene.isBackgroundLine = true
+//                                        } else {
+//                                            print("메인뷰 false")
+//                                            scene.isBackgroundLine = false
+//                                        }
 									}
 								}, secondaryButton:.cancel(Text("아니요")))
 							}
@@ -275,7 +284,7 @@ struct MainView: View {
 								.foregroundColor(.gray)
 								.padding(.top, 14)
 						} else {
-							Text("긍정의 힘은 복리로 돌아와요 커밍쑨!")
+							Text("긍정의 힘은 복리로 돌아와요. 커밍쑨!")
 								.font(.custom("AppleSDGothicNeo-SemiBold", size: 14))
 								.foregroundColor(.gray)
 								.padding(.top, 14)
@@ -290,15 +299,15 @@ struct MainView: View {
                                     .bold()
                                     .font(.title3)
 									.foregroundColor(Color.white)
-									.kerning(1)
+                                    .kerning(0.5)
 									.padding(.vertical,6)
-									.frame(width: geometry.size.width/1.15, height: 50)
+									.frame(width: width, height: 56)
 							})
 						})
 						.background {
 							RoundedRectangle(cornerRadius: 10)
 //                                .foregroundColor(.blue)
-                                .foregroundColor(isCompliment ? .gray : .blue)
+                                .foregroundColor(isCompliment ? Color(red: 0.85, green: 0.85, blue: 0.85) : .blue)
 						}
                         .disabled(isCompliment)
 					}
@@ -324,6 +333,7 @@ struct MainView: View {
                 .onChange(of: scenePhase) { newPhase in
                     print("scene change")
                     compareDates()
+                    updateCanBreakBoxes()
                 }
 				.onAppear {
                     
@@ -334,7 +344,6 @@ struct MainView: View {
 							showInfoPopup = true
 						}
 					}
-                    
 				}
                 
             }
