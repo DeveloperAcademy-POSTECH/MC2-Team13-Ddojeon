@@ -14,51 +14,29 @@ struct ArchivingCard: View {
     @Binding var order: Int16
     @Binding var createDate: Date
     var cardColor: Color
-    
+	    
     var body: some View {
-        VStack {
-            VStack(alignment: .leading){
-                HStack(spacing: -5){
-                    
-                    Text("\(groupID)번째 상자")
-                        .foregroundColor(Color("oll"))
-                        .opacity(0.9)
-                        .scaleEffect(0.9)
-                    
-                    Text("ㅣ")
-                        .opacity(0.9)
-                        .scaleEffect(0.9)
-                    
-                    Text("\(order)번째 칭찬")
-                        .foregroundColor(Color("oll"))
-                        .opacity(0.9)
-                        .scaleEffect(0.9)
-                    Spacer()
-                }
-                .padding(.leading)
-            }
-            
+        VStack {            
             VStack(alignment: .leading){
                 Text(compliment)
                     .font(.body)
                     .fontWeight(.semibold)
-                    .lineSpacing(5)
+					.lineSpacing(CardStyle.cardLineSpacing)
                     .foregroundColor(Color("oll"))
+				
                 Spacer()
-                HStack(alignment: .bottom){
-                    
+				
+                HStack(){
                     Spacer()
-                    
                     //날짜
-                    
                     Text(createDate.formatWithDot())
-                        .opacity(0.3)
+						.opacity(CardStyle.cardDateOpacity)
                         .font(.caption)
                 }
             }
-            .padding(30)
+			.padding(Metric.cardInsidePadding)
             .background(cardColor)
-            .cornerRadius(30)
+			.cornerRadius(CardStyle.cardCornerRadius)
         }
     }
 }

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "emptyState.png",
+      "filename" : "splash.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "emptyState@2x.png",
+      "filename" : "splash2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "empty3x.png",
+      "filename" : "splash3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
