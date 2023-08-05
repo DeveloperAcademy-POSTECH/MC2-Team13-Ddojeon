@@ -13,9 +13,12 @@ struct ContentView: View {
 	@AppStorage(UserDefaultsKeys.hasOnboarded) private var hasOnboarded: Bool = false
 	@AppStorage(UserDefaultsKeys.groupOrder) var groupOrder: Int = 1
 	
+	@StateObject var gameState = GameState()
+
 	var body: some View {
 		if hasOnboarded {
 			MainView()
+				.environmentObject(gameState)
 		} else {
             OnboardingView()
 		}
