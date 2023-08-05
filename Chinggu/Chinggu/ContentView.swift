@@ -9,19 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
 	
-	init() {
-		UIView.appearance().overrideUserInterfaceStyle = .light
-	}
-	
-	@State private var hasOnboarded: Bool = UserDefaults.standard.bool(forKey: "HasOnboarded")
-	@AppStorage("group") var groupOrder: Int = 1
+//	@State private var hasOnboarded: Bool = UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasOnboarded)
+	@AppStorage(UserDefaultsKeys.hasOnboarded) private var hasOnboarded: Bool = false
+	@AppStorage(UserDefaultsKeys.groupOrder) var groupOrder: Int = 1
 	
 	var body: some View {
 		if hasOnboarded {
 			MainView()
 		} else {
             OnboardingView()
-//			Onboarding_1()
 		}
 	}
 }
