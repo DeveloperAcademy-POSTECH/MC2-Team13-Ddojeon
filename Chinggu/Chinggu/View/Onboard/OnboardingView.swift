@@ -76,7 +76,8 @@ struct OnboardingView: View {
                         VStack {
                             OnboardingTextView(onboardings: onboardings, index: idx)
                             LottieView(filename: "onboarding_\(idx)",
-                                            loopState: true)
+									   loopState: true,
+									   playState: .constant(true))
                             .scaleEffect(idx == 1 ? 0.55 : 1)
                             .offset(x:0, y: selection == 4 ? -40 : 0)
                             .overlay(alignment: .bottom) {
@@ -117,6 +118,8 @@ struct ProgressBar: View {
     @Binding var selection: Int
     @State var length: Int
     @Binding var showMain: Bool
+	
+	@AppStorage(UserDefaultsKeys.hasOnboarded) private var hasOnboarded: Bool = false
     
     var body: some View {
         HStack(spacing: 8) {
@@ -133,12 +136,13 @@ struct ProgressBar: View {
                 ProgressView(value: Double(selection - 1) / Double(length - 1), total: 1.0)
                     .scaleEffect(y:1.3)
                     .progressViewStyle(
-                        LinearProgressViewStyle(tint: Color("oll"))
+                        LinearProgressViewStyle(tint: Color("ddoFont"))
                     )
 
                 Button("건너뛰기") {
                     showMain = true
-                    UserDefaults.standard.set(true, forKey: "HasOnboarded")
+					hasOnboarded = true
+//					UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasOnboarded)
                 }
                 .padding(.leading, 10)
                 .accentColor(.black)
@@ -166,7 +170,7 @@ struct OnboardingTextView: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: 18)
                             .frame(width: 72, height: 36)
-                            .foregroundColor(Color("oll"))
+                            .foregroundColor(Color("ddoFont"))
                         Text(message[messageIndex])
                             .bold()
                             .font(.body)
@@ -217,7 +221,7 @@ struct GoNextButton: View {
             if selection == length {
                 // 메인화면으로 이동
                 showMain = true
-                UserDefaults.standard.set(true, forKey: "HasOnboarded")
+				UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasOnboarded)
             } else {
                 // 다음 페이지 이동
                 selection = selection < length ? selection + 1 : length
@@ -226,7 +230,7 @@ struct GoNextButton: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
                     .frame(height: 56)
-                    .foregroundColor(selection == length ? Color.blue : Color("oll"))
+                    .foregroundColor(selection == length ? Color.blue : Color("ddoFont"))
                 Text(onboardings[selection - 1].nextButton)
                     .bold()
                     .font(.title3)

@@ -9,13 +9,13 @@ import SwiftUI
 
 struct InfoPopupView: View {
 	@Binding var showInfoPopup: Bool
-	@AppStorage("isfirst") var isfirst: Bool = false
-  @State private var showWeekdaySheet = false
-  @AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
-
+	@AppStorage(UserDefaultsKeys.isfirst) var isfirst: Bool = false
+	@State private var showWeekdaySheet = false
+	@AppStorage(UserDefaultsKeys.selectedWeekday) private var selectedWeekday: String = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
+	
 	var body: some View {
 		ZStack {
-			LottieView(filename: "cardBeforeAnimation", loopState: false, contentMode: .scaleAspectFill)
+			LottieView(filename: "cardBeforeAnimation", loopState: false, contentMode: .scaleAspectFill, playState: .constant(true))
 				.ignoresSafeArea()
 				.transaction { transaction in
 					transaction.animation = nil
@@ -38,29 +38,29 @@ struct InfoPopupView: View {
 							.multilineTextAlignment(.center)
 							.foregroundColor(Color.black.opacity(0.7))
 							.lineSpacing(3)
-												
+						
 						Button(action: {
-                showWeekdaySheet = true
+							showWeekdaySheet = true
 						}) {
 							Text("요일 설정")
 								.font(.title3)
-                .bold()
+								.bold()
 								.foregroundColor(.white)
 								.kerning(1)
 								.padding(.vertical,6)
 								.frame(width: 310, height: 56)
 						}
-            .actionSheet(isPresented: $showWeekdaySheet) {
-              ActionSheet(title: Text("요일 변경"), message: nil, buttons: Weekday.allCases.map { weekday in
-                 return .default(Text(weekday.rawValue)) {
-                   selectedWeekday = weekday.rawValue
-                   withAnimation(.easeOut(duration: 0.5)) {
-                     showInfoPopup = false
-                     isfirst = false
-                   }
-                 }
-              }.compactMap { $0 } + [.cancel()])
-            }
+						.actionSheet(isPresented: $showWeekdaySheet) {
+							ActionSheet(title: Text("요일 변경"), message: nil, buttons: Weekday.allCases.map { weekday in
+								return .default(Text(weekday.rawValue)) {
+									selectedWeekday = weekday.rawValue
+									withAnimation(.easeOut(duration: 0.5)) {
+										showInfoPopup = false
+										isfirst = false
+									}
+								}
+							}.compactMap { $0 } + [.cancel()])
+						}
 						.offset(y: 40)
 						.background {
 							RoundedRectangle(cornerRadius: 10)

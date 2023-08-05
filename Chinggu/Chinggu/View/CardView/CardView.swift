@@ -16,7 +16,7 @@ struct CardView: View {
 
 	var body: some View {
 		ZStack {
-			LottieView(filename: "cardBeforeAnimation", loopState: false, contentMode: .scaleAspectFill)
+			LottieView(filename: "cardBeforeAnimation", loopState: false, contentMode: .scaleAspectFill, playState: .constant(true))
 				.ignoresSafeArea()
 				.transaction { transaction in
 					transaction.animation = nil

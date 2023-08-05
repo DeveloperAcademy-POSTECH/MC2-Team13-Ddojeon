@@ -20,7 +20,7 @@ enum Weekday: String, CaseIterable {
 }
 
 class GameScene: SKScene {
-    @AppStorage("isCompliment") private var isCompliment = false
+	@AppStorage(UserDefaultsKeys.isCompliment) private var isCompliment = false
     var boxes: [SKSpriteNode] = []
     var complimentCount = 0
 	let motionManager = CMMotionManager()
@@ -97,15 +97,15 @@ struct MainView: View {
 //    @State private var isCompliment = false
     @State private var showInfoPopup = false
     
-	@AppStorage("group") var groupOrder: Int = 1
-	@AppStorage("isfirst") var isfirst: Bool = true
-	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
-    @AppStorage("isSelectedSameDay") private var isSelectedSameDay: Bool = true
-    @AppStorage("isCompliment") private var isCompliment: Bool = false
+	@AppStorage(UserDefaultsKeys.groupOrder) var groupOrder: Int = 1
+	@AppStorage(UserDefaultsKeys.isfirst) var isfirst: Bool = true
+	@AppStorage(UserDefaultsKeys.selectedWeekday) private var selectedWeekday: String = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
+	@AppStorage(UserDefaultsKeys.isSelectedSameDay) private var isSelectedSameDay: Bool = true
+	@AppStorage(UserDefaultsKeys.isCompliment) private var isCompliment: Bool = false
 	
     @State var scene = GameScene()
     
-    @AppStorage("lastResetTimeInterval") private var lastResetTimeInterval: TimeInterval = Date().timeIntervalSince1970
+	@AppStorage(UserDefaultsKeys.lastResetTimeInterval) private var lastResetTimeInterval: TimeInterval = Date().timeIntervalSince1970
        
        var lastResetDate: Date {
            let lastResetTime = Date(timeIntervalSince1970: lastResetTimeInterval)
@@ -206,7 +206,7 @@ struct MainView: View {
 								.multilineTextAlignment(.center)
                                 .bold()
                                 .font(.title)
-								.foregroundColor(Color("oll"))
+								.foregroundColor(Color("ddoFont"))
 								.lineSpacing(5)
 								.padding(.bottom, 25)
 
@@ -216,7 +216,7 @@ struct MainView: View {
 								.multilineTextAlignment(.center)
                                 .bold()
                                 .font(.title)
-								.foregroundColor(Color("oll"))
+								.foregroundColor(Color("ddoFont"))
 								.lineSpacing(5)
 								.padding(.bottom, 25)
 						}

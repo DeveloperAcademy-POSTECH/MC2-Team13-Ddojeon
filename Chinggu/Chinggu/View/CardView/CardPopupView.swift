@@ -12,7 +12,7 @@ struct CardPopupView: View {
 	var namespace: Namespace.ID
 	
 	var body: some View {
-		LottieView(filename: "cardAnimation.json", loopState: false)
+		LottieView(filename: "cardAnimation.json", loopState: false, playState: .constant(true))
 			.background(LinearGradient(gradient: Gradient(colors: [Color.ddoYellow, Color.ddoPrimary]), startPoint: .top, endPoint: .bottom))
 			.clipShape(RoundedRectangle(cornerRadius: 15))
 			.frame(width: 350, height: 412)

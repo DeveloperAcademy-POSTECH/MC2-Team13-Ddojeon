@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CardFullScreenView: View {
 	
-	@AppStorage("group") var groupOrder: Int = 1
-    @AppStorage("isSelectedSameDay") private var isSelectedSameDay: Bool = true
+	@AppStorage(UserDefaultsKeys.groupOrder) var groupOrder: Int = 1
+	@AppStorage(UserDefaultsKeys.isSelectedSameDay) private var isSelectedSameDay: Bool = true
 	@State var complimentsInGroup: [ComplimentEntity] = []
 	@State var groupOrderText: String = ""
 	@State var groupStartEndDates: String = ""
@@ -29,11 +29,11 @@ struct CardFullScreenView: View {
                         Text(groupOrderText)
                             .font(Font.system(size:18).weight(.heavy))
                             .matchedGeometryEffect(id: "title", in: namespace)
-                            .foregroundColor(Color("oll"))
+                            .foregroundColor(Color("ddoFont"))
                        
                         Image(systemName: "gift")
                             .font(Font.system(size:18).weight(.heavy))
-                            .foregroundColor(Color("oll"))
+                            .foregroundColor(Color("ddoFont"))
                         
                       Spacer()
                             .frame(width: 10)
@@ -96,7 +96,7 @@ struct CardFullScreenView: View {
                         }
                         .background {
                             RoundedRectangle(cornerRadius: 15)
-                                .foregroundColor(Color("oll"))
+                                .foregroundColor(Color("ddoFont"))
                         }
                         
                         Spacer()

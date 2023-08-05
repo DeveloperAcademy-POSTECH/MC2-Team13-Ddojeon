@@ -22,7 +22,7 @@ struct ArchivingCard: View {
                     .font(.body)
                     .fontWeight(.semibold)
 					.lineSpacing(CardStyle.cardLineSpacing)
-                    .foregroundColor(Color("oll"))
+                    .foregroundColor(Color("ddoFont"))
 				
                 Spacer()
 				

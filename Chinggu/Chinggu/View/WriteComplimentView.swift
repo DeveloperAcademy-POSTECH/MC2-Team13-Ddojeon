@@ -75,7 +75,7 @@ struct WriteComplimentView: View {
     
     let categories: [Category] = Categories.allCases.map { Category(title: $0.title, example: $0.example) }
     
-    @AppStorage("group") var groupOrder: Int = 1
+    @AppStorage(UserDefaultsKeys.groupOrder) var groupOrder: Int = 1
     
     @Binding var isCompliment: Bool
     

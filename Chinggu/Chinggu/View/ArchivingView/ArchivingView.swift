@@ -12,7 +12,7 @@ struct ArchivingView: View {
         entity: ComplimentEntity.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
     ) var Compliment: FetchedResults<ComplimentEntity>
-    @AppStorage("group") var groupOrder: Int = 1
+    @AppStorage(UserDefaultsKeys.groupOrder) var groupOrder: Int = 1
     
     @Environment(\.dismiss) private var dismiss
     @State var editMode: EditMode = .inactive

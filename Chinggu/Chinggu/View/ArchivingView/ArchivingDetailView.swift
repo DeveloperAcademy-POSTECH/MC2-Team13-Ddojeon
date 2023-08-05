@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ArchivingDetailView: View {
 	
-	@AppStorage("group") var groupOrder: Int = 1
+	@AppStorage(UserDefaultsKeys.groupOrder) var groupOrder: Int = 1
 	@FetchRequest(
 		entity: ComplimentEntity.entity(),
 		sortDescriptors: []
@@ -44,16 +44,13 @@ struct ArchivingDetailView: View {
 
 				Spacer()
 				
-				//버튼 oll 0.9
-				//background oll 0.1
-				//font black 0.3
 				Text("\(groupID)번째 상자ㅣ\(order)번째 칭찬")
 					.font(.subheadline.bold())
 					.foregroundColor(.black.opacity(0.3))
 					.padding()
 					.overlay(
 						RoundedRectangle(cornerRadius: 15)
-							.fill(Color("oll").opacity(0.1))
+							.fill(Color("ddoFont").opacity(0.1))
 					)
 
 				Spacer()
@@ -120,7 +117,7 @@ fileprivate struct TowardsButton: View {
 		}
 
 		func activeBackground(order: Int16, total: Int) -> Color {
-			return disabledCondition(order: order, total: total) ? Color("oll").opacity(0.1) : .black.opacity(0.7)
+			return disabledCondition(order: order, total: total) ? Color("ddoFont").opacity(0.1) : .black.opacity(0.7)
 		}
 	}
 
