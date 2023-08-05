@@ -41,16 +41,16 @@ extension ArchivingDetailView {
 	
 	enum ColorStyle {
 		static let colors: [Color] = [
-					Color("ddoTip1_2"),
-					Color("ddoTip2_2"),
-					Color("ddoTip3_2"),
-					Color("ddoTip4_2"),
-					Color("ddoTip5_2"),
-					Color("ddoTip6_2"),
-					Color("ddoTip7_2"),
-					Color("ddoTip8_2"),
-					Color("ddoTip9_2"),
-					Color("ddoTip10_2")
+					Color("ddoTip1"),
+					Color("ddoTip2"),
+					Color("ddoTip3"),
+					Color("ddoTip4"),
+					Color("ddoTip5"),
+					Color("ddoTip6"),
+					Color("ddoTip7"),
+					Color("ddoTip8"),
+					Color("ddoTip9"),
+					Color("ddoTip10")
 				]
 		
 		static func randomColor() -> Color {
