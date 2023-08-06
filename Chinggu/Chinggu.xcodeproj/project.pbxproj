@@ -158,13 +158,21 @@
 			path = GameComponents;
 			sourceTree = "<group>";
 		};
+		7030290B2A7F72C0005B3D25 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */,
+				703029092A7F6D8B005B3D25 /* Weekday+Today.swift */,
+				70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		70385ECF2A07DFDD001CDAB0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				70E68F132A0A95FD00258A10 /* LottieView.swift */,
-				703029092A7F6D8B005B3D25 /* Weekday+Today.swift */,
-				70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */,
-				70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */,
+				7030290B2A7F72C0005B3D25 /* Extensions */,
 				703028F12A7EA0E2005B3D25 /* UserDefaultsKeys.swift */,
 				70385ED22A07E00F001CDAB0 /* Color.xcassets */,
 				AE37D5382A039606009B0F56 /* Assets.xcassets */,
