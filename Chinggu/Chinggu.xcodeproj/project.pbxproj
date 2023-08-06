@@ -18,6 +18,7 @@
 		703028FD2A7EBF0B005B3D25 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703028FC2A7EBF0B005B3D25 /* GameState.swift */; };
 		703028FF2A7EC14E005B3D25 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703028FE2A7EC14E005B3D25 /* HapticManager.swift */; };
 		703029012A7EC2CA005B3D25 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703029002A7EC2CA005B3D25 /* TitleView.swift */; };
+		703029032A7EC4CC005B3D25 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703029022A7EC4CC005B3D25 /* Weekday.swift */; };
 		70385ED12A07DFEE001CDAB0 /* Color+Chinggu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED02A07DFEE001CDAB0 /* Color+Chinggu.swift */; };
 		70385ED32A07E00F001CDAB0 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70385ED22A07E00F001CDAB0 /* Color.xcassets */; };
 		70385EDA2A07E60B001CDAB0 /* Date+Chinggu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */; };
@@ -60,6 +61,7 @@
 		703028FC2A7EBF0B005B3D25 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		703028FE2A7EC14E005B3D25 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		703029002A7EC2CA005B3D25 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
+		703029022A7EC4CC005B3D25 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
 		70385ED02A07DFEE001CDAB0 /* Color+Chinggu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Chinggu.swift"; sourceTree = "<group>"; };
 		70385ED22A07E00F001CDAB0 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Chinggu.swift"; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				AE37D5442A063BD3009B0F56 /* MainView.swift */,
+				703029022A7EC4CC005B3D25 /* Weekday.swift */,
 				703028FC2A7EBF0B005B3D25 /* GameState.swift */,
 				703029002A7EC2CA005B3D25 /* TitleView.swift */,
 				703028F42A7EB4CC005B3D25 /* GameScene.swift */,
@@ -342,6 +345,7 @@
 				70C7977C2A04357F00E2E3AF /* CardFullScreenView.swift in Sources */,
 				703028F52A7EB4CC005B3D25 /* GameScene.swift in Sources */,
 				70D706062A0FFFF0001D9203 /* Popup.swift in Sources */,
+				703029032A7EC4CC005B3D25 /* Weekday.swift in Sources */,
 				51887AE72A12232F0015EF88 /* OnboardingView.swift in Sources */,
 				70815E822A08950900DBE5B0 /* ComplimentModel.xcdatamodeld in Sources */,
 				AE9537702A12245E00C6F5FF /* InfoPopupView.swift in Sources */,

@@ -10,7 +10,6 @@ import SpriteKit
 import CoreMotion
 
 class GameScene: SKScene {
-	@AppStorage(UserDefaultsKeys.isCompliment) private var isCompliment = false
 	var boxes: [SKSpriteNode] = []
 	var complimentCount = 0
 	let motionManager = CMMotionManager()
