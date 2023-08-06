@@ -29,11 +29,11 @@ struct CardFullScreenView: View {
                         Text(groupOrderText)
                             .font(Font.system(size:18).weight(.heavy))
                             .matchedGeometryEffect(id: "title", in: namespace)
-                            .foregroundColor(Color("ddoFont"))
+                            .foregroundColor(Color("oll"))
                        
                         Image(systemName: "gift")
                             .font(Font.system(size:18).weight(.heavy))
-                            .foregroundColor(Color("ddoFont"))
+                            .foregroundColor(Color("oll"))
                         
                       Spacer()
                             .frame(width: 10)
@@ -96,7 +96,7 @@ struct CardFullScreenView: View {
                         }
                         .background {
                             RoundedRectangle(cornerRadius: 15)
-                                .foregroundColor(Color("ddoFont"))
+                                .foregroundColor(Color("oll"))
                         }
                         
                         Spacer()

@@ -72,9 +72,3 @@ struct InfoPopupView: View {
 		}
 	}
 }
-
-struct InfoPopupView_Previews: PreviewProvider {
-	static var previews: some View {
-		InfoPopupView(showInfoPopup: .constant(true))
-	}
-}

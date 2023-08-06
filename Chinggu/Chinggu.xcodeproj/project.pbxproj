@@ -21,6 +21,7 @@
 		703029032A7EC4CC005B3D25 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703029022A7EC4CC005B3D25 /* Weekday.swift */; };
 		703029062A7F376E005B3D25 /* MainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703029052A7F376E005B3D25 /* MainStore.swift */; };
 		7030290A2A7F6D8B005B3D25 /* Weekday+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703029092A7F6D8B005B3D25 /* Weekday+Today.swift */; };
+		7030290D2A7F760A005B3D25 /* CardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7030290C2A7F760A005B3D25 /* CardStore.swift */; };
 		70385ED12A07DFEE001CDAB0 /* Color+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */; };
 		70385ED32A07E00F001CDAB0 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70385ED22A07E00F001CDAB0 /* Color.xcassets */; };
 		70385EDA2A07E60B001CDAB0 /* Date+FormatWithDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */; };
@@ -66,6 +67,7 @@
 		703029022A7EC4CC005B3D25 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
 		703029052A7F376E005B3D25 /* MainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStore.swift; sourceTree = "<group>"; };
 		703029092A7F6D8B005B3D25 /* Weekday+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Weekday+Today.swift"; sourceTree = "<group>"; };
+		7030290C2A7F760A005B3D25 /* CardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStore.swift; sourceTree = "<group>"; };
 		70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Asset.swift"; sourceTree = "<group>"; };
 		70385ED22A07E00F001CDAB0 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+FormatWithDot.swift"; sourceTree = "<group>"; };
@@ -172,11 +174,11 @@
 			isa = PBXGroup;
 			children = (
 				70E68F132A0A95FD00258A10 /* LottieView.swift */,
-				7030290B2A7F72C0005B3D25 /* Extensions */,
 				703028F12A7EA0E2005B3D25 /* UserDefaultsKeys.swift */,
+				703028FE2A7EC14E005B3D25 /* HapticManager.swift */,
+				7030290B2A7F72C0005B3D25 /* Extensions */,
 				70385ED22A07E00F001CDAB0 /* Color.xcassets */,
 				AE37D5382A039606009B0F56 /* Assets.xcassets */,
-				703028FE2A7EC14E005B3D25 /* HapticManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -198,6 +200,7 @@
 				70C797782A04357F00E2E3AF /* CardView.swift */,
 				70C7977A2A04357F00E2E3AF /* CardPopupView.swift */,
 				70C797792A04357F00E2E3AF /* CardFullScreenView.swift */,
+				7030290C2A7F760A005B3D25 /* CardStore.swift */,
 				70D706052A0FFFF0001D9203 /* Popup.swift */,
 				AE95376F2A12245E00C6F5FF /* InfoPopupView.swift */,
 				70C7977E2A04391800E2E3AF /* TempMainView.swift */,
@@ -387,6 +390,7 @@
 				51887AE72A12232F0015EF88 /* OnboardingView.swift in Sources */,
 				70815E822A08950900DBE5B0 /* ComplimentModel.xcdatamodeld in Sources */,
 				703029062A7F376E005B3D25 /* MainStore.swift in Sources */,
+				7030290D2A7F760A005B3D25 /* CardStore.swift in Sources */,
 				AE9537702A12245E00C6F5FF /* InfoPopupView.swift in Sources */,
 				7030290A2A7F6D8B005B3D25 /* Weekday+Today.swift in Sources */,
 				703028FD2A7EBF0B005B3D25 /* GameState.swift in Sources */,
