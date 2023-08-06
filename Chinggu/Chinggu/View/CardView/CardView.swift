@@ -11,8 +11,8 @@ struct CardView: View {
 	
 	@Namespace var namespace
 	@State private var showFullScreen = false
-	@Binding var showPopup: Bool
 	@State private var showText = false
+	@Binding var showPopup: Bool
 
 	var body: some View {
 		ZStack {

@@ -10,8 +10,9 @@ import Foundation
 class GameState: ObservableObject {
 	@Published var scene: GameScene = GameScene()
 	@Published var canBreakBoxes: Bool = false
-	@Published var selectedWeekday: String = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
+	@Published var selectedWeekday: String = Weekday.today.rawValue
 	@Published var isSelectedSameDay: Bool = true
+	@Published var shake: CGFloat = 0.0
 	
 	func updateCanBreakBoxes() {
 		let today = Calendar.current.component(.weekday, from: Date())
@@ -20,10 +21,15 @@ class GameState: ObservableObject {
 		if (todayWeekday == selectedWeekday) && !isSelectedSameDay {
 			canBreakBoxes = true
 			if scene.complimentCount > 0 {
-				//shake변수값 바꾸기?
+				shake = 4
 			}
 		} else {
 			canBreakBoxes = false
+			shake = 0
 		}
+	}
+	
+	func shakeAnimation() -> CGFloat {
+		return canBreakBoxes && scene.complimentCount > 0 ? 5 : 0
 	}
 }

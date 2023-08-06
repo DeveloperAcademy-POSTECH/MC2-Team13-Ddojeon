@@ -17,11 +17,13 @@
 		703028F52A7EB4CC005B3D25 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703028F42A7EB4CC005B3D25 /* GameScene.swift */; };
 		703028FD2A7EBF0B005B3D25 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703028FC2A7EBF0B005B3D25 /* GameState.swift */; };
 		703028FF2A7EC14E005B3D25 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703028FE2A7EC14E005B3D25 /* HapticManager.swift */; };
-		703029012A7EC2CA005B3D25 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703029002A7EC2CA005B3D25 /* TitleView.swift */; };
+		703029012A7EC2CA005B3D25 /* MainViewComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703029002A7EC2CA005B3D25 /* MainViewComponents.swift */; };
 		703029032A7EC4CC005B3D25 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703029022A7EC4CC005B3D25 /* Weekday.swift */; };
-		70385ED12A07DFEE001CDAB0 /* Color+Chinggu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED02A07DFEE001CDAB0 /* Color+Chinggu.swift */; };
+		703029062A7F376E005B3D25 /* MainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703029052A7F376E005B3D25 /* MainStore.swift */; };
+		7030290A2A7F6D8B005B3D25 /* Weekday+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703029092A7F6D8B005B3D25 /* Weekday+Today.swift */; };
+		70385ED12A07DFEE001CDAB0 /* Color+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */; };
 		70385ED32A07E00F001CDAB0 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70385ED22A07E00F001CDAB0 /* Color.xcassets */; };
-		70385EDA2A07E60B001CDAB0 /* Date+Chinggu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */; };
+		70385EDA2A07E60B001CDAB0 /* Date+FormatWithDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */; };
 		70815E812A08950900DBE5B0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7E2A08950900DBE5B0 /* Persistence.swift */; };
 		70815E822A08950900DBE5B0 /* ComplimentModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7F2A08950900DBE5B0 /* ComplimentModel.xcdatamodeld */; };
 		70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */; };
@@ -60,11 +62,13 @@
 		703028F42A7EB4CC005B3D25 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		703028FC2A7EBF0B005B3D25 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		703028FE2A7EC14E005B3D25 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
-		703029002A7EC2CA005B3D25 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
+		703029002A7EC2CA005B3D25 /* MainViewComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewComponents.swift; sourceTree = "<group>"; };
 		703029022A7EC4CC005B3D25 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
-		70385ED02A07DFEE001CDAB0 /* Color+Chinggu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Chinggu.swift"; sourceTree = "<group>"; };
+		703029052A7F376E005B3D25 /* MainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStore.swift; sourceTree = "<group>"; };
+		703029092A7F6D8B005B3D25 /* Weekday+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Weekday+Today.swift"; sourceTree = "<group>"; };
+		70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Asset.swift"; sourceTree = "<group>"; };
 		70385ED22A07E00F001CDAB0 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
-		70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Chinggu.swift"; sourceTree = "<group>"; };
+		70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+FormatWithDot.swift"; sourceTree = "<group>"; };
 		70815E7E2A08950900DBE5B0 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		70815E802A08950900DBE5B0 /* ComplimentModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ComplimentModel.xcdatamodel; sourceTree = "<group>"; };
 		70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ComplimentEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -108,8 +112,8 @@
 		701094A72A0FF83C0019DEED /* View */ = {
 			isa = PBXGroup;
 			children = (
-				703028F32A7EB4B2005B3D25 /* MainView */,
-				51D817172A08E59F00B84E6A /* WriteComplimentView.swift */,
+				703028F32A7EB4B2005B3D25 /* Main */,
+				703029042A7F311E005B3D25 /* WriteCompliment */,
 				A93728C52A0F6DCD00C79C04 /* Onboard */,
 				70C797722A042FF400E2E3AF /* CardView */,
 				FBB8CFD72A0B836E00210F90 /* ArchivingView */,
@@ -117,24 +121,50 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		703028F32A7EB4B2005B3D25 /* MainView */ = {
+		703028F32A7EB4B2005B3D25 /* Main */ = {
 			isa = PBXGroup;
 			children = (
 				AE37D5442A063BD3009B0F56 /* MainView.swift */,
+				703029052A7F376E005B3D25 /* MainStore.swift */,
+				703029072A7F6B3A005B3D25 /* MainComponents */,
+				703029082A7F6BF0005B3D25 /* GameComponents */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		703029042A7F311E005B3D25 /* WriteCompliment */ = {
+			isa = PBXGroup;
+			children = (
+				51D817172A08E59F00B84E6A /* WriteComplimentView.swift */,
+			);
+			path = WriteCompliment;
+			sourceTree = "<group>";
+		};
+		703029072A7F6B3A005B3D25 /* MainComponents */ = {
+			isa = PBXGroup;
+			children = (
 				703029022A7EC4CC005B3D25 /* Weekday.swift */,
+				703029002A7EC2CA005B3D25 /* MainViewComponents.swift */,
+			);
+			path = MainComponents;
+			sourceTree = "<group>";
+		};
+		703029082A7F6BF0005B3D25 /* GameComponents */ = {
+			isa = PBXGroup;
+			children = (
 				703028FC2A7EBF0B005B3D25 /* GameState.swift */,
-				703029002A7EC2CA005B3D25 /* TitleView.swift */,
 				703028F42A7EB4CC005B3D25 /* GameScene.swift */,
 			);
-			path = MainView;
+			path = GameComponents;
 			sourceTree = "<group>";
 		};
 		70385ECF2A07DFDD001CDAB0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				70E68F132A0A95FD00258A10 /* LottieView.swift */,
-				70385ED02A07DFEE001CDAB0 /* Color+Chinggu.swift */,
-				70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */,
+				703029092A7F6D8B005B3D25 /* Weekday+Today.swift */,
+				70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */,
+				70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */,
 				703028F12A7EA0E2005B3D25 /* UserDefaultsKeys.swift */,
 				70385ED22A07E00F001CDAB0 /* Color.xcassets */,
 				AE37D5382A039606009B0F56 /* Assets.xcassets */,
@@ -181,12 +211,12 @@
 			isa = PBXGroup;
 			children = (
 				51887AE62A12232F0015EF88 /* OnboardingView.swift */,
-				A93729642A0F6E3600C79C04 /* onboardLottie */,
+				A93729642A0F6E3600C79C04 /* onboardingLottie */,
 			);
 			path = Onboard;
 			sourceTree = "<group>";
 		};
-		A93729642A0F6E3600C79C04 /* onboardLottie */ = {
+		A93729642A0F6E3600C79C04 /* onboardingLottie */ = {
 			isa = PBXGroup;
 			children = (
 				A93729812A0F6E5C00C79C04 /* onboarding_1.json */,
@@ -195,7 +225,7 @@
 				5191CFBC2A4ADD9A00881DC0 /* onboarding_4.json */,
 				A93729852A0F6E5C00C79C04 /* onboarding_5.json */,
 			);
-			path = onboardLottie;
+			path = onboardingLottie;
 			sourceTree = "<group>";
 		};
 		AE37D5282A039605009B0F56 = {
@@ -335,7 +365,7 @@
 				FB6D0BC92A0A287200220360 /* ArchivingView.swift in Sources */,
 				FB6D0BCB2A0A35AD00220360 /* ArchivingDetailView.swift in Sources */,
 				AE37D5372A039605009B0F56 /* ContentView.swift in Sources */,
-				703029012A7EC2CA005B3D25 /* TitleView.swift in Sources */,
+				703029012A7EC2CA005B3D25 /* MainViewComponents.swift in Sources */,
 				FBB8CFD92A0B908E00210F90 /* ArchivingCard.swift in Sources */,
 				703028F22A7EA0E2005B3D25 /* UserDefaultsKeys.swift in Sources */,
 				70C7977B2A04357F00E2E3AF /* CardView.swift in Sources */,
@@ -348,7 +378,9 @@
 				703029032A7EC4CC005B3D25 /* Weekday.swift in Sources */,
 				51887AE72A12232F0015EF88 /* OnboardingView.swift in Sources */,
 				70815E822A08950900DBE5B0 /* ComplimentModel.xcdatamodeld in Sources */,
+				703029062A7F376E005B3D25 /* MainStore.swift in Sources */,
 				AE9537702A12245E00C6F5FF /* InfoPopupView.swift in Sources */,
+				7030290A2A7F6D8B005B3D25 /* Weekday+Today.swift in Sources */,
 				703028FD2A7EBF0B005B3D25 /* GameState.swift in Sources */,
 				703028FF2A7EC14E005B3D25 /* HapticManager.swift in Sources */,
 				70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */,
@@ -357,8 +389,8 @@
 				7014D47A2A10AF8B00F1B315 /* TempArchivingDetailView.swift in Sources */,
 				70B8FBA82A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift in Sources */,
 				AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */,
-				70385ED12A07DFEE001CDAB0 /* Color+Chinggu.swift in Sources */,
-				70385EDA2A07E60B001CDAB0 /* Date+Chinggu.swift in Sources */,
+				70385ED12A07DFEE001CDAB0 /* Color+Asset.swift in Sources */,
+				70385EDA2A07E60B001CDAB0 /* Date+FormatWithDot.swift in Sources */,
 				70815E812A08950900DBE5B0 /* Persistence.swift in Sources */,
 				70E68F142A0A95FD00258A10 /* LottieView.swift in Sources */,
 			);

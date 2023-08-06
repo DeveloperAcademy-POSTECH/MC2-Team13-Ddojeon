@@ -10,10 +10,10 @@ import SwiftUI
 struct CardFullScreenView: View {
 	
 	@AppStorage(UserDefaultsKeys.groupOrder) var groupOrder: Int = 1
-	@AppStorage(UserDefaultsKeys.isSelectedSameDay) private var isSelectedSameDay: Bool = true
-	@State var complimentsInGroup: [ComplimentEntity] = []
-	@State var groupOrderText: String = ""
-	@State var groupStartEndDates: String = ""
+	@EnvironmentObject var mainStore: MainStore
+
+	@State private var groupOrderText: String = ""
+	@State private var groupStartEndDates: String = ""
 	
 	var namespace: Namespace.ID
 	@Binding var showPopup: Bool
@@ -49,7 +49,7 @@ struct CardFullScreenView: View {
                                     
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack {
-                            ForEach(complimentsInGroup, id: \.id) { compliment in
+							ForEach(mainStore.complimentsInGroup, id: \.id) { compliment in
                                 ZStack(alignment: .leading) {
                                     RoundedRectangle(cornerRadius: 10)
                                     .foregroundColor(.white)
@@ -112,9 +112,9 @@ struct CardFullScreenView: View {
 	}
 	
 	private func loadCompliments() {
-		complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
-		if let minDate = complimentsInGroup.first?.createDate,
-		   let maxDate = complimentsInGroup.last?.createDate {
+		mainStore.complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
+		if let minDate = mainStore.complimentsInGroup.first?.createDate,
+		   let maxDate = mainStore.complimentsInGroup.last?.createDate {
 			let start = minDate.formatWithDot()
 			let end = maxDate.formatWithDot()
 			groupStartEndDates = "\(start) ~ \(end)"

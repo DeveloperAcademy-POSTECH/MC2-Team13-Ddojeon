@@ -9,16 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
 	
-//	@State private var hasOnboarded: Bool = UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasOnboarded)
-	@AppStorage(UserDefaultsKeys.hasOnboarded) private var hasOnboarded: Bool = false
-	@AppStorage(UserDefaultsKeys.groupOrder) var groupOrder: Int = 1
-	
-	@StateObject var gameState = GameState()
+	@AppStorage(UserDefaultsKeys.hasOnboarded) private var hasOnboarded: Bool = false	
+	@StateObject private var mainStore = MainStore()
 
 	var body: some View {
 		if hasOnboarded {
 			MainView()
-				.environmentObject(gameState)
+				.environmentObject(mainStore)
 		} else {
             OnboardingView()
 		}

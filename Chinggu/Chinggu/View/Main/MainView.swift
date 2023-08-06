@@ -11,31 +11,21 @@ import SpriteKit
 // MARK: 메인 뷰
 struct MainView: View {
 	
-	@EnvironmentObject var gameState: GameState
+	@ObservedObject private var gameState = GameState()
+	@EnvironmentObject var mainStore: MainStore
 	@Environment(\.scenePhase) var scenePhase
-	
-	@FetchRequest(
-		entity: ComplimentEntity.entity(),
-		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
-	) var Compliment: FetchedResults<ComplimentEntity>
-	
-	@State var complimentsInGroup: [ComplimentEntity] = []
-	
+
+	@AppStorage(UserDefaultsKeys.isfirst) var isfirst: Bool = true
+	@AppStorage(UserDefaultsKeys.groupOrder) var groupOrder: Int = 1
+	@AppStorage(UserDefaultsKeys.isCompliment) private var isCompliment: Bool = false
+	@AppStorage(UserDefaultsKeys.lastResetTimeInterval) private var lastResetTimeInterval: TimeInterval = Date().timeIntervalSince1970
+	@AppStorage(UserDefaultsKeys.selectedWeekday) private var selectedWeekday: String = Weekday.today.rawValue
+
 	@State private var showBreakAlert = false
 	@State private var shake = 0.0
 	@State private var showPopup = false
 	@State private var showInfoPopup = false
 	
-	@AppStorage(UserDefaultsKeys.groupOrder) var groupOrder: Int = 1
-	@AppStorage(UserDefaultsKeys.isCompliment) private var isCompliment: Bool = false
-	@AppStorage(UserDefaultsKeys.isfirst) var isfirst: Bool = true
-	@AppStorage(UserDefaultsKeys.lastResetTimeInterval) private var lastResetTimeInterval: TimeInterval = Date().timeIntervalSince1970
-	@AppStorage(UserDefaultsKeys.selectedWeekday) private var selectedWeekday: String = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
-	
-	var lastResetDate: Date {
-		let lastResetTime = Date(timeIntervalSince1970: lastResetTimeInterval)
-		return lastResetTime
-	}
 	
 	var body: some View {
 		GeometryReader { geometry in
@@ -46,6 +36,7 @@ struct MainView: View {
 				ZStack {
 					Color.ddoPrimary.ignoresSafeArea()
 					VStack {
+						
 						//MARK: 요일 변경하는 버튼
 						ChangeWeekdayView()
 						
@@ -84,13 +75,13 @@ struct MainView: View {
 							}
 						// 애니메이션
 							.modifier(ShakeEffect(delta: shake))
-							.onChange(of: shake) { newValue in
+							.onReceive(gameState.$shake) { newValue in
 								withAnimation(.easeOut(duration: 1.5)) {
 									if gameState.canBreakBoxes {
-										if shake == 0 {
-											shake = newValue
+										if gameState.shake == 0 {
+											gameState.shake = newValue
 										} else {
-											shake = 0
+											gameState.shake = 0
 										}
 									}
 								}
@@ -103,9 +94,9 @@ struct MainView: View {
 						
 						Spacer()
 						
-						// 칭찬돌 추가하는 버튼
+						//MARK: 칭찬하기 버튼
 						Button {
-							//버튼액션
+							
 						} label: {
 							NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment)) {
 								Text(isCompliment ? "오늘 칭찬 끝!" : "칭찬하기")
@@ -115,7 +106,7 @@ struct MainView: View {
 						.disabled(isCompliment)
 					}
 					
-					if complimentsInGroup.count == 0 && !isCompliment {
+					if mainStore.complimentsInGroup.count == 0 && !isCompliment {
 						NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment)) {
 							Image("emptyState")
 								.offset(y: 45)
@@ -126,23 +117,22 @@ struct MainView: View {
 						.popup(isPresented: $showPopup) {
 							CardView(showPopup: $showPopup)
 						}
-					// 최초 칭찬 작성 시 안내 팝업
+					//MARK: 최초 칭찬 작성 시 안내 팝업
 						.popup(isPresented: $showInfoPopup) {
 							InfoPopupView(showInfoPopup: $showInfoPopup)
 						}
 				}
 				.onChange(of: groupOrder, perform: { newValue in
-					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(newValue))
+					mainStore.complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(newValue))
 				})
 				.onChange(of: scenePhase) { newPhase in
-					print("scene change")
 					compareDates()
-					updateCanBreakBoxes()
+					gameState.updateCanBreakBoxes()
 				}
 				.onAppear {
-					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
+//					mainStore.complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
 					// 최초 칭찬 작성 시 안내 팝업
-					if Compliment.count == 1, isfirst == true {
+					if mainStore.complimentsInGroup.count == 1, isfirst == true {
 						withAnimation(.spring(response: 1.2, dampingFraction: 0.8)) {
 							showInfoPopup = true
 						}
@@ -156,21 +146,16 @@ struct MainView: View {
 	// 초기화 날짜 비교
 	private func compareDates() {
 		let calendar = Calendar.current
-		if !calendar.isDateInToday(lastResetDate) {
-			resetTimeButton()
+		if !calendar.isDateInToday(Date(timeIntervalSince1970: lastResetTimeInterval)) {
+			isCompliment = false
+			gameState.isSelectedSameDay = false
+			lastResetTimeInterval = Date().timeIntervalSince1970
 		}
-	}
-	
-	// 버튼 초기화
-	private func resetTimeButton() {
-		isCompliment = false
-		gameState.isSelectedSameDay = false
-		lastResetTimeInterval = Date().timeIntervalSince1970
 	}
 	
 	private func afterComplimentCanBreakBox(width: CGFloat, height: CGFloat) {
 		//GameScene의 값을 최신화 하기 위함
-		if complimentsInGroup.count > gameState.scene.complimentCount {
+		if mainStore.complimentsInGroup.count > gameState.scene.complimentCount {
 			gameState.scene.addBox(at: CGPoint(x: gameState.scene.size.width/2, y: gameState.scene.size.height - 50))
 			if gameState.canBreakBoxes {
 				shake = 4
@@ -178,43 +163,10 @@ struct MainView: View {
 		}
 		
 		gameState.scene.size = CGSize(width: width, height: height)
-		gameState.scene.complimentCount = complimentsInGroup.count
-		updateCanBreakBoxes()
+		gameState.scene.complimentCount = mainStore.complimentsInGroup.count
+		gameState.updateCanBreakBoxes()
 		
 		gameState.scene.scaleMode = .aspectFit
-	}
-	
-	// 요일이 변경 될 때마다 현재 요일과 비교
-	func updateCanBreakBoxes() {
-		let today = Calendar.current.component(.weekday, from: Date())
-		let todayWeekday = Weekday.allCases[(today + 5) % 7].rawValue
-		
-		if (todayWeekday == selectedWeekday) && !gameState.isSelectedSameDay {
-			gameState.canBreakBoxes = true
-			if gameState.scene.complimentCount > 0 {
-				shake = 5
-			}
-		} else {
-			gameState.canBreakBoxes = false
-		}
-	}
-}
-
-
-
-struct ShakeEffect: AnimatableModifier {
-	var delta: CGFloat = 0
-	
-	var animatableData: CGFloat {
-		get { delta }
-		set { delta = newValue }
-	}
-	
-	func body(content: Content) -> some View {
-		content
-			.rotationEffect(Angle(degrees: sin(delta * .pi * 4.0) * CGFloat.random(in: 0.5...1.5)))
-			.offset(x: sin(delta * 1.5 * .pi * 1.2),
-					y: cos(delta * 1.5 * .pi * 1.1))
 	}
 }
 
