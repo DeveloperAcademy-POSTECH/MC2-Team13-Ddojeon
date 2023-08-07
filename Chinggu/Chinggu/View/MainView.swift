@@ -360,12 +360,37 @@ struct MainView: View {
         let today = Calendar.current.component(.weekday, from: Date())
         let todayWeekday = Weekday.allCases[(today + 5) % 7].rawValue
         
-        if (todayWeekday == selectedWeekday) && !isSelectedSameDay {
+        if isPastSelectedWeekday() && !isSelectedSameDay {
+//        if (todayWeekday == selectedWeekday) && !isSelectedSameDay {
             canBreakBoxes = true
             if scene.complimentCount > 0 {
                 shake = 5
             }
         }
+    }
+    
+    // 선택한 요일이 지났는지 여부 판단
+    func isPastSelectedWeekday() -> Bool {
+        let calendar = Calendar.current
+        var selectedWeekdayNumber = 0
+        // 선택된 요일 Int로 뽑기
+        let weekdayArray = Weekday.allCases
+        for (index, weekday) in weekdayArray.enumerated() {
+            if weekday.rawValue == selectedWeekday {
+                selectedWeekdayNumber = index + 2
+                if selectedWeekdayNumber >= 7 {
+                    selectedWeekdayNumber %= 7
+                }
+                break
+            }
+        }
+        let selectedWeekdayComponent = DateComponents(weekday: selectedWeekdayNumber)
+        print("selectedWeekdayComponent",selectedWeekdayComponent)
+        // 현재 날짜가 선택된 날짜와 동일하거나 지났다면
+        guard let selectedDate = calendar.nextDate(after: Date(), matching: selectedWeekdayComponent, matchingPolicy: .nextTime) else {
+            return false
+        }
+        return true
     }
     
     // 초기화 날짜 비교
