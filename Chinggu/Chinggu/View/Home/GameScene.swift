@@ -5,19 +5,18 @@
 //  Created by Junyoo on 2023/08/06.
 //
 
-import SwiftUI
 import SpriteKit
 import CoreMotion
 
 class GameScene: SKScene {
 	var boxes: [SKSpriteNode] = []
-	var complimentCount = 0
 	let motionManager = CMMotionManager()
 	var background = SKSpriteNode(imageNamed: "boxBackground")
+	var complimentCount: Int = 0
 	
 	override func didMove(to view: SKView) {
 		physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
-			
+		
 		motionManager.deviceMotionUpdateInterval = 0.1
 		motionManager.startDeviceMotionUpdates(to: .main) { (motion, error) in
 			guard let motion = motion else { return }
@@ -28,15 +27,14 @@ class GameScene: SKScene {
 		background.alpha = 0.45
 		background.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
 		addChild(background)
- 
-			DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-				for i in 0..<self.complimentCount {
-					DispatchQueue.main.asyncAfter(deadline: .now() + 0.2 * Double(i)) {
-						self.addBox(at: CGPoint(x: UIScreen.main.bounds.width / 2,
-												y: UIScreen.main.bounds.height / 2.5))
-					}
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+			for i in 0..<self.complimentCount {
+				DispatchQueue.main.asyncAfter(deadline: .now() + 0.2 * Double(i)) {
+					self.addBox(at: CGPoint(x: self.size.width/2, y: self.size.height - 50))
 				}
 			}
+		}
 	}
 	
 	func addBox(at position: CGPoint) {

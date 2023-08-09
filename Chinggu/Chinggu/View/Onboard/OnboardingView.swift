@@ -109,7 +109,7 @@ struct OnboardingView: View {
             .background(Color.ddoPrimary)
         }
         .fullScreenCover(isPresented: $showMain) {
-            MainView()
+            HomeView()
         }
     }
 }

@@ -11,7 +11,7 @@ struct InfoPopupView: View {
 	@Binding var showInfoPopup: Bool
 	@AppStorage(UserDefaultsKeys.isfirst) var isfirst: Bool = false
 	@State private var showWeekdaySheet = false
-	@AppStorage(UserDefaultsKeys.selectedWeekday) private var selectedWeekday: String = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
+	@AppStorage(UserDefaultsKeys.selectedWeekday) private var selectedWeekday: String = Weekday.today.rawValue
 	
 	var body: some View {
 		ZStack {

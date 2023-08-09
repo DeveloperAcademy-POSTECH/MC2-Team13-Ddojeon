@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ComplimentManager {
+class ComplimentManager: ObservableObject {
 	
 	@Published var allCompliments: [ComplimentEntity] = []
 	@Published var hasComplimentToday: Bool = false
@@ -29,4 +29,9 @@ class ComplimentManager {
 		persistenceController.addCompliment(complimentText: complimentText, groupID: groupID)
 		fetchAllCompliments()
 	}
+	
+	func fetchComplimentsInGroup(groupID: Int) -> [ComplimentEntity] {
+		return allCompliments.filter { $0.groupID == groupID }
+	}
+	
 }

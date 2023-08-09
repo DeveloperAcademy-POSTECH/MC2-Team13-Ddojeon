@@ -10,12 +10,10 @@ import SwiftUI
 struct ContentView: View {
 	
 	@AppStorage(UserDefaultsKeys.hasOnboarded) private var hasOnboarded: Bool = false	
-	@StateObject private var mainStore = MainStore()
 
 	var body: some View {
 		if hasOnboarded {
-			MainView()
-				.environmentObject(mainStore)
+			HomeView()
 		} else {
             OnboardingView()
 		}

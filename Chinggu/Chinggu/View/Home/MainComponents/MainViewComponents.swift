@@ -29,7 +29,7 @@ struct subTitleView: View {
 			.font(.subheadline)
 			.fontWeight(.semibold)
 			.foregroundColor(.gray)
-			.padding(.top, 14)
+			.padding(.top)
 	}
 }
 

@@ -10,7 +10,6 @@ import SwiftUI
 struct CardFullScreenView: View {
 	
 	@AppStorage(UserDefaultsKeys.groupOrder) var groupOrder: Int = 1
-	@EnvironmentObject var mainStore: MainStore
 
 	@State private var groupOrderText: String = ""
 	@State private var groupStartEndDates: String = ""
@@ -49,22 +48,22 @@ struct CardFullScreenView: View {
 					.padding()
 					
 					
-					ScrollView(.vertical, showsIndicators: false) {
-						VStack {
-							ForEach(mainStore.complimentsInGroup, id: \.id) { compliment in
-								ZStack(alignment: .leading) {
-									RoundedRectangle(cornerRadius: 10)
-										.foregroundColor(.white)
-									Text(compliment.compliment ?? "nil compliment")
-										.font(.custom("AppleSDGothicNeo-Regular", size: 17))
-										.padding()
-										.lineSpacing(6)
-								}
-								.padding(.vertical, 4)
-							}
-						}
-						.padding(.horizontal)
-					}
+//					ScrollView(.vertical, showsIndicators: false) {
+//						VStack {
+//							ForEach(mainStore.complimentsInGroup, id: \.id) { compliment in
+//								ZStack(alignment: .leading) {
+//									RoundedRectangle(cornerRadius: 10)
+//										.foregroundColor(.white)
+//									Text(compliment.compliment ?? "nil compliment")
+//										.font(.custom("AppleSDGothicNeo-Regular", size: 17))
+//										.padding()
+//										.lineSpacing(6)
+//								}
+//								.padding(.vertical, 4)
+//							}
+//						}
+//						.padding(.horizontal)
+//					}
 					
 					// 명언
 					VStack {
@@ -111,20 +110,20 @@ struct CardFullScreenView: View {
 			.ignoresSafeArea()
 			.background(Color.ddoPrimary)
 			.matchedGeometryEffect(id: "background", in: namespace)
-			.onAppear(perform: loadCompliments)
+//			.onAppear(perform: loadCompliments)
 		}
 		
 		}
-	private func loadCompliments() {
-		mainStore.complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
-		if let minDate = mainStore.complimentsInGroup.first?.createDate,
-		   let maxDate = mainStore.complimentsInGroup.last?.createDate {
-			let start = minDate.formatWithDot()
-			let end = maxDate.formatWithDot()
-			groupStartEndDates = "\(start) ~ \(end)"
-			groupOrderText = "\(groupOrder)번째 상자"
-		}
-	}
+//	private func loadCompliments() {
+//		mainStore.complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
+//		if let minDate = mainStore.complimentsInGroup.first?.createDate,
+//		   let maxDate = mainStore.complimentsInGroup.last?.createDate {
+//			let start = minDate.formatWithDot()
+//			let end = maxDate.formatWithDot()
+//			groupStartEndDates = "\(start) ~ \(end)"
+//			groupOrderText = "\(groupOrder)번째 상자"
+//		}
+//	}
 	
 	private let quotes: [Quote] = [
 		Quote(text: "다정한 말을 아끼지 말라. 특히 자리에 없는 사람들에게.", speaker: "-요한 볼프강 폰 괴테-"),

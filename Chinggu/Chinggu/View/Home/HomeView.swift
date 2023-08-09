@@ -8,31 +8,24 @@
 import SwiftUI
 
 struct HomeView: View {
-	@FetchRequest(
-		entity: ComplimentEntity.entity(),
-		sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
-	) var Compliment: FetchedResults<ComplimentEntity>
 	
-	@State var complimentsInGroup: [ComplimentEntity] = []
+	@ObservedObject private var complimentManager = ComplimentManager()
 	
-	@State private var showActionSheet = false
-	@State private var showAlert = false
-	@State private var showBreakAlert = false
 	@State private var tempSeletedWeekday: Weekday?
 	@State private var shake = 0.0
 	@State private var showPopup = false
 	@State private var showInfoPopup = false
 	
 	@AppStorage("group") var groupOrder: Int = 1
-	@AppStorage("isfirst") var isfirst: Bool = true
-	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
-	@AppStorage("isSelectedSameDay") private var isSelectedSameDay: Bool = true
-	@AppStorage("isCompliment") private var isCompliment: Bool = false
 	@AppStorage("canBreakBoxes") private var canBreakBoxes = false
-	@State var scene = GameScene()
-	
+
+	@AppStorage("isfirst") var isfirst: Bool = true
+	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.today.rawValue
+	@AppStorage("isCompliment") private var isCompliment: Bool = false
 	@AppStorage("lastResetTimeInterval") private var lastResetTimeInterval: TimeInterval = Date().timeIntervalSince1970
 	
+	@State private var complimentsInGroupCount: Int = 7
+
 	var lastResetDate: Date {
 		let lastResetTime = Date(timeIntervalSince1970: lastResetTimeInterval)
 		return lastResetTime
@@ -50,66 +43,8 @@ struct HomeView: View {
 					Color.ddoPrimary.ignoresSafeArea()
 					VStack {
 						//MARK: 요일 변경하는 버튼
-						HStack {
-							Text("매주")
-								.bold()
-								.font(.body)
-								.foregroundColor(.gray)
-							Button(action: {
-								self.showActionSheet = true
-							}, label: {
-								Text(selectedWeekday)
-									.bold()
-									.font(.body)
-									.foregroundColor(!self.isfirst ? .blue : .gray)
-									.padding(.trailing, -8.0)
-								Image(systemName: "arrowtriangle.down.square.fill")
-									.foregroundColor(!self.isfirst ? .blue : .gray)
-							})
-							.disabled(self.isfirst)
-							.padding(.horizontal)
-							.actionSheet(isPresented: $showActionSheet) {
-								ActionSheet(title: Text("요일 변경"), message: nil, buttons: Weekday.allCases.map { weekday in
-									if selectedWeekday == weekday.rawValue {
-										return nil
-									} else {
-										return .default(Text(weekday.rawValue)) {
-											self.showAlert = true
-											self.tempSeletedWeekday = weekday
-										}
-									}
-								}.compactMap { $0 } + [.cancel()])
-							}
-							// 요일 변경할건지 얼럿
-							.alert(isPresented: $showAlert) {
-								Alert(title: Text("매주 \(tempSeletedWeekday?.rawValue ?? "월요일")"), message: Text("선택한 요일로 변경할까요?"), primaryButton: .default(Text("네")) {
-									// OK 버튼을 눌렀을 때 선택한 요일 업데이트
-									self.selectedWeekday = self.tempSeletedWeekday?.rawValue ?? "월요일"
-									let today = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
-									if today == tempSeletedWeekday?.rawValue ?? "월요일" {
-										isSelectedSameDay = true
-									}
-									updateCanBreakBoxes()
-								}, secondaryButton: .cancel(Text("아니요")))
-							}.padding(.horizontal, -19.0)
-							Text("에 칭찬 상자가 열려요")
-								.bold()
-								.font(.body)
-								.foregroundColor(.gray)
-							
-							Spacer()
-							
-							//MARK: 아카이브 페이지 링크
-							NavigationLink(destination: ArchivingView()) {
-								Image(systemName: "archivebox")
-									.resizable()
-									.frame(width: 22, height: 22)
-									.foregroundColor(.black)
-							}
-							
-						}
-						.padding(.horizontal, 20.0)
-						.padding(.vertical, 10.0)
+						HomeViewTop()
+						
 						VStack(spacing: 0) {
 							Divider()
 							Rectangle()
@@ -118,126 +53,44 @@ struct HomeView: View {
 								.opacity(0.15)
 							Divider()
 						}
-						.padding(.bottom, 30)
+						.padding(.bottom)
 						
 						// 타이틀
-						if canBreakBoxes && scene.boxes.count > 0  {
-							Text("이번 주 칭찬을\n  확인할 시간이에요💞")
-								.tracking(-0.3)
-								.multilineTextAlignment(.center)
-								.bold()
-								.font(.title)
-								.foregroundColor(Color("oll"))
-								.lineSpacing(5)
-								.padding(.bottom, 25)
-							
-						} else {
-							Text("오늘은 어떤 칭찬을\n해볼까요?✍️")
-								.tracking(-0.3)
-								.multilineTextAlignment(.center)
-								.bold()
-								.font(.title)
-								.foregroundColor(Color("oll"))
-								.lineSpacing(5)
-								.padding(.bottom, 25)
-						}
+						TitleView(title: canBreakBoxes ? "이번 주 칭찬을\n  확인할 시간이에요💞" : "오늘은 어떤 칭찬을\n해볼까요?✍️")
 						
 						//MARK: 칭찬 저금통
-						SpriteView(scene: scene)
-							.frame(width: width, height: height)
-							.cornerRadius(26)
-							.onTapGesture {
-								if scene.boxes.count > 0 && canBreakBoxes {
-									showBreakAlert = true
-								}
-							}
-						// 만기일 개봉 얼럿
-							.alert(isPresented: $showBreakAlert) {
-								Alert(title: Text("칭찬 상자를 열어볼까요?"), primaryButton: .default(Text("네")) {
-									// 저금통 초기화
-									withAnimation(.easeOut(duration: 1)) {
-										scene.resetBoxes()
-										scene.complimentCount = 0
-										showPopup = true
-										//                                        if !scene.boxes.isEmpty || isCompliment {
-										//                                            print("메인뷰 true")
-										//                                            scene.isBackgroundLine = true
-										//                                        } else {
-										//                                            print("메인뷰 false")
-										//                                            scene.isBackgroundLine = false
-										//                                        }
-									}
-								}, secondaryButton:.cancel(Text("아니요")))
-							}
-						// 애니메이션
-							.modifier(ShakeEffect(delta: shake))
-							.onChange(of: shake) { newValue in
-								withAnimation(.easeOut(duration: 1.5)) {
-									if canBreakBoxes {
-										if shake == 0 {
-											shake = newValue
-										} else {
-											shake = 0
-										}
-										
-									}
-								}
-								
-							}
-							.onAppear {
-								print(complimentsInGroup.count)
-								if complimentsInGroup.count > scene.complimentCount {
-									scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
-									if canBreakBoxes {
-										shake = 4
-									}
-								}
-								
-								scene.size = CGSize(width: width, height: height)
-								scene.complimentCount = complimentsInGroup.count
-								updateCanBreakBoxes()
-								
-								scene.scaleMode = .aspectFit
-							}
-						if complimentsInGroup.count == 7 {
-							Text("주간 칭찬은 최대 7개 까지만 가능해요.")
-								.font(.custom("AppleSDGothicNeo-SemiBold", size: 14))
-								.foregroundColor(.gray)
-								.padding(.top, 14)
-						} else if canBreakBoxes && scene.boxes.count > 0  {
-							Text("칭찬 상자를 톡! 눌러주세요.")
-								.font(.custom("AppleSDGothicNeo-SemiBold", size: 14))
-								.foregroundColor(.gray)
-								.padding(.top, 14)
+						HomeComplimentBox(showPopup: $showPopup, complimentsInGroup: $complimentsInGroupCount)
+
+						//MARK: subtitle
+						if complimentManager.fetchComplimentsInGroup(groupID: groupOrder).count == 7 {
+							subTitleView(title: "주간 칭찬은 최대 7개 까지만 가능해요.")
+//						} else if canBreakBoxes && scene.boxes.count > 0  {
+//							subTitleView(title: "칭찬 상자를 톡! 눌러주세요.")
 						} else {
-							Text("긍정의 힘은 복리로 돌아와요. 커밍쑨!")
-								.font(.custom("AppleSDGothicNeo-SemiBold", size: 14))
-								.foregroundColor(.gray)
-								.padding(.top, 14)
+							subTitleView(title: "긍정의 힘은 복리로 돌아와요. 커밍쑨!")
 						}
+						
+						
 						Spacer()
+
 						// 칭찬돌 추가하는 버튼
-						Button(action: {
-							
-						}, label: {
-							NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment), label: {
-								Text(isCompliment ? "오늘 칭찬 끝!" : "칭찬하기")
-									.bold()
-									.font(.title3)
-									.foregroundColor(Color.white)
-									.kerning(0.5)
-									.padding(.vertical,6)
-									.frame(width: width, height: 56)
-							})
+						NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment), label: {
+							Text(isCompliment ? "오늘 칭찬 끝!" : "칭찬하기")
+								.bold()
+								.font(.title3)
+								.foregroundColor(Color.white)
+								.kerning(0.5)
+								.padding(.vertical,6)
+								.frame(width: width, height: 56)
 						})
 						.background {
 							RoundedRectangle(cornerRadius: 10)
-								.foregroundColor(isCompliment || complimentsInGroup.count == 7 ? Color(red: 0.85, green: 0.85, blue: 0.85) : .blue)
+								.foregroundColor(isCompliment || complimentManager.fetchComplimentsInGroup(groupID: groupOrder).count == 7 ? .gray : .blue)
 						}
 						.disabled(isCompliment)
-						.disabled(complimentsInGroup.count == 7)
+						.disabled(complimentManager.fetchComplimentsInGroup(groupID: groupOrder).count == 7)
 					}
-					if complimentsInGroup.count == 0 && !isCompliment {
+					if complimentManager.fetchComplimentsInGroup(groupID: groupOrder).count == 0 && !isCompliment {
 						NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment)) {
 							Image("emptyState")
 								.offset(y: 45)
@@ -253,22 +106,22 @@ struct HomeView: View {
 							InfoPopupView(showInfoPopup: $showInfoPopup)
 						}
 				}
-				.onChange(of: groupOrder, perform: { newValue in
-					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(newValue))
-				})
+//				.onChange(of: groupOrder, perform: { newValue in
+//					complimentManager.fetchComplimentsInGroup(groupID: groupOrder) = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(newValue))
+//				})
 				.onChange(of: scenePhase) { newPhase in
 					print("scene change")
 					compareDates()
 					updateCanBreakBoxes()
 				}
 				.onAppear {
-					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
 					// 최초 칭찬 작성 시 안내 팝업
-					if Compliment.count == 1, isfirst == true {
-						withAnimation(.spring(response: 1.2, dampingFraction: 0.8)) {
-							showInfoPopup = true
-						}
-					}
+//					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
+//					if Compliment.count == 1, isfirst == true {
+//						withAnimation(.spring(response: 1.2, dampingFraction: 0.8)) {
+//							showInfoPopup = true
+//						}
+//					}
 				}
 			}
 		}
@@ -278,13 +131,12 @@ struct HomeView: View {
 		let today = Calendar.current.component(.weekday, from: Date())
 		let todayWeekday = Weekday.allCases[(today + 5) % 7].rawValue
 		
-		if isPastSelectedWeekday() && !isSelectedSameDay {
-			//        if (todayWeekday == selectedWeekday) && !isSelectedSameDay {
-			canBreakBoxes = true
-			if scene.complimentCount > 0 {
-				shake = 5
-			}
-		}
+//		if isPastSelectedWeekday() && !isSelectedSameDay {
+//			canBreakBoxes = true
+//			if scene.complimentCount > 0 {
+//				shake = 5
+//			}
+//		}
 	}
 	
 	// 선택한 요일이 지났는지 여부 판단
@@ -322,7 +174,7 @@ struct HomeView: View {
 	// 버튼 초기화
 	private func resetTimeButton() {
 		isCompliment = false
-		isSelectedSameDay = false
+//		isSelectedSameDay = false
 		lastResetTimeInterval = Date().timeIntervalSince1970
 	}
 }
