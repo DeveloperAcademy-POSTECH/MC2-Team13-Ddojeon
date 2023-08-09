@@ -33,7 +33,7 @@ struct subTitleView: View {
 	}
 }
 
-struct complimentButtonStyle: ButtonStyle {
+struct bottomButtonStyle: ButtonStyle {
 	var isCompliment: Bool
 	var width: CGFloat
 	var height: CGFloat
@@ -43,11 +43,10 @@ struct complimentButtonStyle: ButtonStyle {
 			.bold()
 			.font(.title3)
 			.foregroundColor(Color.white)
-			.kerning(0.5)
-			.padding(.vertical,6)
 			.frame(width: width, height: height)
 			.background(RoundedRectangle(cornerRadius: 10)
-			.foregroundColor(isCompliment ? Color(red: 0.85, green: 0.85, blue: 0.85) : .blue))
+				.foregroundColor(isCompliment ? .gray : .blue))
+			.disabled(isCompliment)
 	}
 }
 

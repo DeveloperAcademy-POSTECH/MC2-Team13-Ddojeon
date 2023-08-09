@@ -19,14 +19,15 @@
 		703028FF2A7EC14E005B3D25 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703028FE2A7EC14E005B3D25 /* HapticManager.swift */; };
 		703029012A7EC2CA005B3D25 /* MainViewComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703029002A7EC2CA005B3D25 /* MainViewComponents.swift */; };
 		703029032A7EC4CC005B3D25 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703029022A7EC4CC005B3D25 /* Weekday.swift */; };
-		703029062A7F376E005B3D25 /* MainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703029052A7F376E005B3D25 /* MainStore.swift */; };
 		7030290A2A7F6D8B005B3D25 /* Weekday+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703029092A7F6D8B005B3D25 /* Weekday+Today.swift */; };
 		7030290D2A7F760A005B3D25 /* CardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7030290C2A7F760A005B3D25 /* CardStore.swift */; };
 		70385ED12A07DFEE001CDAB0 /* Color+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */; };
 		70385ED32A07E00F001CDAB0 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70385ED22A07E00F001CDAB0 /* Color.xcassets */; };
 		70385EDA2A07E60B001CDAB0 /* Date+FormatWithDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */; };
-		70815E812A08950900DBE5B0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7E2A08950900DBE5B0 /* Persistence.swift */; };
+		70815E812A08950900DBE5B0 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7E2A08950900DBE5B0 /* PersistenceController.swift */; };
 		70815E822A08950900DBE5B0 /* ComplimentModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7F2A08950900DBE5B0 /* ComplimentModel.xcdatamodeld */; };
+		70B34D4E2A83D67D00C18AD6 /* ComplimentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B34D4D2A83D67D00C18AD6 /* ComplimentManager.swift */; };
+		70B34D502A83D77600C18AD6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B34D4F2A83D77600C18AD6 /* HomeView.swift */; };
 		70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */; };
 		70B8FBA82A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */; };
 		70BD12BF2A3F066600BF252F /* ArchivingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BD12BE2A3F066600BF252F /* ArchivingConstants.swift */; };
@@ -65,14 +66,15 @@
 		703028FE2A7EC14E005B3D25 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		703029002A7EC2CA005B3D25 /* MainViewComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewComponents.swift; sourceTree = "<group>"; };
 		703029022A7EC4CC005B3D25 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
-		703029052A7F376E005B3D25 /* MainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStore.swift; sourceTree = "<group>"; };
 		703029092A7F6D8B005B3D25 /* Weekday+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Weekday+Today.swift"; sourceTree = "<group>"; };
 		7030290C2A7F760A005B3D25 /* CardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStore.swift; sourceTree = "<group>"; };
 		70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Asset.swift"; sourceTree = "<group>"; };
 		70385ED22A07E00F001CDAB0 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+FormatWithDot.swift"; sourceTree = "<group>"; };
-		70815E7E2A08950900DBE5B0 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		70815E7E2A08950900DBE5B0 /* PersistenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		70815E802A08950900DBE5B0 /* ComplimentModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ComplimentModel.xcdatamodel; sourceTree = "<group>"; };
+		70B34D4D2A83D67D00C18AD6 /* ComplimentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplimentManager.swift; sourceTree = "<group>"; };
+		70B34D4F2A83D77600C18AD6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ComplimentEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ComplimentEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		70B9BFDB2A44B9E700F2DDC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -114,7 +116,7 @@
 		701094A72A0FF83C0019DEED /* View */ = {
 			isa = PBXGroup;
 			children = (
-				703028F32A7EB4B2005B3D25 /* Main */,
+				703028F32A7EB4B2005B3D25 /* Home */,
 				703029042A7F311E005B3D25 /* WriteCompliment */,
 				A93728C52A0F6DCD00C79C04 /* Onboard */,
 				70C797722A042FF400E2E3AF /* CardView */,
@@ -123,15 +125,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		703028F32A7EB4B2005B3D25 /* Main */ = {
+		703028F32A7EB4B2005B3D25 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				70B34D4F2A83D77600C18AD6 /* HomeView.swift */,
 				AE37D5442A063BD3009B0F56 /* MainView.swift */,
-				703029052A7F376E005B3D25 /* MainStore.swift */,
-				703029072A7F6B3A005B3D25 /* MainComponents */,
+				70B34D4D2A83D67D00C18AD6 /* ComplimentManager.swift */,
 				703029082A7F6BF0005B3D25 /* GameComponents */,
+				703029072A7F6B3A005B3D25 /* MainComponents */,
 			);
-			path = Main;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		703029042A7F311E005B3D25 /* WriteCompliment */ = {
@@ -145,7 +148,6 @@
 		703029072A7F6B3A005B3D25 /* MainComponents */ = {
 			isa = PBXGroup;
 			children = (
-				703029022A7EC4CC005B3D25 /* Weekday.swift */,
 				703029002A7EC2CA005B3D25 /* MainViewComponents.swift */,
 			);
 			path = MainComponents;
@@ -154,8 +156,8 @@
 		703029082A7F6BF0005B3D25 /* GameComponents */ = {
 			isa = PBXGroup;
 			children = (
-				703028FC2A7EBF0B005B3D25 /* GameState.swift */,
 				703028F42A7EB4CC005B3D25 /* GameScene.swift */,
+				703028FC2A7EBF0B005B3D25 /* GameState.swift */,
 			);
 			path = GameComponents;
 			sourceTree = "<group>";
@@ -173,10 +175,10 @@
 		70385ECF2A07DFDD001CDAB0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				703029022A7EC4CC005B3D25 /* Weekday.swift */,
 				70E68F132A0A95FD00258A10 /* LottieView.swift */,
 				703028F12A7EA0E2005B3D25 /* UserDefaultsKeys.swift */,
 				703028FE2A7EC14E005B3D25 /* HapticManager.swift */,
-				7030290B2A7F72C0005B3D25 /* Extensions */,
 				70385ED22A07E00F001CDAB0 /* Color.xcassets */,
 				AE37D5382A039606009B0F56 /* Assets.xcassets */,
 			);
@@ -188,7 +190,7 @@
 			children = (
 				70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */,
 				70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */,
-				70815E7E2A08950900DBE5B0 /* Persistence.swift */,
+				70815E7E2A08950900DBE5B0 /* PersistenceController.swift */,
 				70815E7F2A08950900DBE5B0 /* ComplimentModel.xcdatamodeld */,
 			);
 			path = Model;
@@ -264,6 +266,7 @@
 				701094A72A0FF83C0019DEED /* View */,
 				70815E7D2A08950900DBE5B0 /* Model */,
 				70385ECF2A07DFDD001CDAB0 /* Utils */,
+				7030290B2A7F72C0005B3D25 /* Extensions */,
 				AE37D53A2A039606009B0F56 /* Preview Content */,
 			);
 			path = Chinggu;
@@ -378,6 +381,7 @@
 				AE37D5372A039605009B0F56 /* ContentView.swift in Sources */,
 				703029012A7EC2CA005B3D25 /* MainViewComponents.swift in Sources */,
 				FBB8CFD92A0B908E00210F90 /* ArchivingCard.swift in Sources */,
+				70B34D4E2A83D67D00C18AD6 /* ComplimentManager.swift in Sources */,
 				703028F22A7EA0E2005B3D25 /* UserDefaultsKeys.swift in Sources */,
 				70C7977B2A04357F00E2E3AF /* CardView.swift in Sources */,
 				70BD12BF2A3F066600BF252F /* ArchivingConstants.swift in Sources */,
@@ -389,7 +393,6 @@
 				703029032A7EC4CC005B3D25 /* Weekday.swift in Sources */,
 				51887AE72A12232F0015EF88 /* OnboardingView.swift in Sources */,
 				70815E822A08950900DBE5B0 /* ComplimentModel.xcdatamodeld in Sources */,
-				703029062A7F376E005B3D25 /* MainStore.swift in Sources */,
 				7030290D2A7F760A005B3D25 /* CardStore.swift in Sources */,
 				AE9537702A12245E00C6F5FF /* InfoPopupView.swift in Sources */,
 				7030290A2A7F6D8B005B3D25 /* Weekday+Today.swift in Sources */,
@@ -400,10 +403,11 @@
 				AE37D5452A063BD3009B0F56 /* MainView.swift in Sources */,
 				7014D47A2A10AF8B00F1B315 /* TempArchivingDetailView.swift in Sources */,
 				70B8FBA82A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift in Sources */,
+				70B34D502A83D77600C18AD6 /* HomeView.swift in Sources */,
 				AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */,
 				70385ED12A07DFEE001CDAB0 /* Color+Asset.swift in Sources */,
 				70385EDA2A07E60B001CDAB0 /* Date+FormatWithDot.swift in Sources */,
-				70815E812A08950900DBE5B0 /* Persistence.swift in Sources */,
+				70815E812A08950900DBE5B0 /* PersistenceController.swift in Sources */,
 				70E68F142A0A95FD00258A10 /* LottieView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

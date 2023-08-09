@@ -46,7 +46,6 @@ struct InfoPopupView: View {
 								.font(.title3)
 								.bold()
 								.foregroundColor(.white)
-								.kerning(1)
 								.padding(.vertical,6)
 								.frame(width: 310, height: 56)
 						}
