@@ -11,6 +11,7 @@ struct CardFullScreenView: View {
 	
 	@AppStorage("group") var groupOrder: Int = 1
     @AppStorage("isSelectedSameDay") private var isSelectedSameDay: Bool = true
+    @AppStorage("canBreakBoxes") private var canBreakBoxes = false
 	@State var complimentsInGroup: [ComplimentEntity] = []
 	@State var groupOrderText: String = ""
 	@State var groupStartEndDates: String = ""
@@ -18,99 +19,83 @@ struct CardFullScreenView: View {
 	var namespace: Namespace.ID
 	@Binding var showPopup: Bool
 	
-	var body: some View {
-            ScrollView {
-                VStack {
-                    Image("gradientPresent")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .matchedGeometryEffect(id: "image", in: namespace)
-                    HStack(spacing:4) {
-                        Text(groupOrderText)
-                            .font(Font.system(size:18).weight(.heavy))
-                            .matchedGeometryEffect(id: "title", in: namespace)
-                            .foregroundColor(Color("oll"))
-                       
-                        Image(systemName: "gift")
-                            .font(Font.system(size:18).weight(.heavy))
-                            .foregroundColor(Color("oll"))
-                        
-                      Spacer()
-                            .frame(width: 10)
-                        
-                        Text(groupStartEndDates)
-                            .font(.caption)
-                            .matchedGeometryEffect(id: "subtitle", in: namespace)
-                            .foregroundColor(.gray)
-                      Spacer()
-                    }
-                    .padding()
-                    
-                                    
-                    ScrollView(.vertical, showsIndicators: false) {
-                        VStack {
-                            ForEach(complimentsInGroup, id: \.id) { compliment in
-                                ZStack(alignment: .leading) {
-                                    RoundedRectangle(cornerRadius: 10)
-                                    .foregroundColor(.white)
-                                    Text(compliment.compliment ?? "nil compliment")
-                                        .font(.custom("AppleSDGothicNeo-Regular", size: 17))
-                                        .padding()
-                                        .lineSpacing(6)
-                                }
-                                .padding(.vertical, 4)
-                            }
+    var body: some View {
+        ScrollView {
+            VStack {
+                Image("gradientPresent")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .matchedGeometryEffect(id: "image", in: namespace)
+                HStack {
+                    Text(groupOrderText)
+                        .font(.headline)
+                        .matchedGeometryEffect(id: "title", in: namespace)
+                        .foregroundColor(Color("oll"))
+                    Text(groupStartEndDates)
+                        .font(.caption)
+                        .matchedGeometryEffect(id: "subtitle", in: namespace)
+                        .foregroundColor(.gray)
+                    Spacer()
+                }
+                .padding()
+                
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(alignment: .leading, spacing: 10) {
+                        ForEach(complimentsInGroup, id: \.id) { compliment in
+                            Text(compliment.compliment ?? "nil compliment")
+                                .font(.custom("AppleSDGothicNeo-Regular", size: 17))
+                                .padding(.horizontal)
+                                .lineSpacing(6)
+                            Divider()
+                                .padding(4)
                         }
-                        .padding(.horizontal)
-                    }
-                    
-                    // 명언
-                    VStack {
-                        let randomIndex = Int.random(in: 0..<quotes.count)
-                        Text(quotes[randomIndex].text)
-                            .padding(.bottom, 2)
-                        Text(quotes[randomIndex].speaker)
-                    }
-                    .multilineTextAlignment(.center)
-                    .font(.custom("AppleSDGothicNeo-Regular", size: 12))
-                    .lineSpacing(2)
-                    .foregroundColor(.gray)
-                    .padding()
-                    
-                    // 닫기 버튼
-                    HStack {
-                        Spacer()
-                        Button {
-                            withAnimation(.easeOut) {
-                                //MainView의 Popup Card를 내림
-                                showPopup = false
-                                groupOrder = groupOrder + 1
-                            }
-                        } label: {
-                            Text("닫기")
-                                .font(.custom("AppleSDGothicNeo-Bold", size: 20))
-                                .foregroundColor(Color.white)
-                                .kerning(1)
-                                .padding(.vertical,6)
-                                .frame(width: UIScreen.main.bounds.width/1.15, height: 50)
-                        }
-                        .background {
-                            RoundedRectangle(cornerRadius: 15)
-                                .foregroundColor(Color("oll"))
-                        }
-                        
-                        Spacer()
                     }
                     .padding()
                 }
-                .foregroundColor(.black)
+                
+                VStack {
+                    let randomIndex = Int.random(in: 0..<quotes.count)
+                    Text(quotes[randomIndex].text)
+                    Text(quotes[randomIndex].speaker)
+                }
+                .multilineTextAlignment(.center)
+                .font(.custom("AppleSDGothicNeo-Regular", size: 10))
+                .foregroundColor(.gray)
+                
+                HStack {
+                    Spacer()
+                    Button {
+                        withAnimation(.easeOut) {
+                            //MainView의 Popup Card를 내림
+                            showPopup = false
+                            groupOrder = groupOrder + 1
+                            isSelectedSameDay = true
+                            canBreakBoxes = false
+                        }
+                    } label: {
+                        Text("닫기")
+                            .font(.custom("AppleSDGothicNeo-Bold", size: 20))
+                            .foregroundColor(Color.white)
+                            .kerning(1)
+                            .padding(.vertical,6)
+                            .frame(width: UIScreen.main.bounds.width/1.15, height: 50)
+                    }
+                    .background {
+                        RoundedRectangle(cornerRadius: 15)
+                            .foregroundColor(Color("oll"))
+                    }
+                    
+                    Spacer()
+                }
+                .padding()
             }
-            .ignoresSafeArea()
-            .background(Color.ddoPrimary)
-            .matchedGeometryEffect(id: "background", in: namespace)
-            .onAppear(perform: loadCompliments)
-	}
-	
+            .foregroundColor(.black)
+        }
+        .ignoresSafeArea()
+        .background(Color.ddoPrimary)
+        .matchedGeometryEffect(id: "background", in: namespace)
+        .onAppear(perform: loadCompliments)
+    }
 	private func loadCompliments() {
 		complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
 		if let minDate = complimentsInGroup.first?.createDate,

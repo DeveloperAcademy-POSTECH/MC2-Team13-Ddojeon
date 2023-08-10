@@ -88,7 +88,7 @@ struct MainView: View {
 	@State var complimentsInGroup: [ComplimentEntity] = []
     
     @State private var showActionSheet = false
-    @State private var canBreakBoxes = false
+//    @State private var canBreakBoxes = false
     @State private var showAlert = false
     @State private var showBreakAlert = false
     @State private var tempSeletedWeekday: Weekday?
@@ -102,7 +102,7 @@ struct MainView: View {
 	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
     @AppStorage("isSelectedSameDay") private var isSelectedSameDay: Bool = true
     @AppStorage("isCompliment") private var isCompliment: Bool = false
-	
+	@AppStorage("canBreakBoxes") private var canBreakBoxes = false
     @State var scene = GameScene()
     
     @AppStorage("lastResetTimeInterval") private var lastResetTimeInterval: TimeInterval = Date().timeIntervalSince1970
@@ -194,11 +194,13 @@ struct MainView: View {
 							Divider()
 						}
 						.padding(.bottom, 30)
+
                         // MARK: 테스트 버튼
                         Button("초기화") {
                             isSelectedSameDay = false
                             isCompliment = false
                         }
+
 						// 타이틀
 						if canBreakBoxes && scene.boxes.count > 0  {
 							Text("이번 주 칭찬을\n  확인할 시간이에요💞")
@@ -264,6 +266,7 @@ struct MainView: View {
                                 
                             }
 							.onAppear {
+                                print(complimentsInGroup.count)
 								if complimentsInGroup.count > scene.complimentCount {
 									scene.addBox(at: CGPoint(x: scene.size.width/2, y: scene.size.height - 50))
 									if canBreakBoxes {
@@ -277,9 +280,13 @@ struct MainView: View {
                                 
 								scene.scaleMode = .aspectFit
 							}
-						
-						if canBreakBoxes && scene.boxes.count > 0  {
-							Text("칭찬 상자를 톡! 눌러주세요")
+                        if complimentsInGroup.count == 7 {
+                            Text("주간 칭찬은 최대 7개 까지만 가능해요.")
+                                .font(.custom("AppleSDGothicNeo-SemiBold", size: 14))
+                                .foregroundColor(.gray)
+                                .padding(.top, 14)
+                        } else if canBreakBoxes && scene.boxes.count > 0  {
+							Text("칭찬 상자를 톡! 눌러주세요.")
 								.font(.custom("AppleSDGothicNeo-SemiBold", size: 14))
 								.foregroundColor(.gray)
 								.padding(.top, 14)
@@ -306,10 +313,10 @@ struct MainView: View {
 						})
 						.background {
 							RoundedRectangle(cornerRadius: 10)
-//                                .foregroundColor(.blue)
-                                .foregroundColor(isCompliment ? Color(red: 0.85, green: 0.85, blue: 0.85) : .blue)
+                                .foregroundColor(isCompliment || complimentsInGroup.count == 7 ? Color(red: 0.85, green: 0.85, blue: 0.85) : .blue)
 						}
                         .disabled(isCompliment)
+                        .disabled(complimentsInGroup.count == 7)
 					}
 					if complimentsInGroup.count == 0 && !isCompliment {
 						NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment)) {
@@ -336,7 +343,6 @@ struct MainView: View {
                     updateCanBreakBoxes()
                 }
 				.onAppear {
-                    
 					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
                     // 최초 칭찬 작성 시 안내 팝업
 					if Compliment.count == 1, isfirst == true {
@@ -354,14 +360,37 @@ struct MainView: View {
         let today = Calendar.current.component(.weekday, from: Date())
         let todayWeekday = Weekday.allCases[(today + 5) % 7].rawValue
         
-        if (todayWeekday == selectedWeekday) && !isSelectedSameDay {
+        if isPastSelectedWeekday() && !isSelectedSameDay {
+//        if (todayWeekday == selectedWeekday) && !isSelectedSameDay {
             canBreakBoxes = true
             if scene.complimentCount > 0 {
                 shake = 5
             }
-        } else {
-            canBreakBoxes = false
         }
+    }
+    
+    // 선택한 요일이 지났는지 여부 판단
+    func isPastSelectedWeekday() -> Bool {
+        let calendar = Calendar.current
+        var selectedWeekdayNumber = 0
+        // 선택된 요일 Int로 뽑기
+        let weekdayArray = Weekday.allCases
+        for (index, weekday) in weekdayArray.enumerated() {
+            if weekday.rawValue == selectedWeekday {
+                selectedWeekdayNumber = index + 2
+                if selectedWeekdayNumber >= 7 {
+                    selectedWeekdayNumber %= 7
+                }
+                break
+            }
+        }
+        let selectedWeekdayComponent = DateComponents(weekday: selectedWeekdayNumber)
+        print("selectedWeekdayComponent",selectedWeekdayComponent)
+        // 현재 날짜가 선택된 날짜와 동일하거나 지났다면
+        guard let selectedDate = calendar.nextDate(after: Date(), matching: selectedWeekdayComponent, matchingPolicy: .nextTime) else {
+            return false
+        }
+        return true
     }
     
     // 초기화 날짜 비교
