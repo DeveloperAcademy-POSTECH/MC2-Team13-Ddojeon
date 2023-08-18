@@ -17,6 +17,18 @@ enum Weekday: String, CaseIterable {
     case friday = "금요일"
     case saturday = "토요일"
     case sunday = "일요일"
+    
+    var weekdayValue: Int {
+        switch self {
+        case .sunday: return 1
+        case .monday: return 2
+        case .tuesday: return 3
+        case .wednesday: return 4
+        case .thursday: return 5
+        case .friday: return 6
+        case .saturday: return 7
+        }
+    }
 }
 
 class GameScene: SKScene {
@@ -200,7 +212,7 @@ struct MainView: View {
                             isSelectedSameDay = false
                             isCompliment = false
                         }
-
+                        Text("Next \(selectedWeekday) Date: \(nextWeekdayDate(selectedWeekday) )")
 						// 타이틀
 						if canBreakBoxes && scene.boxes.count > 0  {
 							Text("이번 주 칭찬을\n  확인할 시간이에요💞")
@@ -360,38 +372,63 @@ struct MainView: View {
         let today = Calendar.current.component(.weekday, from: Date())
         let todayWeekday = Weekday.allCases[(today + 5) % 7].rawValue
         
-        if isPastSelectedWeekday() && !isSelectedSameDay {
-//        if (todayWeekday == selectedWeekday) && !isSelectedSameDay {
+//        if isPastSelectedWeekday() && !isSelectedSameDay {
+        if (todayWeekday == selectedWeekday) && !isSelectedSameDay {
             canBreakBoxes = true
             if scene.complimentCount > 0 {
                 shake = 5
             }
         }
     }
-    
-    // 선택한 요일이 지났는지 여부 판단
-    func isPastSelectedWeekday() -> Bool {
+    // 선택한 요일에 해당하는 다음 날짜 추출
+    func nextWeekdayDate(_ weekdayString: String) -> String {
         let calendar = Calendar.current
-        var selectedWeekdayNumber = 0
-        // 선택된 요일 Int로 뽑기
-        let weekdayArray = Weekday.allCases
-        for (index, weekday) in weekdayArray.enumerated() {
-            if weekday.rawValue == selectedWeekday {
-                selectedWeekdayNumber = index + 2
-                if selectedWeekdayNumber >= 7 {
-                    selectedWeekdayNumber %= 7
-                }
+        let weekdays = Weekday.allCases
+        
+        let selectedWeekday = weekdays.first(where: { $0.rawValue == weekdayString }) ?? .monday
+        let today = calendar.startOfDay(for: Date())
+        var nextDate = today
+//        var components = DateComponents()
+        
+        for dayOffset in 1...7 {
+            nextDate = today.addingTimeInterval(TimeInterval(dayOffset * 24 * 60 * 60))
+            if calendar.component(.weekday, from: nextDate) == selectedWeekday.weekdayValue {
                 break
             }
         }
-        let selectedWeekdayComponent = DateComponents(weekday: selectedWeekdayNumber)
-        print("selectedWeekdayComponent",selectedWeekdayComponent)
-        // 현재 날짜가 선택된 날짜와 동일하거나 지났다면
-        guard let selectedDate = calendar.nextDate(after: Date(), matching: selectedWeekdayComponent, matchingPolicy: .nextTime) else {
-            return false
-        }
-        return true
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        return dateFormatter.string(from: nextDate)
     }
+    
+    // TODO: 선택한 요일이 지났는지 여부 판단
+//    func isPastSelectedWeekday() -> Bool {
+//        let calendar = Calendar.current
+//
+//        let selectedWeekdayComponent = DateComponents(weekday: selectedWeekdayNumber)
+//        print("selectedWeekdayComponent",selectedWeekdayComponent)
+//        // 현재 날짜가 선택된 날짜와 동일하거나 지났다면
+//        guard let selectedDate = calendar.nextDate(after: Date(), matching: selectedWeekdayComponent, matchingPolicy: .nextTime) else {
+//            return false
+//        }
+//        return true
+//    }
+    
+    // 선택된 요일 Int로 뽑기
+//    func changeInt(selectedWeekdayString: String) -> Int {
+//        var selectedWeekdayNumber = 0
+//        let weekdayArray = Weekday.allCases
+//        for (index, weekday) in weekdayArray.enumerated() {
+//            if weekday.rawValue == selectedWeekdayString {
+//                selectedWeekdayNumber = index + 2
+//                if selectedWeekdayNumber >= 7 {
+//                    selectedWeekdayNumber %= 7
+//                }
+//                break
+//            }
+//        }
+//        return selectedWeekdayNumber
+//    }
     
     // 초기화 날짜 비교
     private func compareDates() {
