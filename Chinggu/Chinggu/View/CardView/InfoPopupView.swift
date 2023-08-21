@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct InfoPopupView: View {
-	@Binding var showInfoPopup: Bool
-	@AppStorage("isfirst") var isfirst: Bool = false
-  @State private var showWeekdaySheet = false
-  @AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
-
-	var body: some View {
-		ZStack {
-			LottieView(filename: "cardBeforeAnimation", loopState: false, contentMode: .scaleAspectFill)
+    @Binding var showInfoPopup: Bool
+    @AppStorage("isfirst") var isfirst: Bool = false
+    @State private var showWeekdaySheet = false
+    @AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
+    @AppStorage("selectedWeekdayTimeInterval") private var selectedWeekdayTimeInterval: TimeInterval = Date().timeIntervalSince1970
+    var body: some View {
+        ZStack {
+            LottieView(filename: "cardBeforeAnimation", loopState: false, contentMode: .scaleAspectFill)
 				.ignoresSafeArea()
 				.transaction { transaction in
 					transaction.animation = nil
@@ -54,6 +54,7 @@ struct InfoPopupView: View {
               ActionSheet(title: Text("요일 변경"), message: nil, buttons: Weekday.allCases.map { weekday in
                  return .default(Text(weekday.rawValue)) {
                    selectedWeekday = weekday.rawValue
+                   selectedWeekdayTimeInterval = nextWeekdayDate(selectedWeekday)
                    withAnimation(.easeOut(duration: 0.5)) {
                      showInfoPopup = false
                      isfirst = false
@@ -71,6 +72,22 @@ struct InfoPopupView: View {
 				}
 		}
 	}
+    
+    func nextWeekdayDate(_ weekdayString: String) -> TimeInterval {
+        let calendar = Calendar.current
+        let weekdays = Weekday.allCases
+        
+        let selectedWeekday = weekdays.first(where: { $0.rawValue == weekdayString }) ?? .monday
+        let today = calendar.startOfDay(for: Date())
+        var nextDate = today
+        for dayOffset in 1...7 {
+            nextDate = today.addingTimeInterval(TimeInterval(dayOffset * 24 * 60 * 60))
+            if calendar.component(.weekday, from: nextDate) == selectedWeekday.weekdayValue {
+                break
+            }
+        }
+        return nextDate.timeIntervalSince1970
+    }
 }
 
 struct InfoPopupView_Previews: PreviewProvider {
