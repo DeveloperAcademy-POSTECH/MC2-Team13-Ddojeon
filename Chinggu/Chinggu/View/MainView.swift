@@ -177,6 +177,7 @@ struct MainView: View {
 //                                        if today == tempSeletedWeekday?.rawValue ?? "월요일" {
 //                                            isSelectedSameDay = true
 //                                        }
+                                        selectedWeekdayTimeInterval = nextWeekdayDate(selectedWeekday)
                                         updateCanBreakBoxes()
                                     }, secondaryButton: .cancel(Text("아니요")))
                                 }.padding(.horizontal, -19.0)
@@ -209,13 +210,14 @@ struct MainView: View {
 						}
 						.padding(.bottom, 30)
 
-                        // MARK: 테스트 버튼
+//                        // MARK: 테스트 버튼
 //                        Button("초기화") {
-//                            isSelectedSameDay = false
 //                            isCompliment = false
 //                        }
-                        Text("Next \(selectedWeekday) Date: \(Date(timeIntervalSince1970: selectedWeekdayTimeInterval))")
-                        
+//                        Text("Next \(selectedWeekday) Date: \(Date(timeIntervalSince1970: selectedWeekdayTimeInterval))")
+//                        Text("\(Date())")
+//                        Text(Date() > Date(timeIntervalSince1970: selectedWeekdayTimeInterval) ? "true" : "false")
+//
 						// 타이틀
 						if canBreakBoxes && scene.boxes.count > 0  {
 							Text("이번 주 칭찬을\n  확인할 시간이에요💞")
@@ -247,6 +249,13 @@ struct MainView: View {
 									showBreakAlert = true
 								}
 							}
+                            .overlay {
+                                if complimentsInGroup.count == 0 && !isCompliment {
+                                    NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment)) {
+                                        Image("emptyState")
+                                    }
+                                }
+                            }
 						// 만기일 개봉 얼럿
 							.alert(isPresented: $showBreakAlert) {
 								Alert(title: Text("칭찬 상자를 열어볼까요?"), primaryButton: .default(Text("네")) {
@@ -312,9 +321,8 @@ struct MainView: View {
 								.padding(.top, 14)
 						}
 						Spacer()
-						// 칭찬돌 추가하는 버튼
-						Button(action: {
-							
+                        // 칭찬돌 추가하는 버튼
+                        Button(action: {
 						}, label: {
 							NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment), label: {
 								Text(isCompliment ? "오늘 칭찬 끝!" : "칭찬하기")
@@ -333,12 +341,6 @@ struct MainView: View {
                         .disabled(isCompliment)
                         .disabled(complimentsInGroup.count == 7)
 					}
-					if complimentsInGroup.count == 0 && !isCompliment {
-						NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment)) {
-							Image("emptyState")
-								.offset(y: 45)
-						}
-                    }
                     
 					Color.clear
 					.popup(isPresented: $showPopup) {
@@ -378,12 +380,9 @@ struct MainView: View {
 //        let today = Calendar.current.component(.weekday, from: Date())
 //        let todayWeekday = Weekday.allCases[(today + 5) % 7].rawValue
 //        if isPastSelectedWeekday() && !isSelectedSameDay {
-        selectedWeekdayTimeInterval = nextWeekdayDate(selectedWeekday)
-        print("되나? updateCanBreakBoxes")
         if today > selectedWeekdayTimeInterval {
 //        if (todayWeekday == selectedWeekday) && !isSelectedSameDay {
             canBreakBoxes = true
-            print("canBreakBoxes true가 됨!!")
             if scene.complimentCount > 0 {
                 shake = 5
             }
