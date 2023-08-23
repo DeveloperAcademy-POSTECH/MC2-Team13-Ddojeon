@@ -147,7 +147,8 @@ struct WriteComplimentView: View {
 
                                 Text(categories[selection].example)
                                     .font(.title3)
-                                    .lineSpacing(4)
+                                    .lineSpacing(10)
+                                    .fontWeight(.semibold)
                                     .foregroundColor(Color(.systemBrown))
                                     .multilineTextAlignment(.center)
                                     .padding()

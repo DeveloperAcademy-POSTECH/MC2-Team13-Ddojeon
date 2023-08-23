@@ -12,7 +12,7 @@ struct Onboarding {
     var title: String
     var description: String
     var nextButton: String
-    
+
     init(title: String, description: String, nextButton: String) {
         self.title = title
         self.description = description
@@ -26,7 +26,7 @@ enum Onboardings: CaseIterable {
     case onboarding_3
     case onboarding_4
     case onboarding_5
-    
+
     var title: String {
         switch self {
         case .onboarding_1: return "최근 무기력을\n느껴본 적 없나요?"
@@ -36,16 +36,16 @@ enum Onboardings: CaseIterable {
         case .onboarding_5: return "이제 칭구와 함께\n시작해요"
         }
     }
-    
+
     var description: String {
         switch self {
         case .onboarding_3: return "내면의 긍정 에너지는 몹시 강력해서\n외부의 좋은 것을 나에게 끌어당기는\n힘이 있어요"
-        case .onboarding_4: return "작성화면 상단에 있는 〈칭찬요정〉이\n당신을 언제든 도와줄 거예요"
+        case .onboarding_4: return "하단의 작성 tip을 클릭하면,\n당신을 언제든 도와줄거에요."
         case .onboarding_5: return "매일 하루 끝 칭찬으로 긍정적인\n사고 회로를 만들어 보아요"
         default: return ""
         }
     }
-    
+
     var nextButton: String {
         switch self {
         case .onboarding_1: return "시작하기"
@@ -63,41 +63,26 @@ struct OnboardingView: View {
     }
     @State private var selection = 1
     @State private var showMain = false
-    
+
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
-                ProgressBar(selection: $selection,
-                            length: onboardings.count,
-                            showMain: $showMain)
-                
+                progressBar
                 TabView(selection: $selection) {
                     ForEach(1...onboardings.count, id: \.self) { idx in
                         VStack {
                             OnboardingTextView(onboardings: onboardings, index: idx)
                             LottieView(filename: "onboarding_\(idx)",
-                                            loopState: true)
+                                       loopState: true)
                             .scaleEffect(idx == 1 ? 0.55 : 1)
                             .offset(x:0, y: selection == 4 ? -40 : 0)
-                            .overlay(alignment: .bottom) {
-                                if selection == 4 {
-                                    HStack(spacing: 3) {
-                                        Image(systemName: "info.circle.fill")
-                                        Text("본 가이드는 저서 ‘일단 나부터 칭찬합시다’를 기반으로 작성되었어요.")
-                                    }
-                                    .font(.caption2)
-                                    .foregroundColor(Color(.systemGray2))
-                                    .offset(x: 0, y: -15)
-                                    .kerning(-0.06)
-                                }
-                            }
                         }
                         .tag(idx)
                     }
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
-                
+
                 GoNextButton(
                     selection: $selection,
                     length: onboardings.count,
@@ -111,14 +96,8 @@ struct OnboardingView: View {
             MainView()
         }
     }
-}
 
-struct ProgressBar: View {
-    @Binding var selection: Int
-    @State var length: Int
-    @Binding var showMain: Bool
-    
-    var body: some View {
+    var progressBar: some View {
         HStack(spacing: 8) {
             if selection != 1 {
                 Button(action: {
@@ -129,13 +108,12 @@ struct ProgressBar: View {
                         .foregroundColor(Color.black)
                         .frame(width: 44, alignment: .leading)
                 })
-                
-                ProgressView(value: Double(selection - 1) / Double(length - 1), total: 1.0)
+
+                ProgressView(value: Double(selection - 1) / Double(onboardings.count - 1), total: 1.0)
                     .scaleEffect(y:1.3)
                     .progressViewStyle(
                         LinearProgressViewStyle(tint: Color("oll"))
                     )
-
                 Button("건너뛰기") {
                     showMain = true
                     UserDefaults.standard.set(true, forKey: "HasOnboarded")
@@ -149,14 +127,15 @@ struct ProgressBar: View {
     }
 }
 
+
 struct OnboardingTextView: View {
     @State var onboardings: [Onboarding]
     @State var index: Int
-    
+
     @State private var messageIndex = 0
     private let message = ["불안", "무기력", "슬픔", "우울", "조급함", "자괴감", "회의감", "좌절"]
     private let timer = Timer.publish(every: 0.9, on: .main, in: .common).autoconnect()
-    
+
     var body: some View {
         VStack {
             switch index {
@@ -211,7 +190,7 @@ struct GoNextButton: View {
     @State var length: Int
     @State var onboardings: [Onboarding]
     @Binding var showMain: Bool
-    
+
     var body: some View {
         Button(action: {
             if selection == length {
