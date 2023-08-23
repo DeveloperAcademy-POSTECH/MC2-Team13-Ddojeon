@@ -78,10 +78,10 @@ struct CardFullScreenView: View {
                             .foregroundColor(Color.white)
                             .kerning(1)
                             .padding(.vertical,6)
-                            .frame(width: UIScreen.main.bounds.width/1.15, height: 50)
+                            .frame(width: UIScreen.main.bounds.width/1.15, height: 56)
                     }
                     .background {
-                        RoundedRectangle(cornerRadius: 15)
+                        RoundedRectangle(cornerRadius: 10)
                             .foregroundColor(Color("oll"))
                     }
                     

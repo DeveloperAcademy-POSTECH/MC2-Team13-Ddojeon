@@ -152,7 +152,7 @@ struct WriteComplimentView: View {
                                     .foregroundColor(Color(.systemBrown))
                                     .multilineTextAlignment(.center)
                                     .padding()
-                                    .padding(.top, 10)
+                                    .padding(.top, 20)
 
                                 Spacer()
 

@@ -17,6 +17,18 @@ enum Weekday: String, CaseIterable {
     case friday = "금요일"
     case saturday = "토요일"
     case sunday = "일요일"
+    
+    var weekdayValue: Int {
+        switch self {
+        case .sunday: return 1
+        case .monday: return 2
+        case .tuesday: return 3
+        case .wednesday: return 4
+        case .thursday: return 5
+        case .friday: return 6
+        case .saturday: return 7
+        }
+    }
 }
 
 class GameScene: SKScene {
@@ -100,17 +112,19 @@ struct MainView: View {
 	@AppStorage("group") var groupOrder: Int = 1
 	@AppStorage("isfirst") var isfirst: Bool = true
 	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
-    @AppStorage("isSelectedSameDay") private var isSelectedSameDay: Bool = true
+    
+//    @AppStorage("isSelectedSameDay") private var isSelectedSameDay: Bool = true
     @AppStorage("isCompliment") private var isCompliment: Bool = false
 	@AppStorage("canBreakBoxes") private var canBreakBoxes = false
     @State var scene = GameScene()
     
     @AppStorage("lastResetTimeInterval") private var lastResetTimeInterval: TimeInterval = Date().timeIntervalSince1970
-       
-       var lastResetDate: Date {
-           let lastResetTime = Date(timeIntervalSince1970: lastResetTimeInterval)
-           return lastResetTime
-       }
+    @AppStorage("selectedWeekdayTimeInterval") private var selectedWeekdayTimeInterval: TimeInterval = Date().timeIntervalSince1970
+    
+    var lastResetDate: Date {
+        let lastResetTime = Date(timeIntervalSince1970: lastResetTimeInterval)
+        return lastResetTime
+    }
     
     @Environment(\.scenePhase) var scenePhase
     
@@ -159,10 +173,11 @@ struct MainView: View {
                                     Alert(title: Text("매주 \(tempSeletedWeekday?.rawValue ?? "월요일")"), message: Text("선택한 요일로 변경할까요?"), primaryButton: .default(Text("네")) {
                                         // OK 버튼을 눌렀을 때 선택한 요일 업데이트
                                         self.selectedWeekday = self.tempSeletedWeekday?.rawValue ?? "월요일"
-                                        let today = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
-                                        if today == tempSeletedWeekday?.rawValue ?? "월요일" {
-                                            isSelectedSameDay = true
-                                        }
+//                                        let today = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
+//                                        if today == tempSeletedWeekday?.rawValue ?? "월요일" {
+//                                            isSelectedSameDay = true
+//                                        }
+                                        selectedWeekdayTimeInterval = nextWeekdayDate(selectedWeekday)
                                         updateCanBreakBoxes()
                                     }, secondaryButton: .cancel(Text("아니요")))
                                 }.padding(.horizontal, -19.0)
@@ -195,12 +210,14 @@ struct MainView: View {
 						}
 						.padding(.bottom, 30)
 
-                        // MARK: 테스트 버튼
-                        Button("초기화") {
-                            isSelectedSameDay = false
-                            isCompliment = false
-                        }
-
+//                        // MARK: 테스트 버튼
+//                        Button("초기화") {
+//                            isCompliment = false
+//                        }
+//                        Text("Next \(selectedWeekday) Date: \(Date(timeIntervalSince1970: selectedWeekdayTimeInterval))")
+//                        Text("\(Date())")
+//                        Text(Date() > Date(timeIntervalSince1970: selectedWeekdayTimeInterval) ? "true" : "false")
+//
 						// 타이틀
 						if canBreakBoxes && scene.boxes.count > 0  {
 							Text("이번 주 칭찬을\n  확인할 시간이에요💞")
@@ -232,6 +249,13 @@ struct MainView: View {
 									showBreakAlert = true
 								}
 							}
+                            .overlay {
+                                if complimentsInGroup.count == 0 && !isCompliment {
+                                    NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment)) {
+                                        Image("emptyState")
+                                    }
+                                }
+                            }
 						// 만기일 개봉 얼럿
 							.alert(isPresented: $showBreakAlert) {
 								Alert(title: Text("칭찬 상자를 열어볼까요?"), primaryButton: .default(Text("네")) {
@@ -297,9 +321,8 @@ struct MainView: View {
 								.padding(.top, 14)
 						}
 						Spacer()
-						// 칭찬돌 추가하는 버튼
-						Button(action: {
-							
+                        // 칭찬돌 추가하는 버튼
+                        Button(action: {
 						}, label: {
 							NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment), label: {
 								Text(isCompliment ? "오늘 칭찬 끝!" : "칭찬하기")
@@ -318,12 +341,6 @@ struct MainView: View {
                         .disabled(isCompliment)
                         .disabled(complimentsInGroup.count == 7)
 					}
-					if complimentsInGroup.count == 0 && !isCompliment {
-						NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment)) {
-							Image("emptyState")
-								.offset(y: 45)
-						}
-                    }
                     
 					Color.clear
 					.popup(isPresented: $showPopup) {
@@ -355,12 +372,15 @@ struct MainView: View {
             }
         }
     }
-    // 요일이 변경 될 때마다 현재 요일과 비교
+    //// 요일이 변경 될 때마다 현재 요일과 비교
+    // 현재 날짜와 nextWeekdayDate와 비교
     private func updateCanBreakBoxes() {
-        let today = Calendar.current.component(.weekday, from: Date())
-        let todayWeekday = Weekday.allCases[(today + 5) % 7].rawValue
-        
-        if isPastSelectedWeekday() && !isSelectedSameDay {
+        let today = Calendar.current.startOfDay(for: Date()).timeIntervalSince1970
+//        let boxDay = selectedWeekdayDate
+//        let today = Calendar.current.component(.weekday, from: Date())
+//        let todayWeekday = Weekday.allCases[(today + 5) % 7].rawValue
+//        if isPastSelectedWeekday() && !isSelectedSameDay {
+        if today > selectedWeekdayTimeInterval {
 //        if (todayWeekday == selectedWeekday) && !isSelectedSameDay {
             canBreakBoxes = true
             if scene.complimentCount > 0 {
@@ -368,30 +388,56 @@ struct MainView: View {
             }
         }
     }
-    
-    // 선택한 요일이 지났는지 여부 판단
-    func isPastSelectedWeekday() -> Bool {
+    // 선택한 요일에 해당하는 다음 날짜 추출
+    func nextWeekdayDate(_ weekdayString: String) -> TimeInterval {
         let calendar = Calendar.current
-        var selectedWeekdayNumber = 0
-        // 선택된 요일 Int로 뽑기
-        let weekdayArray = Weekday.allCases
-        for (index, weekday) in weekdayArray.enumerated() {
-            if weekday.rawValue == selectedWeekday {
-                selectedWeekdayNumber = index + 2
-                if selectedWeekdayNumber >= 7 {
-                    selectedWeekdayNumber %= 7
-                }
+        let weekdays = Weekday.allCases
+        
+        let selectedWeekday = weekdays.first(where: { $0.rawValue == weekdayString }) ?? .monday
+        let today = calendar.startOfDay(for: Date())
+        var nextDate = today
+//        var components = DateComponents()
+        
+        for dayOffset in 1...7 {
+            nextDate = today.addingTimeInterval(TimeInterval(dayOffset * 24 * 60 * 60))
+            if calendar.component(.weekday, from: nextDate) == selectedWeekday.weekdayValue {
                 break
             }
         }
-        let selectedWeekdayComponent = DateComponents(weekday: selectedWeekdayNumber)
-        print("selectedWeekdayComponent",selectedWeekdayComponent)
-        // 현재 날짜가 선택된 날짜와 동일하거나 지났다면
-        guard let selectedDate = calendar.nextDate(after: Date(), matching: selectedWeekdayComponent, matchingPolicy: .nextTime) else {
-            return false
-        }
-        return true
+        return nextDate.timeIntervalSince1970
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateStyle = .short
+//        return dateFormatter.string(from: nextDate)
     }
+    
+    // TODO: 선택한 요일이 지났는지 여부 판단
+//    func isPastSelectedWeekday() -> Bool {
+//        let calendar = Calendar.current
+//
+//        let selectedWeekdayComponent = DateComponents(weekday: selectedWeekdayNumber)
+//        print("selectedWeekdayComponent",selectedWeekdayComponent)
+//        // 현재 날짜가 선택된 날짜와 동일하거나 지났다면
+//        guard let selectedDate = calendar.nextDate(after: Date(), matching: selectedWeekdayComponent, matchingPolicy: .nextTime) else {
+//            return false
+//        }
+//        return true
+//    }
+    
+    // 선택된 요일 Int로 뽑기
+//    func changeInt(selectedWeekdayString: String) -> Int {
+//        var selectedWeekdayNumber = 0
+//        let weekdayArray = Weekday.allCases
+//        for (index, weekday) in weekdayArray.enumerated() {
+//            if weekday.rawValue == selectedWeekdayString {
+//                selectedWeekdayNumber = index + 2
+//                if selectedWeekdayNumber >= 7 {
+//                    selectedWeekdayNumber %= 7
+//                }
+//                break
+//            }
+//        }
+//        return selectedWeekdayNumber
+//    }
     
     // 초기화 날짜 비교
     private func compareDates() {
@@ -404,7 +450,7 @@ struct MainView: View {
     // 버튼 초기화
     private func resetTimeButton() {
         isCompliment = false
-        isSelectedSameDay = false
+//        isSelectedSameDay = false
         lastResetTimeInterval = Date().timeIntervalSince1970
     }
 }
