@@ -24,7 +24,7 @@ struct HomeView: View {
 	@AppStorage("isCompliment") private var isCompliment: Bool = false
 	@AppStorage("lastResetTimeInterval") private var lastResetTimeInterval: TimeInterval = Date().timeIntervalSince1970
 	
-	@State private var complimentsInGroupCount: Int = 7
+	@State private var complimentsInGroupCount: Int = 0
 
 	var lastResetDate: Date {
 		let lastResetTime = Date(timeIntervalSince1970: lastResetTimeInterval)
@@ -42,7 +42,7 @@ struct HomeView: View {
 				ZStack {
 					Color.ddoPrimary.ignoresSafeArea()
 					VStack {
-						//MARK: 요일 변경하는 버튼
+						//요일 변경하는 버튼
 						HomeViewTop()
 						
 						VStack(spacing: 0) {
@@ -55,49 +55,30 @@ struct HomeView: View {
 						}
 						.padding(.bottom)
 						
-						// 타이틀
+						//타이틀
 						TitleView(title: canBreakBoxes ? "이번 주 칭찬을\n  확인할 시간이에요💞" : "오늘은 어떤 칭찬을\n해볼까요?✍️")
 						
-						//MARK: 칭찬 저금통
+						//칭찬 저금통
 						HomeComplimentBox(showPopup: $showPopup, complimentsInGroup: $complimentsInGroupCount)
-
-						//MARK: subtitle
-						if complimentManager.fetchComplimentsInGroup(groupID: groupOrder).count == 7 {
-							subTitleView(title: "주간 칭찬은 최대 7개 까지만 가능해요.")
-//						} else if canBreakBoxes && scene.boxes.count > 0  {
-//							subTitleView(title: "칭찬 상자를 톡! 눌러주세요.")
-						} else {
-							subTitleView(title: "긍정의 힘은 복리로 돌아와요. 커밍쑨!")
-						}
-						
+							.overlay {
+								if complimentManager.fetchComplimentsInGroup(groupID: groupOrder).count == 0 && !isCompliment {
+									NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment)) {
+										Image("emptyState")
+									}
+								}
+							}
 						
 						Spacer()
 
-						// 칭찬돌 추가하는 버튼
+						//칭찬하기 버튼
 						NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment), label: {
-							Text(isCompliment ? "오늘 칭찬 끝!" : "칭찬하기")
-								.bold()
-								.font(.title3)
-								.foregroundColor(Color.white)
-								.kerning(0.5)
-								.padding(.vertical,6)
-								.frame(width: width, height: 56)
+							BottomNavigationButton(isCompliment: $isCompliment, width: width)
 						})
-						.background {
-							RoundedRectangle(cornerRadius: 10)
-								.foregroundColor(isCompliment || complimentManager.fetchComplimentsInGroup(groupID: groupOrder).count == 7 ? .gray : .blue)
-						}
 						.disabled(isCompliment)
-						.disabled(complimentManager.fetchComplimentsInGroup(groupID: groupOrder).count == 7)
-					}
-					if complimentManager.fetchComplimentsInGroup(groupID: groupOrder).count == 0 && !isCompliment {
-						NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment)) {
-							Image("emptyState")
-								.offset(y: 45)
-						}
 					}
 					
 					Color.clear
+					//칭찬하면 나오는 카드 팝업뷰
 						.popup(isPresented: $showPopup) {
 							CardView(showPopup: $showPopup)
 						}
@@ -109,35 +90,34 @@ struct HomeView: View {
 //				.onChange(of: groupOrder, perform: { newValue in
 //					complimentManager.fetchComplimentsInGroup(groupID: groupOrder) = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(newValue))
 //				})
-				.onChange(of: scenePhase) { newPhase in
-					print("scene change")
-					compareDates()
-					updateCanBreakBoxes()
-				}
 				.onAppear {
+					complimentsInGroupCount = complimentManager.fetchComplimentsInGroup(groupID: groupOrder).count
 					// 최초 칭찬 작성 시 안내 팝업
-//					complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
-//					if Compliment.count == 1, isfirst == true {
-//						withAnimation(.spring(response: 1.2, dampingFraction: 0.8)) {
-//							showInfoPopup = true
-//						}
-//					}
+					if complimentsInGroupCount == 1, isfirst == true {
+						withAnimation(.spring(response: 1.2, dampingFraction: 0.8)) {
+							showInfoPopup = true
+						}
+					}
 				}
 			}
 		}
+		.onChange(of: scenePhase) { newPhase in
+			compareDates()
+//			updateCanBreakBoxes()
+		}
 	}
 	// 요일이 변경 될 때마다 현재 요일과 비교
-	private func updateCanBreakBoxes() {
-		let today = Calendar.current.component(.weekday, from: Date())
-		let todayWeekday = Weekday.allCases[(today + 5) % 7].rawValue
-		
+//	private func updateCanBreakBoxes() {
+//		let today = Calendar.current.component(.weekday, from: Date())
+//		let todayWeekday = Weekday.allCases[(today + 5) % 7].rawValue
+//
 //		if isPastSelectedWeekday() && !isSelectedSameDay {
 //			canBreakBoxes = true
 //			if scene.complimentCount > 0 {
 //				shake = 5
 //			}
 //		}
-	}
+//	}
 	
 	// 선택한 요일이 지났는지 여부 판단
 	func isPastSelectedWeekday() -> Bool {
@@ -173,7 +153,7 @@ struct HomeView: View {
 	
 	// 버튼 초기화
 	private func resetTimeButton() {
-		isCompliment = false
+//		isCompliment = false
 //		isSelectedSameDay = false
 		lastResetTimeInterval = Date().timeIntervalSince1970
 	}

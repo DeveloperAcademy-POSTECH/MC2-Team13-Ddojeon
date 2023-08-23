@@ -147,11 +147,11 @@ struct WriteComplimentView: View {
 
                                 Text(categories[selection].example)
                                     .font(.title3)
-                                    .lineSpacing(4)
+                                    .lineSpacing(10)
                                     .foregroundColor(Color(.systemBrown))
                                     .multilineTextAlignment(.center)
                                     .padding()
-                                    .padding(.top, 10)
+                                    .padding(.top, 20)
 
                                 Spacer()
 
@@ -165,7 +165,7 @@ struct WriteComplimentView: View {
                             }
                         }
                         .presentationDetents([.fraction(0.45)])
-                        .presentationDragIndicator(.visible)
+//                        .presentationDragIndicator(.hidden)
                     }
                     .padding(.top, 30)
                 }
