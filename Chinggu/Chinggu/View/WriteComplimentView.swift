@@ -166,7 +166,6 @@ struct WriteComplimentView: View {
                             }
                         }
                         .presentationDetents([.fraction(0.45)])
-                        .presentationDragIndicator(.visible)
                     }
                     .padding(.top, 30)
                 }
