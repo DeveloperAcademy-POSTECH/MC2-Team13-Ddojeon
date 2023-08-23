@@ -174,7 +174,7 @@ struct WriteComplimentView: View {
         .padding()
         .background(Color.ddoPrimary)
         .onTapGesture {
-            isFocused = false
+            isFocused.toggle()
         }
         .navigationTitle("칭찬쓰기")
         .navigationBarBackButtonHidden()
