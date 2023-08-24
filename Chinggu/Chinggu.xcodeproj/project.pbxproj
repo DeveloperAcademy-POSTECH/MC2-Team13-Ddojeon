@@ -262,10 +262,10 @@
 			};
 			buildConfigurationList = AE37D52C2A039605009B0F56 /* Build configuration list for PBXProject "Chinggu" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
+				ko,
 				Base,
 			);
 			mainGroup = AE37D5282A039605009B0F56;
