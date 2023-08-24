@@ -118,13 +118,13 @@ struct MainView: View {
 	@AppStorage("canBreakBoxes") private var canBreakBoxes = false
     @State var scene = GameScene()
     
-    @AppStorage("lastResetTimeInterval") private var lastResetTimeInterval: TimeInterval = Date().timeIntervalSince1970
-    @AppStorage("selectedWeekdayTimeInterval") private var selectedWeekdayTimeInterval: TimeInterval = Date().timeIntervalSince1970
+    @AppStorage("lastResetTimeInterval") private var lastResetTimeInterval: TimeInterval = Date().timeIntervalSinceNow
+    @AppStorage("selectedWeekdayTimeInterval") private var selectedWeekdayTimeInterval: TimeInterval = Date().addingTimeInterval(TimeInterval(7 * 24 * 60 * 60)).timeIntervalSince1970
     
-    var lastResetDate: Date {
-        let lastResetTime = Date(timeIntervalSince1970: lastResetTimeInterval)
-        return lastResetTime
-    }
+//    var lastResetDate: Date {
+//        let lastResetTime = Date(timeIntervalSince1970: lastResetTimeInterval)
+//        return lastResetTime
+//    }
     
     @Environment(\.scenePhase) var scenePhase
     
@@ -216,8 +216,9 @@ struct MainView: View {
 //                        }
 //                        Text("Next \(selectedWeekday) Date: \(Date(timeIntervalSince1970: selectedWeekdayTimeInterval))")
 //                        Text("\(Date())")
+//                        Text("\(Date(timeIntervalSince1970: lastResetTimeInterval))")
 //                        Text(Date() > Date(timeIntervalSince1970: selectedWeekdayTimeInterval) ? "true" : "false")
-//
+
 						// 타이틀
 						if canBreakBoxes && scene.boxes.count > 0  {
 							Text("이번 주 칭찬을\n  확인할 시간이에요💞")
@@ -264,13 +265,7 @@ struct MainView: View {
 										scene.resetBoxes()
 										scene.complimentCount = 0
 										showPopup = true
-//                                        if !scene.boxes.isEmpty || isCompliment {
-//                                            print("메인뷰 true")
-//                                            scene.isBackgroundLine = true
-//                                        } else {
-//                                            print("메인뷰 false")
-//                                            scene.isBackgroundLine = false
-//                                        }
+                                        selectedWeekdayTimeInterval = nextWeekdayDate(selectedWeekday)
 									}
 								}, secondaryButton:.cancel(Text("아니요")))
 							}
@@ -300,6 +295,11 @@ struct MainView: View {
 
 								scene.size = CGSize(width: width, height: height)
 								scene.complimentCount = complimentsInGroup.count
+                                // 일주일 지나도 0개 일때, 일주일 더 추가
+                                if Date(timeIntervalSince1970: selectedWeekdayTimeInterval) <= Date() && complimentsInGroup.isEmpty {
+                                    selectedWeekdayTimeInterval = nextWeekdayDate(selectedWeekday)
+                                }
+                                compareDates()
 								updateCanBreakBoxes()
                                 
 								scene.scaleMode = .aspectFit
@@ -375,17 +375,19 @@ struct MainView: View {
     //// 요일이 변경 될 때마다 현재 요일과 비교
     // 현재 날짜와 nextWeekdayDate와 비교
     private func updateCanBreakBoxes() {
-        let today = Calendar.current.startOfDay(for: Date()).timeIntervalSince1970
+        let today = Date().timeIntervalSince1970
 //        let boxDay = selectedWeekdayDate
 //        let today = Calendar.current.component(.weekday, from: Date())
 //        let todayWeekday = Weekday.allCases[(today + 5) % 7].rawValue
 //        if isPastSelectedWeekday() && !isSelectedSameDay {
-        if today > selectedWeekdayTimeInterval {
+        if today >= selectedWeekdayTimeInterval {
 //        if (todayWeekday == selectedWeekday) && !isSelectedSameDay {
             canBreakBoxes = true
             if scene.complimentCount > 0 {
                 shake = 5
             }
+        } else {
+            canBreakBoxes = false
         }
     }
     // 선택한 요일에 해당하는 다음 날짜 추출
@@ -439,20 +441,23 @@ struct MainView: View {
 //        return selectedWeekdayNumber
 //    }
     
-    // 초기화 날짜 비교
+    // 초기화 날짜 비교 및 버튼 초기화
     private func compareDates() {
         let calendar = Calendar.current
+        let lastResetDate = Date(timeIntervalSince1970: lastResetTimeInterval)
         if !calendar.isDateInToday(lastResetDate) {
-            resetTimeButton()
+//            resetTimeButton()
+            isCompliment = false
+            lastResetTimeInterval = Date().timeIntervalSince1970
         }
     }
     
     // 버튼 초기화
-    private func resetTimeButton() {
-        isCompliment = false
+//    private func resetTimeButton() {
+//        isCompliment = false
 //        isSelectedSameDay = false
-        lastResetTimeInterval = Date().timeIntervalSince1970
-    }
+//        lastResetTimeInterval = Date().timeIntervalSince1970
+//    }
 }
 
 struct ShakeEffect: AnimatableModifier {
