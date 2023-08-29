@@ -1,8 +1,12 @@
-# MC2-Team13-Ddojeon
+### MC2-Team13-Ddojeon
 
-### ⭐️ Chinggu
+# ✨ Chinggu
+> 당신을 위한 하루 칭찬기록 앱, 칭구 🌛
 
+![KakaoTalk_Image_2023-08-23-20-29-27](https://github.com/DeveloperAcademy-POSTECH/MC2-Team13-Ddojeon/assets/102914072/75228d56-79fd-49f2-b1d2-d0e0c0323ebd)
 
+하루에 한 번, 나에게 칭찬을 써보아요! 칭찬 돌이 하나 둘 쌓여가면 나중에 큰 힘이 되어줄 거에요.☺️
+</br>
 
 ### 👨‍👧‍👦 Authors
 
