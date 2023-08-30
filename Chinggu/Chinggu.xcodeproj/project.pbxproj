@@ -32,6 +32,7 @@
 		A937298B2A0F6E5C00C79C04 /* onboarding_1.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729812A0F6E5C00C79C04 /* onboarding_1.json */; };
 		A937298C2A0F6E5C00C79C04 /* onboarding_3.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729822A0F6E5C00C79C04 /* onboarding_3.json */; };
 		A937298F2A0F6E5C00C79C04 /* onboarding_5.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729852A0F6E5C00C79C04 /* onboarding_5.json */; };
+		AE2CB02E2A9F705F00D6AD65 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB02D2A9F705F00D6AD65 /* Weekday.swift */; };
 		AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37D5342A039605009B0F56 /* ChingguApp.swift */; };
 		AE37D5372A039605009B0F56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37D5362A039605009B0F56 /* ContentView.swift */; };
 		AE37D5392A039606009B0F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE37D5382A039606009B0F56 /* Assets.xcassets */; };
@@ -69,6 +70,7 @@
 		A93729812A0F6E5C00C79C04 /* onboarding_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_1.json; sourceTree = "<group>"; };
 		A93729822A0F6E5C00C79C04 /* onboarding_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_3.json; sourceTree = "<group>"; };
 		A93729852A0F6E5C00C79C04 /* onboarding_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_5.json; sourceTree = "<group>"; };
+		AE2CB02D2A9F705F00D6AD65 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
 		AE37D5312A039605009B0F56 /* Chinggu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chinggu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE37D5342A039605009B0F56 /* ChingguApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChingguApp.swift; sourceTree = "<group>"; };
 		AE37D5362A039605009B0F56 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */,
 				70385ED22A07E00F001CDAB0 /* Color.xcassets */,
 				AE37D5382A039606009B0F56 /* Assets.xcassets */,
+				AE2CB02D2A9F705F00D6AD65 /* Weekday.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 			files = (
 				FB6D0BC92A0A287200220360 /* ArchivingView.swift in Sources */,
 				FB6D0BCB2A0A35AD00220360 /* ArchivingDetailView.swift in Sources */,
+				AE2CB02E2A9F705F00D6AD65 /* Weekday.swift in Sources */,
 				AE37D5372A039605009B0F56 /* ContentView.swift in Sources */,
 				FBB8CFD92A0B908E00210F90 /* ArchivingCard.swift in Sources */,
 				70C7977B2A04357F00E2E3AF /* CardView.swift in Sources */,
