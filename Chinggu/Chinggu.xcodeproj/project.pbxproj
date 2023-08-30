@@ -13,9 +13,9 @@
 		51D817182A08E59F00B84E6A /* WriteComplimentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D817172A08E59F00B84E6A /* WriteComplimentView.swift */; };
 		701094A62A0FA83D0019DEED /* cardBeforeAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 701094A52A0FA83D0019DEED /* cardBeforeAnimation.json */; };
 		7014D47A2A10AF8B00F1B315 /* TempArchivingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7014D4792A10AF8B00F1B315 /* TempArchivingDetailView.swift */; };
-		70385ED12A07DFEE001CDAB0 /* Color+Chinggu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED02A07DFEE001CDAB0 /* Color+Chinggu.swift */; };
+		70385ED12A07DFEE001CDAB0 /* Color+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */; };
 		70385ED32A07E00F001CDAB0 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70385ED22A07E00F001CDAB0 /* Color.xcassets */; };
-		70385EDA2A07E60B001CDAB0 /* Date+Chinggu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */; };
+		70385EDA2A07E60B001CDAB0 /* Date+FormatWithDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */; };
 		70815E812A08950900DBE5B0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7E2A08950900DBE5B0 /* Persistence.swift */; };
 		70815E822A08950900DBE5B0 /* ComplimentModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7F2A08950900DBE5B0 /* ComplimentModel.xcdatamodeld */; };
 		70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */; };
@@ -51,9 +51,9 @@
 		51D817172A08E59F00B84E6A /* WriteComplimentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteComplimentView.swift; sourceTree = "<group>"; };
 		701094A52A0FA83D0019DEED /* cardBeforeAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cardBeforeAnimation.json; sourceTree = "<group>"; };
 		7014D4792A10AF8B00F1B315 /* TempArchivingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempArchivingDetailView.swift; sourceTree = "<group>"; };
-		70385ED02A07DFEE001CDAB0 /* Color+Chinggu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Chinggu.swift"; sourceTree = "<group>"; };
+		70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Asset.swift"; sourceTree = "<group>"; };
 		70385ED22A07E00F001CDAB0 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
-		70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Chinggu.swift"; sourceTree = "<group>"; };
+		70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+FormatWithDot.swift"; sourceTree = "<group>"; };
 		70815E7E2A08950900DBE5B0 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		70815E802A08950900DBE5B0 /* ComplimentModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ComplimentModel.xcdatamodel; sourceTree = "<group>"; };
 		70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ComplimentEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -111,8 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				70E68F132A0A95FD00258A10 /* LottieView.swift */,
-				70385ED02A07DFEE001CDAB0 /* Color+Chinggu.swift */,
-				70385ED92A07E60B001CDAB0 /* Date+Chinggu.swift */,
 				70385ED22A07E00F001CDAB0 /* Color.xcassets */,
 				AE37D5382A039606009B0F56 /* Assets.xcassets */,
 				AE2CB02D2A9F705F00D6AD65 /* Weekday.swift */,
@@ -175,6 +173,15 @@
 			path = onboardLottie;
 			sourceTree = "<group>";
 		};
+		AE2CB0312A9F72E000D6AD65 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */,
+				70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		AE37D5282A039605009B0F56 = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +201,7 @@
 		AE37D5332A039605009B0F56 /* Chinggu */ = {
 			isa = PBXGroup;
 			children = (
+				AE2CB0312A9F72E000D6AD65 /* Extensions */,
 				70B9BFDB2A44B9E700F2DDC7 /* Info.plist */,
 				AE37D5342A039605009B0F56 /* ChingguApp.swift */,
 				AE37D5362A039605009B0F56 /* ContentView.swift */,
@@ -329,8 +337,8 @@
 				7014D47A2A10AF8B00F1B315 /* TempArchivingDetailView.swift in Sources */,
 				70B8FBA82A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift in Sources */,
 				AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */,
-				70385ED12A07DFEE001CDAB0 /* Color+Chinggu.swift in Sources */,
-				70385EDA2A07E60B001CDAB0 /* Date+Chinggu.swift in Sources */,
+				70385ED12A07DFEE001CDAB0 /* Color+Asset.swift in Sources */,
+				70385EDA2A07E60B001CDAB0 /* Date+FormatWithDot.swift in Sources */,
 				70815E812A08950900DBE5B0 /* Persistence.swift in Sources */,
 				70E68F142A0A95FD00258A10 /* LottieView.swift in Sources */,
 			);
