@@ -35,6 +35,7 @@
 		AE2CB02E2A9F705F00D6AD65 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB02D2A9F705F00D6AD65 /* Weekday.swift */; };
 		AE2CB0332AA056B300D6AD65 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB0322AA056B300D6AD65 /* HapticManager.swift */; };
 		AE2CB0362AA059A300D6AD65 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB0352AA059A300D6AD65 /* GameScene.swift */; };
+		AE2CB0382AA0859600D6AD65 /* Weekday+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB0372AA0859600D6AD65 /* Weekday+Today.swift */; };
 		AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37D5342A039605009B0F56 /* ChingguApp.swift */; };
 		AE37D5372A039605009B0F56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37D5362A039605009B0F56 /* ContentView.swift */; };
 		AE37D5392A039606009B0F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE37D5382A039606009B0F56 /* Assets.xcassets */; };
@@ -75,6 +76,7 @@
 		AE2CB02D2A9F705F00D6AD65 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
 		AE2CB0322AA056B300D6AD65 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		AE2CB0352AA059A300D6AD65 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		AE2CB0372AA0859600D6AD65 /* Weekday+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Weekday+Today.swift"; sourceTree = "<group>"; };
 		AE37D5312A039605009B0F56 /* Chinggu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chinggu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE37D5342A039605009B0F56 /* ChingguApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChingguApp.swift; sourceTree = "<group>"; };
 		AE37D5362A039605009B0F56 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			children = (
 				70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */,
 				70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */,
+				AE2CB0372AA0859600D6AD65 /* Weekday+Today.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				FB6D0BCB2A0A35AD00220360 /* ArchivingDetailView.swift in Sources */,
 				AE2CB02E2A9F705F00D6AD65 /* Weekday.swift in Sources */,
 				AE37D5372A039605009B0F56 /* ContentView.swift in Sources */,
+				AE2CB0382AA0859600D6AD65 /* Weekday+Today.swift in Sources */,
 				FBB8CFD92A0B908E00210F90 /* ArchivingCard.swift in Sources */,
 				70C7977B2A04357F00E2E3AF /* CardView.swift in Sources */,
 				70BD12BF2A3F066600BF252F /* ArchivingConstants.swift in Sources */,

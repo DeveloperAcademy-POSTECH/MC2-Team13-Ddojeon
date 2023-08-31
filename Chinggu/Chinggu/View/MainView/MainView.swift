@@ -9,86 +9,6 @@ import SwiftUI
 import SpriteKit
 import CoreMotion
 
-//enum Weekday: String, CaseIterable {
-//    case monday = "월요일"
-//    case tuesday = "화요일"
-//    case wednesday = "수요일"
-//    case thursday = "목요일"
-//    case friday = "금요일"
-//    case saturday = "토요일"
-//    case sunday = "일요일"
-//    
-//    var weekdayValue: Int {
-//        switch self {
-//        case .sunday: return 1
-//        case .monday: return 2
-//        case .tuesday: return 3
-//        case .wednesday: return 4
-//        case .thursday: return 5
-//        case .friday: return 6
-//        case .saturday: return 7
-//        }
-//    }
-//}
-
-//class GameScene: SKScene {
-//    @AppStorage("isCompliment") private var isCompliment = false
-//    var boxes: [SKSpriteNode] = []
-//    var complimentCount = 0
-//	let motionManager = CMMotionManager()
-//    var background = SKSpriteNode(imageNamed: "boxBackground")
-//    override func didMove(to view: SKView) {
-//		physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
-//            
-//		motionManager.deviceMotionUpdateInterval = 0.1
-//		motionManager.startDeviceMotionUpdates(to: .main) { (motion, error) in
-//			guard let motion = motion else { return }
-//			let x = motion.gravity.x
-//			let y = motion.gravity.y
-//			self.physicsWorld.gravity = CGVector(dx: x * 35, dy: y * 35)
-//		}
-//        background.alpha = 0.45
-//        background.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
-//        addChild(background)
-// 
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//                for i in 0..<self.complimentCount {
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2 * Double(i)) {
-//                        self.addBox(at: CGPoint(x: UIScreen.main.bounds.width / 2,
-//                                                y: UIScreen.main.bounds.height / 2.5))
-//                    }
-//                }
-//            }
-//    }
-//    
-//    func addBox(at position: CGPoint) {
-//        // 이미지가 랜덤으로 나오는 것
-//		HapticManager.instance.notification(type: .warning)
-//		
-//        let index = Int.random(in: 1..<99)
-//        let texture = SKTexture(imageNamed: "stonery\(index)")
-//        let box = SKSpriteNode(texture: texture)
-//        let body = SKPhysicsBody(texture: texture, size: texture.size())
-//        box.position = position
-//        box.physicsBody = body
-//        addChild(box)
-//        boxes.append(box)
-//    }
-//    
-//	func resetBoxes() {
-//		for box in boxes {
-//			let fadeOut = SKAction.fadeOut(withDuration: 1.0)
-//			let remove = SKAction.removeFromParent()
-//			let removeFromArray = SKAction.run {
-//				if let index = self.boxes.firstIndex(of: box) {
-//					self.boxes.remove(at: index)
-//				}
-//			}
-//			let sequence = SKAction.sequence([fadeOut, removeFromArray, remove])
-//			box.run(sequence)
-//		}
-//	}
-//}
 
 // MARK: 메인 뷰
 struct MainView: View {
@@ -111,7 +31,7 @@ struct MainView: View {
     
 	@AppStorage("group") var groupOrder: Int = 1
 	@AppStorage("isfirst") var isfirst: Bool = true
-	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
+	@AppStorage("selectedWeekday") private var selectedWeekday: String = Weekday.today.rawValue
     
 //    @AppStorage("isSelectedSameDay") private var isSelectedSameDay: Bool = true
     @AppStorage("isCompliment") private var isCompliment: Bool = false
@@ -173,10 +93,6 @@ struct MainView: View {
                                     Alert(title: Text("매주 \(tempSeletedWeekday?.rawValue ?? "월요일")"), message: Text("선택한 요일로 변경할까요?"), primaryButton: .default(Text("네")) {
                                         // OK 버튼을 눌렀을 때 선택한 요일 업데이트
                                         self.selectedWeekday = self.tempSeletedWeekday?.rawValue ?? "월요일"
-//                                        let today = Weekday.allCases[(Calendar.current.component(.weekday, from: Date()) + 5) % 7].rawValue
-//                                        if today == tempSeletedWeekday?.rawValue ?? "월요일" {
-//                                            isSelectedSameDay = true
-//                                        }
                                         selectedWeekdayTimeInterval = nextWeekdayDate(selectedWeekday)
                                         updateCanBreakBoxes()
                                     }, secondaryButton: .cancel(Text("아니요")))
