@@ -407,39 +407,8 @@ struct MainView: View {
             }
         }
         return nextDate.timeIntervalSince1970
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateStyle = .short
-//        return dateFormatter.string(from: nextDate)
     }
     
-    // TODO: 선택한 요일이 지났는지 여부 판단
-//    func isPastSelectedWeekday() -> Bool {
-//        let calendar = Calendar.current
-//
-//        let selectedWeekdayComponent = DateComponents(weekday: selectedWeekdayNumber)
-//        print("selectedWeekdayComponent",selectedWeekdayComponent)
-//        // 현재 날짜가 선택된 날짜와 동일하거나 지났다면
-//        guard let selectedDate = calendar.nextDate(after: Date(), matching: selectedWeekdayComponent, matchingPolicy: .nextTime) else {
-//            return false
-//        }
-//        return true
-//    }
-    
-    // 선택된 요일 Int로 뽑기
-//    func changeInt(selectedWeekdayString: String) -> Int {
-//        var selectedWeekdayNumber = 0
-//        let weekdayArray = Weekday.allCases
-//        for (index, weekday) in weekdayArray.enumerated() {
-//            if weekday.rawValue == selectedWeekdayString {
-//                selectedWeekdayNumber = index + 2
-//                if selectedWeekdayNumber >= 7 {
-//                    selectedWeekdayNumber %= 7
-//                }
-//                break
-//            }
-//        }
-//        return selectedWeekdayNumber
-//    }
     
     // 초기화 날짜 비교 및 버튼 초기화
     private func compareDates() {
@@ -451,13 +420,6 @@ struct MainView: View {
             lastResetTimeInterval = Date().timeIntervalSince1970
         }
     }
-    
-    // 버튼 초기화
-//    private func resetTimeButton() {
-//        isCompliment = false
-//        isSelectedSameDay = false
-//        lastResetTimeInterval = Date().timeIntervalSince1970
-//    }
 }
 
 struct ShakeEffect: AnimatableModifier {
@@ -476,19 +438,19 @@ struct ShakeEffect: AnimatableModifier {
 	}
 }
 
-class HapticManager {
-	static let instance = HapticManager()
-	
-	func notification(type: UINotificationFeedbackGenerator.FeedbackType) {
-		let generator = UINotificationFeedbackGenerator()
-		generator.notificationOccurred(type)
-	}
-	
-	func impact(style: UIImpactFeedbackGenerator.FeedbackStyle) {
-		let generator = UIImpactFeedbackGenerator(style: style)
-		generator.impactOccurred()
-	}
-}
+//class HapticManager {
+//	static let instance = HapticManager()
+//	
+//	func notification(type: UINotificationFeedbackGenerator.FeedbackType) {
+//		let generator = UINotificationFeedbackGenerator()
+//		generator.notificationOccurred(type)
+//	}
+//	
+//	func impact(style: UIImpactFeedbackGenerator.FeedbackStyle) {
+//		let generator = UIImpactFeedbackGenerator(style: style)
+//		generator.impactOccurred()
+//	}
+//}
 
 struct MainView_Previews: PreviewProvider {
 	static var previews: some View {
