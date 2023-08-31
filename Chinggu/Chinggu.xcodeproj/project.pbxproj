@@ -34,6 +34,7 @@
 		A937298F2A0F6E5C00C79C04 /* onboarding_5.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729852A0F6E5C00C79C04 /* onboarding_5.json */; };
 		AE2CB02E2A9F705F00D6AD65 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB02D2A9F705F00D6AD65 /* Weekday.swift */; };
 		AE2CB0332AA056B300D6AD65 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB0322AA056B300D6AD65 /* HapticManager.swift */; };
+		AE2CB0362AA059A300D6AD65 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB0352AA059A300D6AD65 /* GameScene.swift */; };
 		AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37D5342A039605009B0F56 /* ChingguApp.swift */; };
 		AE37D5372A039605009B0F56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37D5362A039605009B0F56 /* ContentView.swift */; };
 		AE37D5392A039606009B0F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE37D5382A039606009B0F56 /* Assets.xcassets */; };
@@ -73,6 +74,7 @@
 		A93729852A0F6E5C00C79C04 /* onboarding_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_5.json; sourceTree = "<group>"; };
 		AE2CB02D2A9F705F00D6AD65 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
 		AE2CB0322AA056B300D6AD65 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		AE2CB0352AA059A300D6AD65 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		AE37D5312A039605009B0F56 /* Chinggu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chinggu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE37D5342A039605009B0F56 /* ChingguApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChingguApp.swift; sourceTree = "<group>"; };
 		AE37D5362A039605009B0F56 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,7 +102,7 @@
 		701094A72A0FF83C0019DEED /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AE37D5442A063BD3009B0F56 /* MainView.swift */,
+				AE2CB0342AA0590200D6AD65 /* MainView */,
 				51D817172A08E59F00B84E6A /* WriteComplimentView.swift */,
 				A93728C52A0F6DCD00C79C04 /* Onboard */,
 				70C797722A042FF400E2E3AF /* CardView */,
@@ -183,6 +185,15 @@
 				70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AE2CB0342AA0590200D6AD65 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				AE37D5442A063BD3009B0F56 /* MainView.swift */,
+				AE2CB0352AA059A300D6AD65 /* GameScene.swift */,
+			);
+			path = MainView;
 			sourceTree = "<group>";
 		};
 		AE37D5282A039605009B0F56 = {
@@ -328,6 +339,7 @@
 				FBB8CFD92A0B908E00210F90 /* ArchivingCard.swift in Sources */,
 				70C7977B2A04357F00E2E3AF /* CardView.swift in Sources */,
 				70BD12BF2A3F066600BF252F /* ArchivingConstants.swift in Sources */,
+				AE2CB0362AA059A300D6AD65 /* GameScene.swift in Sources */,
 				70C7977D2A04357F00E2E3AF /* CardPopupView.swift in Sources */,
 				70C7977F2A04391800E2E3AF /* TempMainView.swift in Sources */,
 				70C7977C2A04357F00E2E3AF /* CardFullScreenView.swift in Sources */,
