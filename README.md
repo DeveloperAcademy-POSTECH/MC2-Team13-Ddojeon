@@ -1,5 +1,3 @@
-### MC2-Team13-Ddojeon
-
 # ✨ Chinggu
 > 당신을 위한 하루 칭찬기록 앱, 칭구 🌛
 
@@ -7,6 +5,8 @@
 
 하루에 한 번, 나에게 칭찬을 써보아요! 칭찬 돌이 하나 둘 쌓여가면 나중에 큰 힘이 되어줄 거에요.☺️
 </br>
+## 🔍 App Store QR Code
+<img src="https://github.com/DeveloperAcademy-POSTECH/MC2-Team13-Ddojeon/assets/102914072/19c6b091-e92a-4df4-9769-0e6a93a2c2c8" width="150px">
 
 ### 👨‍👧‍👦 Authors
 
@@ -16,4 +16,15 @@
 </br>                                                                                  
 
 
-### 📱 Screenshots
+## 📱 Screenshots
+|온보딩|첫 칭찬 쓰기|칭찬 상자 오픈|
+|---|---|---|
+|테스트1|테스트2|테스트3|
+
+
+
+<br>
+
+|칭찬 작성 팁|아카이빙|
+|---|---|
+|테스트1|테스트2|
