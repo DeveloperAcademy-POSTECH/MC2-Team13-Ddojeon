@@ -11,6 +11,11 @@
 		5191CFBD2A4ADD9A00881DC0 /* onboarding_4.json in Resources */ = {isa = PBXBuildFile; fileRef = 5191CFBC2A4ADD9A00881DC0 /* onboarding_4.json */; };
 		51C204AE2A4AE14900A0A8F5 /* onboarding_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 51C204AD2A4AE14900A0A8F5 /* onboarding_2.json */; };
 		51D817182A08E59F00B84E6A /* WriteComplimentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D817172A08E59F00B84E6A /* WriteComplimentView.swift */; };
+		51E7011B2AA97DE90095C8CF /* ComplimentTips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E7011A2AA97DE90095C8CF /* ComplimentTips.swift */; };
+		51E7011E2AA97F3D0095C8CF /* Onboardings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E7011D2AA97F3D0095C8CF /* Onboardings.swift */; };
+		51E701202AA980130095C8CF /* WriteComplimentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E7011F2AA980130095C8CF /* WriteComplimentViewModel.swift */; };
+		51E701232AA986CE0095C8CF /* TipSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E701222AA986CE0095C8CF /* TipSheetView.swift */; };
+		51E701252AA9923E0095C8CF /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E701242AA9923E0095C8CF /* AlertModel.swift */; };
 		701094A62A0FA83D0019DEED /* cardBeforeAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 701094A52A0FA83D0019DEED /* cardBeforeAnimation.json */; };
 		7014D47A2A10AF8B00F1B315 /* TempArchivingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7014D4792A10AF8B00F1B315 /* TempArchivingDetailView.swift */; };
 		70385ED12A07DFEE001CDAB0 /* Color+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */; };
@@ -52,6 +57,11 @@
 		5191CFBC2A4ADD9A00881DC0 /* onboarding_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_4.json; sourceTree = "<group>"; };
 		51C204AD2A4AE14900A0A8F5 /* onboarding_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_2.json; sourceTree = "<group>"; };
 		51D817172A08E59F00B84E6A /* WriteComplimentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteComplimentView.swift; sourceTree = "<group>"; };
+		51E7011A2AA97DE90095C8CF /* ComplimentTips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplimentTips.swift; sourceTree = "<group>"; };
+		51E7011D2AA97F3D0095C8CF /* Onboardings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboardings.swift; sourceTree = "<group>"; };
+		51E7011F2AA980130095C8CF /* WriteComplimentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteComplimentViewModel.swift; sourceTree = "<group>"; };
+		51E701222AA986CE0095C8CF /* TipSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipSheetView.swift; sourceTree = "<group>"; };
+		51E701242AA9923E0095C8CF /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		701094A52A0FA83D0019DEED /* cardBeforeAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cardBeforeAnimation.json; sourceTree = "<group>"; };
 		7014D4792A10AF8B00F1B315 /* TempArchivingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempArchivingDetailView.swift; sourceTree = "<group>"; };
 		70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Asset.swift"; sourceTree = "<group>"; };
@@ -101,11 +111,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		51E7011C2AA97ED70095C8CF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				51E7011F2AA980130095C8CF /* WriteComplimentViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		51E701212AA986B40095C8CF /* WriteCompliment */ = {
+			isa = PBXGroup;
+			children = (
+				51D817172A08E59F00B84E6A /* WriteComplimentView.swift */,
+				51E701222AA986CE0095C8CF /* TipSheetView.swift */,
+			);
+			path = WriteCompliment;
+			sourceTree = "<group>";
+		};
 		701094A72A0FF83C0019DEED /* View */ = {
 			isa = PBXGroup;
 			children = (
+				51E701212AA986B40095C8CF /* WriteCompliment */,
 				AE2CB0342AA0590200D6AD65 /* MainView */,
-				51D817172A08E59F00B84E6A /* WriteComplimentView.swift */,
 				A93728C52A0F6DCD00C79C04 /* Onboard */,
 				70C797722A042FF400E2E3AF /* CardView */,
 				FBB8CFD72A0B836E00210F90 /* Archiving View */,
@@ -128,10 +155,13 @@
 		70815E7D2A08950900DBE5B0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				70815E7F2A08950900DBE5B0 /* ComplimentModel.xcdatamodeld */,
 				70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */,
 				70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */,
 				70815E7E2A08950900DBE5B0 /* Persistence.swift */,
-				70815E7F2A08950900DBE5B0 /* ComplimentModel.xcdatamodeld */,
+				51E7011A2AA97DE90095C8CF /* ComplimentTips.swift */,
+				51E7011D2AA97F3D0095C8CF /* Onboardings.swift */,
+				51E701242AA9923E0095C8CF /* AlertModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -218,13 +248,14 @@
 		AE37D5332A039605009B0F56 /* Chinggu */ = {
 			isa = PBXGroup;
 			children = (
-				AE2CB0312A9F72E000D6AD65 /* Extensions */,
 				70B9BFDB2A44B9E700F2DDC7 /* Info.plist */,
 				AE37D5342A039605009B0F56 /* ChingguApp.swift */,
 				AE37D5362A039605009B0F56 /* ContentView.swift */,
 				701094A72A0FF83C0019DEED /* View */,
+				51E7011C2AA97ED70095C8CF /* ViewModel */,
 				70815E7D2A08950900DBE5B0 /* Model */,
 				70385ECF2A07DFDD001CDAB0 /* Utils */,
+				AE2CB0312A9F72E000D6AD65 /* Extensions */,
 				AE37D53A2A039606009B0F56 /* Preview Content */,
 			);
 			path = Chinggu;
@@ -349,15 +380,20 @@
 				70C7977C2A04357F00E2E3AF /* CardFullScreenView.swift in Sources */,
 				70D706062A0FFFF0001D9203 /* Popup.swift in Sources */,
 				51887AE72A12232F0015EF88 /* OnboardingView.swift in Sources */,
+				51E7011B2AA97DE90095C8CF /* ComplimentTips.swift in Sources */,
 				70815E822A08950900DBE5B0 /* ComplimentModel.xcdatamodeld in Sources */,
+				51E7011E2AA97F3D0095C8CF /* Onboardings.swift in Sources */,
 				AE9537702A12245E00C6F5FF /* InfoPopupView.swift in Sources */,
 				70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */,
+				51E701252AA9923E0095C8CF /* AlertModel.swift in Sources */,
+				51E701232AA986CE0095C8CF /* TipSheetView.swift in Sources */,
 				51D817182A08E59F00B84E6A /* WriteComplimentView.swift in Sources */,
 				AE37D5452A063BD3009B0F56 /* MainView.swift in Sources */,
 				7014D47A2A10AF8B00F1B315 /* TempArchivingDetailView.swift in Sources */,
 				70B8FBA82A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift in Sources */,
 				AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */,
 				70385ED12A07DFEE001CDAB0 /* Color+Asset.swift in Sources */,
+				51E701202AA980130095C8CF /* WriteComplimentViewModel.swift in Sources */,
 				70385EDA2A07E60B001CDAB0 /* Date+FormatWithDot.swift in Sources */,
 				70815E812A08950900DBE5B0 /* Persistence.swift in Sources */,
 				70E68F142A0A95FD00258A10 /* LottieView.swift in Sources */,

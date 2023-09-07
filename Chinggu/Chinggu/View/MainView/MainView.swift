@@ -16,6 +16,7 @@ struct MainView: View {
         entity: ComplimentEntity.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
     ) var Compliment: FetchedResults<ComplimentEntity>
+    @StateObject var writeComplimentViewModel = WriteComplimentViewModel()
     
 	@State var complimentsInGroup: [ComplimentEntity] = []
     
@@ -168,7 +169,9 @@ struct MainView: View {
 							}
                             .overlay {
                                 if complimentsInGroup.count == 0 && !isCompliment {
-                                    NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment)) {
+                                    NavigationLink(destination: WriteComplimentView(
+                                        viewModel: writeComplimentViewModel,
+                                        isCompliment: $isCompliment)) {
                                         Image("emptyState")
                                     }
                                 }
@@ -240,7 +243,9 @@ struct MainView: View {
                         // 칭찬돌 추가하는 버튼
                         Button(action: {
 						}, label: {
-							NavigationLink(destination: WriteComplimentView(isCompliment: $isCompliment), label: {
+							NavigationLink(destination: WriteComplimentView(
+                                viewModel: writeComplimentViewModel,
+                                isCompliment: $isCompliment), label: {
 								Text(isCompliment ? "오늘 칭찬 끝!" : "칭찬하기")
                                     .bold()
                                     .font(.title3)
