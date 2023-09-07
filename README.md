@@ -19,7 +19,8 @@
 ## 📱 Screenshots
 |온보딩|첫 칭찬 쓰기|칭찬 상자 오픈|
 |---|---|---|
-|![ezgif com-gif-maker (1)](https://github.com/DeveloperAcademy-POSTECH/MC2-Team13-Ddojeon/assets/102914072/0180a22b-d540-4c35-a5e7-28f878c1c8f7)|![ezgif com-gif-maker (2)](https://github.com/DeveloperAcademy-POSTECH/MC2-Team13-Ddojeon/assets/102914072/b3b8d613-a843-4e8d-9aee-e883ec783124)|![ezgif com-gif-maker (3)](https://github.com/DeveloperAcademy-POSTECH/MC2-Team13-Ddojeon/assets/102914072/9090fa35-ce60-4a36-9640-63814519dbba)|
+|![ezgif com-gif-maker (1)](https://github.com/DeveloperAcademy-POSTECH/MC2-Team13-Ddojeon/assets/102914072/0180a22b-d540-4c35-a5e7-28f878c1c8f7)|![ezgif com-gif-maker (2)](https://github.com/DeveloperAcademy-POSTECH/MC2-Team13-Ddojeon/assets/102914072/b3b8d613-a843-4e8d-9aee-e883ec783124)|![ezgif com-gif-maker (3)](https://github.com/DeveloperAcademy-POSTECH/MC2-Team13-Ddojeon/assets/102914072/46dcf667-febe-4b87-8831-488df7073348)
+|
 
 <br>
 
