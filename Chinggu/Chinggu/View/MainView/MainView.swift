@@ -170,8 +170,7 @@ struct MainView: View {
                             .overlay {
                                 if complimentsInGroup.count == 0 && !isCompliment {
                                     NavigationLink(destination: WriteComplimentView(
-                                        viewModel: writeComplimentViewModel,
-                                        isCompliment: $isCompliment)) {
+                                        viewModel: writeComplimentViewModel)) {
                                         Image("emptyState")
                                     }
                                 }
@@ -244,8 +243,7 @@ struct MainView: View {
                         Button(action: {
 						}, label: {
 							NavigationLink(destination: WriteComplimentView(
-                                viewModel: writeComplimentViewModel,
-                                isCompliment: $isCompliment), label: {
+                                viewModel: writeComplimentViewModel), label: {
 								Text(isCompliment ? "오늘 칭찬 끝!" : "칭찬하기")
                                     .bold()
                                     .font(.title3)
