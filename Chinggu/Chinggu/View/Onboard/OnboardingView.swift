@@ -8,52 +8,40 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    let onboardings: [Onboarding] = Onboardings.allCases.map {
-        Onboarding(title: $0.title,
-                   description: $0.description,
-                   nextButton: $0.nextButton)
-    }
-    @State private var selection = 1
-    @State private var showMain = false
+    @StateObject var viewModel = OnboardingViewModel()
 
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
                 progressBar
                 tabView
-                GoNextButton(
-                    selection: $selection,
-                    length: onboardings.count,
-                    onboardings: onboardings,
-                    showMain: $showMain
-                )
+                GoNextButton(viewModel: viewModel)
             }
             .background(Color.ddoPrimary)
         }
-        .fullScreenCover(isPresented: $showMain) {
+        .fullScreenCover(isPresented: $viewModel.shouldShowMain) {
             MainView()
         }
     }
 
     private var progressBar: some View {
         HStack(spacing: 8) {
-            if selection != 1 {
+            if viewModel.selection > 0 {
                 Button(action: {
-                    selection = selection > 2 ? selection - 1 : 1
+                    viewModel.goBack()
                 }, label: {
                     Image(systemName: "chevron.backward")
                         .font(.title2)
                         .foregroundColor(Color.black)
                         .frame(width: 44, alignment: .leading)
                 })
-                ProgressView(value: Double(selection - 1) / Double(onboardings.count - 1), total: 1.0)
+                ProgressView(value: Double(viewModel.selection) / Double(viewModel.totalCount), total: 1.0)
                     .scaleEffect(y:1.3)
                     .progressViewStyle(
                         LinearProgressViewStyle(tint: Color("oll"))
                     )
                 Button("건너뛰기") {
-                    showMain = true
-                    UserDefaults.standard.set(true, forKey: "HasOnboarded")
+                    viewModel.goMain()
                 }
                 .padding(.leading, 10)
                 .accentColor(.black)
@@ -64,14 +52,15 @@ struct OnboardingView: View {
     }
 
     private var tabView: some View {
-        TabView(selection: $selection) {
-            ForEach(1...onboardings.count, id: \.self) { idx in
+        TabView(selection: $viewModel.selection) {
+            ForEach(0...viewModel.totalCount, id: \.self) { idx in
                 VStack {
-                    OnboardingTextView(onboardings: onboardings, index: idx)
+                    OnboardingTextView(viewModel: viewModel,
+                                       index: idx)
                     LottieView(filename: "onboarding_\(idx)",
                                loopState: true)
-                    .scaleEffect(idx == 1 ? 0.55 : 1)
-                    .offset(x:0, y: selection == 4 ? -40 : 0)
+                    .scaleEffect(idx == 0 ? 0.55 : 1)
+                    .offset(x:0, y: viewModel.selection == 3 ? -40 : 0)
                 }
                 .tag(idx)
             }
@@ -83,17 +72,15 @@ struct OnboardingView: View {
 
 
 struct OnboardingTextView: View {
-    @State var onboardings: [Onboarding]
-    @State var index: Int
-
+    @ObservedObject var viewModel: OnboardingViewModel
+    var index: Int
     @State private var messageIndex = 0
-    private let message = ["불안", "무기력", "슬픔", "우울", "조급함", "자괴감", "회의감", "좌절"]
     private let timer = Timer.publish(every: 0.9, on: .main, in: .common).autoconnect()
 
     var body: some View {
         VStack {
             switch index {
-            case 1: animationTitle
+            case 0: animationTitle
             default: titleAndDescription
             }
         }
@@ -109,7 +96,7 @@ struct OnboardingTextView: View {
                     RoundedRectangle(cornerRadius: 18)
                         .frame(width: 72, height: 36)
                         .foregroundColor(Color("oll"))
-                    Text(message[messageIndex])
+                    Text(viewModel.animationMessages[messageIndex])
                         .bold()
                         .font(.body)
                         .foregroundColor(Color.ddoPrimary)
@@ -124,20 +111,20 @@ struct OnboardingTextView: View {
         .font(.title)
         .lineSpacing(6)
         .onReceive(timer) { _ in
-            messageIndex = (messageIndex + 1) % message.count
+            messageIndex = (messageIndex + 1) % viewModel.animationMessages.count
         }
     }
 
     private var titleAndDescription: some View {
         VStack {
-            Text(onboardings[index - 1].title)
+            Text(viewModel.onboardings[index].title)
                 .bold()
                 .font(.title)
                 .lineSpacing(6)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.bottom, 8)
-            if !onboardings[index - 1].description.isEmpty {
-                Text(onboardings[index - 1].description)
+            if !viewModel.onboardings[index].description.isEmpty {
+                Text(viewModel.onboardings[index].description)
                     .lineSpacing(3)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .kerning(-0.1)
@@ -147,25 +134,21 @@ struct OnboardingTextView: View {
 }
 
 struct GoNextButton: View {
-    @Binding var selection: Int
-    @State var length: Int
-    @State var onboardings: [Onboarding]
-    @Binding var showMain: Bool
+    @ObservedObject var viewModel: OnboardingViewModel
 
     var body: some View {
         Button(action: {
-            if selection == length {
-                showMain = true
-                UserDefaults.standard.set(true, forKey: "HasOnboarded")
+            if viewModel.selection == viewModel.totalCount {
+                viewModel.goMain()
             } else {
-                selection = selection < length ? selection + 1 : length
+                viewModel.goNext()
             }
         }, label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
                     .frame(height: 56)
-                    .foregroundColor(selection == length ? Color.blue : Color("oll"))
-                Text(onboardings[selection - 1].nextButton)
+                    .foregroundColor(viewModel.selection == viewModel.totalCount ? Color.blue : Color("oll"))
+                Text(viewModel.onboardings[viewModel.selection].nextButton)
                     .bold()
                     .font(.title3)
                     .foregroundColor(Color.white)

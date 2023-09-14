@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WriteComplimentView: View {
-    @ObservedObject var viewModel: WriteComplimentViewModel
+    @StateObject var viewModel = WriteComplimentViewModel()
     @Environment(\.dismiss) private var dismiss
     @State private var isTipSheetPresented = false
     @FocusState private var isFocused: Bool
@@ -118,7 +118,6 @@ struct WriteComplimentView: View {
 
 struct WriteComplimentView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = WriteComplimentViewModel()
-        WriteComplimentView(viewModel: viewModel)
+        WriteComplimentView()
     }
 }
