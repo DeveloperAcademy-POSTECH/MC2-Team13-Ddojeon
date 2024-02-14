@@ -84,7 +84,7 @@ struct WriteComplimentView: View {
     }
     
     func saveContent () {
-        PersistenceController.shared.addCompliment(complimentText: content, groupID: Int16(groupOrder))
+        CoreDataManager.shared.addCompliment(complimentText: content, groupID: Int16(groupOrder))
         dismiss.callAsFunction()
         isCompliment = true
     }

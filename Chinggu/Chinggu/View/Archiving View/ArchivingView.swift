@@ -83,7 +83,7 @@ struct ArchivingView: View {
     private func delete(indexset: IndexSet) {
         guard let index = indexset.first else { return }
         let selectedEntity = Compliment[index]
-        PersistenceController.shared.deleteCompliment(compliment: selectedEntity)
+        CoreDataManager.shared.deleteCompliment(compliment: selectedEntity)
     }
 }
 

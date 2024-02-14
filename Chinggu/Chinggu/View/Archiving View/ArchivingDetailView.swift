@@ -74,7 +74,7 @@ struct ArchivingDetailView: View {
 	}
 		
 	private func loadCompliment() {
-		if let complimentEntity = PersistenceController.shared.loadCompliment(order: complimentOrder) {
+		if let complimentEntity = CoreDataManager.shared.loadCompliment(order: complimentOrder) {
 			compliment = complimentEntity.compliment ?? ""
 			groupID = complimentEntity.groupID
 			order = complimentEntity.order

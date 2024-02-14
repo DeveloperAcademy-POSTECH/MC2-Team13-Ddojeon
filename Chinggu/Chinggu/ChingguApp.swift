@@ -10,12 +10,12 @@ import SwiftUI
 @main
 struct ChingguApp: App {
 	
-	let persistenceController = PersistenceController.shared
+    let coreDataManager = CoreDataManager.shared
 	
     var body: some Scene {
         WindowGroup {
             ContentView()
-				.environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environment(\.managedObjectContext, coreDataManager.container.viewContext)
         }
     }
 }

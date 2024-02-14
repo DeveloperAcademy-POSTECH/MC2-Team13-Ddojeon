@@ -97,7 +97,7 @@ struct CardFullScreenView: View {
         .onAppear(perform: loadCompliments)
     }
 	private func loadCompliments() {
-		complimentsInGroup = PersistenceController.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
+		complimentsInGroup = CoreDataManager.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
 		if let minDate = complimentsInGroup.first?.createDate,
 		   let maxDate = complimentsInGroup.last?.createDate {
 			let start = minDate.formatWithDot()
