@@ -6,9 +6,15 @@
 //
 
 import Foundation
+import SwiftUI
 import CoreData
 
 class CoreDataManager {
+    @AppStorage("group") var groupOrder: Int = 1 {
+        didSet {
+            print("grouporder = ", groupOrder)
+        }
+    }
     static let shared = CoreDataManager()
 
     let container: NSPersistentContainer
@@ -76,20 +82,16 @@ extension CoreDataManager {
         saveContext()
     }
     
-    func deleteCompliment(_ compliment: ComplimentEntity) {
-        let orderToDelete = compliment.order
-        context.delete(compliment)
-        decrementOrdersStarting(after: orderToDelete)
-        saveContext()
-    }
-
-    private func decrementOrdersStarting(after order: Int16) {
+    func fetchAllCompliments() -> [ComplimentEntity] {
         let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "order > %d", order)
-        if let complimentsToUpdate = try? context.fetch(fetchRequest) {
-            for complimentToUpdate in complimentsToUpdate {
-                complimentToUpdate.order -= 1
-            }
+        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ComplimentEntity.createDate, ascending: false)]
+        
+        do {
+            let compliments = try context.fetch(fetchRequest)
+            return compliments
+        } catch {
+            print("Fail to fetch all compliments \(error)")
+            return []
         }
     }
     
@@ -115,6 +117,41 @@ extension CoreDataManager {
         } catch {
             print("Error fetching count: \(error)")
             return 0
+        }
+    }
+}
+
+extension CoreDataManager {
+    func testAddCompliment() {
+        let viewContext = container.viewContext
+        
+        for order in 1...7 {
+            let newCompliment = ComplimentEntity(context: viewContext)
+            let minusday = -1 * (order - 1)
+            if let date = Calendar.current.date(byAdding: .day, value: minusday, to: Date()) {
+                newCompliment.createDate = date
+            }
+            newCompliment.compliment = "테스트 칭찬 \(8 - order)"
+            newCompliment.groupID = Int16(groupOrder)
+            newCompliment.order = Int16(8 - order)
+            newCompliment.id = UUID()
+        }
+        groupOrder += 1
+        saveContext()
+    }
+        
+    func testResetCoreData() {
+        let viewContext = container.viewContext
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = ComplimentEntity.fetchRequest()
+        
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try viewContext.execute(batchDeleteRequest)
+            groupOrder = 1
+            saveContext()
+        } catch let error as NSError {
+            print("Core Data 초기화 실패: \(error), \(error.userInfo)")
         }
     }
 }

@@ -59,26 +59,6 @@ extension ArchivingDetailView {
 		}
 	}
 	
-	enum ColorStyle {
-		static let colors: [Color] = [
-					Color("ddoTip1"),
-					Color("ddoTip2"),
-					Color("ddoTip3"),
-					Color("ddoTip4"),
-					Color("ddoTip5"),
-					Color("ddoTip6"),
-					Color("ddoTip7"),
-					Color("ddoTip8"),
-					Color("ddoTip9"),
-					Color("ddoTip10")
-				]
-		
-		static func randomColor() -> Color {
-			let randomIndex = Int.random(in: 0..<colors.count)
-			return colors[randomIndex]
-		}
-	}
-	
 	enum ButtonStyle {
 		static let buttonCornerRadius: CGFloat = 15
 	}

@@ -14,8 +14,9 @@ final class ArchivingDetailViewModel: ObservableObject {
         CoreDataManager.shared.fetchComplimentsCount()
     }
     
-    init(complimentOrder: Int16) {
-        self.complimentOrder = complimentOrder
+    init(compliment: ComplimentEntity) {
+        self.compliment = compliment
+        self.complimentOrder = compliment.order
         loadCompliment()
     }
     
@@ -46,10 +47,4 @@ final class ArchivingDetailViewModel: ObservableObject {
     func loadCompliment() {
         self.compliment = CoreDataManager.shared.fetchCompliment(order: complimentOrder)
     }
-}
-
-
-enum ButtonDirection {
-    case forward
-    case backward
 }

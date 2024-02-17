@@ -10,15 +10,13 @@ import CoreData
 
 final class ArchivingViewModel: ObservableObject {
     @Published var compliments: [ComplimentEntity] = []
-    private var groupID: Int16 = 1
 
-    init(groupID: Int16) {
-        self.groupID = groupID
+    init() {
         fetchCompliments()
     }
 
     func fetchCompliments() {
-        self.compliments = CoreDataManager.shared.fetchComplimentsInGroup(groupID)
+        self.compliments = CoreDataManager.shared.fetchAllCompliments()
     }
 
     func deleteCompliments(at offsets: IndexSet) {
@@ -27,5 +25,9 @@ final class ArchivingViewModel: ObservableObject {
             CoreDataManager.shared.deleteCompliment(compliment: compliment)
         }
         fetchCompliments()
+    }
+    
+    func filterComplimentsInGroup(by groupID: Int) -> [ComplimentEntity] {
+        return compliments.filter { $0.groupID == groupID }
     }
 }

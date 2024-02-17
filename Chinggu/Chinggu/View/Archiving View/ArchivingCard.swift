@@ -24,15 +24,14 @@ struct ArchivingCard: View {
 				
                 HStack(){
                     Spacer()
-                    //날짜
                     Text(compliment.unwrappedCreateDate.formatWithDot())
 						.opacity(CardStyle.cardDateOpacity)
                         .font(.caption)
                 }
             }
 			.padding(Metric.cardInsidePadding)
+            .background(ColorStyle.randomColor())
             .cornerRadius(CardStyle.cardCornerRadius)
-//            .background(ColorStyle.randomColor)
         }
     }
 }
