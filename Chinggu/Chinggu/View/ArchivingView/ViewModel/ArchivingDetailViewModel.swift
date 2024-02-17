@@ -20,7 +20,6 @@ final class ArchivingDetailViewModel: ObservableObject {
         loadCompliment()
     }
     
-    
     func nextCompliment() {
         if complimentOrder < allComplimentsCount {
             complimentOrder += 1
