@@ -17,7 +17,6 @@ class PersistenceController {
         for i in 0..<7 {
             let newItem = ComplimentEntity(context: viewContext)
             newItem.createDate = Date()
-//            newItem.timestamp = Date()
         }
         do {
             try viewContext.save()

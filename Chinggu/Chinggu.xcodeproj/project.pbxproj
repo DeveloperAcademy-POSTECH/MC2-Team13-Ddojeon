@@ -12,13 +12,16 @@
 		51C204AE2A4AE14900A0A8F5 /* onboarding_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 51C204AD2A4AE14900A0A8F5 /* onboarding_2.json */; };
 		51D817182A08E59F00B84E6A /* WriteComplimentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D817172A08E59F00B84E6A /* WriteComplimentView.swift */; };
 		701094A62A0FA83D0019DEED /* cardBeforeAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 701094A52A0FA83D0019DEED /* cardBeforeAnimation.json */; };
-		7014D47A2A10AF8B00F1B315 /* TempArchivingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7014D4792A10AF8B00F1B315 /* TempArchivingDetailView.swift */; };
 		70385ED12A07DFEE001CDAB0 /* Color+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */; };
 		70385ED32A07E00F001CDAB0 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70385ED22A07E00F001CDAB0 /* Color.xcassets */; };
 		70385EDA2A07E60B001CDAB0 /* Date+FormatWithDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */; };
 		70815E812A08950900DBE5B0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7E2A08950900DBE5B0 /* Persistence.swift */; };
 		70815E822A08950900DBE5B0 /* ChingguModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7F2A08950900DBE5B0 /* ChingguModel.xcdatamodeld */; };
 		70875F542B7C51E3008690EC /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875F532B7C51E3008690EC /* CoreDataManager.swift */; };
+		70875F562B7C5D73008690EC /* ArchivingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875F552B7C5D73008690EC /* ArchivingViewModel.swift */; };
+		70875F582B7C5E3A008690EC /* ComplimentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875F572B7C5E3A008690EC /* ComplimentViewModel.swift */; };
+		70875FC72B7F0B75008690EC /* ChingguTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FC62B7F0B75008690EC /* ChingguTests.swift */; };
+		70875FD02B808582008690EC /* ArchivingDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FCF2B808582008690EC /* ArchivingDetailViewModel.swift */; };
 		70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */; };
 		70B8FBA82A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */; };
 		70BD12BF2A3F066600BF252F /* ArchivingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BD12BE2A3F066600BF252F /* ArchivingConstants.swift */; };
@@ -48,19 +51,33 @@
 		FBB8CFD92A0B908E00210F90 /* ArchivingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB8CFD82A0B908E00210F90 /* ArchivingCard.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		70875FC82B7F0B75008690EC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AE37D5292A039605009B0F56 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AE37D5302A039605009B0F56;
+			remoteInfo = Chinggu;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		51887AE62A12232F0015EF88 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingView.swift; path = Chinggu/View/Onboard/OnboardingView.swift; sourceTree = SOURCE_ROOT; };
 		5191CFBC2A4ADD9A00881DC0 /* onboarding_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_4.json; sourceTree = "<group>"; };
 		51C204AD2A4AE14900A0A8F5 /* onboarding_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_2.json; sourceTree = "<group>"; };
 		51D817172A08E59F00B84E6A /* WriteComplimentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteComplimentView.swift; sourceTree = "<group>"; };
 		701094A52A0FA83D0019DEED /* cardBeforeAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cardBeforeAnimation.json; sourceTree = "<group>"; };
-		7014D4792A10AF8B00F1B315 /* TempArchivingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempArchivingDetailView.swift; sourceTree = "<group>"; };
 		70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Asset.swift"; sourceTree = "<group>"; };
 		70385ED22A07E00F001CDAB0 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+FormatWithDot.swift"; sourceTree = "<group>"; };
 		70815E7E2A08950900DBE5B0 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		70815E802A08950900DBE5B0 /* ComplimentModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ComplimentModel.xcdatamodel; sourceTree = "<group>"; };
 		70875F532B7C51E3008690EC /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		70875F552B7C5D73008690EC /* ArchivingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivingViewModel.swift; sourceTree = "<group>"; };
+		70875F572B7C5E3A008690EC /* ComplimentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplimentViewModel.swift; sourceTree = "<group>"; };
+		70875FC42B7F0B75008690EC /* ChingguTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChingguTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		70875FC62B7F0B75008690EC /* ChingguTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChingguTests.swift; sourceTree = "<group>"; };
+		70875FCF2B808582008690EC /* ArchivingDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivingDetailViewModel.swift; sourceTree = "<group>"; };
 		70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ComplimentEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ComplimentEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		70B9BFDB2A44B9E700F2DDC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -92,6 +109,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		70875FC12B7F0B75008690EC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AE37D52E2A039605009B0F56 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -132,7 +156,6 @@
 			children = (
 				70875F532B7C51E3008690EC /* CoreDataManager.swift */,
 				70875F522B7C4DF6008690EC /* CoreData */,
-				70815E7E2A08950900DBE5B0 /* Persistence.swift */,
 				70815E7F2A08950900DBE5B0 /* ChingguModel.xcdatamodeld */,
 			);
 			path = Models;
@@ -143,8 +166,17 @@
 			children = (
 				70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */,
 				70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */,
+				70815E7E2A08950900DBE5B0 /* Persistence.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		70875FC52B7F0B75008690EC /* ChingguTests */ = {
+			isa = PBXGroup;
+			children = (
+				70875FC62B7F0B75008690EC /* ChingguTests.swift */,
+			);
+			path = ChingguTests;
 			sourceTree = "<group>";
 		};
 		70C797722A042FF400E2E3AF /* CardView */ = {
@@ -214,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				AE37D5332A039605009B0F56 /* Chinggu */,
+				70875FC52B7F0B75008690EC /* ChingguTests */,
 				AE37D5322A039605009B0F56 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -222,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				AE37D5312A039605009B0F56 /* Chinggu.app */,
+				70875FC42B7F0B75008690EC /* ChingguTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -233,6 +267,7 @@
 				70B9BFDB2A44B9E700F2DDC7 /* Info.plist */,
 				AE37D5342A039605009B0F56 /* ChingguApp.swift */,
 				AE37D5362A039605009B0F56 /* ContentView.swift */,
+				70875F572B7C5E3A008690EC /* ComplimentViewModel.swift */,
 				701094A72A0FF83C0019DEED /* View */,
 				70815E7D2A08950900DBE5B0 /* Models */,
 				70385ECF2A07DFDD001CDAB0 /* Utils */,
@@ -252,11 +287,12 @@
 		FBB8CFD72A0B836E00210F90 /* Archiving View */ = {
 			isa = PBXGroup;
 			children = (
-				FB6D0BCA2A0A35AD00220360 /* ArchivingDetailView.swift */,
-				FBB8CFD82A0B908E00210F90 /* ArchivingCard.swift */,
 				FB6D0BC82A0A287200220360 /* ArchivingView.swift */,
+				70875F552B7C5D73008690EC /* ArchivingViewModel.swift */,
+				FB6D0BCA2A0A35AD00220360 /* ArchivingDetailView.swift */,
+				70875FCF2B808582008690EC /* ArchivingDetailViewModel.swift */,
+				FBB8CFD82A0B908E00210F90 /* ArchivingCard.swift */,
 				70BD12BE2A3F066600BF252F /* ArchivingConstants.swift */,
-				7014D4792A10AF8B00F1B315 /* TempArchivingDetailView.swift */,
 			);
 			path = "Archiving View";
 			sourceTree = "<group>";
@@ -264,6 +300,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		70875FC32B7F0B75008690EC /* ChingguTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70875FCA2B7F0B75008690EC /* Build configuration list for PBXNativeTarget "ChingguTests" */;
+			buildPhases = (
+				70875FC02B7F0B75008690EC /* Sources */,
+				70875FC12B7F0B75008690EC /* Frameworks */,
+				70875FC22B7F0B75008690EC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				70875FC92B7F0B75008690EC /* PBXTargetDependency */,
+			);
+			name = ChingguTests;
+			productName = ChingguTests;
+			productReference = 70875FC42B7F0B75008690EC /* ChingguTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		AE37D5302A039605009B0F56 /* Chinggu */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AE37D53F2A039606009B0F56 /* Build configuration list for PBXNativeTarget "Chinggu" */;
@@ -291,9 +345,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					70875FC32B7F0B75008690EC = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = AE37D5302A039605009B0F56;
+					};
 					AE37D5302A039605009B0F56 = {
 						CreatedOnToolsVersion = 14.3;
 					};
@@ -316,11 +374,19 @@
 			projectRoot = "";
 			targets = (
 				AE37D5302A039605009B0F56 /* Chinggu */,
+				70875FC32B7F0B75008690EC /* ChingguTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		70875FC22B7F0B75008690EC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AE37D52F2A039605009B0F56 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -341,11 +407,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		70875FC02B7F0B75008690EC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70875FC72B7F0B75008690EC /* ChingguTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AE37D52D2A039605009B0F56 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				FB6D0BC92A0A287200220360 /* ArchivingView.swift in Sources */,
+				70875FD02B808582008690EC /* ArchivingDetailViewModel.swift in Sources */,
 				AE2CB0332AA056B300D6AD65 /* HapticManager.swift in Sources */,
 				FB6D0BCB2A0A35AD00220360 /* ArchivingDetailView.swift in Sources */,
 				AE2CB02E2A9F705F00D6AD65 /* Weekday.swift in Sources */,
@@ -365,10 +440,11 @@
 				70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */,
 				51D817182A08E59F00B84E6A /* WriteComplimentView.swift in Sources */,
 				AE37D5452A063BD3009B0F56 /* MainView.swift in Sources */,
-				7014D47A2A10AF8B00F1B315 /* TempArchivingDetailView.swift in Sources */,
 				70B8FBA82A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift in Sources */,
 				AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */,
+				70875F562B7C5D73008690EC /* ArchivingViewModel.swift in Sources */,
 				70385ED12A07DFEE001CDAB0 /* Color+Asset.swift in Sources */,
+				70875F582B7C5E3A008690EC /* ComplimentViewModel.swift in Sources */,
 				70385EDA2A07E60B001CDAB0 /* Date+FormatWithDot.swift in Sources */,
 				70815E812A08950900DBE5B0 /* Persistence.swift in Sources */,
 				70875F542B7C51E3008690EC /* CoreDataManager.swift in Sources */,
@@ -378,7 +454,62 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		70875FC92B7F0B75008690EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AE37D5302A039605009B0F56 /* Chinggu */;
+			targetProxy = 70875FC82B7F0B75008690EC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		70875FCB2B7F0B75008690EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3FD7AHY7SL;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.junyoo.ChingguTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chinggu.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Chinggu";
+			};
+			name = Debug;
+		};
+		70875FCC2B7F0B75008690EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3FD7AHY7SL;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.junyoo.ChingguTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chinggu.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Chinggu";
+			};
+			name = Release;
+		};
 		AE37D53D2A039606009B0F56 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -566,6 +697,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		70875FCA2B7F0B75008690EC /* Build configuration list for PBXNativeTarget "ChingguTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70875FCB2B7F0B75008690EC /* Debug */,
+				70875FCC2B7F0B75008690EC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AE37D52C2A039605009B0F56 /* Build configuration list for PBXProject "Chinggu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -8,17 +8,13 @@
 import SwiftUI
 
 struct ArchivingCard: View {
+
+    var compliment: ComplimentEntity
     
-    @Binding var compliment: String
-    @Binding var groupID: Int16
-    @Binding var order: Int16
-    @Binding var createDate: Date
-    var cardColor: Color
-	    
     var body: some View {
         VStack {            
             VStack(alignment: .leading){
-                Text(compliment)
+                Text(compliment.unwrappedCompliment)
                     .font(.body)
                     .fontWeight(.semibold)
 					.lineSpacing(CardStyle.cardLineSpacing)
@@ -29,14 +25,14 @@ struct ArchivingCard: View {
                 HStack(){
                     Spacer()
                     //날짜
-                    Text(createDate.formatWithDot())
+                    Text(compliment.unwrappedCreateDate.formatWithDot())
 						.opacity(CardStyle.cardDateOpacity)
                         .font(.caption)
                 }
             }
 			.padding(Metric.cardInsidePadding)
-            .background(cardColor)
-			.cornerRadius(CardStyle.cardCornerRadius)
+            .cornerRadius(CardStyle.cardCornerRadius)
+//            .background(ColorStyle.randomColor)
         }
     }
 }

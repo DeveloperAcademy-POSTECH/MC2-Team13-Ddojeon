@@ -12,7 +12,6 @@ class CoreDataManager {
     static let shared = CoreDataManager()
 
     let container: NSPersistentContainer
-    
     var context: NSManagedObjectContext {
         return container.viewContext
     }
@@ -29,41 +28,35 @@ class CoreDataManager {
         })
     }
 
-    //MARK: CREATE
-    func addCompliment(complimentText: String, groupID: Int16) {
-        let order = fetchLatestOrder() + 1
-        let compliment = ComplimentEntity(context: context)
-        compliment.compliment = complimentText
-        compliment.createDate = Date()
-        compliment.order = order
-        compliment.id = UUID()
-        compliment.groupID = groupID
-        saveContext()
-    }
-
-    //MARK: READ
-    func fetchCompliment() -> [ComplimentEntity] {
-        do {
-            let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
-            let results = try context.fetch(fetchRequest)
-            return results
+    func saveContext() {
+        do{
+            try context.save()
         } catch {
-            print("Failed to fetch all ComplimentEntity: \(error)")
+            context.rollback()
         }
-        return []
     }
 
-    func updateCompliment(compliment: ComplimentEntity) {
-        let fetchResults = fetchCompliment()
-        for result in fetchResults {
-            if result.id == compliment.id {
-    //                result.compliment = compliment.compliment
-            }
+    func fetchLatestOrder() -> Int16 {
+        let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
+        fetchRequest.fetchLimit = 1
+
+        do {
+            let lastCompliment = try context.fetch(fetchRequest).first
+            return lastCompliment?.order ?? 0
+        } catch {
+            print("Failed to fetch last order: \(error)")
+            return 0
         }
+    }
+}
+
+extension CoreDataManager {
+    func addCompliment(complimentText: String, groupID: Int16) {
+        let newCompliment = ComplimentEntity.add(to: context, complimentText: complimentText, groupID: groupID)
         saveContext()
     }
-
-    //MARK: Delete
+    
     func deleteCompliment(compliment: ComplimentEntity) {
         let orderToDelete = compliment.order
         context.delete(compliment)
@@ -82,62 +75,45 @@ class CoreDataManager {
 
         saveContext()
     }
+    
+    func deleteCompliment(_ compliment: ComplimentEntity) {
+        let orderToDelete = compliment.order
+        context.delete(compliment)
+        decrementOrdersStarting(after: orderToDelete)
+        saveContext()
+    }
 
-    func loadCompliment(order: Int16) -> ComplimentEntity? {
+    private func decrementOrdersStarting(after order: Int16) {
+        let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "order > %d", order)
+        if let complimentsToUpdate = try? context.fetch(fetchRequest) {
+            for complimentToUpdate in complimentsToUpdate {
+                complimentToUpdate.order -= 1
+            }
+        }
+    }
+    
+    func fetchComplimentsInGroup(_ groupID: Int16) -> [ComplimentEntity] {
+        let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "groupID == %d", groupID)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ComplimentEntity.createDate, ascending: true)]
+        return (try? context.fetch(fetchRequest)) ?? []
+    }
+    
+    func fetchCompliment(order: Int16) -> ComplimentEntity? {
         let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "order == %d", order)
         fetchRequest.fetchLimit = 1
-        do {
-            let result = try context.fetch(fetchRequest)
-            return result.first
-        } catch {
-            print("Failed to fetch a order of ComplimentEntity: \(error)")
-            return nil
-        }
+        return try? context.fetch(fetchRequest).first
     }
-
-    func fetchComplimentInGroup(groupID: Int16) -> [ComplimentEntity] {
-        do {
-            let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "groupID == %d", groupID)
-            fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ComplimentEntity.createDate, ascending: true)]
-            let results = try context.fetch(fetchRequest)
-            return results
-        } catch {
-            print("Failed to fetch group of ComplimentEntity: \(error)")
-        }
-        return []
-    }
-
-    func deleteAllCompliments() {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = ComplimentEntity.fetchRequest()
-        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-
-        do {
-            try context.execute(batchDeleteRequest)
-        } catch {
-            print("Delete all data in ComplimentEntity failed: \(error)")
-        }
-    }
-
-    private func saveContext() {
-        do{
-            try context.save()
-        } catch {
-            context.rollback()
-        }
-    }
-
-    private func fetchLatestOrder() -> Int16 {
+    
+    func fetchComplimentsCount() -> Int16 {
         let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
-        fetchRequest.fetchLimit = 1
-
         do {
-            let lastCompliment = try context.fetch(fetchRequest).first
-            return lastCompliment?.order ?? 0
+            let count = try context.count(for: fetchRequest)
+            return Int16(count)
         } catch {
-            print("Failed to fetch last order: \(error)")
+            print("Error fetching count: \(error)")
             return 0
         }
     }

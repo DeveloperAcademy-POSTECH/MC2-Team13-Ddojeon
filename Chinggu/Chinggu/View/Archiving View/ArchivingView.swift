@@ -8,28 +8,27 @@
 import SwiftUI
 
 struct ArchivingView: View {
-    @FetchRequest(
-        entity: ComplimentEntity.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
-    ) var Compliment: FetchedResults<ComplimentEntity>
-    @AppStorage("group") var groupOrder: Int = 1
-    
+    @StateObject private var viewModel = ArchivingViewModel(groupID: 1)
     @Environment(\.dismiss) private var dismiss
-    @State var editMode: EditMode = .inactive
-    @State var isEditing = false
+    @AppStorage("group") var groupOrder: Int = 1
+//    @FetchRequest(
+//        entity: ComplimentEntity.entity(),
+//        sortDescriptors: [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
+//    ) var Compliment: FetchedResults<ComplimentEntity>
+    
     
     var body: some View {
 		NavigationStack{
 			VStack(alignment: .leading){
 				if groupOrder >= 2 {
-					Text("\(groupOrder - 1)번의 상자를 열었고\n\(Compliment.count)번 칭찬했어요")
+                    Text("\(groupOrder - 1)번의 상자를 열었고\n\(viewModel.compliments.count)번 칭찬했어요")
 						.font(.title3)
 						.fontWeight(.bold)
 						.padding(.leading)
 					List {
 						ForEach((1..<$groupOrder.wrappedValue).reversed(), id: \.self) { index in
 							Section(header: Text("\(index)번째 상자")) {
-								ForEach(Compliment, id: \.self.id) { compliments in
+                                ForEach(viewModel.compliments, id: \.self.id) { compliments in
 									if compliments.groupID == index {
 										NavigationLink(
 											destination: ArchivingDetailView(complimentOrder: compliments.order).toolbarRole(.editor), label: {
@@ -72,7 +71,6 @@ struct ArchivingView: View {
                         }
                         
                     }
-					//빈칭찬일 경우 넣을 이미지
 				}
 			}
 			.accentColor(.red)
@@ -80,10 +78,9 @@ struct ArchivingView: View {
 			.background(Color.ddoPrimary)
 		}
 	}
-    private func delete(indexset: IndexSet) {
-        guard let index = indexset.first else { return }
-        let selectedEntity = Compliment[index]
-        CoreDataManager.shared.deleteCompliment(compliment: selectedEntity)
+    
+    private func delete(index: IndexSet) {
+        viewModel.deleteCompliments(at: index)
     }
 }
 

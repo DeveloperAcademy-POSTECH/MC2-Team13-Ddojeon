@@ -268,7 +268,7 @@ struct MainView: View {
 					}
                 }
 				.onChange(of: groupOrder, perform: { newValue in
-					complimentsInGroup = CoreDataManager.shared.fetchComplimentInGroup(groupID: Int16(newValue))
+					complimentsInGroup = CoreDataManager.shared.fetchComplimentsInGroup(Int16(newValue))
 				})
                 .onChange(of: scenePhase) { newPhase in
                     print("scene change")
@@ -276,7 +276,7 @@ struct MainView: View {
                     updateCanBreakBoxes()
                 }
 				.onAppear {
-					complimentsInGroup = CoreDataManager.shared.fetchComplimentInGroup(groupID: Int16(groupOrder))
+                    complimentsInGroup = CoreDataManager.shared.fetchComplimentsInGroup(Int16(groupOrder))
                     // 최초 칭찬 작성 시 안내 팝업
 					if Compliment.count == 1, isfirst == true {
 						withAnimation(.spring(response: 1.2, dampingFraction: 0.8)) {
