@@ -23,13 +23,17 @@
 		70875FC72B7F0B75008690EC /* ChingguTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FC62B7F0B75008690EC /* ChingguTests.swift */; };
 		70875FD02B808582008690EC /* ArchivingDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FCF2B808582008690EC /* ArchivingDetailViewModel.swift */; };
 		70875FD22B80DE01008690EC /* TowardsButtonDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FD12B80DE01008690EC /* TowardsButtonDirection.swift */; };
+		70875FD72B80E24B008690EC /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FD62B80E24B008690EC /* CardViewModel.swift */; };
+		70875FD92B80E442008690EC /* CardViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FD82B80E442008690EC /* CardViewConstants.swift */; };
+		70875FDD2B80E7D8008690EC /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FDC2B80E7D8008690EC /* Quote.swift */; };
+		70875FE12B80E8FD008690EC /* CardFullScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FE02B80E8FD008690EC /* CardFullScreenViewModel.swift */; };
+		70875FE32B810006008690EC /* InfoPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FE22B810006008690EC /* InfoPopupViewModel.swift */; };
 		70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */; };
 		70B8FBA82A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */; };
 		70BD12BF2A3F066600BF252F /* ArchivingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BD12BE2A3F066600BF252F /* ArchivingConstants.swift */; };
 		70C7977B2A04357F00E2E3AF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C797782A04357F00E2E3AF /* CardView.swift */; };
 		70C7977C2A04357F00E2E3AF /* CardFullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C797792A04357F00E2E3AF /* CardFullScreenView.swift */; };
 		70C7977D2A04357F00E2E3AF /* CardPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7977A2A04357F00E2E3AF /* CardPopupView.swift */; };
-		70C7977F2A04391800E2E3AF /* TempMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7977E2A04391800E2E3AF /* TempMainView.swift */; };
 		70D706062A0FFFF0001D9203 /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D706052A0FFFF0001D9203 /* Popup.swift */; };
 		70E68F0F2A0A888C00258A10 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 70E68F0E2A0A888C00258A10 /* Lottie */; };
 		70E68F122A0A906500258A10 /* cardAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 70E68F112A0A906500258A10 /* cardAnimation.json */; };
@@ -80,6 +84,11 @@
 		70875FC62B7F0B75008690EC /* ChingguTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChingguTests.swift; sourceTree = "<group>"; };
 		70875FCF2B808582008690EC /* ArchivingDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivingDetailViewModel.swift; sourceTree = "<group>"; };
 		70875FD12B80DE01008690EC /* TowardsButtonDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TowardsButtonDirection.swift; sourceTree = "<group>"; };
+		70875FD62B80E24B008690EC /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		70875FD82B80E442008690EC /* CardViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewConstants.swift; sourceTree = "<group>"; };
+		70875FDC2B80E7D8008690EC /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
+		70875FE02B80E8FD008690EC /* CardFullScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFullScreenViewModel.swift; sourceTree = "<group>"; };
+		70875FE22B810006008690EC /* InfoPopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopupViewModel.swift; sourceTree = "<group>"; };
 		70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ComplimentEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ComplimentEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		70B9BFDB2A44B9E700F2DDC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -87,7 +96,6 @@
 		70C797782A04357F00E2E3AF /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		70C797792A04357F00E2E3AF /* CardFullScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardFullScreenView.swift; sourceTree = "<group>"; };
 		70C7977A2A04357F00E2E3AF /* CardPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardPopupView.swift; sourceTree = "<group>"; };
-		70C7977E2A04391800E2E3AF /* TempMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempMainView.swift; sourceTree = "<group>"; };
 		70D706052A0FFFF0001D9203 /* Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
 		70E68F112A0A906500258A10 /* cardAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cardAnimation.json; sourceTree = "<group>"; };
 		70E68F132A0A95FD00258A10 /* LottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
@@ -141,22 +149,23 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		70385ECF2A07DFDD001CDAB0 /* Utils */ = {
+		70385ECF2A07DFDD001CDAB0 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				70E68F132A0A95FD00258A10 /* LottieView.swift */,
+				70875FDB2B80E667008690EC /* Modifiers */,
 				70385ED22A07E00F001CDAB0 /* Color.xcassets */,
 				AE37D5382A039606009B0F56 /* Assets.xcassets */,
 				AE2CB02D2A9F705F00D6AD65 /* Weekday.swift */,
 				AE2CB0322AA056B300D6AD65 /* HapticManager.swift */,
 			);
-			path = Utils;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		70815E7D2A08950900DBE5B0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				70875F532B7C51E3008690EC /* CoreDataManager.swift */,
+				70875FDC2B80E7D8008690EC /* Quote.swift */,
 				70875F522B7C4DF6008690EC /* CoreData */,
 				70815E7F2A08950900DBE5B0 /* ChingguModel.xcdatamodeld */,
 			);
@@ -166,6 +175,7 @@
 		70875F522B7C4DF6008690EC /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				70875F532B7C51E3008690EC /* CoreDataManager.swift */,
 				70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */,
 				70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */,
 				70815E7E2A08950900DBE5B0 /* Persistence.swift */,
@@ -209,15 +219,49 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		70C797722A042FF400E2E3AF /* CardView */ = {
+		70875FDA2B80E621008690EC /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				70C7977E2A04391800E2E3AF /* TempMainView.swift */,
+				70875FD82B80E442008690EC /* CardViewConstants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		70875FDB2B80E667008690EC /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				70D706052A0FFFF0001D9203 /* Popup.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		70875FDE2B80E817008690EC /* View */ = {
+			isa = PBXGroup;
+			children = (
 				70C797782A04357F00E2E3AF /* CardView.swift */,
 				70C7977A2A04357F00E2E3AF /* CardPopupView.swift */,
 				70C797792A04357F00E2E3AF /* CardFullScreenView.swift */,
-				70D706052A0FFFF0001D9203 /* Popup.swift */,
 				AE95376F2A12245E00C6F5FF /* InfoPopupView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		70875FDF2B80E81E008690EC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				70875FE22B810006008690EC /* InfoPopupViewModel.swift */,
+				70875FD62B80E24B008690EC /* CardViewModel.swift */,
+				70875FE02B80E8FD008690EC /* CardFullScreenViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		70C797722A042FF400E2E3AF /* CardView */ = {
+			isa = PBXGroup;
+			children = (
+				70875FDE2B80E817008690EC /* View */,
+				70875FDF2B80E81E008690EC /* ViewModel */,
+				70875FDA2B80E621008690EC /* Utilities */,
 				70E68F102A0A904200258A10 /* CardLottie */,
 			);
 			path = CardView;
@@ -300,7 +344,7 @@
 				70875F572B7C5E3A008690EC /* ComplimentViewModel.swift */,
 				701094A72A0FF83C0019DEED /* View */,
 				70815E7D2A08950900DBE5B0 /* Models */,
-				70385ECF2A07DFDD001CDAB0 /* Utils */,
+				70385ECF2A07DFDD001CDAB0 /* Utilities */,
 				AE37D53A2A039606009B0F56 /* Preview Content */,
 			);
 			path = Chinggu;
@@ -451,19 +495,22 @@
 				AE2CB0332AA056B300D6AD65 /* HapticManager.swift in Sources */,
 				FB6D0BCB2A0A35AD00220360 /* ArchivingDetailView.swift in Sources */,
 				AE2CB02E2A9F705F00D6AD65 /* Weekday.swift in Sources */,
+				70875FD72B80E24B008690EC /* CardViewModel.swift in Sources */,
 				AE37D5372A039605009B0F56 /* ContentView.swift in Sources */,
 				AE2CB0382AA0859600D6AD65 /* Weekday+Today.swift in Sources */,
+				70875FE12B80E8FD008690EC /* CardFullScreenViewModel.swift in Sources */,
 				FBB8CFD92A0B908E00210F90 /* ArchivingCard.swift in Sources */,
 				70C7977B2A04357F00E2E3AF /* CardView.swift in Sources */,
 				70875FD22B80DE01008690EC /* TowardsButtonDirection.swift in Sources */,
 				70BD12BF2A3F066600BF252F /* ArchivingConstants.swift in Sources */,
 				AE2CB0362AA059A300D6AD65 /* GameScene.swift in Sources */,
 				70C7977D2A04357F00E2E3AF /* CardPopupView.swift in Sources */,
-				70C7977F2A04391800E2E3AF /* TempMainView.swift in Sources */,
 				70C7977C2A04357F00E2E3AF /* CardFullScreenView.swift in Sources */,
+				70875FD92B80E442008690EC /* CardViewConstants.swift in Sources */,
 				70D706062A0FFFF0001D9203 /* Popup.swift in Sources */,
 				51887AE72A12232F0015EF88 /* OnboardingView.swift in Sources */,
 				70815E822A08950900DBE5B0 /* ChingguModel.xcdatamodeld in Sources */,
+				70875FE32B810006008690EC /* InfoPopupViewModel.swift in Sources */,
 				AE9537702A12245E00C6F5FF /* InfoPopupView.swift in Sources */,
 				70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */,
 				51D817182A08E59F00B84E6A /* WriteComplimentView.swift in Sources */,
@@ -472,6 +519,7 @@
 				AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */,
 				70875F562B7C5D73008690EC /* ArchivingViewModel.swift in Sources */,
 				70385ED12A07DFEE001CDAB0 /* Color+Asset.swift in Sources */,
+				70875FDD2B80E7D8008690EC /* Quote.swift in Sources */,
 				70875F582B7C5E3A008690EC /* ComplimentViewModel.swift in Sources */,
 				70385EDA2A07E60B001CDAB0 /* Date+FormatWithDot.swift in Sources */,
 				70815E812A08950900DBE5B0 /* Persistence.swift in Sources */,

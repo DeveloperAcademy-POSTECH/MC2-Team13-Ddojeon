@@ -25,10 +25,9 @@ struct ArchivingDetailView: View {
                     .onAppear { viewModel.loadCompliment() }
                 
                 HStack {
-                    TowardsButton(viewModel: viewModel, direction: .forward)
+                    towardsButton(direction: .forward)
                     
                     Spacer()
-                    
                     Text("\(compliment.groupID)번째 상자ㅣ\(compliment.order)번째 칭찬")
                         .font(.subheadline.bold())
                         .foregroundColor(.black.opacity(0.3))
@@ -37,10 +36,9 @@ struct ArchivingDetailView: View {
                             RoundedRectangle(cornerRadius: RectangleStyle.roundedRectangleRadius)
                                 .fill(Color("oll").opacity(0.1))
                         )
-                    
                     Spacer()
                     
-                    TowardsButton(viewModel: viewModel, direction: .backward)
+                    towardsButton(direction: .backward)
                 }
             }
         }
@@ -48,29 +46,24 @@ struct ArchivingDetailView: View {
         .padding(.top)
         .background(Color.ddoPrimary)
     }
-}
-
-struct TowardsButton: View {
-    @ObservedObject var viewModel: ArchivingDetailViewModel
-    let direction: TowardsButtonDirection
-
-	var body: some View {
-		Button {
+    
+    private func towardsButton(direction: TowardsButtonDirection) -> some View {
+        Button {
             switch direction {
             case .forward:
                 viewModel.nextCompliment()
             case .backward:
                 viewModel.previousCompliment()
             }
-		} label: {
-			Image(systemName: direction == .forward ? "arrow.backward" : "arrow.forward")
-				.padding()
-				.foregroundColor(.white)
+        } label: {
+            Image(systemName: direction == .forward ? "arrow.backward" : "arrow.forward")
+                .padding()
+                .foregroundColor(.white)
                 .background {
                     viewModel.isButtonDisabled(direction: direction) ? Color("oll").opacity(0.1) : .black.opacity(0.7)
                 }
-				.cornerRadius(15)
-		}
+                .cornerRadius(15)
+        }
         .disabled(viewModel.isButtonDisabled(direction: direction))
-	}
+    }
 }

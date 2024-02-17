@@ -9,7 +9,6 @@ import SwiftUI
 import SpriteKit
 import CoreMotion
 
-
 // MARK: 메인 뷰
 struct MainView: View {
     @FetchRequest(
@@ -40,12 +39,7 @@ struct MainView: View {
     
     @AppStorage("lastResetTimeInterval") private var lastResetTimeInterval: TimeInterval = Date().timeIntervalSinceNow
     @AppStorage("selectedWeekdayTimeInterval") private var selectedWeekdayTimeInterval: TimeInterval = Date().addingTimeInterval(TimeInterval(7 * 24 * 60 * 60)).timeIntervalSince1970
-    
-//    var lastResetDate: Date {
-//        let lastResetTime = Date(timeIntervalSince1970: lastResetTimeInterval)
-//        return lastResetTime
-//    }
-    
+        
     @Environment(\.scenePhase) var scenePhase
     
     var body: some View {
@@ -264,9 +258,16 @@ struct MainView: View {
                                 Text("테스트 칭찬 추가")
                             }
                             Button {
+                                isCompliment = false
                                 CoreDataManager.shared.testResetCoreData()
                             } label: {
                                 Text("초기화")
+                            }
+                            Button {
+                                showInfoPopup = true
+//                                showPopup = true
+                            } label: {
+                                Text("상자열기")
                             }
                         }
 					}
@@ -292,9 +293,9 @@ struct MainView: View {
                     complimentsInGroup = CoreDataManager.shared.fetchComplimentsInGroup(Int16(groupOrder))
                     // 최초 칭찬 작성 시 안내 팝업
 					if Compliment.count == 1, isfirst == true {
-						withAnimation(.spring(response: 1.2, dampingFraction: 0.8)) {
+//						withAnimation(.spring(response: 1.2, dampingFraction: 0.8)) {
 							showInfoPopup = true
-						}
+//						}
 					}
 				}
                 

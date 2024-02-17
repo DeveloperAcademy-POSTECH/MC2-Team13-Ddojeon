@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct Popup<PopupContent: View>: ViewModifier {
-	
 	@Binding var isPresented: Bool
 	let view: () -> PopupContent
 	
@@ -24,7 +23,6 @@ struct Popup<PopupContent: View>: ViewModifier {
 }
 
 extension View {
-
 	public func popup<PopupContent: View>(
 		isPresented: Binding<Bool>,
 		view: @escaping () -> PopupContent) -> some View {
