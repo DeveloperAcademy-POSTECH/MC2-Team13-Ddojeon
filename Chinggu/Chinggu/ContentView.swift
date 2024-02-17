@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-	
-	init() {
-		UIView.appearance().overrideUserInterfaceStyle = .light
-	}
-	
-	@State private var hasOnboarded: Bool = UserDefaults.standard.bool(forKey: "HasOnboarded")
+    
+    init() {
+        UIView.appearance().overrideUserInterfaceStyle = .light
+    }
+
+    @AppStorage("hasOnboarded") var hasOnboarded: Bool = false
 	@AppStorage("group") var groupOrder: Int = 1
 	
 	var body: some View {

@@ -19,7 +19,6 @@
 		70815E822A08950900DBE5B0 /* ChingguModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7F2A08950900DBE5B0 /* ChingguModel.xcdatamodeld */; };
 		70875F542B7C51E3008690EC /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875F532B7C51E3008690EC /* CoreDataManager.swift */; };
 		70875F562B7C5D73008690EC /* ArchivingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875F552B7C5D73008690EC /* ArchivingViewModel.swift */; };
-		70875F582B7C5E3A008690EC /* ComplimentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875F572B7C5E3A008690EC /* ComplimentViewModel.swift */; };
 		70875FC72B7F0B75008690EC /* ChingguTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FC62B7F0B75008690EC /* ChingguTests.swift */; };
 		70875FD02B808582008690EC /* ArchivingDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FCF2B808582008690EC /* ArchivingDetailViewModel.swift */; };
 		70875FD22B80DE01008690EC /* TowardsButtonDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FD12B80DE01008690EC /* TowardsButtonDirection.swift */; };
@@ -85,7 +84,6 @@
 		70815E802A08950900DBE5B0 /* ComplimentModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ComplimentModel.xcdatamodel; sourceTree = "<group>"; };
 		70875F532B7C51E3008690EC /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		70875F552B7C5D73008690EC /* ArchivingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivingViewModel.swift; sourceTree = "<group>"; };
-		70875F572B7C5E3A008690EC /* ComplimentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplimentViewModel.swift; sourceTree = "<group>"; };
 		70875FC42B7F0B75008690EC /* ChingguTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChingguTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		70875FC62B7F0B75008690EC /* ChingguTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChingguTests.swift; sourceTree = "<group>"; };
 		70875FCF2B808582008690EC /* ArchivingDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivingDetailViewModel.swift; sourceTree = "<group>"; };
@@ -153,10 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				AE2CB0342AA0590200D6AD65 /* MainView */,
-				51D817172A08E59F00B84E6A /* WriteComplimentView.swift */,
-				70875FEA2B810882008690EC /* WriteComplimentViewModel.swift */,
-				70875FEE2B81090A008690EC /* TipSheetView.swift */,
 				A93728C52A0F6DCD00C79C04 /* Onboard */,
+				70875FF02B810A33008690EC /* WriteCompliment */,
 				70C797722A042FF400E2E3AF /* CardView */,
 				FBB8CFD72A0B836E00210F90 /* ArchivingView */,
 			);
@@ -167,11 +163,11 @@
 			isa = PBXGroup;
 			children = (
 				70E68F132A0A95FD00258A10 /* LottieView.swift */,
+				AE2CB02D2A9F705F00D6AD65 /* Weekday.swift */,
+				AE2CB0322AA056B300D6AD65 /* HapticManager.swift */,
 				70875FDB2B80E667008690EC /* Modifiers */,
 				70385ED22A07E00F001CDAB0 /* Color.xcassets */,
 				AE37D5382A039606009B0F56 /* Assets.xcassets */,
-				AE2CB02D2A9F705F00D6AD65 /* Weekday.swift */,
-				AE2CB0322AA056B300D6AD65 /* HapticManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -273,6 +269,32 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		70875FF02B810A33008690EC /* WriteCompliment */ = {
+			isa = PBXGroup;
+			children = (
+				70875FF12B810A42008690EC /* View */,
+				70875FF22B810A4B008690EC /* ViewModel */,
+			);
+			path = WriteCompliment;
+			sourceTree = "<group>";
+		};
+		70875FF12B810A42008690EC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				51D817172A08E59F00B84E6A /* WriteComplimentView.swift */,
+				70875FEE2B81090A008690EC /* TipSheetView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		70875FF22B810A4B008690EC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				70875FEA2B810882008690EC /* WriteComplimentViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		70C797722A042FF400E2E3AF /* CardView */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,7 +381,6 @@
 				70B9BFDB2A44B9E700F2DDC7 /* Info.plist */,
 				AE37D5342A039605009B0F56 /* ChingguApp.swift */,
 				AE37D5362A039605009B0F56 /* ContentView.swift */,
-				70875F572B7C5E3A008690EC /* ComplimentViewModel.swift */,
 				701094A72A0FF83C0019DEED /* View */,
 				70815E7D2A08950900DBE5B0 /* Models */,
 				70385ECF2A07DFDD001CDAB0 /* Utilities */,
@@ -543,7 +564,6 @@
 				70875F562B7C5D73008690EC /* ArchivingViewModel.swift in Sources */,
 				70385ED12A07DFEE001CDAB0 /* Color+Asset.swift in Sources */,
 				70875FDD2B80E7D8008690EC /* Quote.swift in Sources */,
-				70875F582B7C5E3A008690EC /* ComplimentViewModel.swift in Sources */,
 				70875FED2B8108B2008690EC /* OnboardingViewModel.swift in Sources */,
 				70385EDA2A07E60B001CDAB0 /* Date+FormatWithDot.swift in Sources */,
 				70815E812A08950900DBE5B0 /* Persistence.swift in Sources */,

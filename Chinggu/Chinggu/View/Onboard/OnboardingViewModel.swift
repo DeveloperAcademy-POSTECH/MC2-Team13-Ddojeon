@@ -5,9 +5,10 @@
 //  Created by chaekie on 2023/09/14.
 //
 
-import Foundation
+import SwiftUI
 
 class OnboardingViewModel: ObservableObject {
+    @AppStorage("hasOnboarded") var hasOnboarded: Bool = false
     @Published var onboardings: [Onboarding] = Onboardings.allCases.map {
         Onboarding(title: $0.title, description: $0.description, nextButton: $0.nextButton)
     }
@@ -30,6 +31,6 @@ class OnboardingViewModel: ObservableObject {
 
     func goMain() {
         shouldShowMain = true
-        UserDefaults.standard.set(true, forKey: "HasOnboarded")
+        hasOnboarded = true
     }
 }
