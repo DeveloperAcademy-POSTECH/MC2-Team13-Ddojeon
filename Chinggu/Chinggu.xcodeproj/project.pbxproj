@@ -28,6 +28,12 @@
 		70875FDD2B80E7D8008690EC /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FDC2B80E7D8008690EC /* Quote.swift */; };
 		70875FE12B80E8FD008690EC /* CardFullScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FE02B80E8FD008690EC /* CardFullScreenViewModel.swift */; };
 		70875FE32B810006008690EC /* InfoPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FE22B810006008690EC /* InfoPopupViewModel.swift */; };
+		70875FE52B8107A9008690EC /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FE42B8107A9008690EC /* AlertModel.swift */; };
+		70875FE72B8107D8008690EC /* ComplimentTips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FE62B8107D8008690EC /* ComplimentTips.swift */; };
+		70875FE92B810816008690EC /* Onboardings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FE82B810816008690EC /* Onboardings.swift */; };
+		70875FEB2B810882008690EC /* WriteComplimentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FEA2B810882008690EC /* WriteComplimentViewModel.swift */; };
+		70875FED2B8108B2008690EC /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FEC2B8108B2008690EC /* OnboardingViewModel.swift */; };
+		70875FEF2B81090A008690EC /* TipSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FEE2B81090A008690EC /* TipSheetView.swift */; };
 		70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */; };
 		70B8FBA82A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */; };
 		70BD12BF2A3F066600BF252F /* ArchivingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BD12BE2A3F066600BF252F /* ArchivingConstants.swift */; };
@@ -89,6 +95,12 @@
 		70875FDC2B80E7D8008690EC /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		70875FE02B80E8FD008690EC /* CardFullScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFullScreenViewModel.swift; sourceTree = "<group>"; };
 		70875FE22B810006008690EC /* InfoPopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopupViewModel.swift; sourceTree = "<group>"; };
+		70875FE42B8107A9008690EC /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
+		70875FE62B8107D8008690EC /* ComplimentTips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplimentTips.swift; sourceTree = "<group>"; };
+		70875FE82B810816008690EC /* Onboardings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboardings.swift; sourceTree = "<group>"; };
+		70875FEA2B810882008690EC /* WriteComplimentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteComplimentViewModel.swift; sourceTree = "<group>"; };
+		70875FEC2B8108B2008690EC /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		70875FEE2B81090A008690EC /* TipSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipSheetView.swift; sourceTree = "<group>"; };
 		70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ComplimentEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ComplimentEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		70B9BFDB2A44B9E700F2DDC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -142,6 +154,8 @@
 			children = (
 				AE2CB0342AA0590200D6AD65 /* MainView */,
 				51D817172A08E59F00B84E6A /* WriteComplimentView.swift */,
+				70875FEA2B810882008690EC /* WriteComplimentViewModel.swift */,
+				70875FEE2B81090A008690EC /* TipSheetView.swift */,
 				A93728C52A0F6DCD00C79C04 /* Onboard */,
 				70C797722A042FF400E2E3AF /* CardView */,
 				FBB8CFD72A0B836E00210F90 /* ArchivingView */,
@@ -166,6 +180,9 @@
 			isa = PBXGroup;
 			children = (
 				70875FDC2B80E7D8008690EC /* Quote.swift */,
+				70875FE42B8107A9008690EC /* AlertModel.swift */,
+				70875FE62B8107D8008690EC /* ComplimentTips.swift */,
+				70875FE82B810816008690EC /* Onboardings.swift */,
 				70875F522B7C4DF6008690EC /* CoreData */,
 				70815E7F2A08950900DBE5B0 /* ChingguModel.xcdatamodeld */,
 			);
@@ -280,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				51887AE62A12232F0015EF88 /* OnboardingView.swift */,
+				70875FEC2B8108B2008690EC /* OnboardingViewModel.swift */,
 				A93729642A0F6E3600C79C04 /* onboardLottie */,
 			);
 			path = Onboard;
@@ -500,12 +518,14 @@
 				AE2CB0382AA0859600D6AD65 /* Weekday+Today.swift in Sources */,
 				70875FE12B80E8FD008690EC /* CardFullScreenViewModel.swift in Sources */,
 				FBB8CFD92A0B908E00210F90 /* ArchivingCard.swift in Sources */,
+				70875FE92B810816008690EC /* Onboardings.swift in Sources */,
 				70C7977B2A04357F00E2E3AF /* CardView.swift in Sources */,
 				70875FD22B80DE01008690EC /* TowardsButtonDirection.swift in Sources */,
 				70BD12BF2A3F066600BF252F /* ArchivingConstants.swift in Sources */,
 				AE2CB0362AA059A300D6AD65 /* GameScene.swift in Sources */,
 				70C7977D2A04357F00E2E3AF /* CardPopupView.swift in Sources */,
 				70C7977C2A04357F00E2E3AF /* CardFullScreenView.swift in Sources */,
+				70875FE52B8107A9008690EC /* AlertModel.swift in Sources */,
 				70875FD92B80E442008690EC /* CardViewConstants.swift in Sources */,
 				70D706062A0FFFF0001D9203 /* Popup.swift in Sources */,
 				51887AE72A12232F0015EF88 /* OnboardingView.swift in Sources */,
@@ -514,6 +534,9 @@
 				AE9537702A12245E00C6F5FF /* InfoPopupView.swift in Sources */,
 				70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */,
 				51D817182A08E59F00B84E6A /* WriteComplimentView.swift in Sources */,
+				70875FEF2B81090A008690EC /* TipSheetView.swift in Sources */,
+				70875FEB2B810882008690EC /* WriteComplimentViewModel.swift in Sources */,
+				70875FE72B8107D8008690EC /* ComplimentTips.swift in Sources */,
 				AE37D5452A063BD3009B0F56 /* MainView.swift in Sources */,
 				70B8FBA82A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift in Sources */,
 				AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */,
@@ -521,6 +544,7 @@
 				70385ED12A07DFEE001CDAB0 /* Color+Asset.swift in Sources */,
 				70875FDD2B80E7D8008690EC /* Quote.swift in Sources */,
 				70875F582B7C5E3A008690EC /* ComplimentViewModel.swift in Sources */,
+				70875FED2B8108B2008690EC /* OnboardingViewModel.swift in Sources */,
 				70385EDA2A07E60B001CDAB0 /* Date+FormatWithDot.swift in Sources */,
 				70815E812A08950900DBE5B0 /* Persistence.swift in Sources */,
 				70875F542B7C51E3008690EC /* CoreDataManager.swift in Sources */,
