@@ -256,6 +256,19 @@ struct MainView: View {
 						}
                         .disabled(isCompliment)
                         .disabled(complimentsInGroup.count == 7)
+                        //테스트용
+                        HStack {
+                            Button {
+                                CoreDataManager.shared.testAddCompliment()
+                            } label: {
+                                Text("테스트 칭찬 추가")
+                            }
+                            Button {
+                                CoreDataManager.shared.testResetCoreData()
+                            } label: {
+                                Text("초기화")
+                            }
+                        }
 					}
                     
 					Color.clear

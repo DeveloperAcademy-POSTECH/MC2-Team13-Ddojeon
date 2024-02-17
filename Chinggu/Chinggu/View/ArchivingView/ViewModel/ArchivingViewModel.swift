@@ -5,10 +5,11 @@
 //  Created by Junyoo on 2/14/24.
 //
 
-import Foundation
+import SwiftUI
 import CoreData
 
 final class ArchivingViewModel: ObservableObject {
+    @AppStorage("group") var groupOrder: Int = 1
     @Published var compliments: [ComplimentEntity] = []
 
     init() {

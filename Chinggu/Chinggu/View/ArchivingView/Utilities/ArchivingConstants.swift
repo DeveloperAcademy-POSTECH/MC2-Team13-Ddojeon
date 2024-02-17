@@ -62,4 +62,8 @@ extension ArchivingDetailView {
 	enum ButtonStyle {
 		static let buttonCornerRadius: CGFloat = 15
 	}
+    
+    enum RectangleStyle {
+        static let roundedRectangleRadius: CGFloat = 15
+    }
 }

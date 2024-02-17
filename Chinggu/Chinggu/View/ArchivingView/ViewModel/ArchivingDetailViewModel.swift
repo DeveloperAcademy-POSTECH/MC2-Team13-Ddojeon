@@ -35,7 +35,7 @@ final class ArchivingDetailViewModel: ObservableObject {
         }
     }
     
-    func isButtonDisabled(direction: ButtonDirection) -> Bool {
+    func isButtonDisabled(direction: TowardsButtonDirection) -> Bool {
         switch direction {
         case .forward:
             return complimentOrder >= allComplimentsCount

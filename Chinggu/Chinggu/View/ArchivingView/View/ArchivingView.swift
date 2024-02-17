@@ -9,13 +9,11 @@ import SwiftUI
 
 struct ArchivingView: View {
     @StateObject var viewModel = ArchivingViewModel()
-    @Environment(\.dismiss) private var dismiss
-    @AppStorage("group") var groupOrder: Int = 1
     
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                if groupOrder > 1 {
+                if viewModel.groupOrder > 1 {
                     listView
                 } else {
                     NoComplimentsBoxView()
@@ -32,7 +30,7 @@ struct ArchivingView: View {
     
     private var listView: some View {
         VStack(alignment: .leading) {
-            Text("\(groupOrder - 1)번의 상자를 열었고\n\(viewModel.compliments.count)번 칭찬했어요")
+            Text("\(viewModel.groupOrder - 1)번의 상자를 열었고\n\(viewModel.compliments.count)번 칭찬했어요")
                 .font(.title3)
                 .fontWeight(.bold)
                 .padding(.leading)
@@ -47,7 +45,7 @@ struct ArchivingView: View {
     }
     
     private var complimentsSection: some View {
-        ForEach((1..<groupOrder).reversed(), id: \.self) { index in
+        ForEach((1..<viewModel.groupOrder).reversed(), id: \.self) { index in
             Section(header: Text("\(index)번째 상자")) {
                 ForEach(viewModel.filterComplimentsInGroup(by: index)) { compliment in
                     complimentRow(for: compliment)

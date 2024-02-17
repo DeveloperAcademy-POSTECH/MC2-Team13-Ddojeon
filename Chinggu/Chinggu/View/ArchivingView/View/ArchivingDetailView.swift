@@ -34,7 +34,7 @@ struct ArchivingDetailView: View {
                         .foregroundColor(.black.opacity(0.3))
                         .padding()
                         .overlay(
-                            RoundedRectangle(cornerRadius: 15)
+                            RoundedRectangle(cornerRadius: RectangleStyle.roundedRectangleRadius)
                                 .fill(Color("oll").opacity(0.1))
                         )
                     
@@ -52,7 +52,7 @@ struct ArchivingDetailView: View {
 
 struct TowardsButton: View {
     @ObservedObject var viewModel: ArchivingDetailViewModel
-    let direction: ButtonDirection
+    let direction: TowardsButtonDirection
 
 	var body: some View {
 		Button {
@@ -74,17 +74,3 @@ struct TowardsButton: View {
         .disabled(viewModel.isButtonDisabled(direction: direction))
 	}
 }
-
-enum ButtonDirection {
-    case forward
-    case backward
-}
-
-
-//struct ArchivingDetailView_Previews: PreviewProvider {
-//	static var previews: some View {
-//        ArchivingDetailView(viewModel: ArchivingDetailViewModel(compliment: compliment))
-//			.previewDevice("iPhone SE (3rd generation)")
-//	}
-//}
-
