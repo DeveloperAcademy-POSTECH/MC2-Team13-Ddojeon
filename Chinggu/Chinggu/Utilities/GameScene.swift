@@ -5,11 +5,10 @@
 //  Created by Sebin Kwon on 2023/08/31.
 //
 
-import SwiftUI
 import SpriteKit
 import CoreMotion
 
-class GameScene: SKScene {
+class GameScene: SKScene, ComplimentBoxController {
     var boxes: [SKSpriteNode] = []
     var complimentCount = 0
     
@@ -32,14 +31,14 @@ class GameScene: SKScene {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 for i in 0..<self.complimentCount {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2 * Double(i)) {
-                        self.addBox(at: CGPoint(x: UIScreen.main.bounds.width / 2,
+                        self.addCompliment(at: CGPoint(x: UIScreen.main.bounds.width / 2,
                                                 y: UIScreen.main.bounds.height / 2.5))
                     }
                 }
             }
     }
     
-    func addBox(at position: CGPoint) {
+    func addCompliment(at position: CGPoint) {
         // 이미지가 랜덤으로 나오는 것
         HapticManager.instance.notification(type: .warning)
         
@@ -53,7 +52,7 @@ class GameScene: SKScene {
         boxes.append(box)
     }
     
-    func resetBoxes() {
+    func resetCompliment() {
         for box in boxes {
             let fadeOut = SKAction.fadeOut(withDuration: 1.0)
             let remove = SKAction.removeFromParent()

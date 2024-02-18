@@ -66,7 +66,7 @@ final class MainViewModel: ObservableObject {
     }
     
     func openComplimentBox() {
-        scene.resetBoxes()
+        scene.resetCompliment()
         scene.complimentCount = 0
         selectedWeekdayTimeInterval = nextWeekdayDate(selectedWeekday)
     }
@@ -114,7 +114,7 @@ final class MainViewModel: ObservableObject {
     func prepareScene(width: CGFloat, height: CGFloat) {
         if complimentsInGroupCount > scene.complimentCount {
             let boxPosition = CGPoint(x: scene.size.width / 2, y: scene.size.height - 50)
-            scene.addBox(at: boxPosition)
+            scene.addCompliment(at: boxPosition)
             if canBreakBoxes {
                 shake = 4
             }
