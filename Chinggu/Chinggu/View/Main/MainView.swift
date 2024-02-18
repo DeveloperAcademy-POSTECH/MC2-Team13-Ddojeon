@@ -32,27 +32,15 @@ struct MainView: View {
                         
                         //MARK: 칭찬 저금통
                         buildComplimentBox(width: width, height: height)
-
+                        
                         buildFooter
                         
                         Spacer()
                         
                         buildComplimentButton(width: width)
-                        HStack {
-                            Button {
-                                CoreDataManager.shared.testAddCompliment()
-                                viewModel.isfirst = false
-                            } label: {
-                                Text("7개추가")
-                            }
-
-                            Button {
-                                CoreDataManager.shared.testResetCoreData()
-                                viewModel.isCompliment = false
-                            } label: {
-                                Text("초기화")
-                            }
-                        }
+                        #if DEBUG
+                        buildDebugButtons
+                        #endif
                     }
                     
                     buildPopupView
@@ -62,7 +50,7 @@ struct MainView: View {
                     viewModel.updateCanBreakBoxes()
                 }
                 .onAppear {
-                    let allComplimentsCount = CoreDataManager.shared.fetchAllCompliments().count
+                    let allComplimentsCount = viewModel.complimentsInGroupCount
                     viewModel.updateComplimentsGroupCount()
                     // 최초 칭찬 작성 시 안내 팝업
                     if allComplimentsCount == 1, viewModel.isfirst == true {
@@ -239,6 +227,25 @@ struct MainView: View {
             .popup(isPresented: $showInfoPopup) {
                 InfoPopupView(showInfoPopup: $showInfoPopup)
             }
+    }
+    
+    private var buildDebugButtons: some View {
+        HStack {
+            Button {
+                CoreDataManager.shared.testAddCompliment()
+                viewModel.isfirst = false
+            } label: {
+                Text("7개추가")
+            }
+
+            Button {
+                CoreDataManager.shared.testResetCoreData()
+                CoreDataManager.shared.resetDatabase()
+                viewModel.isCompliment = false
+            } label: {
+                Text("초기화")
+            }
+        }
     }
 }
 

@@ -28,6 +28,12 @@ final class MainViewModel: ObservableObject {
         }
     }
     
+    let dataController: ComplimentDataController
+    
+    init(dataController: ComplimentDataController = CoreDataManager.shared) {
+        self.dataController = dataController
+    }
+    
     var weekdayActionButtons: [ActionSheet.Button] {
         var buttons = Weekday.allCases.map { weekday -> ActionSheet.Button? in
             if selectedWeekday == weekday.rawValue {
@@ -50,7 +56,7 @@ final class MainViewModel: ObservableObject {
     }
     
     func updateComplimentsGroupCount() {
-        complimentsInGroupCount = CoreDataManager.shared.fetchComplimentsInGroup(Int16(groupOrder)).count
+        complimentsInGroupCount = dataController.fetchComplimentsInGroup(Int16(groupOrder)).count
     }
     
     func toggleShowActionSheet() {

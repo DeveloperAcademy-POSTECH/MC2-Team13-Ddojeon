@@ -32,7 +32,7 @@ struct CardFullScreenView: View {
         .ignoresSafeArea()
         .background(Color.ddoPrimary)
         .matchedGeometryEffect(id: "background", in: namespace)
-        .onAppear(perform: viewModel.fetchWeeklyCompliment)
+//        .onAppear(perform: viewModel.fetchWeeklyCompliment)
     }
     
     private var buildImage: some View {

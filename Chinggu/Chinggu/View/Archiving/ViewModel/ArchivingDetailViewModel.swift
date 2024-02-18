@@ -10,11 +10,13 @@ import Foundation
 final class ArchivingDetailViewModel: ObservableObject {
     @Published var compliment: ComplimentEntity?
     @Published var complimentOrder: Int16
+    private var dataController: ComplimentDataController
     private var allComplimentsCount: Int16 {
-        CoreDataManager.shared.fetchComplimentsCount()
+        dataController.fetchLatestOrder()
     }
     
-    init(compliment: ComplimentEntity) {
+    init(compliment: ComplimentEntity, dataController: ComplimentDataController = CoreDataManager.shared) {
+        self.dataController = dataController
         self.compliment = compliment
         self.complimentOrder = compliment.order
         loadCompliment()
@@ -44,6 +46,6 @@ final class ArchivingDetailViewModel: ObservableObject {
     }
     
     func loadCompliment() {
-        self.compliment = CoreDataManager.shared.fetchCompliment(order: complimentOrder)
+        self.compliment = dataController.fetchCompliment(order: complimentOrder)
     }
 }

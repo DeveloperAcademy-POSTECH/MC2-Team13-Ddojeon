@@ -11,19 +11,22 @@ import CoreData
 final class ArchivingViewModel: ObservableObject {
     @AppStorage("group") var groupOrder: Int = 1
     @Published var compliments: [ComplimentEntity] = []
+    
+    let dataController: ComplimentDataController
 
-    init() {
+    init(dataController: ComplimentDataController = CoreDataManager.shared) {
+        self.dataController = dataController
         fetchCompliments()
     }
 
     func fetchCompliments() {
-        self.compliments = CoreDataManager.shared.fetchAllCompliments()
+        self.compliments = dataController.fetchAllCompliments()
     }
 
     func deleteCompliments(at offsets: IndexSet) {
         offsets.forEach { index in
             let compliment = compliments[index]
-            CoreDataManager.shared.deleteCompliment(compliment: compliment)
+            dataController.deleteCompliment(compliment: compliment)
         }
         fetchCompliments()
     }

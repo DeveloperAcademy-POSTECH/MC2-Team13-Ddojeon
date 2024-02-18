@@ -13,9 +13,15 @@ class WriteComplimentViewModel: ObservableObject {
     @Published var writingContent = ""
     @AppStorage("isCompliment") private var isCompliment = false
     @AppStorage("group") var groupOrder: Int = 1
+    
+    private let dataController: ComplimentDataController
+    
+    init(dataController: ComplimentDataController = CoreDataManager.shared) {
+        self.dataController = dataController
+    }
 
     func saveCompliment() {
-        CoreDataManager.shared.addCompliment(complimentText: writingContent, groupID: Int16(groupOrder))
+        dataController.addCompliment(complimentText: writingContent, groupID: Int16(groupOrder))
         isCompliment = true
     }
 }

@@ -17,12 +17,16 @@ final class CardFullScreenViewModel: ObservableObject {
     @Published var groupStartEndDates: String = ""
     @Published var randomQuote: Quote
     
-    init() {
+    private let dataController: ComplimentDataController
+    
+    init(dataController: ComplimentDataController = CoreDataManager.shared) {
+        self.dataController = dataController
         self.randomQuote = Quote.Quotes.randomElement() ?? Quote(text: "한주간 고생했어요!", speaker: "칭구")
+        fetchWeeklyCompliment()
     }
     
     func fetchWeeklyCompliment() {
-        complimentsInGroup = CoreDataManager.shared.fetchComplimentsInGroup(Int16(groupOrder))
+        complimentsInGroup = dataController.fetchComplimentsInGroup(Int16(groupOrder))
         if let minDate = complimentsInGroup.first?.createDate,
            let maxDate = complimentsInGroup.last?.createDate {
             let start = minDate.formatWithDot()

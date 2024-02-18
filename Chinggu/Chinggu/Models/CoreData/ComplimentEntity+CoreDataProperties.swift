@@ -40,7 +40,7 @@ extension ComplimentEntity : Identifiable {
 }
 
 extension ComplimentEntity {
-    static func add(to context: NSManagedObjectContext, complimentText: String, groupID: Int16) -> ComplimentEntity {
+    static func add(to context: NSManagedObjectContext, complimentText: String, groupID: Int16) {
         let order = CoreDataManager.shared.fetchLatestOrder() + 1
         let compliment = ComplimentEntity(context: context)
         compliment.compliment = complimentText
@@ -48,8 +48,6 @@ extension ComplimentEntity {
         compliment.order = order
         compliment.id = UUID()
         compliment.groupID = groupID
-        
-        return compliment
     }
     
     func update(withNewText newText: String) {

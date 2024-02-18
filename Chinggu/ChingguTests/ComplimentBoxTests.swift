@@ -25,7 +25,7 @@ final class ComplimentBoxTests: XCTestCase {
         
         sut.addCompliment(at: position)
         
-        XCTAssertEqual(sut.complimentCount, initialCount + 1, "well add done")
+        XCTAssertEqual(sut.complimentCount, initialCount + 1)
     }
 
     func testResetBoxes() {
@@ -36,6 +36,6 @@ final class ComplimentBoxTests: XCTestCase {
 
         sut.resetCompliment()
         
-        XCTAssertEqual(sut.complimentCount, 0, "well reset done")
+        XCTAssertEqual(sut.complimentCount, 0)
     }
 }

@@ -5,7 +5,6 @@
 //  Created by Junyoo on 2/14/24.
 //
 
-import Foundation
 import SwiftUI
 import CoreData
 
@@ -37,25 +36,11 @@ class CoreDataManager {
             context.rollback()
         }
     }
-
-    func fetchLatestOrder() -> Int16 {
-        let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
-        fetchRequest.fetchLimit = 1
-
-        do {
-            let lastCompliment = try context.fetch(fetchRequest).first
-            return lastCompliment?.order ?? 0
-        } catch {
-            print("Failed to fetch last order: \(error)")
-            return 0
-        }
-    }
 }
 
-extension CoreDataManager {
+extension CoreDataManager: ComplimentDataController {
     func addCompliment(complimentText: String, groupID: Int16) {
-        let newCompliment = ComplimentEntity.add(to: context, complimentText: complimentText, groupID: groupID)
+        ComplimentEntity.add(to: context, complimentText: complimentText, groupID: groupID)
         saveContext()
     }
     
@@ -72,7 +57,7 @@ extension CoreDataManager {
                 complimentToUpdate.order -= 1
             }
         } catch {
-            print("Failed to fetch compliments to delete: \(error)")
+            print("deleteCompliment Error: \(error)")
         }
 
         saveContext()
@@ -86,7 +71,7 @@ extension CoreDataManager {
             let compliments = try context.fetch(fetchRequest)
             return compliments
         } catch {
-            print("Fail to fetch all compliments \(error)")
+            print("fetchAllCompliments Error: \(error)")
             return []
         }
     }
@@ -111,43 +96,22 @@ extension CoreDataManager {
             let count = try context.count(for: fetchRequest)
             return Int16(count)
         } catch {
-            print("Error fetching count: \(error)")
+            print("fetchComplimentsCount Error: \(error)")
             return 0
         }
     }
-}
+    
+    func fetchLatestOrder() -> Int16 {
+        let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ComplimentEntity.order, ascending: false)]
+        fetchRequest.fetchLimit = 1
 
-extension CoreDataManager {
-    func testAddCompliment() {
-        let viewContext = container.viewContext
-        
-        for order in 1...7 {
-            let newCompliment = ComplimentEntity(context: viewContext)
-            let minusday = -1 * (order - 1)
-            if let date = Calendar.current.date(byAdding: .day, value: minusday, to: Date()) {
-                newCompliment.createDate = date
-            }
-            newCompliment.compliment = "테스트 칭찬 \(8 - order)"
-            newCompliment.groupID = Int16(groupOrder)
-            newCompliment.order = Int16(8 - order)
-            newCompliment.id = UUID()
-        }
-        groupOrder += 1
-        saveContext()
-    }
-        
-    func testResetCoreData() {
-        let viewContext = container.viewContext
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = ComplimentEntity.fetchRequest()
-        
-        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
         do {
-            try viewContext.execute(batchDeleteRequest)
-            groupOrder = 1
-            saveContext()
-        } catch let error as NSError {
-            print("Core Data 초기화 실패: \(error), \(error.userInfo)")
+            let lastCompliment = try context.fetch(fetchRequest).first
+            return lastCompliment?.order ?? 0
+        } catch {
+            print("Failed to fetch last order: \(error)")
+            return 0
         }
     }
 }
