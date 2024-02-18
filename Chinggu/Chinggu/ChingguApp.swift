@@ -16,6 +16,7 @@ struct ChingguApp: App {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, coreDataManager.container.viewContext)
+                .environment(\.colorScheme, .light)
         }
     }
 }

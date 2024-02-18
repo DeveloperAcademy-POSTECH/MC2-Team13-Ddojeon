@@ -22,6 +22,7 @@ extension Color {
     static let ddoSheet8 = Color("ddoTip8")
     static let ddoSheet9 = Color("ddoTip9")
     static let ddoSheet10 = Color("ddoTip10")
+    static let lightgray = Color(red: 0.85, green: 0.85, blue: 0.85)
 }
  
 extension Color {

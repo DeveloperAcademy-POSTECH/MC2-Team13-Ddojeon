@@ -10,12 +10,12 @@ import SpriteKit
 import CoreMotion
 
 class GameScene: SKScene {
-    @AppStorage("isCompliment") private var isCompliment = false
     var boxes: [SKSpriteNode] = []
     var complimentCount = 0
-    let motionManager = CMMotionManager()
-    var background = SKSpriteNode(imageNamed: "boxBackground")
+    
     override func didMove(to view: SKView) {
+        let background = SKSpriteNode(imageNamed: "boxBackground")
+        let motionManager = CMMotionManager()
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
             
         motionManager.deviceMotionUpdateInterval = 0.1

@@ -33,6 +33,8 @@
 		70875FEB2B810882008690EC /* WriteComplimentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FEA2B810882008690EC /* WriteComplimentViewModel.swift */; };
 		70875FED2B8108B2008690EC /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FEC2B8108B2008690EC /* OnboardingViewModel.swift */; };
 		70875FEF2B81090A008690EC /* TipSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FEE2B81090A008690EC /* TipSheetView.swift */; };
+		70875FF42B818A57008690EC /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FF32B818A57008690EC /* MainViewModel.swift */; };
+		70875FF62B81A5AB008690EC /* ShakeEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875FF52B81A5AB008690EC /* ShakeEffect.swift */; };
 		70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */; };
 		70B8FBA82A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */; };
 		70BD12BF2A3F066600BF252F /* ArchivingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BD12BE2A3F066600BF252F /* ArchivingConstants.swift */; };
@@ -99,9 +101,11 @@
 		70875FEA2B810882008690EC /* WriteComplimentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteComplimentViewModel.swift; sourceTree = "<group>"; };
 		70875FEC2B8108B2008690EC /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		70875FEE2B81090A008690EC /* TipSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipSheetView.swift; sourceTree = "<group>"; };
+		70875FF32B818A57008690EC /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		70875FF52B81A5AB008690EC /* ShakeEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeEffect.swift; sourceTree = "<group>"; };
 		70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ComplimentEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ComplimentEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		70B9BFDB2A44B9E700F2DDC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		70B9BFDB2A44B9E700F2DDC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70BD12BE2A3F066600BF252F /* ArchivingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivingConstants.swift; sourceTree = "<group>"; };
 		70C797782A04357F00E2E3AF /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		70C797792A04357F00E2E3AF /* CardFullScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardFullScreenView.swift; sourceTree = "<group>"; };
@@ -150,11 +154,11 @@
 		701094A72A0FF83C0019DEED /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AE2CB0342AA0590200D6AD65 /* MainView */,
+				AE2CB0342AA0590200D6AD65 /* Main */,
 				A93728C52A0F6DCD00C79C04 /* Onboard */,
 				70875FF02B810A33008690EC /* WriteCompliment */,
-				70C797722A042FF400E2E3AF /* CardView */,
-				FBB8CFD72A0B836E00210F90 /* ArchivingView */,
+				70C797722A042FF400E2E3AF /* Card */,
+				FBB8CFD72A0B836E00210F90 /* Archiving */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -165,6 +169,7 @@
 				70E68F132A0A95FD00258A10 /* LottieView.swift */,
 				AE2CB02D2A9F705F00D6AD65 /* Weekday.swift */,
 				AE2CB0322AA056B300D6AD65 /* HapticManager.swift */,
+				AE2CB0312A9F72E000D6AD65 /* Extensions */,
 				70875FDB2B80E667008690EC /* Modifiers */,
 				70385ED22A07E00F001CDAB0 /* Color.xcassets */,
 				AE37D5382A039606009B0F56 /* Assets.xcassets */,
@@ -244,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				70D706052A0FFFF0001D9203 /* Popup.swift */,
+				70875FF52B81A5AB008690EC /* ShakeEffect.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -295,7 +301,7 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		70C797722A042FF400E2E3AF /* CardView */ = {
+		70C797722A042FF400E2E3AF /* Card */ = {
 			isa = PBXGroup;
 			children = (
 				70875FDE2B80E817008690EC /* View */,
@@ -303,7 +309,7 @@
 				70875FDA2B80E621008690EC /* Utilities */,
 				70E68F102A0A904200258A10 /* CardLottie */,
 			);
-			path = CardView;
+			path = Card;
 			sourceTree = "<group>";
 		};
 		70E68F102A0A904200258A10 /* CardLottie */ = {
@@ -347,13 +353,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		AE2CB0342AA0590200D6AD65 /* MainView */ = {
+		AE2CB0342AA0590200D6AD65 /* Main */ = {
 			isa = PBXGroup;
 			children = (
 				AE37D5442A063BD3009B0F56 /* MainView.swift */,
+				70875FF32B818A57008690EC /* MainViewModel.swift */,
 				AE2CB0352AA059A300D6AD65 /* GameScene.swift */,
 			);
-			path = MainView;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		AE37D5282A039605009B0F56 = {
@@ -377,7 +384,6 @@
 		AE37D5332A039605009B0F56 /* Chinggu */ = {
 			isa = PBXGroup;
 			children = (
-				AE2CB0312A9F72E000D6AD65 /* Extensions */,
 				70B9BFDB2A44B9E700F2DDC7 /* Info.plist */,
 				AE37D5342A039605009B0F56 /* ChingguApp.swift */,
 				AE37D5362A039605009B0F56 /* ContentView.swift */,
@@ -397,14 +403,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		FBB8CFD72A0B836E00210F90 /* ArchivingView */ = {
+		FBB8CFD72A0B836E00210F90 /* Archiving */ = {
 			isa = PBXGroup;
 			children = (
 				70875FD52B80DEC2008690EC /* View */,
 				70875FD42B80DEB4008690EC /* ViewModel */,
 				70875FD32B80DE9C008690EC /* Utilities */,
 			);
-			path = ArchivingView;
+			path = Archiving;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -546,6 +552,7 @@
 				AE2CB0362AA059A300D6AD65 /* GameScene.swift in Sources */,
 				70C7977D2A04357F00E2E3AF /* CardPopupView.swift in Sources */,
 				70C7977C2A04357F00E2E3AF /* CardFullScreenView.swift in Sources */,
+				70875FF62B81A5AB008690EC /* ShakeEffect.swift in Sources */,
 				70875FE52B8107A9008690EC /* AlertModel.swift in Sources */,
 				70875FD92B80E442008690EC /* CardViewConstants.swift in Sources */,
 				70D706062A0FFFF0001D9203 /* Popup.swift in Sources */,
@@ -568,6 +575,7 @@
 				70385EDA2A07E60B001CDAB0 /* Date+FormatWithDot.swift in Sources */,
 				70815E812A08950900DBE5B0 /* Persistence.swift in Sources */,
 				70875F542B7C51E3008690EC /* CoreDataManager.swift in Sources */,
+				70875FF42B818A57008690EC /* MainViewModel.swift in Sources */,
 				70E68F142A0A95FD00258A10 /* LottieView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
