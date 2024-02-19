@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-final class MainViewModel: ObservableObject {
+final class MainViewModel: ObservableObject, DataErrorHandler {
     @Published var complimentBox = ComplimentBox()
     @Published var complimentsInGroupCount: Int = 0
     @Published var showActionSheet: Bool = false
@@ -15,6 +15,8 @@ final class MainViewModel: ObservableObject {
     @Published var showBreakAlert: Bool = false
     @Published var tempSeletedWeekday: Weekday = .monday
     @Published var shake = 0.0
+    @Published var errorDescription: String = ""
+    @Published var showErrorAlert: Bool = false
 
     private let dataController: ComplimentDataController
     private let dateManager: DateCalculable
@@ -51,7 +53,11 @@ final class MainViewModel: ObservableObject {
     }
     
     @MainActor func updateComplimentsGroupCount() {
-        complimentsInGroupCount = dataController.fetchComplimentsInGroup(Int16(userRepository.groupOrder)).count
+        do {
+            complimentsInGroupCount = try dataController.fetchComplimentsInGroup(Int16(userRepository.groupOrder)).count
+        } catch {
+            handleError(error)
+        }
     }
     
     func toggleShowActionSheet() {

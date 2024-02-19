@@ -59,7 +59,9 @@ struct MainView: View {
                         }
                     }
                 }
-                
+                .alert(isPresented: $viewModel.showErrorAlert) {
+                    Alert(title: Text("에러"), message: Text(viewModel.errorDescription), dismissButton: .default(Text("확인")))
+                }
             }
         }
     }
@@ -233,7 +235,6 @@ struct MainView: View {
         HStack {
             Button {
                 CoreDataManager.shared.testAddCompliment()
-                viewModel.userRepository.isfirst = false
             } label: {
                 Text("7개 아카이빙에 추가")
             }

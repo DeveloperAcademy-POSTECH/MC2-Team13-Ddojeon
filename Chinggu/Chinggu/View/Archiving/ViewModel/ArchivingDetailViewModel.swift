@@ -7,19 +7,21 @@
 
 import Foundation
 
-final class ArchivingDetailViewModel: ObservableObject {
+final class ArchivingDetailViewModel: ObservableObject, DataErrorHandler {
     @Published var compliment: ComplimentEntity?
     @Published var complimentOrder: Int16
+    @Published var errorDescription: String = ""
+    @Published var showErrorAlert: Bool = false
+    
     private var dataController: ComplimentDataController
-    private var allComplimentsCount: Int16 {
-        dataController.fetchLatestOrder()
-    }
+    private var allComplimentsCount: Int16 = 0
     
     init(compliment: ComplimentEntity,
          dataController: ComplimentDataController = CoreDataManager.shared) {
         self.dataController = dataController
         self.compliment = compliment
         self.complimentOrder = compliment.order
+        loadComplimentsCount()
         loadCompliment()
     }
     
@@ -47,6 +49,18 @@ final class ArchivingDetailViewModel: ObservableObject {
     }
     
     func loadCompliment() {
-        self.compliment = dataController.fetchCompliment(order: complimentOrder)
+        do {
+            self.compliment = try dataController.fetchCompliment(order: complimentOrder)
+        } catch {
+            handleError(error)
+        }
+    }
+    
+    private func loadComplimentsCount() {
+        do {
+            self.allComplimentsCount = try dataController.fetchLatestOrder()
+        } catch {
+            handleError(error)
+        }
     }
 }

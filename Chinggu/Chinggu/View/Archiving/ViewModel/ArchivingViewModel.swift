@@ -8,8 +8,10 @@
 import SwiftUI
 import CoreData
 
-final class ArchivingViewModel: ObservableObject {
+final class ArchivingViewModel: ObservableObject, DataErrorHandler {
     @Published var compliments: [ComplimentEntity] = []
+    @Published var errorDescription: String = ""
+    @Published var showErrorAlert: Bool = false
     
     private let dataController: ComplimentDataController
     let userRepository: UserRepository
@@ -22,13 +24,22 @@ final class ArchivingViewModel: ObservableObject {
     }
 
     func fetchCompliments() {
-        self.compliments = dataController.fetchAllCompliments()
+        do {
+            self.compliments = try dataController.fetchAllCompliments()
+        } catch {
+            handleError(error)
+        }
     }
 
     func deleteCompliments(at offsets: IndexSet) {
         offsets.forEach { index in
             let compliment = compliments[index]
-            dataController.deleteCompliment(compliment: compliment)
+            do {
+                try dataController.deleteCompliment(compliment: compliment)
+                fetchCompliments()
+            } catch {
+                handleError(error)
+            }
         }
         fetchCompliments()
     }

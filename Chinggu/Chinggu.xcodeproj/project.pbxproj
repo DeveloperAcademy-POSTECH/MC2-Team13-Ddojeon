@@ -58,6 +58,7 @@
 		70FDC8E72B8318860029AAB3 /* HapticManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FDC8E62B8318860029AAB3 /* HapticManageable.swift */; };
 		70FDC8EB2B8326900029AAB3 /* AppStorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FDC8EA2B8326900029AAB3 /* AppStorageKeys.swift */; };
 		70FDC8ED2B8346EC0029AAB3 /* DateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FDC8EC2B8346EC0029AAB3 /* DateManagerTests.swift */; };
+		70FDC8F12B83BCC70029AAB3 /* DataErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FDC8F02B83BCC70029AAB3 /* DataErrorHandler.swift */; };
 		A937298B2A0F6E5C00C79C04 /* onboarding_1.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729812A0F6E5C00C79C04 /* onboarding_1.json */; };
 		A937298C2A0F6E5C00C79C04 /* onboarding_3.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729822A0F6E5C00C79C04 /* onboarding_3.json */; };
 		A937298F2A0F6E5C00C79C04 /* onboarding_5.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729852A0F6E5C00C79C04 /* onboarding_5.json */; };
@@ -139,6 +140,7 @@
 		70FDC8E62B8318860029AAB3 /* HapticManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManageable.swift; sourceTree = "<group>"; };
 		70FDC8EA2B8326900029AAB3 /* AppStorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorageKeys.swift; sourceTree = "<group>"; };
 		70FDC8EC2B8346EC0029AAB3 /* DateManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerTests.swift; sourceTree = "<group>"; };
+		70FDC8F02B83BCC70029AAB3 /* DataErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataErrorHandler.swift; sourceTree = "<group>"; };
 		A93729812A0F6E5C00C79C04 /* onboarding_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_1.json; sourceTree = "<group>"; };
 		A93729822A0F6E5C00C79C04 /* onboarding_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_3.json; sourceTree = "<group>"; };
 		A93729852A0F6E5C00C79C04 /* onboarding_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_5.json; sourceTree = "<group>"; };
@@ -226,9 +228,9 @@
 				70875F532B7C51E3008690EC /* CoreDataManager.swift */,
 				70FDC8DA2B82EF3F0029AAB3 /* ComplimentDataController */,
 				70FDC8DB2B82EF700029AAB3 /* Entities */,
+				70FDC8EF2B83BCA50029AAB3 /* Error */,
 				70815E7E2A08950900DBE5B0 /* Persistence.swift */,
 				70875FFB2B8206CD008690EC /* CoreDataManager+Test.swift */,
-				70FDC8D62B82EE270029AAB3 /* DataControllerError.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -407,6 +409,15 @@
 				70FDC8EA2B8326900029AAB3 /* AppStorageKeys.swift */,
 			);
 			path = UserRepository;
+			sourceTree = "<group>";
+		};
+		70FDC8EF2B83BCA50029AAB3 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				70FDC8D62B82EE270029AAB3 /* DataControllerError.swift */,
+				70FDC8F02B83BCC70029AAB3 /* DataErrorHandler.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		A93728C52A0F6DCD00C79C04 /* Onboard */ = {
@@ -629,6 +640,7 @@
 				70875FD02B808582008690EC /* ArchivingDetailViewModel.swift in Sources */,
 				AE2CB0332AA056B300D6AD65 /* HapticManager.swift in Sources */,
 				FB6D0BCB2A0A35AD00220360 /* ArchivingDetailView.swift in Sources */,
+				70FDC8F12B83BCC70029AAB3 /* DataErrorHandler.swift in Sources */,
 				AE2CB02E2A9F705F00D6AD65 /* Weekday.swift in Sources */,
 				70875FD72B80E24B008690EC /* CardViewModel.swift in Sources */,
 				AE37D5372A039605009B0F56 /* ContentView.swift in Sources */,

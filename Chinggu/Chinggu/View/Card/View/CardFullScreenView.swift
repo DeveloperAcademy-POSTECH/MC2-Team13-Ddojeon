@@ -32,7 +32,9 @@ struct CardFullScreenView: View {
         .ignoresSafeArea()
         .background(Color.ddoPrimary)
         .matchedGeometryEffect(id: "background", in: namespace)
-//        .onAppear(perform: viewModel.fetchWeeklyCompliment)
+        .alert(isPresented: $viewModel.showErrorAlert) {
+            Alert(title: Text("에러"), message: Text(viewModel.errorDescription), dismissButton: .default(Text("확인")))
+        }
     }
     
     private var buildImage: some View {

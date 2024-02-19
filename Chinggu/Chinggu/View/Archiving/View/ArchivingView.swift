@@ -26,6 +26,9 @@ struct ArchivingView: View {
         .onAppear {
             viewModel.fetchCompliments()
         }
+        .alert(isPresented: $viewModel.showErrorAlert) {
+            Alert(title: Text("에러"), message: Text(viewModel.errorDescription), dismissButton: .default(Text("확인")))
+        }
     }
     
     private var listView: some View {

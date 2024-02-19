@@ -8,21 +8,32 @@
 import CoreData
 
 extension CoreDataManager {
+    
     func testAddCompliment() {
         let viewContext = container.viewContext
-        let latestorder = CoreDataManager.shared.fetchLatestOrder()
-        for order in 1...7 {
-            let newCompliment = ComplimentEntity(context: viewContext)
-            if let date = Calendar.current.date(byAdding: .day, value: order, to: Date()) {
-                newCompliment.createDate = date
+        do {
+            let latestorder = try CoreDataManager.shared.fetchLatestOrder()
+            for order in 1...7 {
+                let newCompliment = ComplimentEntity(context: viewContext)
+                if let date = Calendar.current.date(byAdding: .day, value: order, to: Date()) {
+                    newCompliment.createDate = date
+                }
+                newCompliment.compliment = "테스트 칭찬 \(order)"
+                newCompliment.groupID = Int16(groupOrder)
+                newCompliment.order = latestorder + Int16(order)
+                newCompliment.id = UUID()
             }
-            newCompliment.compliment = "테스트 칭찬 \(order)"
-            newCompliment.groupID = Int16(groupOrder)
-            newCompliment.order = latestorder + Int16(order)
-            newCompliment.id = UUID()
+            groupOrder += 1
+            saveContext()
+        } catch {
+            fatalError("testAddComplimet 에러: \(error)")
         }
-        groupOrder += 1
-        saveContext()
+    }
+    
+    func addComplimentWithError(complimentText: String, groupID: Int16) throws {
+        if complimentText.isEmpty {
+            throw DataControllerError.saveError
+        }
     }
         
     func testResetCoreData() {
@@ -33,12 +44,11 @@ extension CoreDataManager {
         
         do {
             try viewContext.execute(batchDeleteRequest)
-            groupOrder = 1
             saveContext()
-        } catch let error as NSError {
-            print("testResetCoreData error: \(error), \(error.userInfo)")
+            groupOrder = 1
+        } catch {
+            fatalError("testResetCoreData 에러: \(error)")
         }
-        
     }
     
     func resetDatabase() {

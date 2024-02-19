@@ -17,10 +17,17 @@ struct WriteComplimentView: View {
     private let saveAlert: Alerts = .saveWriting
     @State private var isCancelAlert = false
     @State private var isSaveAlert = false
-
+    
     var body: some View {
         VStack {
             writingView
+            #if DEBUG
+            Button {
+                viewModel.errorTrigger()
+            } label: {
+                Text("에러버튼")
+            }
+            #endif
             Spacer()
             tipView
         }
@@ -34,6 +41,9 @@ struct WriteComplimentView: View {
         .toolbar {
             leftItem
             rightItem
+        }
+        .alert(isPresented: $viewModel.showErrorAlert) {
+            Alert(title: Text("에러"), message: Text(viewModel.errorDescription), dismissButton: .default(Text("확인")))
         }
     }
 

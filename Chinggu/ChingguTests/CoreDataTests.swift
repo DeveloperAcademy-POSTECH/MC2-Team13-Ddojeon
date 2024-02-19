@@ -23,18 +23,18 @@ final class CoreDataTests: XCTestCase {
     }
 
     func testAddCompliment() throws {
-        let initCount = coredataManager.fetchComplimentsInGroup(1).count
+        let initCount = try! coredataManager.fetchComplimentsInGroup(1).count
         
-        coredataManager.addCompliment(complimentText: "칭찬행", groupID: 1)
+        try! coredataManager.addCompliment(complimentText: "칭찬행", groupID: 1)
         
-        let newCount = coredataManager.fetchComplimentsInGroup(1).count
+        let newCount = try! coredataManager.fetchComplimentsInGroup(1).count
         XCTAssertEqual(newCount, initCount + 1)
     }
     
     func testFetchComplimentsIngroup() throws {
-        coredataManager.addCompliment(complimentText: "칭찬", groupID: 3)
+        try! coredataManager.addCompliment(complimentText: "칭찬", groupID: 3)
         
-        let groupCompliments = coredataManager.fetchComplimentsInGroup(3)
+        let groupCompliments = try! coredataManager.fetchComplimentsInGroup(3)
         
         XCTAssertNotEqual(groupCompliments.count, 0)
     }

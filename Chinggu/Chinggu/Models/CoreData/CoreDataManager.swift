@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 
 class CoreDataManager {
-    @AppStorage("group") var groupOrder: Int = 1
+    @AppStorage(AppStorageKeys.groupOrder) var groupOrder: Int = 1
     static let shared = CoreDataManager()
 
     let container: NSPersistentContainer

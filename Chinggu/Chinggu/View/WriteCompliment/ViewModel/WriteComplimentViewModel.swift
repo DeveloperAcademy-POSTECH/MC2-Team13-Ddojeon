@@ -7,10 +7,13 @@
 
 import SwiftUI
 
-class WriteComplimentViewModel: ObservableObject {
+class WriteComplimentViewModel: ObservableObject, DataErrorHandler {
     @Published var categories: [Category] = Categories.allCases.map { Category(title: $0.title,
                                                                                example: $0.example)}
     @Published var writingContent = ""
+    @Published var showErrorAlert = false
+    @Published var errorDescription = ""
+
     
     private let dataController: ComplimentDataController
     private let userRepository: UserRepository
@@ -22,7 +25,19 @@ class WriteComplimentViewModel: ObservableObject {
     }
 
     func saveCompliment() {
-        dataController.addCompliment(complimentText: writingContent, groupID: Int16(userRepository.groupOrder))
-        userRepository.isCompliment = true
+        do {
+            try dataController.addCompliment(complimentText: writingContent, groupID: Int16(userRepository.groupOrder))
+            userRepository.isCompliment = true
+        } catch {
+            handleError(error)
+        }
+    }
+    
+    func errorTrigger() {
+        do {
+            try CoreDataManager.shared.addComplimentWithError(complimentText: writingContent, groupID: Int16(userRepository.groupOrder))
+        } catch {
+            handleError(error)
+        }
     }
 }

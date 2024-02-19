@@ -28,11 +28,6 @@ extension ComplimentEntity {
     public var unwrappedCreateDate: Date {
         createDate ?? Date()
     }
-    
-    public var unwrappedID: UUID {
-        id ?? UUID()
-    }
-
 }
 
 extension ComplimentEntity : Identifiable {
@@ -40,8 +35,8 @@ extension ComplimentEntity : Identifiable {
 }
 
 extension ComplimentEntity {
-    static func add(to context: NSManagedObjectContext, complimentText: String, groupID: Int16) {
-        let order = CoreDataManager.shared.fetchLatestOrder() + 1
+    static func add(context: NSManagedObjectContext, complimentText: String, groupID: Int16) throws {
+        let order = try CoreDataManager.shared.fetchLatestOrder() + 1
         let compliment = ComplimentEntity(context: context)
         compliment.compliment = complimentText
         compliment.createDate = Date()
@@ -50,6 +45,20 @@ extension ComplimentEntity {
         compliment.groupID = groupID
     }
     
+    static func delete(context: NSManagedObjectContext, compliment: ComplimentEntity) throws {
+        let orderToDelete = compliment.order
+        context.delete(compliment)
+        
+        let fetchRequest: NSFetchRequest<ComplimentEntity> = ComplimentEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "order > %d", orderToDelete)
+        
+        let complimentsToUpdate = try context.fetch(fetchRequest)
+        for complimentToUpdate in complimentsToUpdate {
+            complimentToUpdate.order -= 1
+        }
+    }
+    
+    //나중에 칭찬 수정기능 추가할때
     func update(withNewText newText: String) {
         self.compliment = newText
         try? self.managedObjectContext?.save()

@@ -25,18 +25,17 @@ final class DateManager: DateCalculable {
     }
     
     //MARK: TimeInterval값 너무 복잡한것같아서 day값을 더한것으로 바꾸려 하는데 기존거 잘 돌아가고, 혹시모르니 테스트해보고 나중에 바꾸기
-    //    func nextWeekdayDate(from date: Date, weekdayString: String) -> Date {
-    //        let calendar = Calendar.current
-    //        guard let weekday = Weekday(rawValue: weekdayString)?.weekdayValue else { return date }
-    //
-    //        var nextDate = date
-    //        for dayOffset in 1...7 {
-    //            nextDate = calendar.date(byAdding: .day, value: dayOffset, to: date)!
-    //            if calendar.component(.weekday, from: nextDate) == weekday {
-    //                break
-    //            }
-    //        }
-    //        return nextDate
-    //    }
-
+    func nextWeekdayDateTest(from date: Date, weekdayString: String) -> Date {
+        let calendar = Calendar.current
+        guard let weekday = Weekday(rawValue: weekdayString)?.weekdayValue else { return date }
+        
+        var nextDate = date
+        for dayOffset in 1...7 {
+            nextDate = calendar.date(byAdding: .day, value: dayOffset, to: date)!
+            if calendar.component(.weekday, from: nextDate) == weekday {
+                break
+            }
+        }
+        return nextDate
+    }
 }

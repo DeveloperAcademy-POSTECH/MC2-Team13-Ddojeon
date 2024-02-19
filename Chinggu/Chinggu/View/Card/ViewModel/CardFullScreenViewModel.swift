@@ -7,11 +7,14 @@
 
 import SwiftUI
 
-final class CardFullScreenViewModel: ObservableObject {
+final class CardFullScreenViewModel: ObservableObject, DataErrorHandler {
     @Published var complimentsInGroup: [ComplimentEntity] = []
     @Published var groupOrderText: String = ""
     @Published var groupStartEndDates: String = ""
     @Published var randomQuote: Quote
+    @Published var errorDescription: String = ""
+    @Published var showErrorAlert: Bool = false
+
     
     private let dataController: ComplimentDataController
     private let userRepository: UserRepository
@@ -19,19 +22,23 @@ final class CardFullScreenViewModel: ObservableObject {
     init(dataController: ComplimentDataController = CoreDataManager.shared,
          userRepository: UserRepository = .shared) {
         self.dataController = dataController
-        self.randomQuote = Quote.Quotes.randomElement() ?? Quote(text: "한주간 고생했어요!", speaker: "칭구")
         self.userRepository = userRepository
+        self.randomQuote = Quote.Quotes.randomElement() ?? Quote(text: "한주간 고생했어요!", speaker: "칭구")
         fetchWeeklyCompliment()
     }
     
     func fetchWeeklyCompliment() {
-        complimentsInGroup = dataController.fetchComplimentsInGroup(Int16(userRepository.groupOrder))
-        if let minDate = complimentsInGroup.first?.createDate,
-           let maxDate = complimentsInGroup.last?.createDate {
-            let start = minDate.formatWithDot()
-            let end = maxDate.formatWithDot()
-            groupStartEndDates = "\(start) ~ \(end)"
-            groupOrderText = "\(userRepository.groupOrder)번째 상자"
+        do {
+            complimentsInGroup = try dataController.fetchComplimentsInGroup(Int16(userRepository.groupOrder))
+            if let minDate = complimentsInGroup.first?.createDate,
+               let maxDate = complimentsInGroup.last?.createDate {
+                let start = minDate.formatWithDot()
+                let end = maxDate.formatWithDot()
+                groupStartEndDates = "\(start) ~ \(end)"
+                groupOrderText = "\(userRepository.groupOrder)번째 상자"
+            }
+        } catch {
+            handleError(error)
         }
     }
         

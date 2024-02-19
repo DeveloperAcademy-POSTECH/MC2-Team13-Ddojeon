@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @AppStorage("hasOnboarded") var hasOnboarded: Bool = false
+    @AppStorage(AppStorageKeys.hasOnboarded) var hasOnboarded: Bool = false
 	
 	var body: some View {
 		if hasOnboarded {

@@ -45,6 +45,9 @@ struct ArchivingDetailView: View {
         .padding()
         .padding(.top)
         .background(Color.ddoPrimary)
+        .alert(isPresented: $viewModel.showErrorAlert) {
+            Alert(title: Text("에러"), message: Text(viewModel.errorDescription), dismissButton: .default(Text("확인")))
+        }
     }
     
     private func towardsButton(direction: TowardsButtonDirection) -> some View {

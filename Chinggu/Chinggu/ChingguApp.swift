@@ -9,13 +9,10 @@ import SwiftUI
 
 @main
 struct ChingguApp: App {
-	
-    let coreDataManager = CoreDataManager.shared
-	
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-//                .environment(\.managedObjectContext, coreDataManager.container.viewContext)
                 .environment(\.colorScheme, .light)
         }
     }
