@@ -9,13 +9,15 @@ import SwiftUI
 import CoreData
 
 final class ArchivingViewModel: ObservableObject {
-    @AppStorage("group") var groupOrder: Int = 1
     @Published var compliments: [ComplimentEntity] = []
     
-    let dataController: ComplimentDataController
+    private let dataController: ComplimentDataController
+    let userRepository: UserRepository
 
-    init(dataController: ComplimentDataController = CoreDataManager.shared) {
+    init(dataController: ComplimentDataController = CoreDataManager.shared,
+         userRepository: UserRepository = .shared) {
         self.dataController = dataController
+        self.userRepository = userRepository
         fetchCompliments()
     }
 

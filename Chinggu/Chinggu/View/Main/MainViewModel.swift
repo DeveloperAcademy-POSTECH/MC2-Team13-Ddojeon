@@ -8,7 +8,7 @@
 import SwiftUI
 
 final class MainViewModel: ObservableObject {
-    @Published var scene = GameScene()
+    @Published var complimentBox = ComplimentBox()
     @Published var complimentsInGroupCount: Int = 0
     @Published var showActionSheet: Bool = false
     @Published var showAlert: Bool = false
@@ -16,27 +16,21 @@ final class MainViewModel: ObservableObject {
     @Published var tempSeletedWeekday: Weekday = .monday
     @Published var shake = 0.0
 
-    @AppStorage("canBreakBoxes") var canBreakBoxes = false
-    @AppStorage("lastResetTimeInterval") var lastResetTimeInterval: TimeInterval = Date().timeIntervalSinceNow
-    @AppStorage("selectedWeekdayTimeInterval") var selectedWeekdayTimeInterval: TimeInterval = Date().addingTimeInterval(TimeInterval(7 * 24 * 60 * 60)).timeIntervalSince1970
-    @AppStorage("isCompliment") var isCompliment: Bool = false
-    @AppStorage("selectedWeekday") var selectedWeekday: String = Weekday.today.rawValue
-    @AppStorage("isfirst") var isfirst: Bool = true
-    @AppStorage("group") var groupOrder: Int = 1 {
-        didSet {
-            updateComplimentsGroupCount()
-        }
-    }
+    private let dataController: ComplimentDataController
+    private let dateManager: DateCalculable
+    let userRepository: UserRepository
     
-    let dataController: ComplimentDataController
-    
-    init(dataController: ComplimentDataController = CoreDataManager.shared) {
+    init(dataController: ComplimentDataController = CoreDataManager.shared,
+         dateManager: DateCalculable = DateManager(),
+         userRepository: UserRepository = .shared) {
         self.dataController = dataController
+        self.dateManager = dateManager
+        self.userRepository = userRepository
     }
     
     var weekdayActionButtons: [ActionSheet.Button] {
         var buttons = Weekday.allCases.map { weekday -> ActionSheet.Button? in
-            if selectedWeekday == weekday.rawValue {
+            if userRepository.selectedWeekday == weekday.rawValue {
                 return nil
             } else {
                 return .default(Text(weekday.rawValue)) {
@@ -50,13 +44,14 @@ final class MainViewModel: ObservableObject {
     }
     
     func applyWeekdayChange() {
-        selectedWeekday = tempSeletedWeekday.rawValue
-        selectedWeekdayTimeInterval = nextWeekdayDate(selectedWeekday)
+        userRepository.selectedWeekday = tempSeletedWeekday.rawValue
+        userRepository.selectedWeekdayTimeInterval = dateManager.nextWeekdayDate(userRepository.selectedWeekday)
+        
         updateCanBreakBoxes()
     }
     
-    func updateComplimentsGroupCount() {
-        complimentsInGroupCount = dataController.fetchComplimentsInGroup(Int16(groupOrder)).count
+    @MainActor func updateComplimentsGroupCount() {
+        complimentsInGroupCount = dataController.fetchComplimentsInGroup(Int16(userRepository.groupOrder)).count
     }
     
     func toggleShowActionSheet() {
@@ -72,18 +67,18 @@ final class MainViewModel: ObservableObject {
     }
     
     func openComplimentBox() {
-        scene.resetCompliment()
-        scene.complimentCount = 0
-        selectedWeekdayTimeInterval = nextWeekdayDate(selectedWeekday)
+        complimentBox.resetCompliment()
+        complimentBox.complimentCount = 0
+        userRepository.selectedWeekdayTimeInterval = dateManager.nextWeekdayDate(userRepository.selectedWeekday)
     }
     
     // 초기화 날짜 비교 및 버튼 초기화
     func compareDates() {
         let calendar = Calendar.current
-        let lastResetDate = Date(timeIntervalSince1970: lastResetTimeInterval)
+        let lastResetDate = Date(timeIntervalSince1970: userRepository.lastResetTimeInterval)
         if !calendar.isDateInToday(lastResetDate) {
-            isCompliment = false
-            lastResetTimeInterval = Date().timeIntervalSince1970
+            userRepository.isCompliment = false
+            userRepository.lastResetTimeInterval = Date().timeIntervalSince1970
         }
     }
     
@@ -91,50 +86,34 @@ final class MainViewModel: ObservableObject {
     // 현재 날짜와 nextWeekdayDate와 비교
     func updateCanBreakBoxes() {
         let today = Date().timeIntervalSince1970
-        if today >= selectedWeekdayTimeInterval {
-            canBreakBoxes = true
-            if scene.complimentCount > 0 {
+        if today >= userRepository.selectedWeekdayTimeInterval {
+            userRepository.canBreakBoxes = true
+            if complimentBox.complimentCount > 0 {
                 shake = 5
             }
         } else {
-            canBreakBoxes = false
+            userRepository.canBreakBoxes = false
         }
-    }
-    
-    func nextWeekdayDate(_ weekdayString: String) -> TimeInterval {
-        let calendar = Calendar.current
-        let weekdays = Weekday.allCases
-        
-        let selectedWeekday = weekdays.first(where: { $0.rawValue == weekdayString }) ?? .monday
-        let today = calendar.startOfDay(for: Date())
-        var nextDate = today
-        for dayOffset in 1...7 {
-            nextDate = today.addingTimeInterval(TimeInterval(dayOffset * 24 * 60 * 60))
-            if calendar.component(.weekday, from: nextDate) == selectedWeekday.weekdayValue {
-                break
-            }
-        }
-        return nextDate.timeIntervalSince1970
     }
     
     func prepareScene(width: CGFloat, height: CGFloat) {
-        if complimentsInGroupCount > scene.complimentCount {
-            let boxPosition = CGPoint(x: scene.size.width / 2, y: scene.size.height - 50)
-            scene.addCompliment(at: boxPosition)
-            if canBreakBoxes {
+        if complimentsInGroupCount > complimentBox.complimentCount {
+            let boxPosition = CGPoint(x: complimentBox.size.width / 2, y: complimentBox.size.height - 50)
+            complimentBox.addCompliment(at: boxPosition)
+            if userRepository.canBreakBoxes {
                 shake = 4
             }
         }
         
-        scene.size = CGSize(width: width, height: height)
-        scene.complimentCount = complimentsInGroupCount
+        complimentBox.size = CGSize(width: width, height: height)
+        complimentBox.complimentCount = complimentsInGroupCount
         
         let currentDate = Date().timeIntervalSince1970
-        if currentDate >= selectedWeekdayTimeInterval && complimentsInGroupCount == 0 {
-            selectedWeekdayTimeInterval = nextWeekdayDate(selectedWeekday)
+        if currentDate >= userRepository.selectedWeekdayTimeInterval && complimentsInGroupCount == 0 {
+            userRepository.selectedWeekdayTimeInterval = dateManager.nextWeekdayDate(userRepository.selectedWeekday)
         }
         compareDates()
         updateCanBreakBoxes()
-        scene.scaleMode = .aspectFit
+        complimentBox.scaleMode = .aspectFit
     }
 }

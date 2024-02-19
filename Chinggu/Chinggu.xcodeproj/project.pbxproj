@@ -49,12 +49,21 @@
 		70E68F122A0A906500258A10 /* cardAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 70E68F112A0A906500258A10 /* cardAnimation.json */; };
 		70E68F142A0A95FD00258A10 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E68F132A0A95FD00258A10 /* LottieView.swift */; };
 		70FDC8D52B8242FB0029AAB3 /* ComplimentDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FDC8D42B8242FB0029AAB3 /* ComplimentDataController.swift */; };
+		70FDC8D72B82EE270029AAB3 /* DataControllerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FDC8D62B82EE270029AAB3 /* DataControllerError.swift */; };
+		70FDC8D92B82EF240029AAB3 /* CoreDataManager+Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FDC8D82B82EF240029AAB3 /* CoreDataManager+Controller.swift */; };
+		70FDC8DE2B82EFF20029AAB3 /* MockComplimentBoxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FDC8DD2B82EFF20029AAB3 /* MockComplimentBoxController.swift */; };
+		70FDC8E02B82FEC00029AAB3 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FDC8DF2B82FEC00029AAB3 /* DateManager.swift */; };
+		70FDC8E22B83042E0029AAB3 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FDC8E12B83042D0029AAB3 /* UserRepository.swift */; };
+		70FDC8E52B8315290029AAB3 /* DateCalculable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FDC8E42B8315290029AAB3 /* DateCalculable.swift */; };
+		70FDC8E72B8318860029AAB3 /* HapticManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FDC8E62B8318860029AAB3 /* HapticManageable.swift */; };
+		70FDC8EB2B8326900029AAB3 /* AppStorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FDC8EA2B8326900029AAB3 /* AppStorageKeys.swift */; };
+		70FDC8ED2B8346EC0029AAB3 /* DateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FDC8EC2B8346EC0029AAB3 /* DateManagerTests.swift */; };
 		A937298B2A0F6E5C00C79C04 /* onboarding_1.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729812A0F6E5C00C79C04 /* onboarding_1.json */; };
 		A937298C2A0F6E5C00C79C04 /* onboarding_3.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729822A0F6E5C00C79C04 /* onboarding_3.json */; };
 		A937298F2A0F6E5C00C79C04 /* onboarding_5.json in Resources */ = {isa = PBXBuildFile; fileRef = A93729852A0F6E5C00C79C04 /* onboarding_5.json */; };
 		AE2CB02E2A9F705F00D6AD65 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB02D2A9F705F00D6AD65 /* Weekday.swift */; };
 		AE2CB0332AA056B300D6AD65 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB0322AA056B300D6AD65 /* HapticManager.swift */; };
-		AE2CB0362AA059A300D6AD65 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB0352AA059A300D6AD65 /* GameScene.swift */; };
+		AE2CB0362AA059A300D6AD65 /* ComplimentBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB0352AA059A300D6AD65 /* ComplimentBox.swift */; };
 		AE2CB0382AA0859600D6AD65 /* Weekday+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB0372AA0859600D6AD65 /* Weekday+Today.swift */; };
 		AE37D5352A039605009B0F56 /* ChingguApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37D5342A039605009B0F56 /* ChingguApp.swift */; };
 		AE37D5372A039605009B0F56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37D5362A039605009B0F56 /* ContentView.swift */; };
@@ -121,12 +130,21 @@
 		70E68F112A0A906500258A10 /* cardAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cardAnimation.json; sourceTree = "<group>"; };
 		70E68F132A0A95FD00258A10 /* LottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		70FDC8D42B8242FB0029AAB3 /* ComplimentDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplimentDataController.swift; sourceTree = "<group>"; };
+		70FDC8D62B82EE270029AAB3 /* DataControllerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataControllerError.swift; sourceTree = "<group>"; };
+		70FDC8D82B82EF240029AAB3 /* CoreDataManager+Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Controller.swift"; sourceTree = "<group>"; };
+		70FDC8DD2B82EFF20029AAB3 /* MockComplimentBoxController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockComplimentBoxController.swift; sourceTree = "<group>"; };
+		70FDC8DF2B82FEC00029AAB3 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
+		70FDC8E12B83042D0029AAB3 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		70FDC8E42B8315290029AAB3 /* DateCalculable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCalculable.swift; sourceTree = "<group>"; };
+		70FDC8E62B8318860029AAB3 /* HapticManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManageable.swift; sourceTree = "<group>"; };
+		70FDC8EA2B8326900029AAB3 /* AppStorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorageKeys.swift; sourceTree = "<group>"; };
+		70FDC8EC2B8346EC0029AAB3 /* DateManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerTests.swift; sourceTree = "<group>"; };
 		A93729812A0F6E5C00C79C04 /* onboarding_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_1.json; sourceTree = "<group>"; };
 		A93729822A0F6E5C00C79C04 /* onboarding_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_3.json; sourceTree = "<group>"; };
 		A93729852A0F6E5C00C79C04 /* onboarding_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_5.json; sourceTree = "<group>"; };
 		AE2CB02D2A9F705F00D6AD65 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
 		AE2CB0322AA056B300D6AD65 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
-		AE2CB0352AA059A300D6AD65 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		AE2CB0352AA059A300D6AD65 /* ComplimentBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplimentBox.swift; sourceTree = "<group>"; };
 		AE2CB0372AA0859600D6AD65 /* Weekday+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Weekday+Today.swift"; sourceTree = "<group>"; };
 		AE37D5312A039605009B0F56 /* Chinggu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chinggu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE37D5342A039605009B0F56 /* ChingguApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChingguApp.swift; sourceTree = "<group>"; };
@@ -174,11 +192,12 @@
 		70385ECF2A07DFDD001CDAB0 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				70875FF72B81FB67008690EC /* ComplimentBoxController.swift */,
-				AE2CB0352AA059A300D6AD65 /* GameScene.swift */,
-				AE2CB0322AA056B300D6AD65 /* HapticManager.swift */,
 				70E68F132A0A95FD00258A10 /* LottieView.swift */,
 				AE2CB02D2A9F705F00D6AD65 /* Weekday.swift */,
+				70875FD12B80DE01008690EC /* TowardsButtonDirection.swift */,
+				70FDC8DC2B82EFC80029AAB3 /* ComplimentBox */,
+				70FDC8E82B83189E0029AAB3 /* Haptic */,
+				70FDC8E32B8315190029AAB3 /* Date */,
 				AE2CB0312A9F72E000D6AD65 /* Extensions */,
 				70875FDB2B80E667008690EC /* Modifiers */,
 				70385ED22A07E00F001CDAB0 /* Color.xcassets */,
@@ -190,6 +209,7 @@
 		70815E7D2A08950900DBE5B0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				70FDC8E92B8326260029AAB3 /* UserRepository */,
 				70875FDC2B80E7D8008690EC /* Quote.swift */,
 				70875FE42B8107A9008690EC /* AlertModel.swift */,
 				70875FE62B8107D8008690EC /* ComplimentTips.swift */,
@@ -204,11 +224,11 @@
 			isa = PBXGroup;
 			children = (
 				70875F532B7C51E3008690EC /* CoreDataManager.swift */,
-				70FDC8D42B8242FB0029AAB3 /* ComplimentDataController.swift */,
-				70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */,
-				70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */,
+				70FDC8DA2B82EF3F0029AAB3 /* ComplimentDataController */,
+				70FDC8DB2B82EF700029AAB3 /* Entities */,
 				70815E7E2A08950900DBE5B0 /* Persistence.swift */,
 				70875FFB2B8206CD008690EC /* CoreDataManager+Test.swift */,
+				70FDC8D62B82EE270029AAB3 /* DataControllerError.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -218,6 +238,7 @@
 			children = (
 				70875FC62B7F0B75008690EC /* CoreDataTests.swift */,
 				70875FF92B81FC16008690EC /* ComplimentBoxTests.swift */,
+				70FDC8EC2B8346EC0029AAB3 /* DateManagerTests.swift */,
 			);
 			path = ChingguTests;
 			sourceTree = "<group>";
@@ -225,7 +246,6 @@
 		70875FD32B80DE9C008690EC /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				70875FD12B80DE01008690EC /* TowardsButtonDirection.swift */,
 				70BD12BE2A3F066600BF252F /* ArchivingConstants.swift */,
 			);
 			path = Utilities;
@@ -332,6 +352,61 @@
 				701094A52A0FA83D0019DEED /* cardBeforeAnimation.json */,
 			);
 			path = CardLottie;
+			sourceTree = "<group>";
+		};
+		70FDC8DA2B82EF3F0029AAB3 /* ComplimentDataController */ = {
+			isa = PBXGroup;
+			children = (
+				70FDC8D42B8242FB0029AAB3 /* ComplimentDataController.swift */,
+				70FDC8D82B82EF240029AAB3 /* CoreDataManager+Controller.swift */,
+			);
+			path = ComplimentDataController;
+			sourceTree = "<group>";
+		};
+		70FDC8DB2B82EF700029AAB3 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				70B8FBA52A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift */,
+				70B8FBA62A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		70FDC8DC2B82EFC80029AAB3 /* ComplimentBox */ = {
+			isa = PBXGroup;
+			children = (
+				AE2CB0352AA059A300D6AD65 /* ComplimentBox.swift */,
+				70875FF72B81FB67008690EC /* ComplimentBoxController.swift */,
+				70FDC8DD2B82EFF20029AAB3 /* MockComplimentBoxController.swift */,
+			);
+			path = ComplimentBox;
+			sourceTree = "<group>";
+		};
+		70FDC8E32B8315190029AAB3 /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				70FDC8DF2B82FEC00029AAB3 /* DateManager.swift */,
+				70FDC8E42B8315290029AAB3 /* DateCalculable.swift */,
+			);
+			path = Date;
+			sourceTree = "<group>";
+		};
+		70FDC8E82B83189E0029AAB3 /* Haptic */ = {
+			isa = PBXGroup;
+			children = (
+				AE2CB0322AA056B300D6AD65 /* HapticManager.swift */,
+				70FDC8E62B8318860029AAB3 /* HapticManageable.swift */,
+			);
+			path = Haptic;
+			sourceTree = "<group>";
+		};
+		70FDC8E92B8326260029AAB3 /* UserRepository */ = {
+			isa = PBXGroup;
+			children = (
+				70FDC8E12B83042D0029AAB3 /* UserRepository.swift */,
+				70FDC8EA2B8326900029AAB3 /* AppStorageKeys.swift */,
+			);
+			path = UserRepository;
 			sourceTree = "<group>";
 		};
 		A93728C52A0F6DCD00C79C04 /* Onboard */ = {
@@ -540,6 +615,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70875FC72B7F0B75008690EC /* CoreDataTests.swift in Sources */,
+				70FDC8ED2B8346EC0029AAB3 /* DateManagerTests.swift in Sources */,
 				70875FFA2B81FC16008690EC /* ComplimentBoxTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -549,6 +625,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB6D0BC92A0A287200220360 /* ArchivingView.swift in Sources */,
+				70FDC8DE2B82EFF20029AAB3 /* MockComplimentBoxController.swift in Sources */,
 				70875FD02B808582008690EC /* ArchivingDetailViewModel.swift in Sources */,
 				AE2CB0332AA056B300D6AD65 /* HapticManager.swift in Sources */,
 				FB6D0BCB2A0A35AD00220360 /* ArchivingDetailView.swift in Sources */,
@@ -563,23 +640,28 @@
 				70C7977B2A04357F00E2E3AF /* CardView.swift in Sources */,
 				70875FD22B80DE01008690EC /* TowardsButtonDirection.swift in Sources */,
 				70BD12BF2A3F066600BF252F /* ArchivingConstants.swift in Sources */,
-				AE2CB0362AA059A300D6AD65 /* GameScene.swift in Sources */,
+				AE2CB0362AA059A300D6AD65 /* ComplimentBox.swift in Sources */,
 				70C7977D2A04357F00E2E3AF /* CardPopupView.swift in Sources */,
 				70C7977C2A04357F00E2E3AF /* CardFullScreenView.swift in Sources */,
 				70875FF62B81A5AB008690EC /* ShakeEffect.swift in Sources */,
 				70875FE52B8107A9008690EC /* AlertModel.swift in Sources */,
 				70875FD92B80E442008690EC /* CardViewConstants.swift in Sources */,
+				70FDC8E52B8315290029AAB3 /* DateCalculable.swift in Sources */,
 				70D706062A0FFFF0001D9203 /* Popup.swift in Sources */,
 				51887AE72A12232F0015EF88 /* OnboardingView.swift in Sources */,
 				70875FF82B81FB67008690EC /* ComplimentBoxController.swift in Sources */,
 				70815E822A08950900DBE5B0 /* ChingguModel.xcdatamodeld in Sources */,
 				70875FE32B810006008690EC /* InfoPopupViewModel.swift in Sources */,
 				AE9537702A12245E00C6F5FF /* InfoPopupView.swift in Sources */,
+				70FDC8E22B83042E0029AAB3 /* UserRepository.swift in Sources */,
+				70FDC8E02B82FEC00029AAB3 /* DateManager.swift in Sources */,
+				70FDC8E72B8318860029AAB3 /* HapticManageable.swift in Sources */,
 				70875FFC2B8206CD008690EC /* CoreDataManager+Test.swift in Sources */,
 				70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */,
 				51D817182A08E59F00B84E6A /* WriteComplimentView.swift in Sources */,
 				70875FEF2B81090A008690EC /* TipSheetView.swift in Sources */,
 				70875FEB2B810882008690EC /* WriteComplimentViewModel.swift in Sources */,
+				70FDC8D72B82EE270029AAB3 /* DataControllerError.swift in Sources */,
 				70875FE72B8107D8008690EC /* ComplimentTips.swift in Sources */,
 				AE37D5452A063BD3009B0F56 /* MainView.swift in Sources */,
 				70B8FBA82A0D119B005B8366 /* ComplimentEntity+CoreDataProperties.swift in Sources */,
@@ -587,12 +669,14 @@
 				70875F562B7C5D73008690EC /* ArchivingViewModel.swift in Sources */,
 				70385ED12A07DFEE001CDAB0 /* Color+Asset.swift in Sources */,
 				70875FDD2B80E7D8008690EC /* Quote.swift in Sources */,
+				70FDC8D92B82EF240029AAB3 /* CoreDataManager+Controller.swift in Sources */,
 				70875FED2B8108B2008690EC /* OnboardingViewModel.swift in Sources */,
 				70385EDA2A07E60B001CDAB0 /* Date+FormatWithDot.swift in Sources */,
 				70815E812A08950900DBE5B0 /* Persistence.swift in Sources */,
 				70875F542B7C51E3008690EC /* CoreDataManager.swift in Sources */,
 				70875FF42B818A57008690EC /* MainViewModel.swift in Sources */,
 				70E68F142A0A95FD00258A10 /* LottieView.swift in Sources */,
+				70FDC8EB2B8326900029AAB3 /* AppStorageKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

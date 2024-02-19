@@ -1,5 +1,5 @@
 //
-//  GameScene.swift
+//  ComplimentBox.swift
 //  Chinggu
 //
 //  Created by Sebin Kwon on 2023/08/31.
@@ -8,9 +8,20 @@
 import SpriteKit
 import CoreMotion
 
-class GameScene: SKScene, ComplimentBoxController {
+class ComplimentBox: SKScene, ComplimentBoxController {
     var boxes: [SKSpriteNode] = []
     var complimentCount = 0
+    
+    private let hapticManager: HapticManageable
+    
+    init(hapticManager: HapticManageable = HapticManager.instance) {
+        self.hapticManager = hapticManager
+        super.init(size: CGSize.zero)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "boxBackground")
@@ -40,7 +51,7 @@ class GameScene: SKScene, ComplimentBoxController {
     
     func addCompliment(at position: CGPoint) {
         // 이미지가 랜덤으로 나오는 것
-        HapticManager.instance.notification(type: .warning)
+        hapticManager.notification(type: .warning)
         
         let index = Int.random(in: 1..<99)
         let texture = SKTexture(imageNamed: "stonery\(index)")

@@ -53,7 +53,7 @@ struct MainView: View {
                     let allComplimentsCount = viewModel.complimentsInGroupCount
                     viewModel.updateComplimentsGroupCount()
                     // 최초 칭찬 작성 시 안내 팝업
-                    if allComplimentsCount == 1, viewModel.isfirst == true {
+                    if allComplimentsCount == 1, viewModel.userRepository.isfirst == true {
                         withAnimation {
                             showInfoPopup = true
                         }
@@ -73,15 +73,15 @@ struct MainView: View {
             Button(action: {
                 viewModel.toggleShowActionSheet()
             }, label: {
-                Text(viewModel.selectedWeekday)
+                Text(viewModel.userRepository.selectedWeekday)
                     .bold()
                     .font(.body)
-                    .foregroundColor(!viewModel.isfirst ? .blue : .gray)
+                    .foregroundColor(!viewModel.userRepository.isfirst ? .blue : .gray)
                     .padding(.trailing, -8.0)
                 Image(systemName: "arrowtriangle.down.square.fill")
-                    .foregroundColor(!viewModel.isfirst ? .blue : .gray)
+                    .foregroundColor(!viewModel.userRepository.isfirst ? .blue : .gray)
             })
-            .disabled(viewModel.isfirst)
+            .disabled(viewModel.userRepository.isfirst)
             .padding(.horizontal)
             .actionSheet(isPresented: $viewModel.showActionSheet) {
                 ActionSheet(title: Text("요일 변경"), message: nil, buttons: viewModel.weekdayActionButtons)
@@ -129,7 +129,7 @@ struct MainView: View {
     }
     
     private var buildTitle: some View {
-        Text(viewModel.canBreakBoxes && viewModel.scene.boxes.count > 0 ? "이번 주 칭찬을\n  확인할 시간이에요💞" : "오늘은 어떤 칭찬을\n해볼까요?✍️")
+        Text(viewModel.userRepository.canBreakBoxes && viewModel.complimentBox.boxes.count > 0 ? "이번 주 칭찬을\n  확인할 시간이에요💞" : "오늘은 어떤 칭찬을\n해볼까요?✍️")
             .tracking(-0.3)
             .multilineTextAlignment(.center)
             .bold()
@@ -140,16 +140,16 @@ struct MainView: View {
     }
     
     private func buildComplimentBox(width: CGFloat, height: CGFloat) -> some View {
-        SpriteView(scene: viewModel.scene)
+        SpriteView(scene: viewModel.complimentBox)
             .frame(width: width, height: height)
             .cornerRadius(26)
             .onTapGesture {
-                if viewModel.scene.boxes.count > 0 && viewModel.canBreakBoxes {
+                if viewModel.complimentBox.boxes.count > 0 && viewModel.userRepository.canBreakBoxes {
                     viewModel.toggleShowBreakAlert()
                 }
             }
             .overlay {
-                if viewModel.complimentsInGroupCount == 0 && !viewModel.isCompliment {
+                if viewModel.complimentsInGroupCount == 0 && !viewModel.userRepository.isCompliment {
                     NavigationLink(destination: WriteComplimentView()) {
                         Image("emptyState")
                     }
@@ -168,7 +168,7 @@ struct MainView: View {
             .modifier(ShakeEffect(delta: viewModel.shake))
             .onChange(of: viewModel.shake) { newValue in
                 withAnimation(.easeOut(duration: 1.5)) {
-                    if viewModel.canBreakBoxes {
+                    if viewModel.userRepository.canBreakBoxes {
                         if viewModel.shake == 0 {
                             viewModel.shake = newValue
                         } else {
@@ -187,7 +187,7 @@ struct MainView: View {
         
         if viewModel.complimentsInGroupCount == 7 {
             text = "주간 칭찬은 최대 7개 까지만 가능해요."
-        } else if viewModel.canBreakBoxes && viewModel.scene.boxes.count > 0 {
+        } else if viewModel.userRepository.canBreakBoxes && viewModel.complimentBox.boxes.count > 0 {
             text = "칭찬 상자를 톡! 눌러주세요."
         } else {
             text = "긍정의 힘은 복리로 돌아와요. 커밍쑨!"
@@ -203,7 +203,7 @@ struct MainView: View {
         Button(action: {
         }, label: {
             NavigationLink(destination: WriteComplimentView(), label: {
-                Text(viewModel.isCompliment ? "오늘 칭찬 끝!" : "칭찬하기")
+                Text(viewModel.userRepository.isCompliment ? "오늘 칭찬 끝!" : "칭찬하기")
                     .bold()
                     .font(.title3)
                     .foregroundColor(Color.white)
@@ -214,9 +214,9 @@ struct MainView: View {
         })
         .background {
             RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(viewModel.isCompliment || viewModel.complimentsInGroupCount == 7 ? Color.lightgray : .blue)
+                .foregroundColor(viewModel.userRepository.isCompliment || viewModel.complimentsInGroupCount == 7 ? Color.lightgray : .blue)
         }
-        .disabled(viewModel.isCompliment || viewModel.complimentsInGroupCount == 7)
+        .disabled(viewModel.userRepository.isCompliment || viewModel.complimentsInGroupCount == 7)
     }
     
     private var buildPopupView: some View {
@@ -233,15 +233,15 @@ struct MainView: View {
         HStack {
             Button {
                 CoreDataManager.shared.testAddCompliment()
-                viewModel.isfirst = false
+                viewModel.userRepository.isfirst = false
             } label: {
-                Text("7개추가")
+                Text("7개 아카이빙에 추가")
             }
 
             Button {
                 CoreDataManager.shared.testResetCoreData()
                 CoreDataManager.shared.resetDatabase()
-                viewModel.isCompliment = false
+                viewModel.userRepository.isCompliment = false
             } label: {
                 Text("초기화")
             }

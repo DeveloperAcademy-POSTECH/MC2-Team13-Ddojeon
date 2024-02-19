@@ -11,17 +11,18 @@ class WriteComplimentViewModel: ObservableObject {
     @Published var categories: [Category] = Categories.allCases.map { Category(title: $0.title,
                                                                                example: $0.example)}
     @Published var writingContent = ""
-    @AppStorage("isCompliment") private var isCompliment = false
-    @AppStorage("group") var groupOrder: Int = 1
     
     private let dataController: ComplimentDataController
+    private let userRepository: UserRepository
     
-    init(dataController: ComplimentDataController = CoreDataManager.shared) {
+    init(dataController: ComplimentDataController = CoreDataManager.shared,
+         userRepository: UserRepository = .shared) {
         self.dataController = dataController
+        self.userRepository = userRepository
     }
 
     func saveCompliment() {
-        dataController.addCompliment(complimentText: writingContent, groupID: Int16(groupOrder))
-        isCompliment = true
+        dataController.addCompliment(complimentText: writingContent, groupID: Int16(userRepository.groupOrder))
+        userRepository.isCompliment = true
     }
 }

@@ -8,7 +8,6 @@
 import SwiftUI
 
 class OnboardingViewModel: ObservableObject {
-    @AppStorage("hasOnboarded") var hasOnboarded: Bool = false
     @Published var onboardings: [Onboarding] = Onboardings.allCases.map {
         Onboarding(title: $0.title, description: $0.description, nextButton: $0.nextButton)
     }
@@ -16,8 +15,11 @@ class OnboardingViewModel: ObservableObject {
     @Published var totalCount = 0
     @Published var selection = 0
     @Published var shouldShowMain = false
+    
+    let userRepository: UserRepository
 
-    init() {
+    init(userRepository: UserRepository = .shared) {
+        self.userRepository = userRepository
         totalCount = onboardings.count - 1
     }
 
@@ -31,6 +33,6 @@ class OnboardingViewModel: ObservableObject {
 
     func goMain() {
         shouldShowMain = true
-        hasOnboarded = true
+        userRepository.hasOnboarded = true
     }
 }

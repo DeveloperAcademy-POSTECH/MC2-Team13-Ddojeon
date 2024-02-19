@@ -15,7 +15,8 @@ final class ArchivingDetailViewModel: ObservableObject {
         dataController.fetchLatestOrder()
     }
     
-    init(compliment: ComplimentEntity, dataController: ComplimentDataController = CoreDataManager.shared) {
+    init(compliment: ComplimentEntity,
+         dataController: ComplimentDataController = CoreDataManager.shared) {
         self.dataController = dataController
         self.compliment = compliment
         self.complimentOrder = compliment.order
