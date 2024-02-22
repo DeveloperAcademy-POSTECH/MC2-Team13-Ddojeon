@@ -23,14 +23,14 @@ struct MainView: View {
                 ZStack {
                     Color.ddoPrimary.ignoresSafeArea()
                     VStack {
-                        //MARK: 요일 변경하는 버튼
+                        //요일 변경 버튼
                         buildHeader
                         
                         buildDivider
                         
                         buildTitle
                         
-                        //MARK: 칭찬 저금통
+                        //칭찬 저금통
                         buildComplimentBox(width: width, height: height)
                         
                         buildFooter
@@ -38,6 +38,7 @@ struct MainView: View {
                         Spacer()
                         
                         buildComplimentButton(width: width)
+                        
                         #if DEBUG
                         buildDebugButtons
                         #endif

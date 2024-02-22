@@ -52,7 +52,7 @@ final class MainViewModel: ObservableObject, DataErrorHandler {
         updateCanBreakBoxes()
     }
     
-    @MainActor func updateComplimentsGroupCount() {
+    func updateComplimentsGroupCount() {
         do {
             complimentsInGroupCount = try dataController.fetchComplimentsInGroup(Int16(userRepository.groupOrder)).count
         } catch {
