@@ -15,6 +15,7 @@
 		70385ED12A07DFEE001CDAB0 /* Color+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */; };
 		70385ED32A07E00F001CDAB0 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70385ED22A07E00F001CDAB0 /* Color.xcassets */; };
 		70385EDA2A07E60B001CDAB0 /* Date+FormatWithDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */; };
+		706F8B972B897CF800957684 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 706F8B962B897CF800957684 /* Localizable.xcstrings */; };
 		70815E812A08950900DBE5B0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7E2A08950900DBE5B0 /* Persistence.swift */; };
 		70815E822A08950900DBE5B0 /* ChingguModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7F2A08950900DBE5B0 /* ChingguModel.xcdatamodeld */; };
 		70875F542B7C51E3008690EC /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70875F532B7C51E3008690EC /* CoreDataManager.swift */; };
@@ -96,6 +97,7 @@
 		70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Asset.swift"; sourceTree = "<group>"; };
 		70385ED22A07E00F001CDAB0 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+FormatWithDot.swift"; sourceTree = "<group>"; };
+		706F8B962B897CF800957684 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		70815E7E2A08950900DBE5B0 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		70815E802A08950900DBE5B0 /* ComplimentModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ComplimentModel.xcdatamodel; sourceTree = "<group>"; };
 		70875F532B7C51E3008690EC /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -489,6 +491,7 @@
 				70815E7D2A08950900DBE5B0 /* Models */,
 				70385ECF2A07DFDD001CDAB0 /* Utilities */,
 				AE37D53A2A039606009B0F56 /* Preview Content */,
+				706F8B962B897CF800957684 /* Localizable.xcstrings */,
 			);
 			path = Chinggu;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				ko,
+				en,
 				Base,
 			);
 			mainGroup = AE37D5282A039605009B0F56;
@@ -610,6 +614,7 @@
 				70E68F122A0A906500258A10 /* cardAnimation.json in Resources */,
 				AE37D53C2A039606009B0F56 /* Preview Assets.xcassets in Resources */,
 				A937298B2A0F6E5C00C79C04 /* onboarding_1.json in Resources */,
+				706F8B972B897CF800957684 /* Localizable.xcstrings in Resources */,
 				AE37D5392A039606009B0F56 /* Assets.xcassets in Resources */,
 				5191CFBD2A4ADD9A00881DC0 /* onboarding_4.json in Resources */,
 				51C204AE2A4AE14900A0A8F5 /* onboarding_2.json in Resources */,
