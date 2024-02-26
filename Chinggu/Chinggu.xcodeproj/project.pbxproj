@@ -15,6 +15,7 @@
 		70385ED12A07DFEE001CDAB0 /* Color+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */; };
 		70385ED32A07E00F001CDAB0 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70385ED22A07E00F001CDAB0 /* Color.xcassets */; };
 		70385EDA2A07E60B001CDAB0 /* Date+FormatWithDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */; };
+		7040B6442B8CB22400A8B608 /* FetchRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7040B6432B8CB22400A8B608 /* FetchRequestType.swift */; };
 		706F8B972B897CF800957684 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 706F8B962B897CF800957684 /* Localizable.xcstrings */; };
 		70815E812A08950900DBE5B0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7E2A08950900DBE5B0 /* Persistence.swift */; };
 		70815E822A08950900DBE5B0 /* ChingguModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7F2A08950900DBE5B0 /* ChingguModel.xcdatamodeld */; };
@@ -97,6 +98,7 @@
 		70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Asset.swift"; sourceTree = "<group>"; };
 		70385ED22A07E00F001CDAB0 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+FormatWithDot.swift"; sourceTree = "<group>"; };
+		7040B6432B8CB22400A8B608 /* FetchRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRequestType.swift; sourceTree = "<group>"; };
 		706F8B962B897CF800957684 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		70815E7E2A08950900DBE5B0 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		70815E802A08950900DBE5B0 /* ComplimentModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ComplimentModel.xcdatamodel; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				70E68F132A0A95FD00258A10 /* LottieView.swift */,
+				7040B6432B8CB22400A8B608 /* FetchRequestType.swift */,
 				AE2CB02D2A9F705F00D6AD65 /* Weekday.swift */,
 				70875FD12B80DE01008690EC /* TowardsButtonDirection.swift */,
 				70FDC8DC2B82EFC80029AAB3 /* ComplimentBox */,
@@ -641,6 +644,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB6D0BC92A0A287200220360 /* ArchivingView.swift in Sources */,
+				7040B6442B8CB22400A8B608 /* FetchRequestType.swift in Sources */,
 				70FDC8DE2B82EFF20029AAB3 /* MockComplimentBoxController.swift in Sources */,
 				70875FD02B808582008690EC /* ArchivingDetailViewModel.swift in Sources */,
 				AE2CB0332AA056B300D6AD65 /* HapticManager.swift in Sources */,

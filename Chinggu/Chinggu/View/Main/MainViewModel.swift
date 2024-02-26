@@ -54,7 +54,7 @@ final class MainViewModel: ObservableObject, DataErrorHandler {
     
     func updateComplimentsGroupCount() {
         do {
-            complimentsInGroupCount = try dataController.fetchComplimentsInGroup(Int16(userRepository.groupOrder)).count
+            complimentsInGroupCount = try dataController.fetchCompliments(request: .inGroup(Int16(userRepository.groupOrder))).count
         } catch {
             handleError(error)
         }

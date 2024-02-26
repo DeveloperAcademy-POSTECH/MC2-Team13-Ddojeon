@@ -50,7 +50,7 @@ final class ArchivingDetailViewModel: ObservableObject, DataErrorHandler {
     
     func loadCompliment() {
         do {
-            self.compliment = try dataController.fetchCompliment(order: complimentOrder)
+            compliment = try dataController.fetchCompliments(request: .byOrder(complimentOrder)).first
         } catch {
             handleError(error)
         }
@@ -58,7 +58,7 @@ final class ArchivingDetailViewModel: ObservableObject, DataErrorHandler {
     
     private func loadComplimentsCount() {
         do {
-            self.allComplimentsCount = try dataController.fetchLatestOrder()
+            allComplimentsCount = try dataController.fetchLatestOrder()
         } catch {
             handleError(error)
         }

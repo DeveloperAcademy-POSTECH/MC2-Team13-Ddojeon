@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class OnboardingViewModel: ObservableObject {
+final class OnboardingViewModel: ObservableObject {
     @Published var onboardings: [Onboarding] = Onboardings.allCases.map {
         Onboarding(title: $0.title, description: $0.description, nextButton: $0.nextButton)
     }

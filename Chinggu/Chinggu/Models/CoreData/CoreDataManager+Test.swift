@@ -24,7 +24,7 @@ extension CoreDataManager {
                 newCompliment.id = UUID()
             }
             groupOrder += 1
-            saveContext()
+            try context.save()
         } catch {
             fatalError("testAddComplimet 에러: \(error)")
         }
@@ -44,7 +44,7 @@ extension CoreDataManager {
         
         do {
             try viewContext.execute(batchDeleteRequest)
-            saveContext()
+            try context.save()
             groupOrder = 1
         } catch {
             fatalError("testResetCoreData 에러: \(error)")

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class UserRepository {
+final class UserRepository {
     static let shared = UserRepository()
 
     @AppStorage(AppStorageKeys.hasOnboarded) var hasOnboarded: Bool = false

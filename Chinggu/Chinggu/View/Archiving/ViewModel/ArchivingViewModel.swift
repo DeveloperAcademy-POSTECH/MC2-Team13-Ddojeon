@@ -25,7 +25,7 @@ final class ArchivingViewModel: ObservableObject, DataErrorHandler {
 
     func fetchCompliments() {
         do {
-            self.compliments = try dataController.fetchAllCompliments()
+            compliments = try dataController.fetchCompliments(request: .all)
         } catch {
             handleError(error)
         }

@@ -29,7 +29,7 @@ final class CardFullScreenViewModel: ObservableObject, DataErrorHandler {
     
     func fetchWeeklyCompliment() {
         do {
-            complimentsInGroup = try dataController.fetchComplimentsInGroup(Int16(userRepository.groupOrder))
+            complimentsInGroup = try dataController.fetchCompliments(request: .inGroup(Int16(userRepository.groupOrder)))
             if let minDate = complimentsInGroup.first?.createDate,
                let maxDate = complimentsInGroup.last?.createDate {
                 let start = minDate.formatWithDot()

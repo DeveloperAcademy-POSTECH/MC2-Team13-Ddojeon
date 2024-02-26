@@ -331,12 +331,6 @@
             "state" : "translated",
             "value" : "Compliment"
           }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Compliment"
-          }
         }
       }
     },

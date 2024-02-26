@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class WriteComplimentViewModel: ObservableObject, DataErrorHandler {
+final class WriteComplimentViewModel: ObservableObject, DataErrorHandler {
     @Published var categories: [Category] = Categories.allCases.map { Category(title: $0.title,
                                                                                example: $0.example)}
     @Published var writingContent = ""
