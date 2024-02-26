@@ -9,7 +9,7 @@ import CoreData
 
 extension CoreDataManager: ComplimentDataController {
     
-    private func saveContext() {
+    func saveContext() {
         do{
             try context.save()
         } catch {

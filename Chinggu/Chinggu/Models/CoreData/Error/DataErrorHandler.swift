@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 protocol DataErrorHandler: AnyObject {
     //AnyObject 채택함으로써 class type만 채택하게끔 해야 self에 대한 속성 변경 가능
     var errorDescription: String { get set }

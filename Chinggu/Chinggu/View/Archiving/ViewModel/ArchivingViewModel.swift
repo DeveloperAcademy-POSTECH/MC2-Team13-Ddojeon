@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreData
 
 final class ArchivingViewModel: ObservableObject, DataErrorHandler {
     @Published var compliments: [ComplimentEntity] = []

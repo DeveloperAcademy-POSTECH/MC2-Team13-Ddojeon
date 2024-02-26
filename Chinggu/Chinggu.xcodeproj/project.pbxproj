@@ -16,6 +16,7 @@
 		70385ED32A07E00F001CDAB0 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70385ED22A07E00F001CDAB0 /* Color.xcassets */; };
 		70385EDA2A07E60B001CDAB0 /* Date+FormatWithDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */; };
 		7040B6442B8CB22400A8B608 /* FetchRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7040B6432B8CB22400A8B608 /* FetchRequestType.swift */; };
+		7040B6462B8CB69F00A8B608 /* AsyncdataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7040B6452B8CB69F00A8B608 /* AsyncdataController.swift */; };
 		706F8B972B897CF800957684 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 706F8B962B897CF800957684 /* Localizable.xcstrings */; };
 		70815E812A08950900DBE5B0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7E2A08950900DBE5B0 /* Persistence.swift */; };
 		70815E822A08950900DBE5B0 /* ChingguModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70815E7F2A08950900DBE5B0 /* ChingguModel.xcdatamodeld */; };
@@ -99,6 +100,7 @@
 		70385ED22A07E00F001CDAB0 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+FormatWithDot.swift"; sourceTree = "<group>"; };
 		7040B6432B8CB22400A8B608 /* FetchRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRequestType.swift; sourceTree = "<group>"; };
+		7040B6452B8CB69F00A8B608 /* AsyncdataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncdataController.swift; sourceTree = "<group>"; };
 		706F8B962B897CF800957684 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		70815E7E2A08950900DBE5B0 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		70815E802A08950900DBE5B0 /* ComplimentModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ComplimentModel.xcdatamodel; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				70875F532B7C51E3008690EC /* CoreDataManager.swift */,
+				7040B6452B8CB69F00A8B608 /* AsyncdataController.swift */,
 				70FDC8DA2B82EF3F0029AAB3 /* ComplimentDataController */,
 				70FDC8DB2B82EF700029AAB3 /* Entities */,
 				70FDC8EF2B83BCA50029AAB3 /* Error */,
@@ -675,6 +678,7 @@
 				70875FE32B810006008690EC /* InfoPopupViewModel.swift in Sources */,
 				AE9537702A12245E00C6F5FF /* InfoPopupView.swift in Sources */,
 				70FDC8E22B83042E0029AAB3 /* UserRepository.swift in Sources */,
+				7040B6462B8CB69F00A8B608 /* AsyncdataController.swift in Sources */,
 				70FDC8E02B82FEC00029AAB3 /* DateManager.swift in Sources */,
 				70FDC8E72B8318860029AAB3 /* HapticManageable.swift in Sources */,
 				70875FFC2B8206CD008690EC /* CoreDataManager+Test.swift in Sources */,

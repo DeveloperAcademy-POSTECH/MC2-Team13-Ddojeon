@@ -23,9 +23,6 @@ struct ArchivingView: View {
             .padding(.top)
             .background(Color.ddoPrimary)
         }
-        .onAppear {
-            viewModel.fetchCompliments()
-        }
         .alert(isPresented: $viewModel.showErrorAlert) {
             Alert(title: Text("에러"), message: Text(viewModel.errorDescription), dismissButton: .default(Text("확인")))
         }
@@ -53,7 +50,9 @@ struct ArchivingView: View {
                 ForEach(viewModel.filterComplimentsInGroup(by: index)) { compliment in
                     complimentRow(for: compliment)
                 }
-                .onDelete(perform: delete)
+                .onDelete { indexSet in
+                    viewModel.deleteCompliments(at: indexSet)
+                }
             }
         }
     }
@@ -70,10 +69,6 @@ struct ArchivingView: View {
                     .lineLimit(1)
             }
         }
-    }
-    
-    private func delete(indexSet: IndexSet) {
-        viewModel.deleteCompliments(at: indexSet)
     }
 }
 

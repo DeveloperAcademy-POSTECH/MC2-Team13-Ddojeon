@@ -16,7 +16,10 @@ final class CoreDataManager {
     
     let container: NSPersistentContainer
     var context: NSManagedObjectContext {
-        return container.viewContext
+        container.viewContext
+    }
+    var bgContext: NSManagedObjectContext {
+        container.newBackgroundContext()
     }
     
     init(inMemory: Bool = false) {
