@@ -26,7 +26,7 @@ extension CoreDataManager {
             groupOrder += 1
             try context.save()
         } catch {
-            fatalError("testAddComplimet 에러: \(error)")
+            fatalError("testAddComplimet: \(error)")
         }
     }
     
@@ -47,7 +47,7 @@ extension CoreDataManager {
             try context.save()
             groupOrder = 1
         } catch {
-            fatalError("testResetCoreData 에러: \(error)")
+            fatalError("testResetCoreData: \(error)")
         }
     }
     
@@ -65,11 +65,11 @@ extension CoreDataManager {
             }
             container.loadPersistentStores { (storeDescription, error) in
                 if let error = error {
-                    print("resetDatabase error: \(error.localizedDescription)")
+                    print("resetDatabase: \(error.localizedDescription)")
                 }
             }
         } catch {
-            print("resetDatabase error: \(error.localizedDescription)")
+            print("resetDatabase: \(error.localizedDescription)")
         }
     }
     
@@ -80,7 +80,7 @@ extension CoreDataManager {
         do {
             try context.execute(deleteRequest)
         } catch {
-            print("Clearing error: \(entityName), \(error.localizedDescription)")
+            print("Clearing: \(entityName), \(error.localizedDescription)")
         }
     }
 }

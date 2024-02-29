@@ -1,28 +1,26 @@
 //
-//  MainViewModel.swift
+//  MockMainViewModel.swift
 //  Chinggu
 //
-//  Created by Junyoo on 2/18/24.
+//  Created by Junyoo on 2/28/24.
 //
 
 import SwiftUI
-import Combine
 
-final class MainViewModel: ObservableObject, DataErrorHandler {
-    @Published var complimentBox = ComplimentBox()
-    @Published var complimentsInGroupCount: Int = 0
-    @Published var showActionSheet: Bool = false
-    @Published var showAlert: Bool = false
-    @Published var showBreakAlert: Bool = false
-    @Published var tempSeletedWeekday: Weekday = .monday
-    @Published var shake = 0.0
-    @Published var errorDescription: String = ""
-    @Published var showErrorAlert: Bool = false
+final class MockMainViewModel: ObservableObject, DataErrorHandler {
+    var complimentBox = ComplimentBox()
+    var complimentsInGroupCount: Int = 0
+    var showActionSheet: Bool = false
+    var showAlert: Bool = false
+    var showBreakAlert: Bool = false
+    var tempSeletedWeekday: Weekday = .monday
+    var shake = 0.0
+    var errorDescription: String = ""
+    var showErrorAlert: Bool = false
 
-    let userRepository: UserRepository
-    private let dataController: ComplimentDataController
-    private let dateManager: DateCalculable
-    private var cancellables: Set<AnyCancellable> = []
+    var userRepository: UserRepositoryProtocol
+    let dataController: ComplimentDataController
+    let dateManager: DateCalculable
     
     var weekdayActionButtons: [ActionSheet.Button] {
         var buttons = Weekday.allCases.map { weekday -> ActionSheet.Button? in
@@ -39,29 +37,16 @@ final class MainViewModel: ObservableObject, DataErrorHandler {
         return buttons
     }
     
-    init(dataController: ComplimentDataController = CoreDataManager.shared,
+    init(dataController: ComplimentDataController = CoreDataManager(inMemory: true),
          dateManager: DateCalculable = DateManager(),
-         userRepository: UserRepository = .shared) {
+         userRepository: UserRepositoryProtocol = MockUserRepository()) {
+        self.userRepository = userRepository
         self.dataController = dataController
         self.dateManager = dateManager
         self.userRepository = userRepository
-        setupObservers()
     }
-    
-    private func setupObservers() {
-        $complimentsInGroupCount
-            .sink { [weak self] _ in
-                self?.updateCanBreakBoxes()
-            }
-            .store(in: &cancellables)
-        
-        $tempSeletedWeekday
-            .sink { [weak self] _ in
-                self?.updateCanBreakBoxes()
-            }
-            .store(in: &cancellables)
-    }
-    
+
+    //ok
     func applyWeekdayChange() {
         userRepository.selectedWeekday = tempSeletedWeekday.rawValue
         userRepository.selectedWeekdayTimeInterval = dateManager.nextWeekdayDate(userRepository.selectedWeekday)
@@ -69,6 +54,7 @@ final class MainViewModel: ObservableObject, DataErrorHandler {
         updateCanBreakBoxes()
     }
     
+    //ok
     func updateComplimentsGroupCount() {
         do {
             complimentsInGroupCount = try dataController.fetchCompliments(request: .inGroup(Int16(userRepository.groupOrder))).count
@@ -77,13 +63,14 @@ final class MainViewModel: ObservableObject, DataErrorHandler {
         }
     }
     
+    //ok
     func openComplimentBox() {
         complimentBox.resetCompliment()
         complimentBox.complimentCount = 0
         userRepository.selectedWeekdayTimeInterval = dateManager.nextWeekdayDate(userRepository.selectedWeekday)
     }
     
-    // 초기화 날짜 비교 및 버튼 초기화
+    //
     func compareDates() {
         let calendar = Calendar.current
         let lastResetDate = Date(timeIntervalSince1970: userRepository.lastResetTimeInterval)
@@ -93,8 +80,7 @@ final class MainViewModel: ObservableObject, DataErrorHandler {
         }
     }
     
-    // 요일이 변경 될 때마다 현재 요일과 비교
-    // 현재 날짜와 nextWeekdayDate와 비교
+    //
     func updateCanBreakBoxes() {
         let today = Date().timeIntervalSince1970
         if today >= userRepository.selectedWeekdayTimeInterval {

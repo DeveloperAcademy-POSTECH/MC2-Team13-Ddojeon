@@ -12,6 +12,10 @@
 		51C204AE2A4AE14900A0A8F5 /* onboarding_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 51C204AD2A4AE14900A0A8F5 /* onboarding_2.json */; };
 		51D817182A08E59F00B84E6A /* WriteComplimentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D817172A08E59F00B84E6A /* WriteComplimentView.swift */; };
 		701094A62A0FA83D0019DEED /* cardBeforeAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 701094A52A0FA83D0019DEED /* cardBeforeAnimation.json */; };
+		70211AC92B90594D00592DCF /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70211AC82B90594D00592DCF /* UserRepositoryProtocol.swift */; };
+		70211ACB2B90595B00592DCF /* MockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70211ACA2B90595B00592DCF /* MockUserRepository.swift */; };
+		70211ACF2B9059D600592DCF /* MockMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70211ACE2B9059D600592DCF /* MockMainViewModel.swift */; };
+		70211AD22B905B6B00592DCF /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70211AD12B905B6B00592DCF /* MainViewModelTests.swift */; };
 		70385ED12A07DFEE001CDAB0 /* Color+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */; };
 		70385ED32A07E00F001CDAB0 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70385ED22A07E00F001CDAB0 /* Color.xcassets */; };
 		70385EDA2A07E60B001CDAB0 /* Date+FormatWithDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */; };
@@ -96,6 +100,10 @@
 		51C204AD2A4AE14900A0A8F5 /* onboarding_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_2.json; sourceTree = "<group>"; };
 		51D817172A08E59F00B84E6A /* WriteComplimentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteComplimentView.swift; sourceTree = "<group>"; };
 		701094A52A0FA83D0019DEED /* cardBeforeAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cardBeforeAnimation.json; sourceTree = "<group>"; };
+		70211AC82B90594D00592DCF /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
+		70211ACA2B90595B00592DCF /* MockUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserRepository.swift; sourceTree = "<group>"; };
+		70211ACE2B9059D600592DCF /* MockMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainViewModel.swift; sourceTree = "<group>"; };
+		70211AD12B905B6B00592DCF /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
 		70385ED02A07DFEE001CDAB0 /* Color+Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Asset.swift"; sourceTree = "<group>"; };
 		70385ED22A07E00F001CDAB0 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		70385ED92A07E60B001CDAB0 /* Date+FormatWithDot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+FormatWithDot.swift"; sourceTree = "<group>"; };
@@ -197,6 +205,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		70211AD02B905AAB00592DCF /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				70211ACE2B9059D600592DCF /* MockMainViewModel.swift */,
+				70211ACA2B90595B00592DCF /* MockUserRepository.swift */,
+			);
+			name = Mock;
+			path = "ㅡㅐ차";
+			sourceTree = "<group>";
+		};
 		70385ECF2A07DFDD001CDAB0 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +227,7 @@
 				70FDC8E32B8315190029AAB3 /* Date */,
 				AE2CB0312A9F72E000D6AD65 /* Extensions */,
 				70875FDB2B80E667008690EC /* Modifiers */,
+				70211AD02B905AAB00592DCF /* Mock */,
 				70385ED22A07E00F001CDAB0 /* Color.xcassets */,
 				AE37D5382A039606009B0F56 /* Assets.xcassets */,
 			);
@@ -246,6 +265,7 @@
 		70875FC52B7F0B75008690EC /* ChingguTests */ = {
 			isa = PBXGroup;
 			children = (
+				70211AD12B905B6B00592DCF /* MainViewModelTests.swift */,
 				70875FC62B7F0B75008690EC /* CoreDataTests.swift */,
 				70875FF92B81FC16008690EC /* ComplimentBoxTests.swift */,
 				70FDC8EC2B8346EC0029AAB3 /* DateManagerTests.swift */,
@@ -414,6 +434,7 @@
 			isa = PBXGroup;
 			children = (
 				70FDC8E12B83042D0029AAB3 /* UserRepository.swift */,
+				70211AC82B90594D00592DCF /* UserRepositoryProtocol.swift */,
 				70FDC8EA2B8326900029AAB3 /* AppStorageKeys.swift */,
 			);
 			path = UserRepository;
@@ -639,6 +660,7 @@
 				70875FC72B7F0B75008690EC /* CoreDataTests.swift in Sources */,
 				70FDC8ED2B8346EC0029AAB3 /* DateManagerTests.swift in Sources */,
 				70875FFA2B81FC16008690EC /* ComplimentBoxTests.swift in Sources */,
+				70211AD22B905B6B00592DCF /* MainViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,6 +673,7 @@
 				70FDC8DE2B82EFF20029AAB3 /* MockComplimentBoxController.swift in Sources */,
 				70875FD02B808582008690EC /* ArchivingDetailViewModel.swift in Sources */,
 				AE2CB0332AA056B300D6AD65 /* HapticManager.swift in Sources */,
+				70211ACF2B9059D600592DCF /* MockMainViewModel.swift in Sources */,
 				FB6D0BCB2A0A35AD00220360 /* ArchivingDetailView.swift in Sources */,
 				70FDC8F12B83BCC70029AAB3 /* DataErrorHandler.swift in Sources */,
 				AE2CB02E2A9F705F00D6AD65 /* Weekday.swift in Sources */,
@@ -664,6 +687,7 @@
 				70C7977B2A04357F00E2E3AF /* CardView.swift in Sources */,
 				70875FD22B80DE01008690EC /* TowardsButtonDirection.swift in Sources */,
 				70BD12BF2A3F066600BF252F /* ArchivingConstants.swift in Sources */,
+				70211ACB2B90595B00592DCF /* MockUserRepository.swift in Sources */,
 				AE2CB0362AA059A300D6AD65 /* ComplimentBox.swift in Sources */,
 				70C7977D2A04357F00E2E3AF /* CardPopupView.swift in Sources */,
 				70C7977C2A04357F00E2E3AF /* CardFullScreenView.swift in Sources */,
@@ -681,6 +705,7 @@
 				7040B6462B8CB69F00A8B608 /* AsyncdataController.swift in Sources */,
 				70FDC8E02B82FEC00029AAB3 /* DateManager.swift in Sources */,
 				70FDC8E72B8318860029AAB3 /* HapticManageable.swift in Sources */,
+				70211AC92B90594D00592DCF /* UserRepositoryProtocol.swift in Sources */,
 				70875FFC2B8206CD008690EC /* CoreDataManager+Test.swift in Sources */,
 				70B8FBA72A0D119B005B8366 /* ComplimentEntity+CoreDataClass.swift in Sources */,
 				51D817182A08E59F00B84E6A /* WriteComplimentView.swift in Sources */,

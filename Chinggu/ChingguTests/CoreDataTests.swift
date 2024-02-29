@@ -10,7 +10,7 @@ import XCTest
 
 final class CoreDataTests: XCTestCase {
     
-    var sut: CoreDataManager!
+    var sut: ComplimentDataController!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
@@ -23,18 +23,18 @@ final class CoreDataTests: XCTestCase {
     }
 
     func testAddCompliment() throws {
-        let initCount = try! sut.fetchComplimentsInGroup(1).count
+        let initCount = try! sut.fetchCompliments(request: .inGroup(1)).count
         
         try! sut.addCompliment(complimentText: "칭찬행", groupID: 1)
         
-        let newCount = try! sut.fetchComplimentsInGroup(1).count
+        let newCount = try! sut.fetchCompliments(request: .inGroup(1)).count
         XCTAssertEqual(newCount, initCount + 1)
     }
     
     func testFetchComplimentsIngroup() throws {
         try! sut.addCompliment(complimentText: "칭찬", groupID: 3)
         
-        let groupCompliments = try! sut.fetchComplimentsInGroup(3)
+        let groupCompliments = try! sut.fetchCompliments(request: .inGroup(3))
         
         XCTAssertNotEqual(groupCompliments.count, 0)
     }

@@ -76,7 +76,7 @@ struct MainView: View {
             Button(action: {
                 viewModel.toggleShowActionSheet()
             }, label: {
-                Text(viewModel.userRepository.selectedWeekday)
+                Text(viewModel.tempSeletedWeekday.rawValue)
                     .bold()
                     .font(.body)
                     .foregroundColor(!viewModel.userRepository.isfirst ? .blue : .gray)

@@ -12,7 +12,7 @@ struct ArchivingView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) {
+            LazyVStack(alignment: .leading) {
                 if viewModel.userRepository.groupOrder > 1 {
                     listView
                 } else {

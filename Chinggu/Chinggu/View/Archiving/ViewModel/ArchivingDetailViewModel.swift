@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 final class ArchivingDetailViewModel: ObservableObject, DataErrorHandler {
     @Published var compliment: ComplimentEntity?
@@ -15,6 +16,7 @@ final class ArchivingDetailViewModel: ObservableObject, DataErrorHandler {
     
     private var dataController: ComplimentDataController
     private var allComplimentsCount: Int16 = 0
+    private var cancellable = Set<AnyCancellable>()
     
     init(compliment: ComplimentEntity,
          dataController: ComplimentDataController = CoreDataManager.shared) {
@@ -24,6 +26,14 @@ final class ArchivingDetailViewModel: ObservableObject, DataErrorHandler {
         loadComplimentsCount()
         loadCompliment()
     }
+    
+//    private func setComplimentOrderObserve() {
+//        $complimentOrder
+//            .sink { [weak self] _ in
+//                self?.loadCompliment()
+//            }
+//            .store(in: &cancellable)
+//    }
     
     func nextCompliment() {
         if complimentOrder < allComplimentsCount {

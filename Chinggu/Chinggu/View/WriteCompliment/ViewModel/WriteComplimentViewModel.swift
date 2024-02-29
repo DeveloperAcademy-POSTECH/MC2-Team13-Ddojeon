@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 final class WriteComplimentViewModel: ObservableObject, DataErrorHandler {
     @Published var categories: [Category] = Categories.allCases.map { Category(title: $0.title,
